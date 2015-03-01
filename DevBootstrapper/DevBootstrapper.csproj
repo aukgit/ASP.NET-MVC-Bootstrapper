@@ -77,6 +77,10 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer, Version=3.2.4.698, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalDll\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownDeep">
       <HintPath>packages\MarkdownDeep.Full.1.5\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
     </Reference>
@@ -290,6 +294,8 @@
     <Compile Include="Modules\TimeZone\Zone.cs" />
     <Compile Include="Modules\Type\DataTypeSupport.cs" />
     <Compile Include="Modules\Uploads\FileLocation.cs" />
+    <Compile Include="Modules\Uploads\IImageCategory.cs" />
+    <Compile Include="Modules\Uploads\IUploadableFile.cs" />
     <Compile Include="Modules\Uploads\UploadProcessor.cs" />
     <Compile Include="Modules\UserError\ErrorCollector.cs" />
     <Compile Include="Modules\UserError\MessageConstants.cs" />
@@ -357,6 +363,9 @@
     <Content Include="Content\Scripts\respond.min.js" />
     <Content Include="Content\Scripts\Bootstrap\star-rating.js" />
     <Content Include="ExternalDll\DevMVCComponent.dll" />
+    <Content Include="ExternalDll\ImageResizer.dll" />
+    <Content Include="ExternalDll\ImageResizer.XML" />
+    <Content Include="ExternalDll\LinqKit.dll" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="oldgarbages.txt" />

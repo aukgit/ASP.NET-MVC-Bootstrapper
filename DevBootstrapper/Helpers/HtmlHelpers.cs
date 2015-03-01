@@ -13,6 +13,7 @@ using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Menu;
 using DevBootstrapper.Modules.TimeZone;
+using DevBootstrapper.Modules.Uploads;
 using DevMVCComponent.Enums;
 
 #endregion
@@ -125,7 +126,7 @@ namespace DevBootstrapper.Helpers {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          " country-combo' data-live-search='true' name='CountryID' " + otherAttributes +
                                          " title='Country' data-style='btn-success flag-combo fc-af'>";
-            var sb = new StringBuilder(countryOptionsGenerate, countries.Count*7);
+            var sb = new StringBuilder(countryOptionsGenerate, countries.Count * 7);
             foreach (var country in countries) {
                 sb.Append(string.Format("<option class='flag-country-combo flag {0}' title='| {1}' value='{2}'>",
                     country.Alpha2Code.ToLower(), country.DisplayCountryName, country.CountryID));

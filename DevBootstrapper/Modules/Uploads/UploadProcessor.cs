@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using DevMVCComponent;
+using ImageResizer;
 
 namespace DevBootstrapper.Modules.Uploads {
     public class UploadProcessor {

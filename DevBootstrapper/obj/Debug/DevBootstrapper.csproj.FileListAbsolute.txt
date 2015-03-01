@@ -69,3 +69,5 @@ C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\
 C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Razor.xml
 C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.dll
 C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.pdb
+C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\ImageResizer.dll
+C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\ImageResizer.xml
