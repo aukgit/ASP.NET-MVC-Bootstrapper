@@ -5,7 +5,7 @@ using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Session;
 
 namespace DevBootstrapper.Controllers {
-    [CompressFilter]
+    //[CompressFilter]
     public class CommonController : Controller {
         [OutputCache(CacheProfile = "Day", VaryByParam = "id")]
         public ActionResult GetTimeZone(int id) {

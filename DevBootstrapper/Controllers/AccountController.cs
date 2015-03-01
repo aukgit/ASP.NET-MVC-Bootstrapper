@@ -35,7 +35,7 @@ namespace DevBootstrapper.Controllers {
 
         #region Confirm Email
 
-        [CompressFilter(Order = 1)]
+        //[CompressFilter(Order = 1)]
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(int userId, string code, Guid codeHashed) {
             if (code == null || codeHashed == null) {
@@ -279,7 +279,7 @@ namespace DevBootstrapper.Controllers {
             return PartialView("_RegisterFields");
         }
 
-        [CompressFilter(Order = 1)]
+        //[CompressFilter(Order = 1)]
         [AllowAnonymous]
         public ActionResult Register() {
             if (UserManager.IsAuthenticated()) {
@@ -292,7 +292,7 @@ namespace DevBootstrapper.Controllers {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CompressFilter(Order = 1)]
+        //[CompressFilter(Order = 1)]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             var errors = new ErrorCollector();
             //External Validation.
@@ -383,7 +383,7 @@ namespace DevBootstrapper.Controllers {
 
         #region Forget Password
 
-        [CompressFilter(Order = 1)]
+        //[CompressFilter(Order = 1)]
         [AllowAnonymous]
         public ActionResult ForgotPassword() {
             return View();
@@ -393,7 +393,7 @@ namespace DevBootstrapper.Controllers {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CompressFilter(Order = 1)]
+        //[CompressFilter(Order = 1)]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model) {
             if (ModelState.IsValid) {
                 var user = await Manager.FindByNameAsync(model.Email);

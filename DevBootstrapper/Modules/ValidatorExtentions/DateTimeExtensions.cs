@@ -1,19 +1,19 @@
 using System;
 using System.Configuration;
 
-namespace DevBootstrapper.ValidatorExtentions {
+namespace DevBootstrapper.Modules.ValidatorExtentions {
     public static class DateTimeExtensions {
-        private static readonly string timeZoneId = ConfigurationManager.AppSettings["TimeZoneId"] ??
+        private static readonly string TimeZoneId = ConfigurationManager.AppSettings["TimeZoneId"] ??
                                                     "W. Europe Standard Time";
 
         public static DateTime ToLocalTime(this DateTime dt) {
             // dt.DateTimeKind should be Utc!
-            var tzi = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            var tzi = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId);
             return TimeZoneInfo.ConvertTimeFromUtc(DateTime.SpecifyKind(dt, DateTimeKind.Utc), tzi);
         }
 
         public static DateTime ToUtcTime(this DateTime dt) {
-            var tzi = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            var tzi = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId);
             return TimeZoneInfo.ConvertTimeToUtc(dt, tzi);
         }
 
