@@ -18,14 +18,14 @@
  * mailto:info@developers-organism.com
 */
 
-$(function() {
+$(function () {
     //tooltip trigger
 
 
     $.devOrg.Constants = {
         registerForm: $("form.register-form"),
         countryComboSelector: ".form-control.selectpicker.country-combo",
-        countryDropDownItemsSelector: "ul.dropdown-menu.inner.selectpicker",
+        countryDropDownItemsSelector: "div.country-combo ul",
         btnSelector: "button.btn.dropdown-toggle.selectpicker.btn-success.flag-combo",
         userName: "UserName",
         email: "Email",
@@ -61,10 +61,7 @@ $(function() {
             $.devOrg.Constants.countryDropDownItemsSelector,
             $.devOrg.Constants.btnSelector);
 
-        $.devOrg.countryRelatedToPhone($.devOrg.Constants.countryComboSelector,
-            $.devOrg.Constants.countryDropDownItemsSelector,
-            $.devOrg.Constants.btnSelector,
-            $.devOrg.Constants.phoneNumberSelector);
+
         //country dependable load
         $.devOrg.smartDependableCombo("select.country-combo",
             ".timezone-main",
@@ -84,10 +81,15 @@ $(function() {
             "btn-success", //class
             ""
         );
-        $("button.fillit").click(function() {
+        $("button.fillit").click(function () {
             $.devOrg.fillRegisterFieldsOnDemo();
         });
         $.devOrg.bootstrapComboSelectbyFindingValue("select.country-combo", "1");
+
+        $.devOrg.countryRelatedToPhone($.devOrg.Constants.countryComboSelector,
+          $.devOrg.Constants.countryDropDownItemsSelector,
+          $.devOrg.Constants.btnSelector,
+          $.devOrg.Constants.phoneNumberSelector);
 
     }
 
@@ -102,7 +104,7 @@ $(function() {
     $.devOrg.bootstrapComboSelectIndex("select.selectpicker", 0);
 
 
-///Implement .rating-5,.rating-10
+    ///Implement .rating-5,.rating-10
     $.devOrg.ratingMordernize();
     $.devOrg.bootstrapTabsMordernize(".make-it-tab");
 
@@ -112,7 +114,7 @@ $(function() {
         if (menuPage.length > 0) {
             var div = $("#hasDropdownDiv");
             div.hide();
-            $("#HasDropDown").click(function() {
+            $("#HasDropDown").click(function () {
                 if (this.checked) {
                     div.show("slow");
                 } else {
@@ -125,9 +127,9 @@ $(function() {
     workWithMenuPage();
 
 
-    $("textarea.big-multiline").focus(function() {
+    $("textarea.big-multiline").focus(function () {
         $(this).animate({ 'height': "300px", 'width': "630px", 'max-width': "630px" }, 400);
-    }).blur(function() {
+    }).blur(function () {
         $(this).animate({ 'height': "auto", 'width': "294px", 'max-width': "294px" }, 400);
     });
     //making textarea's elastic

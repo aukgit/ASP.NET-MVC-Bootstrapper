@@ -587,6 +587,7 @@
     <Content Include="Views\Shared\EditorTemplates\String-NoLabel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UploaderAuto.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UploaderPlain.cshtml" />
+    <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />

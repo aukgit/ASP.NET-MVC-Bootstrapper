@@ -82,7 +82,7 @@ $(function () {
         countryRelatedToPhone: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector, phoneNumberInputSelector) {
             var countryBox = $(countrySelector);
             var dropDownItems = $(dropDownItemsSelector);
-            var dropDownBtn = $(dropDownBtnSelector);
+            //var dropDownBtn = $(dropDownBtnSelector);
             var phoneNumberBox = $(phoneNumberInputSelector);
             var previousCallingCode = "";
 
