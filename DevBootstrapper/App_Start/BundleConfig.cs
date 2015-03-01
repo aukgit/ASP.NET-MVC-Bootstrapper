@@ -17,7 +17,7 @@ namespace DevBootstrapper {
             #region jQuery
 
             bundles.Add(new ScriptBundle("~/bundles/jquery", jQueryCDN)
-                .Include("~/Scripts/jquery-2.1.1.min.js") //if no CDN
+                .Include("~/Content/Scripts/jQuery/jquery-2.1.3.min.js") //if no CDN
                 );
 
             #endregion
@@ -25,17 +25,17 @@ namespace DevBootstrapper {
             #region Validation Bundle & Form Inputs Processing
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Content/Scripts/jquery.validate*",
-                "~/Scripts/underscore.js",
-                "~/Scripts/moment.js",
-                "~/Scripts/bootstrap-datetimepicker.js",
-                "~/Scripts/bootstrap-select.js",
-                "~/Content/Scripts/bootstrap-table.js",
-                "~/Content/Scripts/bootstrap-table-filter.js",
-                "~/Content/Scripts/bootstrap-table-export.js",
-                "~/Content/Scripts/star-rating.js",
-                "~/Scripts/CustomScripts/DevOrgComponent.js",
-                "~/Scripts/CustomScripts/CustomJS.js"
+                "~/Content/Scripts/jQuery/jquery.validate*",
+                "~/Content/Scripts/underscore.js",
+                "~/Content/Scripts/jQuery/moment.js",
+                "~/Content/Scripts/Bootstrap/bootstrap-datetimepicker.js",
+                "~/Content/Scripts/Bootstrap/bootstrap-select.js",
+                "~/Content/Scripts/Bootstrap/bootstrap-table.js",
+                "~/Content/Scripts/Bootstrap/bootstrap-table-filter.js",
+                "~/Content/Scripts/Bootstrap/bootstrap-table-export.js",
+                "~/Content/Scripts/Bootstrap/star-rating.js",
+                "~/Content/Scripts/DevOrgCompoents/DevOrgComponent.js",
+                "~/Content/Scripts/DevOrgCompoents/CustomJS.js"
                 ));
 
             #endregion
@@ -51,9 +51,9 @@ namespace DevBootstrapper {
             #region Bootstrap
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Content/Scripts/bootstrap.js", // 3.1.2
-                "~/Content/Scripts/respond.js",
-                "~/Scripts/CustomScripts/CommonJsEveryPage.js"
+                "~/Content/Scripts/Bootstrap/bootstrap.js", // 3.1.2
+                "~/Content/Scripts/Bootstrap/respond.js",
+                "~/Content/Scripts/Bootstrap/common-tasks-run-every-page.js"
                 ));
 
             #endregion
