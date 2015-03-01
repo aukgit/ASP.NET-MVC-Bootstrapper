@@ -16,9 +16,9 @@ namespace DevBootstrapper.Modules.UserError {
         private int _defaultCapacity = 60;
         private List<BasicError> _errors;
         private short _orderIncrementer;
-        private readonly string _highRisk = "rounded-3 label label-danger";
-        private readonly string _lowRisk = "rounded-3 label label-warning low-error-color";
-        private readonly string _midRisk = "rounded-3 label label-danger mid-error-color";
+        private const string HighRisk = "rounded-3 label label-danger";
+        private const string LowRisk = "rounded-3 label label-warning low-error-color";
+        private const string MidRisk = "rounded-3 label label-danger mid-error-color";
 
         public ErrorCollector(int def = 60) {
             _errors = new List<BasicError>(def);
@@ -32,15 +32,15 @@ namespace DevBootstrapper.Modules.UserError {
 
         public string GetCssForError(BasicError e) {
             if (e.Type == ErrorType.High) {
-                return _highRisk;
+                return HighRisk;
             }
             if (e.Type == ErrorType.Medium) {
-                return _midRisk;
+                return MidRisk;
             }
             if (e.Type == ErrorType.Low) {
-                return _lowRisk;
+                return LowRisk;
             }
-            return _lowRisk;
+            return LowRisk;
         }
 
         /// <summary>
