@@ -6,14 +6,14 @@ namespace DevBootstrapper.Controllers {
 
     public abstract class BasicController : Controller {
         internal ErrorCollector ErrorCollector;
-        internal readonly ApplicationDbContext db;
+        internal readonly ApplicationDbContext Db;
 
         protected BasicController() {
         }
 
         protected BasicController(bool applicationDbContextRequried) {
             if (applicationDbContextRequried) {
-                db = new ApplicationDbContext();
+                Db = new ApplicationDbContext();
             }
         }
 
@@ -22,13 +22,13 @@ namespace DevBootstrapper.Controllers {
                 ErrorCollector = new ErrorCollector();
             }
             if (applicationDbContextRequried) {
-                db = new ApplicationDbContext();
+                Db = new ApplicationDbContext();
             }
         }
 
         protected override void Dispose(bool disposing) {
-            if (db != null) {
-                db.Dispose();
+            if (Db != null) {
+                Db.Dispose();
             }
             if (ErrorCollector != null) {
                 ErrorCollector.Dispose();

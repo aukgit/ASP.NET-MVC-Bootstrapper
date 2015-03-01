@@ -13,7 +13,7 @@ namespace DevBootstrapper.Modules.Uploads {
     }
 
     public class FileLocation {
-        private static readonly string appPath = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string AppPath = AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
         ///     gives an absolutue path
@@ -23,7 +23,7 @@ namespace DevBootstrapper.Modules.Uploads {
         /// <returns></returns>
         public static string GetLocation(string fileName, string fileExtension, bool isPrivate = false,
             string rootPath = "~/Uploads/Files/") {
-            var path = rootPath.Replace("~", appPath);
+            var path = rootPath.Replace("~", AppPath);
             if (isPrivate) {
                 path += "Private/";
             }
@@ -45,7 +45,7 @@ namespace DevBootstrapper.Modules.Uploads {
         public static string GetImageLocation(string fileName, string fileExtension = "jpg",
             PictureType pictureType = PictureType.Default, int number = -1, bool isNumbering = false,
             bool isPrivate = false, string rootPath = "~/Uploads/Images/") {
-            var path = rootPath.Replace("~", appPath);
+            var path = rootPath.Replace("~", AppPath);
             var typeStr = "";
 
             #region Get Picture type

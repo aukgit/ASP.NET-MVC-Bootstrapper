@@ -9,17 +9,17 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class NavItemsController : Controller {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
-        private List<NavigationItem> GetItems(int? NavitionID = null) {
-            if (NavitionID == null) {
-                return db.NavigationItems.ToList();
+        private List<NavigationItem> GetItems(int? navitionId = null) {
+            if (navitionId == null) {
+                return _db.NavigationItems.ToList();
             }
-            return db.NavigationItems.Where(n => n.NavigationID == NavitionID).ToList();
+            return _db.NavigationItems.Where(n => n.NavigationID == navitionId).ToList();
         }
 
         private void AddMenuName(int id) {
-            var nav = db.Navigations.Find(id);
+            var nav = _db.Navigations.Find(id);
             ViewBag.MenuName = nav.Name;
             ViewBag.NavigationID = id;
         }
@@ -46,9 +46,9 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             AddMenuName(navigationItem.NavigationID);
             if (ModelState.IsValid) {
                 HasDropDownAttr(navigationItem);
-                db.NavigationItems.Add(navigationItem);
+                _db.NavigationItems.Add(navigationItem);
                 AppVar.SetSavedStatus(ViewBag);
-                db.SaveChanges();
+                _db.SaveChanges();
                 AppConfig.Caches.RemoveAllFromCache();
                 return View(navigationItem);
             }
@@ -56,16 +56,16 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             return View(navigationItem);
         }
 
-        public ActionResult Edit(Int32 id, int NavigationID) {
+        public ActionResult Edit(Int32 id, int navigationId) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.Editing = true;
-            var navigationItem = db.NavigationItems.Find(id);
+            var navigationItem = _db.NavigationItems.Find(id);
             if (navigationItem == null) {
                 return HttpNotFound();
             }
-            AddMenuName(NavigationID);
+            AddMenuName(navigationId);
             return View(navigationItem);
         }
 
@@ -75,8 +75,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             ViewBag.Editing = true;
             HasDropDownAttr(navigationItem);
             if (ModelState.IsValid) {
-                db.Entry(navigationItem).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(navigationItem).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("List", new { id = navigationItem.NavigationID });
             }
             AddMenuName(navigationItem.NavigationID);
@@ -84,18 +84,18 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             return View(navigationItem);
         }
 
-        public ActionResult Delete(int id, int NavigationID) {
-            var navigationItem = db.NavigationItems.Find(id);
-            db.NavigationItems.Remove(navigationItem);
-            db.SaveChanges();
-            AddMenuName(NavigationID);
+        public ActionResult Delete(int id, int navigationId) {
+            var navigationItem = _db.NavigationItems.Find(id);
+            _db.NavigationItems.Remove(navigationItem);
+            _db.SaveChanges();
+            AddMenuName(navigationId);
             AppConfig.Caches.RemoveAllFromCache();
-            return RedirectToAction("List", new { id = NavigationID });
+            return RedirectToAction("List", new { id = navigationId });
         }
 
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

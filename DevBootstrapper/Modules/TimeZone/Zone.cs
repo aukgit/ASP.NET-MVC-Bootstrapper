@@ -13,7 +13,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         #region Application Startup function for database
 
         public static void LoadTimeZonesIntoMemory() {
-            dbTimeZones = CachedQueriedData.GetTimezones();
+            _dbTimeZones = CachedQueriedData.GetTimezones();
         }
 
         #endregion
@@ -43,9 +43,9 @@ namespace DevBootstrapper.Modules.TimeZone {
 
         #region Fields
 
-        private static string defaultTimeFormat = "hh:mm:ss tt";
-        private static string defaultDateFormat = "dd-MMM-yy";
-        private static string defaultDateTimeFormat = "dd-MMM-yy hh:mm:ss tt";
+        private static string _defaultTimeFormat = "hh:mm:ss tt";
+        private static string _defaultDateFormat = "dd-MMM-yy";
+        private static string _defaultDateTimeFormat = "dd-MMM-yy hh:mm:ss tt";
 
         #endregion
 
@@ -55,29 +55,29 @@ namespace DevBootstrapper.Modules.TimeZone {
         ///     hh:mm:ss tt
         /// </summary>
         public static string TimeFormat {
-            get { return defaultTimeFormat; }
-            set { defaultTimeFormat = value; }
+            get { return _defaultTimeFormat; }
+            set { _defaultTimeFormat = value; }
         }
 
         /// <summary>
         ///     dd-MMM-yy
         /// </summary>
         public static string DateFormat {
-            get { return defaultDateFormat; }
-            set { defaultDateFormat = value; }
+            get { return _defaultDateFormat; }
+            set { _defaultDateFormat = value; }
         }
 
         /// <summary>
         ///     dd-MMM-yy
         /// </summary>
         public static string DateTimeFormat {
-            get { return defaultDateTimeFormat; }
-            set { defaultDateTimeFormat = value; }
+            get { return _defaultDateTimeFormat; }
+            set { _defaultDateTimeFormat = value; }
         }
 
 
         private static readonly ReadOnlyCollection<TimeZoneInfo> SystemTimeZones = TimeZoneInfo.GetSystemTimeZones();
-        private static List<UserTimeZone> dbTimeZones;
+        private static List<UserTimeZone> _dbTimeZones;
 
         #endregion
 
@@ -87,12 +87,12 @@ namespace DevBootstrapper.Modules.TimeZone {
         }
 
         public Zone(string timeFormat, string dateFormat = null, string dateTimeFormat = null) {
-            defaultTimeFormat = timeFormat;
+            _defaultTimeFormat = timeFormat;
             if (dateFormat != null) {
-                defaultDateFormat = dateFormat;
+                _defaultDateFormat = dateFormat;
             }
             if (dateTimeFormat != null) {
-                defaultDateTimeFormat = dateTimeFormat;
+                _defaultDateTimeFormat = dateTimeFormat;
             }
         }
 
@@ -129,7 +129,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             //if cache time zone not exist.
             var user = UserManager.GetUser(username);
             if (user != null) {
-                var timezoneDb = dbTimeZones.FirstOrDefault(n => n.UserTimeZoneID == user.UserTimeZoneID);
+                var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.UserTimeZoneID == user.UserTimeZoneID);
                 if (timezoneDb != null) {
                     timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
                 }

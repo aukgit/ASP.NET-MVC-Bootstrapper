@@ -8,10 +8,10 @@ using DevBootstrapper.Modules.Uploads;
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class ImageResizeSettingsController : Controller {
-        private readonly DevIdentityDbContext db = new DevIdentityDbContext();
+        private readonly DevIdentityDbContext _db = new DevIdentityDbContext();
 
         public ActionResult Index() {
-            var list = db.ImageResizeSettings.ToList();
+            var list = _db.ImageResizeSettings.ToList();
             var change = false;
             foreach (var picType in Enum.GetValues(typeof(PictureType))) {
                 var pictureType = picType.ToString();
@@ -22,16 +22,16 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                         Width = 0,
                         Extension = "jpg"
                     };
-                    db.ImageResizeSettings.Add(newImageType);
+                    _db.ImageResizeSettings.Add(newImageType);
                     change = true;
                     //list.Add(newImageType);
                 }
             }
             if (change) {
-                db.SaveChanges();
+                _db.SaveChanges();
             }
 
-            list = db.ImageResizeSettings.ToList();
+            list = _db.ImageResizeSettings.ToList();
             return View(list);
         }
 
@@ -43,8 +43,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Create(ImageResizeSetting imageResizeSetting) {
             if (ModelState.IsValid) {
-                db.ImageResizeSettings.Add(imageResizeSetting);
-                db.SaveChanges();
+                _db.ImageResizeSettings.Add(imageResizeSetting);
+                _db.SaveChanges();
                 return RedirectToAction("Create");
             }
 
@@ -52,7 +52,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         }
 
         public ActionResult Edit(Int32 id) {
-            var imageResizeSetting = db.ImageResizeSettings.Find(id);
+            var imageResizeSetting = _db.ImageResizeSettings.Find(id);
             if (imageResizeSetting == null) {
                 return HttpNotFound();
             }
@@ -63,15 +63,15 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ImageResizeSetting imageResizeSetting) {
             if (ModelState.IsValid) {
-                db.Entry(imageResizeSetting).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(imageResizeSetting).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(imageResizeSetting);
         }
 
         public ActionResult Delete(Int32 id) {
-            var imageResizeSetting = db.ImageResizeSettings.Find(id);
+            var imageResizeSetting = _db.ImageResizeSettings.Find(id);
             if (imageResizeSetting == null) {
                 return HttpNotFound();
             }
@@ -81,15 +81,15 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
-            var imageResizeSetting = db.ImageResizeSettings.Find(id);
-            db.ImageResizeSettings.Remove(imageResizeSetting);
-            db.SaveChanges();
+            var imageResizeSetting = _db.ImageResizeSettings.Find(id);
+            _db.ImageResizeSettings.Remove(imageResizeSetting);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

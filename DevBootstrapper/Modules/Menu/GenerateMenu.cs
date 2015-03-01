@@ -12,14 +12,14 @@ namespace DevBootstrapper.Modules.Menu {
         ///     0 - name
         ///     1 - drop li items
         /// </summary>
-        private const string dropDownTemplate = @"<li class='dropdown'>
+        private const string DropDownTemplate = @"<li class='dropdown'>
                                             <a href='#' class='dropdown-toggle' data-toggle='dropdown'>{0} <span class='caret'></span></a>
                                             <ul class='dropdown-menu' role='menu'>
                                               {1}
                                             </ul>
                                           </li>";
 
-        private const string dropDownUlTemplete = @"<ul class='dropdown-menu' role='menu'>
+        private const string DropDownUlTemplete = @"<ul class='dropdown-menu' role='menu'>
                                               {0}
                                             </ul>";
 
@@ -28,22 +28,22 @@ namespace DevBootstrapper.Modules.Menu {
         ///     1-title attribute
         ///     2-Link display text
         /// </summary>
-        private const string htmlListItem = @"<li title='{1}'><a href='{0}' title='{1}'>{2}</a></li>";
+        private const string HtmlListItem = @"<li title='{1}'><a href='{0}' title='{1}'>{2}</a></li>";
 
         private readonly StringBuilder _sb = new StringBuilder(150);
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
         public List<NavigationItem> Items { get; set; }
 
         public void Dispose() {
-            db.Dispose();
+            _db.Dispose();
         }
 
         public Navigation GetMenuItem(string menuName) {
-            return db.Navigations.Include(w => w.NavigationItems).FirstOrDefault(n => n.Name == menuName);
+            return _db.Navigations.Include(w => w.NavigationItems).FirstOrDefault(n => n.Name == menuName);
         }
 
         public Navigation GetMenuItem(int navigationId) {
-            return db.Navigations.Include(w => w.NavigationItems).FirstOrDefault(n => n.NavigationID == navigationId);
+            return _db.Navigations.Include(w => w.NavigationItems).FirstOrDefault(n => n.NavigationID == navigationId);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace DevBootstrapper.Modules.Menu {
 
                 foreach (var item in list) {
                     var url = appUrl + item.RelativeURL;
-                    _sb.Append(string.Format(htmlListItem, url, item.Title, item.Title));
+                    _sb.Append(string.Format(HtmlListItem, url, item.Title, item.Title));
                 }
             }
             return _sb.ToString();

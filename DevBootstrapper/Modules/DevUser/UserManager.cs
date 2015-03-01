@@ -46,7 +46,7 @@ namespace DevBootstrapper.Modules.DevUser {
         /// <param name="model"></param>
         public static async Task<bool> ExternalUserValidation(RegisterViewModel model, ApplicationDbContext db,
             ErrorCollector errors = null) {
-            var ValidOtherConditions = true;
+            var validOtherConditions = true;
             if (errors == null) {
                 errors = new ErrorCollector();
             }
@@ -65,11 +65,11 @@ namespace DevBootstrapper.Modules.DevUser {
                         regCode.IsExpired = true;
                         errors.AddMedium(MessageConstants.RegistercCodeExpired, MessageConstants.SolutionContactAdmin);
                         await db.SaveChangesAsync();
-                        ValidOtherConditions = false;
+                        validOtherConditions = false;
                     }
                 } else {
                     errors.AddMedium(MessageConstants.RegistercCodeNotValid, MessageConstants.SolutionContactAdmin);
-                    ValidOtherConditions = false;
+                    validOtherConditions = false;
                 }
             }
 
@@ -80,7 +80,7 @@ namespace DevBootstrapper.Modules.DevUser {
                 model.CountryLanguageID = CachedQueriedData.GetDefaultLanguage().CountryLanguageID;
             } else if (languages.Count > 1) {
                 //it should be selected inside the register panel.
-                ValidOtherConditions = !(model.CountryLanguageID == 0); //if zero then false.
+                validOtherConditions = !(model.CountryLanguageID == 0); //if zero then false.
                 errors.AddMedium("You forgot you set your language.");
             } else if (languages.Count == 1) {
                 model.CountryLanguageID = languages[0].CountryLanguageID;
@@ -90,21 +90,21 @@ namespace DevBootstrapper.Modules.DevUser {
             var timezones = CachedQueriedData.GetTimezones(model.CountryID, 0);
             if (timezones != null && timezones.Count > 1) {
                 //it should be selected inside the register panel.
-                ValidOtherConditions = !(model.UserTimeZoneID == 0); //if zero then false.
+                validOtherConditions = !(model.UserTimeZoneID == 0); //if zero then false.
                 errors.AddMedium("You forgot you set your time zone.");
             } else if (timezones.Count == 1) {
                 model.UserTimeZoneID = timezones[0].UserTimeZoneID;
             } else {
-                ValidOtherConditions = false;
+                validOtherConditions = false;
                 errors.AddMedium(
                     "You time zone not found. Please contact with admin and notify him/her about the issue to notify developer.");
             }
 
 
-            if (!ValidOtherConditions) {
+            if (!validOtherConditions) {
                 AppConfig.SetGlobalError(errors);
             }
-            return ValidOtherConditions;
+            return validOtherConditions;
         }
 
         #endregion

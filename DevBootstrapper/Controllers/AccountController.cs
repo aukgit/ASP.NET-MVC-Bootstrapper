@@ -64,7 +64,7 @@ namespace DevBootstrapper.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider) {
             // Request a redirect to the external login provider to link a login for the current user
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
+            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), IdentityExtensions.GetUserId(User.Identity));
         }
 
         #endregion
@@ -72,11 +72,11 @@ namespace DevBootstrapper.Controllers {
         #region LinkLoginCallBack
 
         public async Task<ActionResult> LinkLoginCallback() {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, IdentityExtensions.GetUserId(User.Identity));
             if (loginInfo == null) {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
-            var result = await Manager.AddLoginAsync(User.Identity.GetUserID(), loginInfo.Login);
+            var result = await Manager.AddLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), loginInfo.Login);
             if (result.Succeeded) {
                 return RedirectToAction("Manage");
             }
@@ -133,9 +133,9 @@ namespace DevBootstrapper.Controllers {
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey) {
             ManageMessageId? message = null;
             var result =
-                await Manager.RemoveLoginAsync(User.Identity.GetUserID(), new UserLoginInfo(loginProvider, providerKey));
+                await Manager.RemoveLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded) {
-                var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
+                var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
                 await SignInAsync(user, false);
                 message = ManageMessageId.RemoveLoginSuccess;
             } else {
@@ -159,7 +159,7 @@ namespace DevBootstrapper.Controllers {
 
         [ChildActionOnly]
         public ActionResult RemoveAccountList() {
-            var linkedAccounts = Manager.GetLogins(long.Parse(User.Identity.GetUserId()));
+            var linkedAccounts = Manager.GetLogins(long.Parse(IdentityExtensions.GetUserId(User.Identity)));
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return PartialView("_RemoveAccountPartial", linkedAccounts);
         }
@@ -172,15 +172,15 @@ namespace DevBootstrapper.Controllers {
 
                 Manager = null;
             }
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
 
         #region Declaration
 
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
-        private PasswordHasher passwordHasher = new PasswordHasher();
+        private PasswordHasher _passwordHasher = new PasswordHasher();
         public ApplicationUserManager Manager { get; private set; }
 
         #endregion
@@ -297,9 +297,9 @@ namespace DevBootstrapper.Controllers {
         public async Task<ActionResult> Register(RegisterViewModel model) {
             var errors = new ErrorCollector();
             //External Validation.
-            var ValidOtherConditions = await UserManager.ExternalUserValidation(model, db, errors);
+            var validOtherConditions = await UserManager.ExternalUserValidation(model, _db, errors);
 
-            if (ModelState.IsValid && ValidOtherConditions) {
+            if (ModelState.IsValid && validOtherConditions) {
                 var user = UserManager.GetUserFromViewModel(model); // get user from view model.
                 var result = await Manager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
@@ -495,9 +495,9 @@ namespace DevBootstrapper.Controllers {
                 if (ModelState.IsValid) {
                     var result =
                         await
-                            Manager.ChangePasswordAsync(User.Identity.GetUserID(), model.OldPassword, model.NewPassword);
+                            Manager.ChangePasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.OldPassword, model.NewPassword);
                     if (result.Succeeded) {
-                        var user = await Manager.FindByIdAsync(User.Identity.GetUserID());
+                        var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
                         await SignInAsync(user, false);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
@@ -511,7 +511,7 @@ namespace DevBootstrapper.Controllers {
                 }
 
                 if (ModelState.IsValid) {
-                    var result = await Manager.AddPasswordAsync(User.Identity.GetUserID(), model.NewPassword);
+                    var result = await Manager.AddPasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.NewPassword);
                     if (result.Succeeded) {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
@@ -542,7 +542,7 @@ namespace DevBootstrapper.Controllers {
         }
 
         private bool HasPassword() {
-            var user = Manager.FindById(User.Identity.GetUserID());
+            var user = Manager.FindById(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
             if (user != null) {
                 return user.PasswordHash != null;
             }

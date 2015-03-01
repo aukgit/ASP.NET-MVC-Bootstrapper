@@ -16,13 +16,13 @@
             <ul class="global-error-ul display-numbers">
                 @foreach (var error in errorList) {
                     <li>
-                        <span class="@errors.GetCSSForError(error)">@error.ErrorMessage</span>
+                        <span class="@errors.GetCssForError(error)">@error.ErrorMessage</span>
                         @if (@error.Solution != null) {
-                            <span class="@DevBootstrapper.Modules.UserError.ErrorCollector.SOLUTION_STATE_CLASS">@error.Solution</span>
+                            <span class="@DevBootstrapper.Modules.UserError.ErrorCollector.SolutionStateClass">@error.Solution</span>
                         }
                         @if (@error.Link != null) {
                             <a href="@error.Link" class="error-solution-link" title="@error.LinkTitle">
-                                <span class="@DevBootstrapper.Modules.UserError.ErrorCollector.SOLUTION_STATE_LINK_CLASS" title="@error.LinkTitle">@error.LinkTitle</span>
+                                <span class="@DevBootstrapper.Modules.UserError.ErrorCollector.SolutionStateLinkClass" title="@error.LinkTitle">@error.LinkTitle</span>
                             </a>
                         }
                     </li>

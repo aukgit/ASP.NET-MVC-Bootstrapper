@@ -8,10 +8,10 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class MenuController : Controller {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         public ActionResult Index() {
-            return View(db.Navigations.Include(n => n.NavigationItems).ToList());
+            return View(_db.Navigations.Include(n => n.NavigationItems).ToList());
         }
 
         public ActionResult Create() {
@@ -22,8 +22,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Create(Navigation navigation) {
             if (ModelState.IsValid) {
-                db.Navigations.Add(navigation);
-                db.SaveChanges();
+                _db.Navigations.Add(navigation);
+                _db.SaveChanges();
                 ViewBag.Success = "Saved Successfully";
                 return View(navigation);
             }
@@ -34,7 +34,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var navigation = db.Navigations.Find(id);
+            var navigation = _db.Navigations.Find(id);
             if (navigation == null) {
                 return HttpNotFound();
             }
@@ -45,8 +45,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Navigation navigation) {
             if (ModelState.IsValid) {
-                db.Entry(navigation).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(navigation).State = EntityState.Modified;
+                _db.SaveChanges();
                 ViewBag.Success = "Saved Successfully";
                 return RedirectToAction("Index");
             }
@@ -57,7 +57,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var navigation = db.Navigations.Find(id);
+            var navigation = _db.Navigations.Find(id);
             if (navigation == null) {
                 return HttpNotFound();
             }
@@ -67,15 +67,15 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
-            var navigation = db.Navigations.Find(id);
-            db.Navigations.Remove(navigation);
-            db.SaveChanges();
+            var navigation = _db.Navigations.Find(id);
+            _db.Navigations.Remove(navigation);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
