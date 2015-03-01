@@ -30,7 +30,6 @@ $(function() {
         userName: "UserName",
         email: "Email",
         phoneNumberSelector: "#Phone",
-        slash: "/",
         // "/Validator/"
         validatorCommonUrl: "/Validator/",
         //"/Validator/Username"

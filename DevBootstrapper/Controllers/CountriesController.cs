@@ -67,7 +67,7 @@ namespace DevBootstrapper.Controllers {
             }
 
             try {
-                var changes = Db.SaveChanges(country);
+                var changes = db.SaveChanges(country);
                 if (changes > 0) {
                     return true;
                 }
@@ -83,7 +83,7 @@ namespace DevBootstrapper.Controllers {
 
         public ActionResult Index() {
             var viewOf = ViewTapping(ViewStates.Index);
-            return View(Db.Countries.ToList());
+            return View(db.Countries.ToList());
         }
 
         #endregion
@@ -94,7 +94,7 @@ namespace DevBootstrapper.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var country = Db.Countries.Find(id);
+            var country = db.Countries.Find(id);
             if (country == null) {
                 return HttpNotFound();
             }
@@ -199,7 +199,7 @@ namespace DevBootstrapper.Controllers {
             var viewOf = ViewTapping(ViewStates.CreatePost, country);
             GetDropDowns(country);
             if (ModelState.IsValid) {
-                Db.Countries.Add(country);
+                db.Countries.Add(country);
                 var state = SaveDatabase(ViewStates.Create, country);
                 if (state) {
                     AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
@@ -221,7 +221,7 @@ namespace DevBootstrapper.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var country = Db.Countries.Find(id);
+            var country = db.Countries.Find(id);
             if (country == null) {
                 return HttpNotFound();
             }
@@ -236,7 +236,7 @@ namespace DevBootstrapper.Controllers {
         public ActionResult Edit(Country country) {
             var viewOf = ViewTapping(ViewStates.EditPost, country);
             if (ModelState.IsValid) {
-                Db.Entry(country).State = EntityState.Modified;
+                db.Entry(country).State = EntityState.Modified;
                 var state = SaveDatabase(ViewStates.Edit, country);
                 if (state) {
                     AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
@@ -257,7 +257,7 @@ namespace DevBootstrapper.Controllers {
         #region Delete or remove record
 
         public ActionResult Delete(int id) {
-            var country = Db.Countries.Find(id);
+            var country = db.Countries.Find(id);
             var viewOf = ViewTapping(ViewStates.Delete, country);
             return View(country);
         }
@@ -265,9 +265,9 @@ namespace DevBootstrapper.Controllers {
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
-            var country = Db.Countries.Find(id);
+            var country = db.Countries.Find(id);
             var viewOf = ViewTapping(ViewStates.DeletePost, country);
-            Db.Countries.Remove(country);
+            db.Countries.Remove(country);
             var state = SaveDatabase(ViewStates.Delete, country);
             if (!state) {
                 AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save

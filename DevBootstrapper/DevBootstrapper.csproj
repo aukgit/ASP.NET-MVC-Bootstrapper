@@ -275,7 +275,7 @@
     <Compile Include="Modules\Cookie\CookieProcessor.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Modules\DevHash.cs" />
-    <Compile Include="Modules\HTMLGenerator.cs" />
+    <Compile Include="Modules\HtmlGenerator.cs" />
     <Compile Include="Modules\IPConfig\IPConfig.cs" />
     <Compile Include="Modules\Mail\MailHtml.cs" />
     <Compile Include="Modules\Mail\MailSender.cs" />
@@ -285,7 +285,7 @@
     <Compile Include="Modules\Role\RoleManager.cs" />
     <Compile Include="Modules\Role\RoleNames.cs" />
     <Compile Include="Modules\Session\SessionNames.cs" />
-    <Compile Include="Modules\SQLGenerate.cs" />
+    <Compile Include="Modules\SqlGenerate.cs" />
     <Compile Include="Modules\TestThingsStartup.cs" />
     <Compile Include="Modules\TimeZone\Zone.cs" />
     <Compile Include="Modules\Type\DataTypeSupport.cs" />
@@ -358,7 +358,6 @@
     <Content Include="Content\Scripts\Bootstrap\star-rating.js" />
     <Content Include="ExternalDll\DevMVCComponent.dll" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="oldgarbages.txt" />
     <Content Include="Readme.txt" />
@@ -438,10 +437,6 @@
     <Content Include="Content\Scripts\DevOrgCompoents\CustomJS.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\DevOrgComponent.js" />
     <Content Include="Content\Scripts\html5shiv.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Content\Scripts\jQuery\jquery-2.1.3.intellisense.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.js" />

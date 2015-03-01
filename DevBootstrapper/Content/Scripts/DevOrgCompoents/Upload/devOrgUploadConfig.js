@@ -529,12 +529,12 @@ $(function () {
         getId: function ($uploaderItem) {
             return $uploaderItem.attr("data-id");
         },
-        initialize: function (acceptedFileSizeInMB, acceptFileTypeRegularExpressionString) {
+        initialize: function (acceptedFileSizeInMb, acceptFileTypeRegularExpressionString) {
             //var urlExist = false;
             //var kRep = 0;
 
             var uploadersLength = 0;
-            var actualSize = acceptedFileSizeInMB * 1024000;
+            var actualSize = acceptedFileSizeInMb * 1024000;
             var $executingUploader = null;
             var id = 0;
             var $uploaderDiv = $.devOrgUP.$uploaderWorkingDiv;

@@ -1,38 +1,26 @@
-﻿using System;
+﻿#region imports
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using DevMVCComponent.Enums;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Menu;
 using DevBootstrapper.Modules.TimeZone;
+using DevMVCComponent.Enums;
+
+#endregion
 
 namespace DevBootstrapper.Helpers {
     public static class HtmlHelpers {
         private const string Selected = "selected='selected'";
-        public static int TruncateLength = AppConfig.TruncateLength;
-
-        #region Truncates
-
-        public static string Truncate(this HtmlHelper helper, string input, int? length) {
-            if (string.IsNullOrEmpty(input))
-                return "";
-            if (length == null) {
-                length = TruncateLength;
-            }
-            if (input.Length <= length) {
-                return input;
-            }
-            return input.Substring(0, (int)length) + "...";
-        }
-
-        #endregion
+        private static readonly int TruncateLength = AppConfig.TruncateLength;
 
         #region Icons generate : badge
 
@@ -51,7 +39,7 @@ namespace DevBootstrapper.Helpers {
             if (isDependOnUserLogState && UserManager.IsAuthenticated()) {
                 cacheName += UserManager.GetCurrentUserName();
             }
-            var cache = (string)AppConfig.Caches.Get(cacheName);
+            var cache = (string) AppConfig.Caches.Get(cacheName);
 
             if (cache != null && !string.IsNullOrWhiteSpace(cache)) {
                 return new HtmlString(cache);
@@ -137,7 +125,7 @@ namespace DevBootstrapper.Helpers {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          " country-combo' data-live-search='true' name='CountryID' " + otherAttributes +
                                          " title='Country' data-style='btn-success flag-combo fc-af'>";
-            var sb = new StringBuilder(countryOptionsGenerate, countries.Count * 7);
+            var sb = new StringBuilder(countryOptionsGenerate, countries.Count*7);
             foreach (var country in countries) {
                 sb.Append(string.Format("<option class='flag-country-combo flag {0}' title='| {1}' value='{2}'>",
                     country.Alpha2Code.ToLower(), country.DisplayCountryName, country.CountryID));
@@ -194,7 +182,7 @@ namespace DevBootstrapper.Helpers {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          "' data-live-search='true' name='" + htmlName + "' " + otherAttributes +
                                          " title='Choose...' data-style='" + classes + "'>";
-            var dt = CachedQueriedData.GetTable(tableName, connectionType, new[] { valueField, textField });
+            var dt = CachedQueriedData.GetTable(tableName, connectionType, new[] {valueField, textField});
             if (dt != null && dt.Rows.Count > 0) {
                 var sb = new StringBuilder(countryOptionsGenerate, dt.Rows.Count + 10);
                 DataRow row;
@@ -218,11 +206,55 @@ namespace DevBootstrapper.Helpers {
 
         #endregion
 
+        #region Truncates
+
+        public static string Truncate(this HtmlHelper helper, string input, int? length, bool isShowElipseDot = true) {
+            if (string.IsNullOrEmpty(input))
+                return "";
+            if (length == null) {
+                length = TruncateLength;
+            }
+            if (input.Length <= length) {
+                return input;
+            }
+            if (isShowElipseDot) {
+                return input.Substring(0, (int) length) + "...";
+            }
+            return input.Substring(0, (int) length);
+        }
+
+        public static string Truncate(this HtmlHelper helper, string input, int starting, int length) {
+            if (string.IsNullOrEmpty(input))
+                return "";
+            if (length == -1) {
+                length = input.Length;
+            }
+            if (input.Length <= length) {
+                length = input.Length;
+            }
+            length = length - starting;
+            if (input.Length < starting) {
+                return "";
+            }
+            return input.Substring(starting, length);
+        }
+
+        public static bool IsTruncateNeeded(this HtmlHelper helper, string input, int mid) {
+            if (string.IsNullOrEmpty(input))
+                return false;
+            if (input.Length > mid) {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
         #region Link Generates
 
         public static HtmlString ContactFormActionLink(this HtmlHelper helper, string linkName, string title,
             string addClass = "") {
-            var markup = string.Format(MailHtml.ContactUsLink, title, linkName, addClass, AppVar.Url);
+            var markup = string.Format(MailHtml.CONTACT_US_LINK, title, linkName, addClass, AppVar.Url);
             return new HtmlString(markup);
         }
 
@@ -241,12 +273,16 @@ namespace DevBootstrapper.Helpers {
             //    markup = string.Format("<a href='/{0}/{1}' class='{2}' title='{3}'>{4}</a>", controller, action, addClass, title, linkName);
             //}
             var uri = HttpContext.Current.Request.RawUrl;
-
+            uri = AppVar.Url + uri;
             markup = string.Format("<a href='{0}' class='{1}' title='{2}'>{3}</a>", uri, addClass, title, linkName);
             if (h1) {
                 markup = string.Format("<h1 title='{0}'>{1}</h1>", title, markup);
             }
             return new HtmlString(markup);
+        }
+
+        public static string GetCurrentUrlString(this HtmlHelper helper) {
+            return HttpContext.Current.Request.RawUrl;
         }
 
         /// <summary>
@@ -306,16 +342,85 @@ namespace DevBootstrapper.Helpers {
 
         #endregion
 
+        #region Generate Publisher, Ideas, Tags
+
+        #endregion
+
         #region Image Generates
 
-        public static HtmlString Image(this HtmlHelper helper, string img, string alt) {
-            var markup = string.Format("<img src='{0}' alt='{1}'/>", VirtualPathUtility.ToAbsolute(img), alt);
+        /// <summary>
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="addtionalRootPath"></param>
+        /// <param name="file"></param>
+        /// <param name="isPrivate"></param>
+        /// <param name="asTemp"></param>
+        /// <param name="tempString"></param>
+        /// <param name="rootPath"></param>
+        /// <returns></returns>
+        public static string UploadedImageSrc(this HtmlHelper helper, string addtionalRootPath, IUploadableFile file,
+            bool isPrivate = false, bool asTemp = false, string tempString = "_temp",
+            string rootPath = "~/Uploads/Images/") {
+            if (isPrivate) {
+                rootPath += "Private/";
+            }
+            rootPath += addtionalRootPath;
+            if (!asTemp) {
+                tempString = "";
+            }
+            var fileName = file.UploadGuid + "-" + file.Sequence + tempString + "." + file.Extension;
+
+            var path = string.Format("{0}{1}", rootPath, fileName);
+            return AppVar.Url + VirtualPathUtility.ToAbsolute(path);
+            //return (markup);
+        }
+
+        public static string GetOrganizeName(IUploadableFile file, bool includeExtention = false, bool asTemp = false,
+            string tempString = "_temp") {
+            var ext = "";
+            if (!asTemp) {
+                tempString = "";
+            }
+            if (includeExtention) {
+                ext = "." + file.Extension;
+            }
+            return file.UploadGuid + "-" + file.Sequence + tempString + ext;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="src">use absolute http url for image src.</param>
+        /// <param name="alt"></param>
+        /// <returns></returns>
+        public static HtmlString ImageFromAbsolutePath(this HtmlHelper helper, string src, string alt) {
+            var markup = string.Format("<img src='{0}' alt='{1}'/>", src, alt);
             return new HtmlString(markup);
             //return (markup);
         }
 
-        public static HtmlString Image(this HtmlHelper helper, string folder, string img, string ext, string alt) {
-            var markup = string.Format("<img src='{0}{1}.{2}' alt='{3}'/>", VirtualPathUtility.ToAbsolute(folder), img,
+        /// <summary>
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="src">relative url.</param>
+        /// <param name="alt"></param>
+        /// <returns></returns>
+        public static HtmlString Image(this HtmlHelper helper, string src, string alt) {
+            var markup = string.Format("<img src='{0}' alt='{1}'/>", VirtualPathUtility.ToAbsolute(src), alt);
+            return new HtmlString(markup);
+            //return (markup);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="folder"></param>
+        /// <param name="src">relative from folder</param>
+        /// <param name="ext"></param>
+        /// <param name="alt"></param>
+        /// <returns></returns>
+        public static HtmlString Image(this HtmlHelper helper, string folder, string src, string ext, string alt) {
+            var markup = string.Format("<img src='{0}{1}.{2}' alt='{3}'/>", VirtualPathUtility.ToAbsolute(folder), src,
                 ext, alt);
             //return  new HtmlString(markup);
             return new HtmlString(markup);
