@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class Navigation {
-        public int NavigationID { get; set; }
+        public int NavigationId { get; set; }
 
         /// <summary>
         ///     Find navigation by.
@@ -23,7 +23,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Display(Name = "Element ID",
             Description =
                 "Html ID related to this unordered-list. Prefer not to use because classes are the mordern practice.")]
-        public string ElementID { get; set; }
+        public string ElementId { get; set; }
 
         [ForeignKey("NavigationID")]
         public virtual ICollection<NavigationItem> NavigationItems { get; set; }

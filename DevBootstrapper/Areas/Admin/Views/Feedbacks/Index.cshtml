@@ -57,7 +57,7 @@
             @Html.DisplayNameFor(model => model.FollowUpdateDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FeedbackCategoryID)
+            @Html.DisplayNameFor(model => model.FeedbackCategoryId)
         </th>
         <th></th>
     </tr>
@@ -107,11 +107,11 @@
                 @Html.DisplayFor(modelItem => item.FollowUpdateDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FeedbackCategoryID)
+                @Html.DisplayFor(modelItem => item.FeedbackCategoryId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.FeedbackID}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.FeedbackID}, new {onclick = "return confirm('Are you sure?')"})
+                @Html.ActionLink("Edit", "Edit", new {id = item.FeedbackId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.FeedbackId}, new {onclick = "return confirm('Are you sure?')"})
             </td>
         </tr>
     }

@@ -698,8 +698,8 @@
 
         // Parses the Range header from the server response
         // and returns the uploaded bytes:
-        _getUploadedBytes: function (jqXHR) {
-            var range = jqXHR.getResponseHeader('Range'),
+        _getUploadedBytes: function (jqXhr) {
+            var range = jqXhr.getResponseHeader('Range'),
                 parts = range && range.split('-'),
                 upperBytesPos = parts && parts.length > 1 &&
                     parseInt(parts[1], 10);
@@ -721,7 +721,7 @@
                 slice = this._blobSlice,
                 dfd = $.Deferred(),
                 promise = dfd.promise(),
-                jqXHR,
+                jqXhr,
                 upload;
             if (!(this._isXHRUpload(options) && slice && (ub || mcs < fs)) ||
                     options.data) {
@@ -759,10 +759,10 @@
                 that._initXHRData(o);
                 // Add progress listeners for this chunk upload:
                 that._initProgressListener(o);
-                jqXHR = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
+                jqXhr = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
                         that._getXHRPromise(false, o.context))
-                    .done(function (result, textStatus, jqXHR) {
-                        ub = that._getUploadedBytes(jqXHR) ||
+                    .done(function (result, textStatus, jqXhr) {
+                        ub = that._getUploadedBytes(jqXhr) ||
                             (ub + o.chunkSize);
                         // Create a progress event if no final progress event
                         // with loaded equaling total has been triggered
@@ -777,7 +777,7 @@
                         options.uploadedBytes = o.uploadedBytes = ub;
                         o.result = result;
                         o.textStatus = textStatus;
-                        o.jqXHR = jqXHR;
+                        o.jqXHR = jqXhr;
                         that._trigger('chunkdone', null, o);
                         that._trigger('chunkalways', null, o);
                         if (ub < fs) {
@@ -787,25 +787,25 @@
                         } else {
                             dfd.resolveWith(
                                 o.context,
-                                [result, textStatus, jqXHR]
+                                [result, textStatus, jqXhr]
                             );
                         }
                     })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        o.jqXHR = jqXHR;
+                    .fail(function (jqXhr, textStatus, errorThrown) {
+                        o.jqXHR = jqXhr;
                         o.textStatus = textStatus;
                         o.errorThrown = errorThrown;
                         that._trigger('chunkfail', null, o);
                         that._trigger('chunkalways', null, o);
                         dfd.rejectWith(
                             o.context,
-                            [jqXHR, textStatus, errorThrown]
+                            [jqXhr, textStatus, errorThrown]
                         );
                     });
             };
             this._enhancePromise(promise);
             promise.abort = function () {
-                return jqXHR.abort();
+                return jqXhr.abort();
             };
             upload();
             return promise;
@@ -837,7 +837,7 @@
             this._progress.total += data.total;
         },
 
-        _onDone: function (result, textStatus, jqXHR, options) {
+        _onDone: function (result, textStatus, jqXhr, options) {
             var total = options._progress.total,
                 response = options._response;
             if (options._progress.loaded < total) {
@@ -851,11 +851,11 @@
             }
             response.result = options.result = result;
             response.textStatus = options.textStatus = textStatus;
-            response.jqXHR = options.jqXHR = jqXHR;
+            response.jqXHR = options.jqXHR = jqXhr;
             this._trigger('done', null, options);
         },
 
-        _onFail: function (jqXHR, textStatus, errorThrown, options) {
+        _onFail: function (jqXhr, textStatus, errorThrown, options) {
             var response = options._response;
             if (options.recalculateProgress) {
                 // Remove the failed (error or abort) file upload from
@@ -863,13 +863,13 @@
                 this._progress.loaded -= options._progress.loaded;
                 this._progress.total -= options._progress.total;
             }
-            response.jqXHR = options.jqXHR = jqXHR;
+            response.jqXHR = options.jqXHR = jqXhr;
             response.textStatus = options.textStatus = textStatus;
             response.errorThrown = options.errorThrown = errorThrown;
             this._trigger('fail', null, options);
         },
 
-        _onAlways: function (jqXHRorResult, textStatus, jqXHRorError, options) {
+        _onAlways: function (jqXhRorResult, textStatus, jqXhRorError, options) {
             // jqXHRorResult, textStatus and jqXHRorError are added to the
             // options object via done and fail callbacks
             this._trigger('always', null, options);
@@ -880,7 +880,7 @@
                 this._addConvenienceMethods(e, data);
             }
             var that = this,
-                jqXHR,
+                jqXhr,
                 aborted,
                 slot,
                 pipe,
@@ -889,7 +889,7 @@
                     that._sending += 1;
                     // Set timer for bitrate progress calculation:
                     options._bitrateTimer = new that._BitrateTimer();
-                    jqXHR = jqXHR || (
+                    jqXhr = jqXhr || (
                         ((aborted || that._trigger(
                             'send',
                             $.Event('send', {delegatedEvent: e}),
@@ -897,15 +897,15 @@
                         ) === false) &&
                         that._getXHRPromise(false, options.context, aborted)) ||
                         that._chunkedUpload(options) || $.ajax(options)
-                    ).done(function (result, textStatus, jqXHR) {
-                        that._onDone(result, textStatus, jqXHR, options);
-                    }).fail(function (jqXHR, textStatus, errorThrown) {
-                        that._onFail(jqXHR, textStatus, errorThrown, options);
-                    }).always(function (jqXHRorResult, textStatus, jqXHRorError) {
+                    ).done(function (result, textStatus, jqXhr) {
+                        that._onDone(result, textStatus, jqXhr, options);
+                    }).fail(function (jqXhr, textStatus, errorThrown) {
+                        that._onFail(jqXhr, textStatus, errorThrown, options);
+                    }).always(function (jqXhRorResult, textStatus, jqXhRorError) {
                         that._onAlways(
-                            jqXHRorResult,
+                            jqXhRorResult,
                             textStatus,
-                            jqXHRorError,
+                            jqXhRorError,
                             options
                         );
                         that._sending -= 1;
@@ -929,7 +929,7 @@
                             that._trigger('stop');
                         }
                     });
-                    return jqXHR;
+                    return jqXhr;
                 };
             this._beforeSend(e, options);
             if (this.options.sequentialUploads ||
@@ -948,13 +948,13 @@
                 // and jqXHR callbacks mapped to the equivalent Promise methods:
                 pipe.abort = function () {
                     aborted = [undefined, 'abort', 'abort'];
-                    if (!jqXHR) {
+                    if (!jqXhr) {
                         if (slot) {
                             slot.rejectWith(options.context, aborted);
                         }
                         return send();
                     }
-                    return jqXHR.abort();
+                    return jqXhr.abort();
                 };
                 return this._enhancePromise(pipe);
             }
@@ -1411,12 +1411,12 @@
                     var that = this,
                         dfd = $.Deferred(),
                         promise = dfd.promise(),
-                        jqXHR,
+                        jqXhr,
                         aborted;
                     promise.abort = function () {
                         aborted = true;
-                        if (jqXHR) {
-                            return jqXHR.abort();
+                        if (jqXhr) {
+                            return jqXhr.abort();
                         }
                         dfd.reject(null, 'abort', 'abort');
                         return promise;
@@ -1431,13 +1431,13 @@
                                 return;
                             }
                             data.files = files;
-                            jqXHR = that._onSend(null, data);
-                            jqXHR.then(
-                                function (result, textStatus, jqXHR) {
-                                    dfd.resolve(result, textStatus, jqXHR);
+                            jqXhr = that._onSend(null, data);
+                            jqXhr.then(
+                                function (result, textStatus, jqXhr) {
+                                    dfd.resolve(result, textStatus, jqXhr);
                                 },
-                                function (jqXHR, textStatus, errorThrown) {
-                                    dfd.reject(jqXHR, textStatus, errorThrown);
+                                function (jqXhr, textStatus, errorThrown) {
+                                    dfd.reject(jqXhr, textStatus, errorThrown);
                                 }
                             );
                         }

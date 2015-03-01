@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.ElementClasses)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ElementID)
+            @Html.DisplayNameFor(model => model.ElementId)
         </th>
         <th></th>
     </tr>
@@ -33,13 +33,13 @@
                 @Html.DisplayFor(modelItem => item.ElementClasses)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ElementID)
+                @Html.DisplayFor(modelItem => item.ElementId)
             </td>
             <td>
-                @Html.ActionLink("Add Items", "Add", new {Controller = "NavItems", id = item.NavigationID}) |
-                @Html.ActionLink("List Items", "List", new {Controller = "NavItems", id = item.NavigationID}) @Html.GetBadge(item.NavigationItems.Count())|
-                @Html.ActionLink("Edit", "Edit", new {id = item.NavigationID}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.NavigationID}, new {onclick = "return confirm('Are you sure?')"})
+                @Html.ActionLink("Add Items", "Add", new {Controller = "NavItems", id = item.NavigationId}) |
+                @Html.ActionLink("List Items", "List", new {Controller = "NavItems", id = item.NavigationId}) @Html.GetBadge(item.NavigationItems.Count())|
+                @Html.ActionLink("Edit", "Edit", new {id = item.NavigationId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.NavigationId}, new {onclick = "return confirm('Are you sure?')"})
             </td>
         </tr>
     }

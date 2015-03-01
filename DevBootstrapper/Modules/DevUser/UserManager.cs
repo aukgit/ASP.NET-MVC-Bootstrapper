@@ -46,7 +46,7 @@ namespace DevBootstrapper.Modules.DevUser {
         /// <param name="model"></param>
         public static async Task<bool> ExternalUserValidation(RegisterViewModel model, ApplicationDbContext db,
             ErrorCollector errors = null) {
-            var ValidOtherConditions = true;
+            var validOtherConditions = true;
             if (errors == null) {
                 errors = new ErrorCollector();
             }
@@ -57,7 +57,7 @@ namespace DevBootstrapper.Modules.DevUser {
                 var regCode =
                     db.RegisterCodes.FirstOrDefault(
                         n =>
-                            n.IsUsed == false && n.RoleID == model.Role && n.RegisterCodeID == model.RegistraterCode &&
+                            n.IsUsed == false && n.RoleId == model.Role && n.RegisterCodeId == model.RegistraterCode &&
                             !n.IsExpired);
                 if (regCode != null) {
                     if (regCode.ValidityTill <= DateTime.Now) {
@@ -65,46 +65,46 @@ namespace DevBootstrapper.Modules.DevUser {
                         regCode.IsExpired = true;
                         errors.AddMedium(MessageConstants.RegistercCodeExpired, MessageConstants.SolutionContactAdmin);
                         await db.SaveChangesAsync();
-                        ValidOtherConditions = false;
+                        validOtherConditions = false;
                     }
                 } else {
                     errors.AddMedium(MessageConstants.RegistercCodeNotValid, MessageConstants.SolutionContactAdmin);
-                    ValidOtherConditions = false;
+                    validOtherConditions = false;
                 }
             }
 
             //validation for country language
-            var languages = CachedQueriedData.GetLanguages(model.CountryID, 0);
+            var languages = CachedQueriedData.GetLanguages(model.CountryId, 0);
             if (languages == null) {
                 //select english as default.
-                model.CountryLanguageID = CachedQueriedData.GetDefaultLanguage().CountryLanguageID;
+                model.CountryLanguageId = CachedQueriedData.GetDefaultLanguage().CountryLanguageId;
             } else if (languages.Count > 1) {
                 //it should be selected inside the register panel.
-                ValidOtherConditions = !(model.CountryLanguageID == 0); //if zero then false.
+                validOtherConditions = !(model.CountryLanguageId == 0); //if zero then false.
                 errors.AddMedium("You forgot you set your language.");
             } else if (languages.Count == 1) {
-                model.CountryLanguageID = languages[0].CountryLanguageID;
+                model.CountryLanguageId = languages[0].CountryLanguageId;
             }
 
             //validation for country timzone
-            var timezones = CachedQueriedData.GetTimezones(model.CountryID, 0);
+            var timezones = CachedQueriedData.GetTimezones(model.CountryId, 0);
             if (timezones != null && timezones.Count > 1) {
                 //it should be selected inside the register panel.
-                ValidOtherConditions = !(model.UserTimeZoneID == 0); //if zero then false.
+                validOtherConditions = !(model.UserTimeZoneId == 0); //if zero then false.
                 errors.AddMedium("You forgot you set your time zone.");
             } else if (timezones.Count == 1) {
-                model.UserTimeZoneID = timezones[0].UserTimeZoneID;
+                model.UserTimeZoneId = timezones[0].UserTimeZoneId;
             } else {
-                ValidOtherConditions = false;
+                validOtherConditions = false;
                 errors.AddMedium(
                     "You time zone not found. Please contact with admin and notify him/her about the issue to notify developer.");
             }
 
 
-            if (!ValidOtherConditions) {
+            if (!validOtherConditions) {
                 AppConfig.SetGlobalError(errors);
             }
-            return ValidOtherConditions;
+            return validOtherConditions;
         }
 
         #endregion
@@ -114,8 +114,8 @@ namespace DevBootstrapper.Modules.DevUser {
         public void LinkUserWithRegistrationCode(ApplicationUser user, Guid code) {
             if (user != null) {
                 var relation = new RegisterCodeUserRelation {
-                    UserID = user.Id,
-                    RegisterCodeUserRelationID = code
+                    UserId = user.Id,
+                    RegisterCodeUserRelationId = code
                 };
                 using (var db = new ApplicationDbContext()) {
                     db.RegisterCodeUserRelations.Add(relation);
@@ -311,7 +311,7 @@ namespace DevBootstrapper.Modules.DevUser {
 
         public static ApplicationUser GetUserFromSession(long userId) {
             var user = GetUserFromSession();
-            if (user != null && user.UserID == userId) {
+            if (user != null && user.UserId == userId) {
                 return user;
             }
             return null;
@@ -327,9 +327,9 @@ namespace DevBootstrapper.Modules.DevUser {
                 CreatedDate = DateTime.Now,
                 EmailConfirmed = false,
                 PhoneNumber = model.Phone,
-                CountryID = model.CountryID,
-                CountryLanguageID = model.CountryLanguageID,
-                UserTimeZoneID = model.UserTimeZoneID,
+                CountryId = model.CountryId,
+                CountryLanguageId = model.CountryLanguageId,
+                UserTimeZoneId = model.UserTimeZoneId,
                 IsRegistrationComplete = false,
                 GeneratedGuid = Guid.NewGuid()
             };

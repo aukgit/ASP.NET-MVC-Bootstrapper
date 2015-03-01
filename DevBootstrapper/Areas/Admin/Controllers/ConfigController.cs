@@ -7,12 +7,12 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class ConfigController : Controller {
-        private readonly DevIdentityDbContext db = new DevIdentityDbContext();
+        private readonly DevIdentityDbContext _db = new DevIdentityDbContext();
 
         public ActionResult Index() {
             byte id = 1;
 
-            var coreSetting = db.CoreSettings.Find(id);
+            var coreSetting = _db.CoreSettings.Find(id);
             if (coreSetting == null) {
                 return HttpNotFound();
             }
@@ -36,8 +36,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             ViewBag.tab = tab;
 
             if (ModelState.IsValid) {
-                db.Entry(coreSetting).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(coreSetting).State = EntityState.Modified;
+                _db.SaveChanges();
                 AppConfig.RefreshSetting();
                 ViewBag.Success = "Saved Successfully.";
             }
@@ -47,7 +47,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

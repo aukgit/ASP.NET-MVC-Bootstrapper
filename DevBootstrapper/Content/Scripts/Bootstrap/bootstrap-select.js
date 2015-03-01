@@ -69,7 +69,7 @@
         }) : string;
     }
 
-    var Selectpicker = function(element, options, e) {
+    var selectpicker = function(element, options, e) {
         if (e) {
             e.stopPropagation();
             e.preventDefault();
@@ -89,24 +89,24 @@
         }
 
         //Expose public methods
-        this.val = Selectpicker.prototype.val;
-        this.render = Selectpicker.prototype.render;
-        this.refresh = Selectpicker.prototype.refresh;
-        this.setStyle = Selectpicker.prototype.setStyle;
-        this.selectAll = Selectpicker.prototype.selectAll;
-        this.deselectAll = Selectpicker.prototype.deselectAll;
-        this.destroy = Selectpicker.prototype.remove;
-        this.remove = Selectpicker.prototype.remove;
-        this.show = Selectpicker.prototype.show;
-        this.hide = Selectpicker.prototype.hide;
+        this.val = selectpicker.prototype.val;
+        this.render = selectpicker.prototype.render;
+        this.refresh = selectpicker.prototype.refresh;
+        this.setStyle = selectpicker.prototype.setStyle;
+        this.selectAll = selectpicker.prototype.selectAll;
+        this.deselectAll = selectpicker.prototype.deselectAll;
+        this.destroy = selectpicker.prototype.remove;
+        this.remove = selectpicker.prototype.remove;
+        this.show = selectpicker.prototype.show;
+        this.hide = selectpicker.prototype.hide;
 
         this.init();
     };
 
-    Selectpicker.VERSION = "1.6.3";
+    selectpicker.VERSION = "1.6.3";
 
     // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
-    Selectpicker.DEFAULTS = {
+    selectpicker.DEFAULTS = {
         noneSelectedText: "Nothing selected",
         noneResultsText: "No results match",
         countSelectedText: function(numSelected, numTotal) {
@@ -146,8 +146,8 @@
         searchAccentInsensitive: false
     };
 
-    Selectpicker.prototype = {
-        constructor: Selectpicker,
+    selectpicker.prototype = {
+        constructor: selectpicker,
 
         init: function() {
             var that = this,
@@ -245,8 +245,8 @@
 
         createLi: function() {
             var that = this,
-                _li = [],
-                optID = 0;
+                li = [],
+                optId = 0;
 
             // Helper functions
             /**
@@ -255,7 +255,7 @@
        * @param [classes]
        * @returns {string}
        */
-            var generateLI = function(content, index, classes) {
+            var generateLi = function(content, index, classes) {
                 return "<li" +
                     (typeof classes !== "undefined" ? " class=\"" + classes + "\"" : "") +
                     (typeof index !== "undefined" | null === index ? " data-original-index=\"" + index + "\"" : "") +
@@ -307,7 +307,7 @@
 
                 if ($this.parent().is("optgroup") && $this.data("divider") !== true) {
                     if ($this.index() === 0) { // Is it the first option of the optgroup?
-                        optID += 1;
+                        optId += 1;
 
                         // Get the opt group label
                         var label = $this.parent().attr("label");
@@ -315,20 +315,20 @@
                         var labelIcon = $this.parent().data("icon") ? "<span class=\"" + that.options.iconBase + " " + $this.parent().data("icon") + "\"></span> " : "";
                         label = labelIcon + "<span class=\"text\">" + label + labelSubtext + "</span>";
 
-                        if (index !== 0 && _li.length > 0) { // Is it NOT the first option of the select && are there elements in the dropdown?
-                            _li.push(generateLI("", null, "divider"));
+                        if (index !== 0 && li.length > 0) { // Is it NOT the first option of the select && are there elements in the dropdown?
+                            li.push(generateLi("", null, "divider"));
                         }
 
-                        _li.push(generateLI(label, null, "dropdown-header"));
+                        li.push(generateLi(label, null, "dropdown-header"));
                     }
 
-                    _li.push(generateLI(generateA(text, "opt " + optionClass, inline, optID), index));
+                    li.push(generateLi(generateA(text, "opt " + optionClass, inline, optId), index));
                 } else if ($this.data("divider") === true) {
-                    _li.push(generateLI("", index, "divider"));
+                    li.push(generateLi("", index, "divider"));
                 } else if ($this.data("hidden") === true) {
-                    _li.push(generateLI(generateA(text, optionClass, inline), index, "hide is-hidden"));
+                    li.push(generateLi(generateA(text, optionClass, inline), index, "hide is-hidden"));
                 } else {
-                    _li.push(generateLI(generateA(text, optionClass, inline), index));
+                    li.push(generateLi(generateA(text, optionClass, inline), index));
                 }
             });
 
@@ -337,7 +337,7 @@
                 this.$element.find("option").eq(0).prop("selected", true).attr("selected", "selected");
             }
 
-            return $(_li.join(""));
+            return $(li.join(""));
         },
 
         findLis: function() {
@@ -389,8 +389,8 @@
                 if ((max.length > 1 && selectedItems.length > max[1]) || (max.length == 1 && selectedItems.length >= 2)) {
                     notDisabled = this.options.hideDisabled ? ", [disabled]" : "";
                     var totalCount = this.$element.find("option").not("[data-divider=\"true\"], [data-hidden=\"true\"]" + notDisabled).length,
-                        tr8nText = (typeof this.options.countSelectedText === "function") ? this.options.countSelectedText(selectedItems.length, totalCount) : this.options.countSelectedText;
-                    title = tr8nText.replace("{0}", selectedItems.length.toString()).replace("{1}", totalCount.toString());
+                        tr8NText = (typeof this.options.countSelectedText === "function") ? this.options.countSelectedText(selectedItems.length, totalCount) : this.options.countSelectedText;
+                    title = tr8NText.replace("{0}", selectedItems.length.toString()).replace("{1}", totalCount.toString());
                 }
             }
 
@@ -704,9 +704,9 @@
                                 } else if (maxOptionsGrp && maxOptionsGrp == 1) {
                                     $optgroup.find("option:selected").prop("selected", false);
                                     $option.prop("selected", true);
-                                    var optgroupID = $this.data("optgroup");
+                                    var optgroupId = $this.data("optgroup");
 
-                                    that.$menu.find(".selected").has("a[data-optgroup=\"" + optgroupID + "\"]").removeClass("selected");
+                                    that.$menu.find(".selected").has("a[data-optgroup=\"" + optgroupId + "\"]").removeClass("selected");
 
                                     that.setSelected(clickedIndex, true);
                                 } else {
@@ -817,14 +817,14 @@
 
         liveSearchListener: function() {
             var that = this,
-                no_results = $("<li class=\"no-results\"></li>");
+                noResults = $("<li class=\"no-results\"></li>");
 
             this.$newElement.on("click.dropdown.data-api", function() {
                 that.$menu.find(".active").removeClass("active");
                 if (!!that.$searchbox.val()) {
                     that.$searchbox.val("");
                     that.$lis.not(".is-hidden").removeClass("hide");
-                    if (!!no_results.parent().length) no_results.remove();
+                    if (!!noResults.parent().length) noResults.remove();
                 }
                 if (!that.multiple) that.$menu.find(".selected").addClass("active");
                 setTimeout(function() {
@@ -842,16 +842,16 @@
                     }
 
                     if (!that.$menu.find("li").filter(":visible:not(.no-results)").length) {
-                        if (!!no_results.parent().length) no_results.remove();
-                        no_results.html(that.options.noneResultsText + " \"" + htmlEscape(that.$searchbox.val()) + "\"").show();
-                        that.$menu.find("li").last().after(no_results);
-                    } else if (!!no_results.parent().length) {
-                        no_results.remove();
+                        if (!!noResults.parent().length) noResults.remove();
+                        noResults.html(that.options.noneResultsText + " \"" + htmlEscape(that.$searchbox.val()) + "\"").show();
+                        that.$menu.find("li").last().after(noResults);
+                    } else if (!!noResults.parent().length) {
+                        noResults.remove();
                     }
 
                 } else {
                     that.$lis.not(".is-hidden").removeClass("hide");
-                    if (!!no_results.parent().length) no_results.remove();
+                    if (!!noResults.parent().length) noResults.remove();
                 }
 
                 that.$menu.find("li.active").removeClass("active");
@@ -1123,7 +1123,7 @@
 
     // SELECTPICKER PLUGIN DEFINITION
     // ==============================
-    function Plugin(option, event) {
+    function plugin(option, event) {
         // get the args of the outer function..
         var args = arguments;
         // The arguments of the function are explicitly re-defined from the argument list, because the shift causes them
@@ -1147,8 +1147,8 @@
                     options = typeof option == "object" && option;
 
                 if (!data) {
-                    var config = $.extend({}, Selectpicker.DEFAULTS, $.fn.selectpicker.defaults || {}, $this.data(), options);
-                    $this.data("selectpicker", (data = new Selectpicker(this, config, event)));
+                    var config = $.extend({}, selectpicker.DEFAULTS, $.fn.selectpicker.defaults || {}, $this.data(), options);
+                    $this.data("selectpicker", (data = new selectpicker(this, config, event)));
                 } else if (options) {
                     for (var i in options) {
                         if (options.hasOwnProperty(i)) {
@@ -1176,8 +1176,8 @@
     }
 
     var old = $.fn.selectpicker;
-    $.fn.selectpicker = Plugin;
-    $.fn.selectpicker.Constructor = Selectpicker;
+    $.fn.selectpicker = plugin;
+    $.fn.selectpicker.Constructor = selectpicker;
 
     // SELECTPICKER NO CONFLICT
     // ========================
@@ -1188,7 +1188,7 @@
 
     $(document)
         .data("keycount", 0)
-        .on("keydown", ".bootstrap-select [data-toggle=dropdown], .bootstrap-select [role=menu], .bs-searchbox input", Selectpicker.prototype.keydown)
+        .on("keydown", ".bootstrap-select [data-toggle=dropdown], .bootstrap-select [role=menu], .bs-searchbox input", selectpicker.prototype.keydown)
         .on("focusin.modal", ".bootstrap-select [data-toggle=dropdown], .bootstrap-select [role=menu], .bs-searchbox input", function(e) {
             e.stopPropagation();
         });
@@ -1198,7 +1198,7 @@
     $(window).on("load.bs.select.data-api", function() {
         $(".selectpicker").each(function() {
             var $selectpicker = $(this);
-            Plugin.call($selectpicker, $selectpicker.data());
+            plugin.call($selectpicker, $selectpicker.data());
         });
     });
 })(jQuery);

@@ -18,7 +18,7 @@
             <div class="col-md-offset-2 col-md-10">
                 <div class="btn-group">
                     <a href="@Url.Action("Index")" title="Back" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-                    <a href="@Url.Action("Delete", new {id = Model.FeedbackCategoryID})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <a href="@Url.Action("Delete", new {id = Model.FeedbackCategoryId})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
                     <div class="input-group-btn inline">
                         <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
                     </div>
@@ -29,13 +29,13 @@
 
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-        @Html.HiddenFor(model => model.FeedbackCategoryID)
+        @Html.HiddenFor(model => model.FeedbackCategoryId)
         @Html.EditorFor(model => model.Category)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="btn-group">
                     <a href="@Url.Action("Index")" title="Back" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-                    <a href="@Url.Action("Delete", new {id = Model.FeedbackCategoryID})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <a href="@Url.Action("Delete", new {id = Model.FeedbackCategoryId})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
                     <div class="input-group-btn inline">
                         <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
                     </div>

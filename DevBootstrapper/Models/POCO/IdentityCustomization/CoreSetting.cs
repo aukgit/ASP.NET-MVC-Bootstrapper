@@ -7,7 +7,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [DisplayName("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public byte CoreSettingID { get; set; }
+        public byte CoreSettingId { get; set; }
 
         [DisplayName("Application Name")]
         [StringLength(100)]
@@ -139,7 +139,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Display(Name = "SMTP Port", Description = "Example: smtp.gmail.com, for ssl enabled it's 587")]
         public int SmtpMailPort { get; set; }
 
-        public long FacebookClientID { get; set; }
+        public long FacebookClientId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(40)]
@@ -168,7 +168,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         public bool IsRegisterCodeRequiredToRegister { get; set; }
 
         [DisplayName("Is SSL Enabled for SMTP configuration.")]
-        public bool IsSMTPSSL { get; set; }
+        public bool IsSmtpssl { get; set; }
 
         [DisplayName("Is Confirmation mail required.")]
         public bool IsConfirmMailRequired { get; set; }

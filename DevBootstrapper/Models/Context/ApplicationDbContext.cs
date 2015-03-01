@@ -84,7 +84,7 @@ namespace DevBootstrapper.Models.Context {
         public DbSet<CountryLanguage> CountryLanguages { get; set; }
         public DbSet<CountryLanguageRelation> CountryLanguageRelations { get; set; }
         //public DbSet<CountryBorder> CountryBorders { get; set; }
-        public DbSet<CountryDetectByIP> CountryDetectByIPs { get; set; }
+        public DbSet<CountryDetectByIp> CountryDetectByIPs { get; set; }
         public DbSet<CountryDomain> CountryDomains { get; set; }
         public DbSet<CountryTimezoneRelation> CountryTimezoneRelations { get; set; }
         public DbSet<CountryTranslation> CountryTranslations { get; set; }

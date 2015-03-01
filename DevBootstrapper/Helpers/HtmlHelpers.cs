@@ -140,7 +140,7 @@ namespace DevBootstrapper.Helpers {
             var sb = new StringBuilder(countryOptionsGenerate, countries.Count * 7);
             foreach (var country in countries) {
                 sb.Append(string.Format("<option class='flag-country-combo flag {0}' title='| {1}' value='{2}'>",
-                    country.Alpha2Code.ToLower(), country.DisplayCountryName, country.CountryID));
+                    country.Alpha2Code.ToLower(), country.DisplayCountryName, country.CountryId));
                 sb.Append(contentAddedString);
                 //sb.Append();
                 sb.Append(country.DisplayCountryName);
@@ -222,7 +222,7 @@ namespace DevBootstrapper.Helpers {
 
         public static HtmlString ContactFormActionLink(this HtmlHelper helper, string linkName, string title,
             string addClass = "") {
-            var markup = string.Format(MailHtml.CONTACT_US_LINK, title, linkName, addClass, AppVar.Url);
+            var markup = string.Format(MailHtml.ContactUsLink, title, linkName, addClass, AppVar.Url);
             return new HtmlString(markup);
         }
 

@@ -1,6 +1,6 @@
 ﻿!function ($) {
 
-	var ProgressBar = function (element, options) {
+	var progressBar = function (element, options) {
 		this.element = $(element);
 		this.position = 0;
 		this.percent = 0;
@@ -27,11 +27,11 @@
 			this.setStep(options.step);
 		}
 
-		this.element.html($(DRPGlobal.template));
+		this.element.html($(drpGlobal.template));
 	};
 
-	ProgressBar.prototype = {
-		constructor: ProgressBar,
+	progressBar.prototype = {
+		constructor: progressBar,
 
 		stepIt: function () {
 			if (this.position < this.maximum)
@@ -126,7 +126,7 @@
 				options = typeof option == 'object' && option;
 
 			if (!data) {
-				$this.data('progressbar', new ProgressBar(this, $.extend({}, $.fn.progressbar().defaults, options)));
+				$this.data('progressbar', new progressBar(this, $.extend({}, $.fn.progressbar().defaults, options)));
 			}
 			if (typeof option == 'string' && typeof data[option] == 'function') {
 				data[option].apply(data, args);
@@ -141,11 +141,11 @@
 		step: 1
 	};
 
-	$.fn.progressbar.Constructor = ProgressBar;
+	$.fn.progressbar.Constructor = progressBar;
 
-	var DRPGlobal = {};
+	var drpGlobal = {};
 
-	DRPGlobal.template = '<div class="progress">' +
+	drpGlobal.template = '<div class="progress">' +
 						 '<div class="bar bar-success progress-bar progress-bar-success" style="width: 0%;"></div>' +
 						 '<div class="bar bar-warning progress-bar progress-bar-warning" style="width: 0%;"></div>' +
 						 '<div class="bar bar-danger progress-bar progress-bar-danger" style="width: 0%;"></div>' +

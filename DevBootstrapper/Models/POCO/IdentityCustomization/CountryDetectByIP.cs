@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
-    public class CountryDetectByIP {
+    public class CountryDetectByIp {
         [Key]
-        public int CountryDetectByIPID { get; set; }
+        public int CountryDetectByIpid { get; set; }
 
-        public int BeginingIP { get; set; }
-        public int EndingIP { get; set; }
-        public int CountryID { get; set; }
+        public int BeginingIp { get; set; }
+        public int EndingIp { get; set; }
+        public int CountryId { get; set; }
     }
 }

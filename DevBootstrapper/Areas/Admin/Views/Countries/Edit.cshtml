@@ -4,7 +4,7 @@
     ViewBag.Title = "Editing : " + ViewBag.CountryName;
     var token = @Html.AntiForgeryToken();
     var timezone = (SelectList) ViewBag.Timezone;
-    var CountryID = (int) ViewBag.CountryID;
+    var countryId = (int) ViewBag.CountryID;
     var i = 0;
 }
 
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        @Html.Hidden("CountryID", CountryID)
+        @Html.Hidden("CountryID", countryId)
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         @if (Model != null) {
             foreach (var item in Model) {
@@ -38,7 +38,7 @@
                         <div class="controls">
                             <label class="col-md-2 control-label">Zone @i: </label>
                             <div class="col-md-10">
-                                <a href="@Url.Action("Delete", new {id = item.UserTimeZoneID})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') ">
+                                <a href="@Url.Action("Delete", new {id = item.UserTimeZoneId})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') ">
                                     <span class="glyphicon glyphicon-remove"></span></a>
                                 @Html.DisplayFor(m => item.Display)
                             </div>

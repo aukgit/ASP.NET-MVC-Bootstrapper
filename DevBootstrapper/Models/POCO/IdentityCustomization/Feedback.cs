@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class Feedback {
-        public long FeedbackID { get; set; }
+        public long FeedbackId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(30)]
@@ -56,6 +56,6 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         public DateTime PostedDate { get; set; }
         public DateTime? FollowUpdateDate { get; set; }
-        public byte FeedbackCategoryID { get; set; }
+        public byte FeedbackCategoryId { get; set; }
     }
 }

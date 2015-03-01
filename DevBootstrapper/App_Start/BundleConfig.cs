@@ -56,7 +56,7 @@ namespace DevBootstrapper {
                                 "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-audio.js",
                                 "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-video.js",
                                 "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-validate.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/bootstrap-progressbar.js",
+                                //"~/Content/Scripts/DevOrgCompoents/Upload/bootstrap-progressbar.js",
                                 "~/Content/Scripts/DevOrgCompoents/Upload/devOrgUploadConfig.js"
                            ));
             #endregion

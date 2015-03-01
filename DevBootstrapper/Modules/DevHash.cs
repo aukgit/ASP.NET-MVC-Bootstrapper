@@ -8,13 +8,13 @@ namespace DevBootstrapper.Modules {
         /// <param name="o"></param>
         /// <returns></returns>
         public static string Get(params object[] o) {
-            var _sb = new StringBuilder(10);
-            _sb.Clear();
+            var sb = new StringBuilder(10);
+            sb.Clear();
 
             for (var i = 0; o[i] != null && i < o.Length; i++) {
-                _sb.AppendLine(o[i].GetHashCode() + "_");
+                sb.AppendLine(o[i].GetHashCode() + "_");
             }
-            return _sb.ToString();
+            return sb.ToString();
         }
     }
 }

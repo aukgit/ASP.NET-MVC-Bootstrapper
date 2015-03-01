@@ -432,6 +432,13 @@
     <Content Include="Areas\Admin\Views\Users\UserBlock.cshtml" />
     <Content Include="Areas\Admin\Views\Users\EnableUserBlock.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ManageRoles.cshtml" />
+    <Content Include="Content\Less\elements.less" />
+    <Content Include="Content\Less\core-developer.less" />
+    <Content Include="Content\Less\global.less" />
+    <Content Include="Content\Less\lesshat.less" />
+    <Content Include="Content\Less\lessRemixens.less" />
+    <Content Include="Content\Less\owl.custom.finalize.less" />
+    <Content Include="Content\Less\front-developer.less" />
     <None Include="Content\Scripts\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />

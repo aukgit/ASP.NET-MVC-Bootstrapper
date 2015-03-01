@@ -6,7 +6,7 @@ using DevBootstrapper.Models.POCO.Identity;
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class CountryLanguage {
         [Key]
-        public int CountryLanguageID { get; set; }
+        public int CountryLanguageId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(50)]

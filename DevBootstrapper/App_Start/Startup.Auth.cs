@@ -40,7 +40,7 @@ namespace DevBootstrapper {
                     OnValidateIdentity =
                         SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser, long>
                             (TimeSpan.FromMinutes(30), (manager, user) => user.GenerateUserIdentityAsync(manager),
-                                id => (Int32.Parse(id.GetUserId()))
+                                id => (Int32.Parse(IdentityExtensions.GetUserId(id)))
                             )
                 }
             });
@@ -53,30 +53,30 @@ namespace DevBootstrapper {
 
             if (AppConfig.Setting.IsFacebookAuthentication) {
                 var facebookAuthenticationOptions = new FacebookAuthenticationOptions {
-                    AppId = AppConfig.Setting.FacebookClientID.ToString(),
+                    AppId = AppConfig.Setting.FacebookClientId.ToString(),
                     AppSecret = AppConfig.Setting.FacebookSecret,
                     AuthenticationType = "FB",
                     SignInAsAuthenticationType = "ExternalCookie",
                     Provider = new FacebookAuthenticationProvider {
                         OnAuthenticated = async ctx => {
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.BIRTHDAY, ctx.User["birthday"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.COUNTRY, ctx.User["location"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.GENDER, ctx.User["gender"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.STATE_OR_PROVINCE,
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.Birthday, ctx.User["birthday"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.Country, ctx.User["location"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.Gender, ctx.User["gender"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.StateOrProvince,
                                 ctx.User["location"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.EMAIL, ctx.User["email"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.FIRST_NAME,
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.Email, ctx.User["email"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.FirstName,
                                 ctx.User["first_name"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.LAST_NAME,
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.LastName,
                                 ctx.User["last_name"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.DISPLAY_NAME, ctx.User["name"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.DisplayName, ctx.User["name"].ToString()));
                             // ctx.Identity.AddClaim(new Claim(ProprietaryClaims.RELATIONSHIP_STATUS, ctx.User["relationship_status"].ToString()));
                             // ctx.Identity.AddClaim(new Claim(ProprietaryClaims.INSPIREATIONAL_PEOPLE, ctx.User["inspirational_people"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.TIME_ZONE, ctx.User["timezone"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.WEBSITE, ctx.User["website"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.TimeZone, ctx.User["timezone"].ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.Website, ctx.User["website"].ToString()));
                             //  ctx.Identity.AddClaim(new Claim(ProprietaryClaims.PHONE, ctx.User["inspirational_people"].ToString()));
                             //  ctx.Identity.AddClaim(new Claim(ProprietaryClaims.ABOUT, ctx.User["inspirational_people"].ToString()));
-                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.USER_STRING, ctx.User.ToString()));
+                            ctx.Identity.AddClaim(new Claim(ProprietaryClaims.UserString, ctx.User.ToString()));
                         }
                     }
                 };

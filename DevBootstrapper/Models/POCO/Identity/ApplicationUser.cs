@@ -27,7 +27,7 @@ namespace DevBootstrapper.Models.POCO.Identity {
 
         public long BlockedbyUserId { get; set; }
         //returns user Id
-        public long UserID {
+        public long UserId {
             get { return Id; }
         }
 
@@ -74,13 +74,13 @@ namespace DevBootstrapper.Models.POCO.Identity {
         public bool IsRegistrationComplete { get; set; }
 
         [Display(Name = "Country")]
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
 
         [Display(Name = "Country Language")]
-        public int CountryLanguageID { get; set; }
+        public int CountryLanguageId { get; set; }
 
         [Display(Name = "Timezone")]
-        public int UserTimeZoneID { get; set; }
+        public int UserTimeZoneId { get; set; }
 
 
         [ForeignKey("UserID")]

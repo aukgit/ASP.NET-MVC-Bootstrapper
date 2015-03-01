@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
  * bootstrap-timepicker.js
  * http://www.github.com/jdewit/bootstrap-timepicker
  * =========================================================
@@ -33,7 +33,7 @@
 
     /* TIMEPICKER PUBLIC CLASS DEFINITION
      * ================================== */
-    var Timepicker = function(element, options) {
+    var timepicker = function(element, options) {
         this.$element = $(element);
         this.options = $.extend({}, $.fn.timepicker.defaults, options, this.$element.data());
         this.minuteStep = this.options.minuteStep || this.minuteStep;
@@ -45,9 +45,9 @@
         this.init();
     };
 
-    Timepicker.prototype = {
+    timepicker.prototype = {
 
-        constructor: Timepicker
+        constructor: timepicker
 
         , init: function () {
 
@@ -349,7 +349,7 @@
             , data = $this.data('timepicker')
             , options = typeof option == 'object' && option;
             if (!data) {
-                $this.data('timepicker', (data = new Timepicker(this, options)));
+                $this.data('timepicker', (data = new timepicker(this, options)));
             }
             if (typeof option == 'string') {
                 data[option]();
@@ -366,7 +366,7 @@
     , templates: {} // set custom templates
     }
 
-    $.fn.timepicker.Constructor = Timepicker
+    $.fn.timepicker.Constructor = timepicker
 
     /* TIMEPICKER DATA-API
      * ================== */

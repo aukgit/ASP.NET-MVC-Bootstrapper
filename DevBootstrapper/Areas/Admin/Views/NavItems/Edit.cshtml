@@ -17,8 +17,8 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="btn-group">
-                    <a href="@Url.Action("List", new {id = Model.NavigationID})" title="List" class="btn btn-info"><span class="glyphicon glyphicon-th-list"></span> List</a>
-                    <a href="@Url.Action("Delete", new {id = Model.NavigationItemID, Model.NavigationID})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <a href="@Url.Action("List", new {id = Model.NavigationId})" title="List" class="btn btn-info"><span class="glyphicon glyphicon-th-list"></span> List</a>
+                    <a href="@Url.Action("Delete", new {id = Model.NavigationItemId, NavigationID = Model.NavigationId})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
                     <div class="input-group-btn inline">
                         <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
                     </div>
@@ -32,8 +32,8 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="btn-group">
-                    <a href="@Url.Action("List", new {id = Model.NavigationID})" title="List" class="btn btn-info"><span class="glyphicon glyphicon-th-list"></span> List</a>
-                    <a href="@Url.Action("Delete", new {id = Model.NavigationItemID, Model.NavigationID})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <a href="@Url.Action("List", new {id = Model.NavigationId})" title="List" class="btn btn-info"><span class="glyphicon glyphicon-th-list"></span> List</a>
+                    <a href="@Url.Action("Delete", new {id = Model.NavigationItemId, NavigationID = Model.NavigationId})" title="Delete this record?" class="btn btn-danger" onclick=" return confirm('Are you sure?') "><span class="glyphicon glyphicon-remove"></span> Delete</a>
                     <div class="input-group-btn inline">
                         <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
                     </div>

@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RelativeURL)
+            @Html.DisplayNameFor(model => model.RelativeUrl)
         </th>
         <th>
             Order
@@ -29,7 +29,7 @@
             @Html.DisplayNameFor(model => model.ElementClasses)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ElementID)
+            @Html.DisplayNameFor(model => model.ElementId)
         </th>
 
 
@@ -49,11 +49,11 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RelativeURL)
+                @Html.DisplayFor(modelItem => item.RelativeUrl)
             </td>
             <td>
                 <form action="/Admin/NavItems/Ordering" method="post" class="process-ordering-in-menu-items">
-                    @Html.HiddenFor(n => item.NavigationID)
+                    @Html.HiddenFor(n => item.NavigationId)
                     @Html.TextBoxFor(n => item.Ordering, new {@class = "form-control"})
                 </form>
             </td>
@@ -61,7 +61,7 @@
                 @Html.DisplayFor(modelItem => item.ElementClasses)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ElementID)
+                @Html.DisplayFor(modelItem => item.ElementId)
             </td>
 
             <td>
@@ -70,8 +70,8 @@
 
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.NavigationItemID, item.NavigationID}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.NavigationItemID, item.NavigationID}, new {onclick = "return confirm('Are you sure?')"})
+                @Html.ActionLink("Edit", "Edit", new {id = item.NavigationItemId, NavigationID = item.NavigationId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.NavigationItemId, NavigationID = item.NavigationId}, new {onclick = "return confirm('Are you sure?')"})
             </td>
         </tr>
     }

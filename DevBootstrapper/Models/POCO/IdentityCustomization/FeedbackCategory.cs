@@ -6,7 +6,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class FeedbackCategory {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public byte FeedbackCategoryID { get; set; }
+        public byte FeedbackCategoryId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [Required]

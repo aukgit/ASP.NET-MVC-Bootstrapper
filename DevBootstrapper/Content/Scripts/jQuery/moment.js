@@ -10,7 +10,7 @@
     ************************************/
 
     var moment,
-        VERSION = "2.8.3",
+        version = "2.8.3",
         // the global-scope this is NOT the global object in Node.js
         globalScope = typeof global !== "undefined" ? global : this,
         oldGlobalMoment,
@@ -21,10 +21,10 @@
         YEAR = 0,
         MONTH = 1,
         DATE = 2,
-        HOUR = 3,
-        MINUTE = 4,
-        SECOND = 5,
-        MILLISECOND = 6,
+        hour = 3,
+        minute = 4,
+        second = 5,
+        millisecond = 6,
 
         // internal storage for locale config files
         locales = {},
@@ -370,7 +370,7 @@
         Constructors
     ************************************/
 
-    function Locale() {
+    function locale() {
     }
 
     // Moment prototype object
@@ -702,10 +702,10 @@
             overflow =
                 m._a[MONTH] < 0 || m._a[MONTH] > 11 ? MONTH :
                 m._a[DATE] < 1 || m._a[DATE] > daysInMonth(m._a[YEAR], m._a[MONTH]) ? DATE :
-                m._a[HOUR] < 0 || m._a[HOUR] > 23 ? HOUR :
-                m._a[MINUTE] < 0 || m._a[MINUTE] > 59 ? MINUTE :
-                m._a[SECOND] < 0 || m._a[SECOND] > 59 ? SECOND :
-                m._a[MILLISECOND] < 0 || m._a[MILLISECOND] > 999 ? MILLISECOND :
+                m._a[hour] < 0 || m._a[hour] > 23 ? hour :
+                m._a[minute] < 0 || m._a[minute] > 59 ? minute :
+                m._a[second] < 0 || m._a[second] > 59 ? second :
+                m._a[millisecond] < 0 || m._a[millisecond] > 999 ? millisecond :
                 -1;
 
             if (m._pf._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
@@ -791,7 +791,7 @@
     ************************************/
 
 
-    extend(Locale.prototype, {
+    extend(locale.prototype, {
         set: function(config) {
             var prop, i;
             for (i in config) {
@@ -1208,24 +1208,24 @@
         case "HH": // fall through to hh
         case "h": // fall through to hh
         case "hh":
-            datePartArray[HOUR] = toInt(input);
+            datePartArray[hour] = toInt(input);
             break;
         // MINUTE
         case "m": // fall through to mm
         case "mm":
-            datePartArray[MINUTE] = toInt(input);
+            datePartArray[minute] = toInt(input);
             break;
         // SECOND
         case "s": // fall through to ss
         case "ss":
-            datePartArray[SECOND] = toInt(input);
+            datePartArray[second] = toInt(input);
             break;
         // MILLISECOND
         case "S":
         case "SS":
         case "SSS":
         case "SSSS":
-            datePartArray[MILLISECOND] = toInt(("0." + input) * 1000);
+            datePartArray[millisecond] = toInt(("0." + input) * 1000);
             break;
         // UNIX TIMESTAMP WITH MS
         case "X":
@@ -1344,7 +1344,7 @@
                 config._pf._overflowDayOfYear = true;
             }
 
-            date = makeUTCDate(yearToUse, 0, config._dayOfYear);
+            date = makeUtcDate(yearToUse, 0, config._dayOfYear);
             config._a[MONTH] = date.getUTCMonth();
             config._a[DATE] = date.getUTCDate();
         }
@@ -1363,7 +1363,7 @@
             config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
         }
 
-        config._d = (config._useUTC ? makeUTCDate : makeDate).apply(null, input);
+        config._d = (config._useUTC ? makeUtcDate : makeDate).apply(null, input);
         // Apply timezone offset from input. The actual zone can be changed
         // with parseZone.
         if (config._tzm != null) {
@@ -1408,7 +1408,7 @@
     // date from string and format string
     function makeDateFromStringAndFormat(config) {
         if (config._f === moment.ISO_8601) {
-            parseISO(config);
+            parseIso(config);
             return;
         }
 
@@ -1458,12 +1458,12 @@
         }
 
         // handle am pm
-        if (config._isPm && config._a[HOUR] < 12) {
-            config._a[HOUR] += 12;
+        if (config._isPm && config._a[hour] < 12) {
+            config._a[hour] += 12;
         }
         // if is 12 am, change hours to 0
-        if (config._isPm === false && config._a[HOUR] === 12) {
-            config._a[HOUR] = 0;
+        if (config._isPm === false && config._a[hour] === 12) {
+            config._a[hour] = 0;
         }
 
         dateFromConfig(config);
@@ -1528,7 +1528,7 @@
     }
 
     // date from iso format
-    function parseISO(config) {
+    function parseIso(config) {
         var i,
             l,
             string = config._i,
@@ -1560,7 +1560,7 @@
 
     // date from iso format or fallback
     function makeDateFromString(config) {
-        parseISO(config);
+        parseIso(config);
         if (config._isValid === false) {
             delete config._isValid;
             moment.createFromInputFallback(config);
@@ -1612,7 +1612,7 @@
         return date;
     }
 
-    function makeUTCDate(y) {
+    function makeUtcDate(y) {
         var date = new Date(Date.UTC.apply(null, arguments));
         if (y < 1970) {
             date.setUTCFullYear(y);
@@ -1706,7 +1706,7 @@
 
     //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
     function dayOfYearFromWeeks(year, week, weekday, firstDayOfWeekOfYear, firstDayOfWeek) {
-        var d = makeUTCDate(year, 0, 1).getUTCDay(), daysToAdd, dayOfYear;
+        var d = makeUtcDate(year, 0, 1).getUTCDay(), daysToAdd, dayOfYear;
 
         d = d === 0 ? 7 : d;
         weekday = weekday != null ? weekday : firstDayOfWeek;
@@ -1875,10 +1875,10 @@
             duration = {
                 y: 0,
                 d: toInt(match[DATE]) * sign,
-                h: toInt(match[HOUR]) * sign,
-                m: toInt(match[MINUTE]) * sign,
-                s: toInt(match[SECOND]) * sign,
-                ms: toInt(match[MILLISECOND]) * sign
+                h: toInt(match[hour]) * sign,
+                m: toInt(match[minute]) * sign,
+                s: toInt(match[second]) * sign,
+                ms: toInt(match[millisecond]) * sign
             };
         } else if (!!(match = isoDurationRegex.exec(input))) {
             sign = (match[1] === "-") ? -1 : 1;
@@ -1918,7 +1918,7 @@
     };
 
     // version number
-    moment.version = VERSION;
+    moment.version = version;
 
     // default format
     moment.defaultFormat = isoFormat;
@@ -1977,7 +1977,7 @@
         if (values !== null) {
             values.abbr = name;
             if (!locales[name]) {
-                locales[name] = new Locale();
+                locales[name] = new locale();
             }
             locales[name].set(values);
 

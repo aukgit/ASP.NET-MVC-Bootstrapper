@@ -26,8 +26,8 @@
  */
 
 
-var widget_uuid = 0,
-	widget_slice = Array.prototype.slice;
+var widgetUuid = 0,
+	widgetSlice = Array.prototype.slice;
 
 $.cleanData = (function( orig ) {
 	return function( elems ) {
@@ -107,21 +107,21 @@ $.widget = function( name, base, prototype ) {
 			var _super = function() {
 					return base.prototype[ prop ].apply( this, arguments );
 				},
-				_superApply = function( args ) {
+				superApply = function( args ) {
 					return base.prototype[ prop ].apply( this, args );
 				};
 			return function() {
 				var __super = this._super,
-					__superApply = this._superApply,
+					superApply = this._superApply,
 					returnValue;
 
 				this._super = _super;
-				this._superApply = _superApply;
+				this._superApply = superApply;
 
 				returnValue = value.apply( this, arguments );
 
 				this._super = __super;
-				this._superApply = __superApply;
+				this._superApply = superApply;
 
 				return returnValue;
 			};
@@ -164,7 +164,7 @@ $.widget = function( name, base, prototype ) {
 };
 
 $.widget.extend = function( target ) {
-	var input = widget_slice.call( arguments, 1 ),
+	var input = widgetSlice.call( arguments, 1 ),
 		inputIndex = 0,
 		inputLength = input.length,
 		key,
@@ -193,7 +193,7 @@ $.widget.bridge = function( name, object ) {
 	var fullName = object.prototype.widgetFullName || name;
 	$.fn[ name ] = function( options ) {
 		var isMethodCall = typeof options === "string",
-			args = widget_slice.call( arguments, 1 ),
+			args = widgetSlice.call( arguments, 1 ),
 			returnValue = this;
 
 		// allow multiple hashes to be passed on init
@@ -258,7 +258,7 @@ $.Widget.prototype = {
 	_createWidget: function( options, element ) {
 		element = $( element || this.defaultElement || this )[ 0 ];
 		this.element = $( element );
-		this.uuid = widget_uuid++;
+		this.uuid = widgetUuid++;
 		this.eventNamespace = "." + this.widgetName + this.uuid;
 		this.options = $.widget.extend( {},
 			this.options,

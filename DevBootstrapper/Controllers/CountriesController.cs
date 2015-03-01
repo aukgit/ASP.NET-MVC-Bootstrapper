@@ -12,7 +12,7 @@ namespace DevBootstrapper.Controllers {
 
         public CountriesController()
             : base(true) {
-            ViewBag.controller = _controllerName;
+            ViewBag.controller = ControllerName;
         }
 
         #endregion
@@ -67,7 +67,7 @@ namespace DevBootstrapper.Controllers {
             }
 
             try {
-                var changes = db.SaveChanges(country);
+                var changes = Db.SaveChanges(country);
                 if (changes > 0) {
                     return true;
                 }
@@ -83,7 +83,7 @@ namespace DevBootstrapper.Controllers {
 
         public ActionResult Index() {
             var viewOf = ViewTapping(ViewStates.Index);
-            return View(db.Countries.ToList());
+            return View(Db.Countries.ToList());
         }
 
         #endregion
@@ -94,7 +94,7 @@ namespace DevBootstrapper.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var country = db.Countries.Find(id);
+            var country = Db.Countries.Find(id);
             if (country == null) {
                 return HttpNotFound();
             }
@@ -138,21 +138,21 @@ namespace DevBootstrapper.Controllers {
 
         #region Constants
 
-        private const string _deletedError =
+        private const string DeletedError =
             "Sorry for the inconvenience, last record is not removed. Please be in touch with admin.";
 
-        private const string _deletedSaved = "Removed successfully.";
-        private const string _editedSaved = "Modified successfully.";
+        private const string DeletedSaved = "Removed successfully.";
+        private const string EditedSaved = "Modified successfully.";
 
-        private const string _editedError =
+        private const string EditedError =
             "Sorry for the inconvenience, transaction is failed to save into the database. Please be in touch with admin.";
 
-        private const string _createdError = "Sorry for the inconvenience, couldn't create the last transaction record.";
-        private const string _createdSaved = "Transaction is successfully added to the database.";
-        private const string _controllerName = "Countries";
+        private const string CreatedError = "Sorry for the inconvenience, couldn't create the last transaction record.";
+        private const string CreatedSaved = "Transaction is successfully added to the database.";
+        private const string ControllerName = "Countries";
 
         /// Constant value for where the controller is actually visible.
-        private const string _controllerVisibleUrl = "";
+        private const string ControllerVisibleUrl = "";
 
         #endregion
 
@@ -199,17 +199,17 @@ namespace DevBootstrapper.Controllers {
             var viewOf = ViewTapping(ViewStates.CreatePost, country);
             GetDropDowns(country);
             if (ModelState.IsValid) {
-                db.Countries.Add(country);
+                Db.Countries.Add(country);
                 var state = SaveDatabase(ViewStates.Create, country);
                 if (state) {
-                    AppVar.SetSavedStatus(ViewBag, _createdSaved); // Saved Successfully.
+                    AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
                 } else {
-                    AppVar.SetErrorStatus(ViewBag, _createdError); // Failed to save
+                    AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
                 }
 
                 return View(country);
             }
-            AppVar.SetErrorStatus(ViewBag, _createdError); // Failed to Save
+            AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to Save
             return View(country);
         }
 
@@ -221,7 +221,7 @@ namespace DevBootstrapper.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var country = db.Countries.Find(id);
+            var country = Db.Countries.Find(id);
             if (country == null) {
                 return HttpNotFound();
             }
@@ -236,19 +236,19 @@ namespace DevBootstrapper.Controllers {
         public ActionResult Edit(Country country) {
             var viewOf = ViewTapping(ViewStates.EditPost, country);
             if (ModelState.IsValid) {
-                db.Entry(country).State = EntityState.Modified;
+                Db.Entry(country).State = EntityState.Modified;
                 var state = SaveDatabase(ViewStates.Edit, country);
                 if (state) {
-                    AppVar.SetSavedStatus(ViewBag, _editedSaved); // Saved Successfully.
+                    AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
                 } else {
-                    AppVar.SetErrorStatus(ViewBag, _editedError); // Failed to Save
+                    AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
                 }
 
                 return RedirectToAction("Index");
             }
 
             GetDropDowns(country);
-            AppVar.SetErrorStatus(ViewBag, _editedError); // Failed to save
+            AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to save
             return View(country);
         }
 
@@ -257,7 +257,7 @@ namespace DevBootstrapper.Controllers {
         #region Delete or remove record
 
         public ActionResult Delete(int id) {
-            var country = db.Countries.Find(id);
+            var country = Db.Countries.Find(id);
             var viewOf = ViewTapping(ViewStates.Delete, country);
             return View(country);
         }
@@ -265,12 +265,12 @@ namespace DevBootstrapper.Controllers {
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
-            var country = db.Countries.Find(id);
+            var country = Db.Countries.Find(id);
             var viewOf = ViewTapping(ViewStates.DeletePost, country);
-            db.Countries.Remove(country);
+            Db.Countries.Remove(country);
             var state = SaveDatabase(ViewStates.Delete, country);
             if (!state) {
-                AppVar.SetErrorStatus(ViewBag, _deletedError); // Failed to Save
+                AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save
                 return View(country);
             }
 

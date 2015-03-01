@@ -16,7 +16,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public UsersController()
             : base(true) {
-            ViewBag.controller = _controllerName;
+            ViewBag.controller = ControllerName;
         }
 
         #endregion
@@ -71,7 +71,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             }
 
             try {
-                var changes = db.SaveChanges(applicationUser);
+                var changes = Db.SaveChanges(applicationUser);
                 if (changes > 0) {
                     return true;
                 }
@@ -87,7 +87,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult Index() {
             var viewOf = ViewTapping(ViewStates.Index);
-            return View(db.Users.ToList());
+            return View(Db.Users.ToList());
         }
 
         #endregion
@@ -96,7 +96,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult FilterBlockedUsers() {
             var viewOf = ViewTapping(ViewStates.FilterBlockedUsers);
-            return View("FilterBlockedUsers", db.Users.Where(n => n.IsBlocked).ToList());
+            return View("FilterBlockedUsers", Db.Users.Where(n => n.IsBlocked).ToList());
         }
 
         #endregion
@@ -104,7 +104,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         #region Details
 
         public ActionResult Details(long id) {
-            var applicationUser = db.Users.Find(id);
+            var applicationUser = Db.Users.Find(id);
             if (applicationUser == null) {
                 return HttpNotFound();
             }
@@ -150,21 +150,21 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         #region Constants
 
-        private const string _deletedError =
+        private const string DeletedError =
             "Sorry for the inconvenience, last record is not removed. Please be in touch with admin.";
 
-        private const string _deletedSaved = "Removed successfully.";
-        private const string _editedSaved = "Modified successfully.";
+        private const string DeletedSaved = "Removed successfully.";
+        private const string EditedSaved = "Modified successfully.";
 
-        private const string _editedError =
+        private const string EditedError =
             "Sorry for the inconvenience, transaction is failed to save into the database. Please be in touch with admin.";
 
-        private const string _createdError = "Sorry for the inconvenience, couldn't create the last transaction record.";
-        private const string _createdSaved = "Transaction is successfully added to the database.";
-        private const string _controllerName = "Users";
+        private const string CreatedError = "Sorry for the inconvenience, couldn't create the last transaction record.";
+        private const string CreatedSaved = "Transaction is successfully added to the database.";
+        private const string ControllerName = "Users";
 
         /// Constant value for where the controller is actually visible.
-        private const string _controllerVisibleUrl = "";
+        private const string ControllerVisibleUrl = "";
 
         #endregion
 
@@ -172,16 +172,16 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public void GetDropDowns(ApplicationUser applicationUser) {
             ViewBag.CountryID =
-                new SelectList(db.Countries.Where(n => n.CountryID == applicationUser.CountryID).ToList(), "CountryID",
-                    "CountryName", applicationUser.CountryID);
+                new SelectList(Db.Countries.Where(n => n.CountryId == applicationUser.CountryId).ToList(), "CountryID",
+                    "CountryName", applicationUser.CountryId);
             ViewBag.UserTimeZoneID =
                 new SelectList(
-                    db.UserTimeZones.Where(n => n.UserTimeZoneID == applicationUser.UserTimeZoneID).ToList(),
-                    "UserTimeZoneID", "UTCName", applicationUser.UserTimeZoneID);
+                    Db.UserTimeZones.Where(n => n.UserTimeZoneId == applicationUser.UserTimeZoneId).ToList(),
+                    "UserTimeZoneID", "UTCName", applicationUser.UserTimeZoneId);
             ViewBag.CountryLanguageID =
                 new SelectList(
-                    db.CountryLanguages.Where(n => n.CountryLanguageID == applicationUser.CountryLanguageID).ToList(),
-                    "CountryLanguageID", "Language", applicationUser.CountryLanguageID);
+                    Db.CountryLanguages.Where(n => n.CountryLanguageId == applicationUser.CountryLanguageId).ToList(),
+                    "CountryLanguageID", "Language", applicationUser.CountryLanguageId);
         }
 
         public void GetDropDowns(long id) {
@@ -198,13 +198,13 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         public ActionResult ManageRoles(long id) {
             var user = UserManager.GetUser(id);
 
-            var ManageRole = new ManageRolesViewModel();
-            ManageRole.AllRoles = RoleManager.GetRoles();
-            ManageRole.UserInRoles = RoleManager.GetUserRolesAsApplicationRole(id).ToList();
-            ManageRole.UserDisplayName = user.DisplayName;
-            ManageRole.UserId = user.UserID;
+            var manageRole = new ManageRolesViewModel();
+            manageRole.AllRoles = RoleManager.GetRoles();
+            manageRole.UserInRoles = RoleManager.GetUserRolesAsApplicationRole(id).ToList();
+            manageRole.UserDisplayName = user.DisplayName;
+            manageRole.UserId = user.UserId;
 
-            return View(ManageRole);
+            return View(manageRole);
         }
 
         #region Add Roles
@@ -244,12 +244,12 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UserBlock(UserBlockViewModel model) {
-            var user = db.Users.Find(model.UserId);
+            var user = Db.Users.Find(model.UserId);
             if (user != null) {
                 //same user
                 user.IsBlocked = true;
-                user.BlockedbyUserId = UserManager.GetCurrentUser().UserID;
-                db.Entry(user).State = EntityState.Modified;
+                user.BlockedbyUserId = UserManager.GetCurrentUser().UserId;
+                Db.Entry(user).State = EntityState.Modified;
                 if (SaveDatabase(ViewStates.EditPost, user)) {
                     var currentUserName = UserManager.GetCurrentUser().DisplayName;
 
@@ -259,10 +259,10 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
                     return RedirectToAction("Index");
                 }
-                AppVar.SetErrorStatus(ViewBag, _editedError);
+                AppVar.SetErrorStatus(ViewBag, EditedError);
                 return View(user);
             }
-            AppVar.SetErrorStatus(ViewBag, _editedError);
+            AppVar.SetErrorStatus(ViewBag, EditedError);
             return View(user);
         }
 
@@ -282,13 +282,13 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EnableUserBlock(UserBlockViewModel model) {
-            var user = db.Users.Find(model.UserId);
+            var user = Db.Users.Find(model.UserId);
             if (user != null) {
                 //same user
                 user.IsBlocked = false;
                 user.BlockedbyUserId = 0;
                 user.BlockingReason = "";
-                db.Entry(user).State = EntityState.Modified;
+                Db.Entry(user).State = EntityState.Modified;
                 if (SaveDatabase(ViewStates.EditPost, user)) {
                     var currentUserName = UserManager.GetCurrentUser().DisplayName;
 
@@ -298,10 +298,10 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
                     return RedirectToAction("Index");
                 }
-                AppVar.SetErrorStatus(ViewBag, _editedError);
+                AppVar.SetErrorStatus(ViewBag, EditedError);
                 return View(user);
             }
-            AppVar.SetErrorStatus(ViewBag, _editedError);
+            AppVar.SetErrorStatus(ViewBag, EditedError);
             return View(user);
         }
 

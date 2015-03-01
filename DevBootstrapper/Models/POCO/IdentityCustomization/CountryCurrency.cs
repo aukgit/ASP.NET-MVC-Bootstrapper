@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class CountryCurrency {
         [Key]
-        public int CountryCurrencyID { get; set; }
+        public int CountryCurrencyId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(7)]
         [Required]
         public string CurrencyName { get; set; }
 
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
     }
 }
