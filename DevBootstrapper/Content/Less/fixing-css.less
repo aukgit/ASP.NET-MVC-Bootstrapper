@@ -1,4 +1,5 @@
-﻿div.checkbox > label { padding-left: 0; }
+﻿@import "hats/lesshat.less";
+div.checkbox > label { padding-left: 0; }
 
 div.checkbox { padding-left: 20px; }
 
@@ -108,6 +109,7 @@ div.bs-searchbox input.input-block-level.form-control {
     -webkit-background-origin: padding-box;
     -webkit-background-size: auto;
     background-attachment: scroll;
+    -ms-background-clip: border-box;
     background-clip: border-box;
     background-color: rgba(0, 0, 0, 0);
     background-image: none;
@@ -117,8 +119,7 @@ div.bs-searchbox input.input-block-level.form-control {
     color: rgb(255, 255, 255);
     cursor: auto;
     display: block;
-    float: left;
-    font-family: Ubuntu, Tahoma, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    float: left;    
     font-size: 18px;
     height: 50px;
     line-height: 20px;

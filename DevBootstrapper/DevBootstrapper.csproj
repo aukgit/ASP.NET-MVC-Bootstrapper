@@ -326,13 +326,32 @@
     <Content Include="Content\css\bootstrap-table.css" />
     <Content Include="Content\css\bootstrap.theme.unitied.css" />
     <Content Include="Content\css\color-fonts.css" />
+    <Content Include="Content\css\core-developer-additions.css" />
+    <Content Include="Content\css\core-developer-additions.min.css">
+      <DependentUpon>core-developer-additions.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\core-developer.css" />
+    <Content Include="Content\css\core-developer.min.css">
+      <DependentUpon>core-developer.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\dataTables.bootstrap.css" />
+    <Content Include="Content\css\fixing-css.css" />
+    <Content Include="Content\css\fixing-css.min.css">
+      <DependentUpon>fixing-css.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\flags32-combo.css" />
     <Content Include="Content\css\flags32.css" />
     <Content Include="Content\css\flags32.png" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\front-developer.css" />
+    <Content Include="Content\css\front-developer.min.css">
+      <DependentUpon>front-developer.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\miscellaneous.css" />
-    <Content Include="Content\css\override-css.css" />
+    <Content Include="Content\css\owl-custom-finalize.css" />
+    <Content Include="Content\css\owl-custom-finalize.min.css">
+      <DependentUpon>owl-custom-finalize.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\size.css" />
     <Content Include="Content\css\star-rating.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
@@ -440,6 +459,15 @@
     <Content Include="Areas\Admin\Views\Users\UserBlock.cshtml" />
     <Content Include="Areas\Admin\Views\Users\EnableUserBlock.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ManageRoles.cshtml" />
+    <Content Include="Content\Less\hats\elements.less" />
+    <Content Include="Content\Less\front-developer.less" />
+    <Content Include="Content\Less\hats\global.less" />
+    <Content Include="Content\Less\hats\lesshat.less" />
+    <Content Include="Content\Less\hats\lessRemixens.less" />
+    <Content Include="Content\Less\owl-custom-finalize.less" />
+    <Content Include="Content\Less\core-developer.less" />
+    <Content Include="Content\Less\core-developer-additions.less" />
+    <Content Include="Content\Less\fixing-css.less" />
     <None Include="Content\Scripts\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
@@ -557,6 +585,7 @@
     <Folder Include="Content\Scripts\Miscellaneous\" />
     <Folder Include="Content\Scripts\npn\" />
     <Folder Include="Content\Scripts\OthersComponents\" />
+    <Folder Include="Content\TypeScripts\" />
     <Folder Include="Models\DesignPattern\Abstracts\" />
     <Folder Include="Models\EntityModel\" />
     <Folder Include="Models\POCO\AdditionalDatabase\" />

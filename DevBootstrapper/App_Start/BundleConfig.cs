@@ -6,8 +6,8 @@ namespace DevBootstrapper {
             #region CDN Constants
 
             //const string jQueryCDN = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
-            const string jQueryCDN = "http://code.jquery.com/jquery-latest.min.js";
-            const string mordernizerCDN = "http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
+            const string jQueryCdn = "http://code.jquery.com/jquery-latest.min.js";
+            const string mordernizerCdn = "http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
             //const string respondJsCDN = "http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"
 
             #endregion
@@ -16,7 +16,7 @@ namespace DevBootstrapper {
 
             #region jQuery
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery", jQueryCDN)
+            bundles.Add(new ScriptBundle("~/bundles/jquery", jQueryCdn)
                 .Include("~/Content/Scripts/jQuery/jquery-2.1.3.min.js") //if no CDN
                 );
 
@@ -63,7 +63,7 @@ namespace DevBootstrapper {
 
             #region Mordernizer
 
-            bundles.Add(new ScriptBundle("~/bundles/modernizr", mordernizerCDN)
+            bundles.Add(new ScriptBundle("~/bundles/modernizr", mordernizerCdn)
                 .Include("~/Content/Scripts/modernizr-*") //if no CDN
                 );
 
@@ -95,7 +95,10 @@ namespace DevBootstrapper {
                 "~/Content/css/star-rating.css",
                 "~/Content/css/miscellaneous.css",
                 "~/Content/css/bootstrap-select.css",
-                "~/Content/css/override-css.css"
+                "~/Content/css/fixing-css.css",
+                "~/Content/css/core-developer.css",
+                "~/Content/css/core-developer-additions.css",
+                "~/Content/css/front-developer.css"
                 ));
 
             #endregion
