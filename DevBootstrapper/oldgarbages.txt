@@ -1,0 +1,24 @@
+﻿CREATE PROCEDURE [dbo].[CleanUpWithRoles]
+	
+AS
+	SET NOCOUNT ON;
+	DELETE FROM   dbo.AspNetUserClaims;
+	DELETE FROM   dbo.AspNetUserLogins;
+	DELETE FROM   dbo.AspNetUserRoles;
+	DELETE FROM   dbo.AspNetUsers;
+	DBCC checkident ('AspNetUsers', reseed, 0);
+
+RETURN 0
+
+PM> Enable-Migrations -ContextTypeName ApplicationDbContext -MigrationsDirectory "Models\Migrations\Indentity"
+PM> Enable-Migrations -ContextTypeName DevIdentityDbContext -MigrationsDirectory "Models\Migrations\DevIdentity"
+
+Update-Database -Force -ConfigurationTypeName DevBootstrapper.Models.Migrations.DevIdentity.Configuration
+Update-Database -Force -ConfigurationTypeName DevBootstrapper.Models.Migrations.Indentity.Configuration
+
+
+Bootstrap Datetime picker:
+https://github.com/Eonasdan/bootstrap-datetimepicker
+
+self refence
+http://blogs.microsoft.co.il/gilf/2011/06/03/how-to-configure-a-self-referencing-entity-in-code-first/

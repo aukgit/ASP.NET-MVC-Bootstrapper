@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="@AppConfig.Setting.GoogleMetaTag"/>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css/styles")
+    @Scripts.Render("~/bundles/modernizr")
+    @if (ViewBag.Meta != null) {
+        <meta name="description" content="@ViewBag.Meta"/>
+    }
+    @if (ViewBag.Keywords != null) {
+        <meta name="keywords" content="@ViewBag.Keywords"/>
+    }
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@AppVar.Url" class="navbar-brand" title="@AppVar.Name - @AppVar.Subtitle">
+                        <span class="glyphicon glyphicon-home"></span> @AppVar.Name</a>
+                </li>
+                @Html.GetMenu("Main")
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>
+@RenderSection("featured", false)
+
+<div class="container body-content">
+    @RenderBody()
+    @Html.Partial("_Footer")
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", false)
+
+
+</body>
+</html>
