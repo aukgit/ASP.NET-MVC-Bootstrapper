@@ -1,19 +1,21 @@
 ﻿@import "hats/lesshat.less";
 
+@question-mark-for-description-color: rgb(189, 189, 189);
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .ubuntu-font {
     font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
+
 .question-mark-for-description {
-    top: 5px;
+    
     cursor: pointer;
-    font-size: 22px;
+    .font-size(22px);
     position: relative;
-    .top(1px);
+    .top(5px);
     display: inline-block;
     font-family: 'Glyphicons Halflings';
     font-style: normal;
@@ -24,4 +26,9 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    color: @question-mark-for-description-color;
+}
+
+.question-mark-for-description:before {
+    content: "\e085" !important;
 }

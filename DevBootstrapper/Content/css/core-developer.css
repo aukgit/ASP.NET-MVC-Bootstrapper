@@ -1,21 +1,16 @@
-﻿/*---------------------------------------------------
-    Developers Organism
-  ---------------------------------------------------
-    Written by Alim Ul Karim
-  ---------------------------------------------------*/
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+﻿body {
+  font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .ubuntu-font {
   font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 .question-mark-for-description {
-  top: 5px;
   cursor: pointer;
   font-size: 22px;
+  font-size: 1.375em;
   position: relative;
-  top: 1px;
-  top: 0.1rem;
+  top: 5px;
+  top: 0.5rem;
   display: inline-block;
   font-family: 'Glyphicons Halflings';
   font-style: normal;
@@ -26,4 +21,8 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  color: #bdbdbd;
+}
+.question-mark-for-description:before {
+  content: "\e085" !important;
 }

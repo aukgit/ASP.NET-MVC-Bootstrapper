@@ -324,6 +324,10 @@
     <Content Include="Content\css\bootstrap-select.css" />
     <Content Include="Content\css\bootstrap-slate-theme.css" />
     <Content Include="Content\css\bootstrap-table.css" />
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.theme.unitied.css" />
     <Content Include="Content\css\color-fonts.css" />
     <Content Include="Content\css\core-developer-additions.css" />
@@ -354,7 +358,11 @@
     </Content>
     <Content Include="Content\css\size.css" />
     <Content Include="Content\css\star-rating.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -427,10 +435,6 @@
     <Content Include="Areas\Admin\Views\Countries\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Countries\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Countries\Index.cshtml" />
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
@@ -468,6 +472,8 @@
     <Content Include="Content\Less\core-developer.less" />
     <Content Include="Content\Less\core-developer-additions.less" />
     <Content Include="Content\Less\fixing-css.less" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Content\Scripts\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
@@ -498,6 +504,30 @@
     <Content Include="Content\Scripts\jQuery\moment.js" />
     <Content Include="Content\Scripts\underscore.js" />
     <Content Include="Content\Scripts\jQuery\validation.js" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Byte.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Float.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\HttpPostedFileBase.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Long.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Markdown.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Multiline.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Phone.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Rating-10.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Rating-5.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SenderEmail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Single.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Text.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Username.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -531,36 +561,13 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Single.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Multiline.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Markdown.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\HttpPostedFileBase.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Text.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Phone.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Username.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Views\Shared\_GlobalError.cshtml" />
     <Content Include="Views\Shared\_ValidatorCommonForm.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Int.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Byte.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Float.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\SenderEmail.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Long.cshtml" />
     <Content Include="Views\Account\_RegisterFields.cshtml" />
     <Content Include="Views\Shared\_FriendlyError.cshtml" />
     <Content Include="Views\Shared\_AuthenticationError.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Rating-5.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Rating-10.cshtml" />
     <Content Include="Views\Shared\_Back_Save.cshtml" />
     <Content Include="Views\Shared\_SuccessMessage.cshtml" />
     <Content Include="Views\Countries\Create.cshtml" />
@@ -571,10 +578,15 @@
     <Content Include="Content\Scripts\jQuery\version.json" />
     <Content Include="Content\Scripts\Angular\angular.min.js.map" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.map" />
-    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Shared\_NavBar.BootstrapEditorTemplates.cshtml" />
     <Content Include="Views\Shared\_Layout.BootstrapEditorTemplates.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FileMulti.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Rating-10-b.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String-NoLabel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UploaderAuto.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UploaderPlain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />
