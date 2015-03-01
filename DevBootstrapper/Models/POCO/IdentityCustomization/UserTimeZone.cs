@@ -6,7 +6,7 @@ using DevBootstrapper.Models.POCO.Identity;
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class UserTimeZone {
         [Key]
-        public int UserTimeZoneId { get; set; }
+        public int UserTimeZoneID { get; set; }
 
         /// <summary>
         ///     Windows TimeInfo ID
@@ -14,7 +14,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Column(TypeName = "VARCHAR")]
         [Required]
         [StringLength(50)]
-        public string InfoId { get; set; }
+        public string InfoID { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [Required]
@@ -31,12 +31,12 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         /// <summary>
         /// UTC-10:00
         /// </summary>
-        public string UtcName { get; set; }
+        public string UTCName { get; set; }
 
         /// <summary>
         ///     -9
         /// </summary>
-        public float UtcValue { get; set; }
+        public float UTCValue { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(10)]

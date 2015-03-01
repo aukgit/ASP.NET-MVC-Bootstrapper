@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * jQuery Validation Plugin v1.13.1
  *
  * http://jqueryvalidation.org/
@@ -747,9 +747,9 @@ $.extend( $.validator, {
 		},
 
 		showLabel: function( element, message ) {
-			var place, group, errorId,
+			var place, group, errorID,
 				error = this.errorsFor( element ),
-				elementId = this.idOrName( element ),
+				elementID = this.idOrName( element ),
 				describedBy = $( element ).attr( "aria-describedby" );
 			if ( error.length ) {
 				// refresh error/success class
@@ -759,7 +759,7 @@ $.extend( $.validator, {
 			} else {
 				// create error element
 				error = $( "<" + this.settings.errorElement + ">" )
-					.attr( "id", elementId + "-error" )
+					.attr( "id", elementID + "-error" )
 					.addClass( this.settings.errorClass )
 					.html( message || "" );
 
@@ -781,18 +781,18 @@ $.extend( $.validator, {
 				// Link error back to the element
 				if ( error.is( "label" ) ) {
 					// If the error is a label, then associate using 'for'
-					error.attr( "for", elementId );
-				} else if ( error.parents( "label[for='" + elementId + "']" ).length === 0 ) {
+					error.attr( "for", elementID );
+				} else if ( error.parents( "label[for='" + elementID + "']" ).length === 0 ) {
 					// If the element is not a child of an associated label, then it's necessary
 					// to explicitly apply aria-describedby
 
-					errorId = error.attr( "id" ).replace( /(:|\.|\[|\])/g, "\\$1");
+					errorID = error.attr( "id" ).replace( /(:|\.|\[|\])/g, "\\$1");
 					// Respect existing non-error aria-describedby
 					if ( !describedBy ) {
-						describedBy = errorId;
-					} else if ( !describedBy.match( new RegExp( "\\b" + errorId + "\\b" ) ) ) {
+						describedBy = errorID;
+					} else if ( !describedBy.match( new RegExp( "\\b" + errorID + "\\b" ) ) ) {
 						// Add to end of list if not already present
-						describedBy += " " + errorId;
+						describedBy += " " + errorID;
 					}
 					$( element ).attr( "aria-describedby", describedBy );
 

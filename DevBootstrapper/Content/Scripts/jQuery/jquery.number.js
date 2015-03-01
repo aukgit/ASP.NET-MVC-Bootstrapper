@@ -56,16 +56,16 @@
 		
 		if( document.selection ){
 			// The current selection
-			var range = document.selection.createRange(), storedRange, selectionStart, selectionEnd;
+			var range = document.selection.createRange(), stored_range, selectionStart, selectionEnd;
 			// We'll use this as a 'dummy'
-			storedRange = range.duplicate();
+			stored_range = range.duplicate();
 			// Select all text
 			//stored_range.moveToElementText( this );
-			storedRange.expand('textedit');
+			stored_range.expand('textedit');
 			// Now move 'dummy' end point to end point of original range
-			storedRange.setEndPoint( 'EndToEnd', range );
+			stored_range.setEndPoint( 'EndToEnd', range );
 			// Now we can calculate start and end points
-			selectionStart = storedRange.text.length - range.text.length;
+			selectionStart = stored_range.text.length - range.text.length;
 			selectionEnd = selectionStart + range.text.length;
 			return part == 'Start' ? selectionStart : selectionEnd;
 		}
@@ -81,7 +81,7 @@
 	 * Substitutions for keydown keycodes.
 	 * Allows conversion from e.which to ascii characters.
 	 */
-	var keydown = {
+	var _keydown = {
 		codes : {
 			188 : 44,
 			109 : 45,
@@ -130,17 +130,17 @@
 	 *
 	 * @return : The jQuery collection the method was called with.
 	 */
-	$.fn.number = function( number, decimals, decPoint, thousandsSep ){
+	$.fn.number = function( number, decimals, dec_point, thousands_sep ){
 	    
 	    // Enter the default thousands separator, and the decimal placeholder.
-	    thousandsSep	= (typeof thousandsSep === 'undefined') ? ',' : thousandsSep;
-	    decPoint		= (typeof decPoint === 'undefined') ? '.' : decPoint;
+	    thousands_sep	= (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
+	    dec_point		= (typeof dec_point === 'undefined') ? '.' : dec_point;
 	    decimals		= (typeof decimals === 'undefined' ) ? 0 : decimals;
 	    	    
 	    // Work out the unicode character for the decimal placeholder.
-	    var uDec			= ('\\u'+('0000'+(decPoint.charCodeAt(0).toString(16))).slice(-4)),
-	    	regexDecNum	= new RegExp('[^'+uDec+'0-9]','g'),
-	    	regexDec		= new RegExp(uDec,'g');
+	    var u_dec			= ('\\u'+('0000'+(dec_point.charCodeAt(0).toString(16))).slice(-4)),
+	    	regex_dec_num	= new RegExp('[^'+u_dec+'0-9]','g'),
+	    	regex_dec		= new RegExp(u_dec,'g');
 	    
 	    // If we've specified to take the number from the target element,
 	    // we loop over the collection, and get the number.
@@ -181,23 +181,23 @@
 //	    				}
 //	    				else
 //	    				{
-	    					if (keydown.codes.hasOwnProperty(code)) {
-					            code = keydown.codes[code];
+	    					if (_keydown.codes.hasOwnProperty(code)) {
+					            code = _keydown.codes[code];
 					        }
 					        if (!e.shiftKey && (code >= 65 && code <= 90)){
 					        	code += 32;
 					        } else if (!e.shiftKey && (code >= 69 && code <= 105)){
 					        	code -= 48;
-					        } else if (e.shiftKey && keydown.shifts.hasOwnProperty(code)){
+					        } else if (e.shiftKey && _keydown.shifts.hasOwnProperty(code)){
 					            //get shifted keyCode value
-					            chara = keydown.shifts[code];
+					            chara = _keydown.shifts[code];
 					        }
 					        
 					        if( chara == '' ) chara = String.fromCharCode(code);
 //	    				}
 	    				
 	    				// Stop executing if the user didn't type a number key, a decimal character, or backspace.
-	    				if( code !== 8 && chara != decPoint && !chara.match(/[0-9]/) )
+	    				if( code !== 8 && chara != dec_point && !chara.match(/[0-9]/) )
 	    				{
 	    					// We need the original keycode now...
 	    					var key = (e.keyCode ? e.keyCode : e.which);
@@ -240,7 +240,7 @@
 	    				// If the start position is before the decimal point,
 	    				// and the user has typed a decimal point, we need to move the caret
 	    				// past the decimal place.
-	    				if( decimals > 0 && chara == decPoint && start == this.value.length-decimals-1 )
+	    				if( decimals > 0 && chara == dec_point && start == this.value.length-decimals-1 )
 	    				{
 	    					data.c++;
 	    					data.init = Math.max(0,data.init);
@@ -252,7 +252,7 @@
 	    				
 	    				// If the user is just typing the decimal place,
 	    				// we simply ignore it.
-	    				else if( chara == decPoint )
+	    				else if( chara == dec_point )
 	    				{
 	    					data.init = Math.max(0,data.init);
 	    					e.preventDefault();
@@ -281,7 +281,7 @@
 	    					if( this.value.slice(start-1, start) != '0' )
 	    					{
 	    						val = this.value.slice(0, start-1) + '0' + this.value.slice(start);
-	    						$this.val(val.replace(regexDecNum,'').replace(regexDec,decPoint));
+	    						$this.val(val.replace(regex_dec_num,'').replace(regex_dec,dec_point));
 	    					}
 	    					
 	    					e.preventDefault();
@@ -294,7 +294,7 @@
 	    				// If the delete key was pressed, and the character immediately
 	    				// before the caret is a thousands_separator character, simply
 	    				// step over it.
-	    				else if( code == 8 && this.value.slice(start-1, start) == thousandsSep )
+	    				else if( code == 8 && this.value.slice(start-1, start) == thousands_sep )
 	    				{
 	    					e.preventDefault();
 	    					data.c--;
@@ -433,10 +433,10 @@
     				var $this = $(this).data('numFormat',{
     					c				: -(decimals+1),
     					decimals		: decimals,
-    					thousands_sep	: thousandsSep,
-    					dec_point		: decPoint,
-    					regex_dec_num	: regexDecNum,
-    					regex_dec		: regexDec,
+    					thousands_sep	: thousands_sep,
+    					dec_point		: dec_point,
+    					regex_dec_num	: regex_dec_num,
+    					regex_dec		: regex_dec,
     					init			: false
     				});
     				
@@ -451,8 +451,8 @@
 	    	{
 		    	// return the collection.
 		    	return this.each(function(){
-		    		var $this = $(this), num = +$this.text().replace(regexDecNum,'').replace(regexDec,'.');
-		    		$this.number( !isFinite(num) ? 0 : +num, decimals, decPoint, thousandsSep );
+		    		var $this = $(this), num = +$this.text().replace(regex_dec_num,'').replace(regex_dec,'.');
+		    		$this.number( !isFinite(num) ? 0 : +num, decimals, dec_point, thousands_sep );
 		    	});
 	    	}
 	    }
@@ -589,19 +589,19 @@
 	 *
 	 * @return string : The formatted number as a string.
 	 */
-	$.number = function( number, decimals, decPoint, thousandsSep ){
+	$.number = function( number, decimals, dec_point, thousands_sep ){
 		
 		// Set the default values here, instead so we can use them in the replace below.
-		thousandsSep	= (typeof thousandsSep === 'undefined') ? ',' : thousandsSep;
-		decPoint		= (typeof decPoint === 'undefined') ? '.' : decPoint;
+		thousands_sep	= (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
+		dec_point		= (typeof dec_point === 'undefined') ? '.' : dec_point;
 		decimals		= !isFinite(+decimals) ? 0 : Math.abs(decimals);
 		
 		// Work out the unicode representation for the decimal place.	
-		var uDec = ('\\u'+('0000'+(decPoint.charCodeAt(0).toString(16))).slice(-4));
+		var u_dec = ('\\u'+('0000'+(dec_point.charCodeAt(0).toString(16))).slice(-4));
 		
 		// Fix the number, so that it's an actual number.
 		number = (number + '')
-			.replace(new RegExp(uDec,'g'),'.')
+			.replace(new RegExp(u_dec,'g'),'.')
 			.replace(new RegExp('[^0-9+\-Ee.]','g'),'');
 		
 		var n = !isFinite(+number) ? 0 : +number,
@@ -614,13 +614,13 @@
 		// Fix for IE parseFloat(0.55).toFixed(0) = 0;
 		s = (decimals ? toFixedFix(n, decimals) : '' + Math.round(n)).split('.');
 		if (s[0].length > 3) {
-		    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, thousandsSep);
+		    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, thousands_sep);
 		}
 		if ((s[1] || '').length < decimals) {
 		    s[1] = s[1] || '';
 		    s[1] += new Array(decimals - s[1].length + 1).join('0');
 		}
-		return s.join(decPoint);
+		return s.join(dec_point);
 	}
 	
 })(jQuery);

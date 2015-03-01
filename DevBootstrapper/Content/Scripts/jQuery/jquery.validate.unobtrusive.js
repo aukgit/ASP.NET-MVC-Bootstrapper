@@ -23,7 +23,7 @@
 (function ($) {
     var $jQval = $.validator,
         adapters,
-        dataValidation = "unobtrusiveValidation";
+        data_validation = "unobtrusiveValidation";
 
     function setValidationValues(options, ruleName, value) {
         options.rules[ruleName] = value;
@@ -125,7 +125,7 @@
 
     function validationInfo(form) {
         var $form = $(form),
-            result = $form.data(dataValidation),
+            result = $form.data(data_validation),
             onResetProxy = $.proxy(onReset, form),
             defaultOptions = $jQval.unobtrusive.options || {},
             execInContext = function (name, args) {
@@ -155,8 +155,8 @@
                 },
                 attachValidation: function () {
                     $form
-                        .off("reset." + dataValidation, onResetProxy)
-                        .on("reset." + dataValidation, onResetProxy)
+                        .off("reset." + data_validation, onResetProxy)
+                        .on("reset." + data_validation, onResetProxy)
                         .validate(this.options);
                 },
                 validate: function () {  // a validation function that is called by unobtrusive Ajax
@@ -164,7 +164,7 @@
                     return $form.valid();
                 }
             };
-            $form.data(dataValidation, result);
+            $form.data(data_validation, result);
         }
 
         return result;

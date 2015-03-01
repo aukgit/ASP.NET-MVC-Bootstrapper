@@ -60,17 +60,17 @@
 
 jQuery.base64 = (function($) {
 
-    var padchar = "=",
-        alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
-        version = "1.0";
+    var _PADCHAR = "=",
+        _ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+        _VERSION = "1.0";
 
 
-    function getbyte64(s, i) {
+    function _getbyte64(s, i) {
         // This is oddly fast, except on Chrome/V8.
         // Minimal or no improvement in performance by using a
         // object with properties mapping chars to value (eg. 'A': 0)
 
-        var idx = alpha.indexOf(s.charAt(i));
+        var idx = _ALPHA.indexOf(s.charAt(i));
 
         if (idx === -1) {
             throw "Cannot decode base64";
@@ -80,7 +80,7 @@ jQuery.base64 = (function($) {
     }
 
 
-    function decode(s) {
+    function _decode(s) {
         var pads = 0,
             i,
             b10,
@@ -97,10 +97,10 @@ jQuery.base64 = (function($) {
             throw "Cannot decode base64";
         }
 
-        if (s.charAt(imax - 1) === padchar) {
+        if (s.charAt(imax - 1) === _PADCHAR) {
             pads = 1;
 
-            if (s.charAt(imax - 2) === padchar) {
+            if (s.charAt(imax - 2) === _PADCHAR) {
                 pads = 2;
             }
 
@@ -109,18 +109,18 @@ jQuery.base64 = (function($) {
         }
 
         for (i = 0; i < imax; i += 4) {
-            b10 = (getbyte64(s, i) << 18) | (getbyte64(s, i + 1) << 12) | (getbyte64(s, i + 2) << 6) | getbyte64(s, i + 3);
+            b10 = (_getbyte64(s, i) << 18) | (_getbyte64(s, i + 1) << 12) | (_getbyte64(s, i + 2) << 6) | _getbyte64(s, i + 3);
             x.push(String.fromCharCode(b10 >> 16, (b10 >> 8) & 0xff, b10 & 0xff));
         }
 
         switch (pads) {
         case 1:
-            b10 = (getbyte64(s, i) << 18) | (getbyte64(s, i + 1) << 12) | (getbyte64(s, i + 2) << 6);
+            b10 = (_getbyte64(s, i) << 18) | (_getbyte64(s, i + 1) << 12) | (_getbyte64(s, i + 2) << 6);
             x.push(String.fromCharCode(b10 >> 16, (b10 >> 8) & 0xff));
             break;
 
         case 2:
-            b10 = (getbyte64(s, i) << 18) | (getbyte64(s, i + 1) << 12);
+            b10 = (_getbyte64(s, i) << 18) | (_getbyte64(s, i + 1) << 12);
             x.push(String.fromCharCode(b10 >> 16));
             break;
         }
@@ -129,7 +129,7 @@ jQuery.base64 = (function($) {
     }
 
 
-    function getbyte(s, i) {
+    function _getbyte(s, i) {
         var x = s.charCodeAt(i);
 
         if (x > 255) {
@@ -140,7 +140,7 @@ jQuery.base64 = (function($) {
     }
 
 
-    function encode(s) {
+    function _encode(s) {
         if (arguments.length !== 1) {
             throw "SyntaxError: exactly one argument required";
         }
@@ -157,22 +157,22 @@ jQuery.base64 = (function($) {
         }
 
         for (i = 0; i < imax; i += 3) {
-            b10 = (getbyte(s, i) << 16) | (getbyte(s, i + 1) << 8) | getbyte(s, i + 2);
-            x.push(alpha.charAt(b10 >> 18));
-            x.push(alpha.charAt((b10 >> 12) & 0x3F));
-            x.push(alpha.charAt((b10 >> 6) & 0x3f));
-            x.push(alpha.charAt(b10 & 0x3f));
+            b10 = (_getbyte(s, i) << 16) | (_getbyte(s, i + 1) << 8) | _getbyte(s, i + 2);
+            x.push(_ALPHA.charAt(b10 >> 18));
+            x.push(_ALPHA.charAt((b10 >> 12) & 0x3F));
+            x.push(_ALPHA.charAt((b10 >> 6) & 0x3f));
+            x.push(_ALPHA.charAt(b10 & 0x3f));
         }
 
         switch (s.length - imax) {
         case 1:
-            b10 = getbyte(s, i) << 16;
-            x.push(alpha.charAt(b10 >> 18) + alpha.charAt((b10 >> 12) & 0x3F) + padchar + padchar);
+            b10 = _getbyte(s, i) << 16;
+            x.push(_ALPHA.charAt(b10 >> 18) + _ALPHA.charAt((b10 >> 12) & 0x3F) + _PADCHAR + _PADCHAR);
             break;
 
         case 2:
-            b10 = (getbyte(s, i) << 16) | (getbyte(s, i + 1) << 8);
-            x.push(alpha.charAt(b10 >> 18) + alpha.charAt((b10 >> 12) & 0x3F) + alpha.charAt((b10 >> 6) & 0x3f) + padchar);
+            b10 = (_getbyte(s, i) << 16) | (_getbyte(s, i + 1) << 8);
+            x.push(_ALPHA.charAt(b10 >> 18) + _ALPHA.charAt((b10 >> 12) & 0x3F) + _ALPHA.charAt((b10 >> 6) & 0x3f) + _PADCHAR);
             break;
         }
 
@@ -181,9 +181,9 @@ jQuery.base64 = (function($) {
 
 
     return {
-        decode: decode,
-        encode: encode,
-        VERSION: version
+        decode: _decode,
+        encode: _encode,
+        VERSION: _VERSION
     };
 
 }(jQuery));
@@ -264,8 +264,8 @@ THE SOFTWARE.*/
                 if (defaults.consoleLog == "true") {
                     console.log(tdData);
                 }
-                var base64Data = "base64," + $.base64.encode(tdData);
-                window.open("data:application/" + defaults.type + ";filename=exportData;" + base64Data);
+                var base64data = "base64," + $.base64.encode(tdData);
+                window.open("data:application/" + defaults.type + ";filename=exportData;" + base64data);
             } else if (defaults.type == "sql") {
 
                 // Header
@@ -308,8 +308,8 @@ THE SOFTWARE.*/
                     console.log(tdData);
                 }
 
-                var base64Data = "base64," + $.base64.encode(tdData);
-                window.open("data:application/sql;filename=exportData;" + base64Data);
+                var base64data = "base64," + $.base64.encode(tdData);
+                window.open("data:application/sql;filename=exportData;" + base64data);
 
 
             } else if (defaults.type == "json") {
@@ -357,8 +357,8 @@ THE SOFTWARE.*/
                 if (defaults.consoleLog == "true") {
                     console.log(JSON.stringify(jsonExportArray));
                 }
-                var base64Data = "base64," + $.base64.encode(JSON.stringify(jsonExportArray));
-                window.open("data:application/json;filename=exportData;" + base64Data);
+                var base64data = "base64," + $.base64.encode(JSON.stringify(jsonExportArray));
+                window.open("data:application/json;filename=exportData;" + base64data);
             } else if (defaults.type == "xml") {
 
                 var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
@@ -397,8 +397,8 @@ THE SOFTWARE.*/
                     console.log(xml);
                 }
 
-                var base64Data = "base64," + $.base64.encode(xml);
-                window.open("data:application/xml;filename=exportData;" + base64Data);
+                var base64data = "base64," + $.base64.encode(xml);
+                window.open("data:application/xml;filename=exportData;" + base64data);
 
             } else if (defaults.type == "excel" || defaults.type == "doc" || defaults.type == "powerpoint") {
                 //console.log($(this).html());
@@ -463,8 +463,8 @@ THE SOFTWARE.*/
                 excelFile += "</body>";
                 excelFile += "</html>";
 
-                var base64Data = "base64," + $.base64.encode(excelFile);
-                window.open("data:application/vnd.ms-" + defaults.type + ";filename=exportData.doc;" + base64Data);
+                var base64data = "base64," + $.base64.encode(excelFile);
+                window.open("data:application/vnd.ms-" + defaults.type + ";filename=exportData.doc;" + base64data);
 
             } else if (defaults.type == "png") {
                 html2canvas($(el), {
@@ -555,7 +555,7 @@ THE SOFTWARE.*/
 (function($) {
     "use strict";
 
-    var typeName = {
+    var TYPE_NAME = {
         json: "JSON",
         xml: "XML",
         png: "PNG",
@@ -574,11 +574,11 @@ THE SOFTWARE.*/
         exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"]
     });
 
-    var bootstrapTable = $.fn.bootstrapTable.Constructor,
-        initToolbar = bootstrapTable.prototype.initToolbar;
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initToolbar = BootstrapTable.prototype.initToolbar;
 
-    bootstrapTable.prototype.initToolbar = function() {
-        initToolbar.apply(this, Array.prototype.slice.apply(arguments));
+    BootstrapTable.prototype.initToolbar = function() {
+        _initToolbar.apply(this, Array.prototype.slice.apply(arguments));
 
         if (this.options.showExport) {
             var that = this,
@@ -610,11 +610,11 @@ THE SOFTWARE.*/
                     });
                 }
                 $.each(exportTypes, function(i, type) {
-                    if (typeName.hasOwnProperty(type)) {
+                    if (TYPE_NAME.hasOwnProperty(type)) {
                         $menu.append([
                             "<li data-type=\"" + type + "\">",
                             "<a href=\"javascript:void(0)\">",
-                            typeName[type],
+                            TYPE_NAME[type],
                             "</a>",
                             "</li>"
                         ].join(""));

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class ImageResizeSetting {
-        public int ImageResizeSettingId { get; set; }
+        public int ImageResizeSettingID { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(256)]

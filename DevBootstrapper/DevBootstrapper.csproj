@@ -315,20 +315,70 @@
     <Content Include="App_Data\StoredProceduresCreate\ResetCoreSettings.sql" />
     <Content Include="App_Data\StoredProceduresCreate\ResetASPNetUser.sql" />
     <Content Include="Content\css\bootstrap-datetimepicker.css" />
+    <Content Include="Content\css\bootstrap-datetimepicker.min.css">
+      <DependentUpon>bootstrap-datetimepicker.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap-select.css" />
+    <Content Include="Content\css\bootstrap-select.min.css">
+      <DependentUpon>bootstrap-select.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap-slate-theme.css" />
+    <Content Include="Content\css\bootstrap-slate-theme.min.css">
+      <DependentUpon>bootstrap-slate-theme.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap-table.css" />
+    <Content Include="Content\css\bootstrap-table.min.css">
+      <DependentUpon>bootstrap-table.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap.theme.unitied.css" />
+    <Content Include="Content\css\bootstrap.theme.unitied.min.css">
+      <DependentUpon>bootstrap.theme.unitied.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\color-fonts.css" />
+    <Content Include="Content\css\color-fonts.min.css">
+      <DependentUpon>color-fonts.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\core-developer.css" />
+    <Content Include="Content\css\core-developer.min.css">
+      <DependentUpon>core-developer.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\dataTables.bootstrap.css" />
+    <Content Include="Content\css\dataTables.bootstrap.min.css">
+      <DependentUpon>dataTables.bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\flags32-combo.css" />
+    <Content Include="Content\css\flags32-combo.min.css">
+      <DependentUpon>flags32-combo.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\flags32.css" />
+    <Content Include="Content\css\flags32.min.css">
+      <DependentUpon>flags32.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\flags32.png" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\front-developer.css" />
+    <Content Include="Content\css\front-developer.min.css">
+      <DependentUpon>front-developer.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\miscellaneous.css" />
+    <Content Include="Content\css\miscellaneous.min.css">
+      <DependentUpon>miscellaneous.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\override-css.css" />
+    <Content Include="Content\css\override-css.min.css">
+      <DependentUpon>override-css.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\size.css" />
+    <Content Include="Content\css\size.min.css">
+      <DependentUpon>size.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\star-rating.css" />
+    <Content Include="Content\css\star-rating.min.css">
+      <DependentUpon>star-rating.css</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />

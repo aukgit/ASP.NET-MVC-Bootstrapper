@@ -21,9 +21,9 @@
 /*global window: false, jQuery: false */
 
 (function ($) {
-    var dataClick = "unobtrusiveAjaxClick",
-        dataTarget = "unobtrusiveAjaxClickTarget",
-        dataValidation = "unobtrusiveValidation";
+    var data_click = "unobtrusiveAjaxClick",
+        data_target = "unobtrusiveAjaxClickTarget",
+        data_validation = "unobtrusiveValidation";
 
     function getFunction(code, argNames) {
         var fn = window, parts = (code || "").split(".");
@@ -129,7 +129,7 @@
     }
 
     function validate(form) {
-        var validationInfo = $(form).data(dataValidation);
+        var validationInfo = $(form).data(data_validation);
         return !validationInfo || !validationInfo.validate || validationInfo.validate();
     }
 
@@ -148,13 +148,13 @@
             form = $(target.parents("form")[0]),
             offset = target.offset();
 
-        form.data(dataClick, [
+        form.data(data_click, [
             { name: name + ".x", value: Math.round(evt.pageX - offset.left) },
             { name: name + ".y", value: Math.round(evt.pageY - offset.top) }
         ]);
 
         setTimeout(function () {
-            form.removeData(dataClick);
+            form.removeData(data_click);
         }, 0);
     });
 
@@ -163,18 +163,18 @@
             target = $(evt.target),
             form = $(target.parents("form")[0]);
 
-        form.data(dataClick, name ? [{ name: name, value: evt.currentTarget.value }] : []);
-        form.data(dataTarget, target);
+        form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
+        form.data(data_target, target);
 
         setTimeout(function () {
-            form.removeData(dataClick);
-            form.removeData(dataTarget);
+            form.removeData(data_click);
+            form.removeData(data_target);
         }, 0);
     });
 
     $(document).on("submit", "form[data-ajax=true]", function (evt) {
-        var clickInfo = $(this).data(dataClick) || [],
-            clickTarget = $(this).data(dataTarget),
+        var clickInfo = $(this).data(data_click) || [],
+            clickTarget = $(this).data(data_target),
             isCancel = clickTarget && clickTarget.hasClass("cancel");
         evt.preventDefault();
         if (!isCancel && !validate(this)) {

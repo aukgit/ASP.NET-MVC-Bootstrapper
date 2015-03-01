@@ -15,22 +15,22 @@
     var previousUnderscore = root._;
 
     // Save bytes in the minified (but not gzipped) version:
-    var arrayProto = Array.prototype, objProto = Object.prototype, funcProto = Function.prototype;
+    var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
 
     // Create quick reference variables for speed access to core prototypes.
     var
-        push = arrayProto.push,
-        slice = arrayProto.slice,
-        concat = arrayProto.concat,
-        toString = objProto.toString,
-        hasOwnProperty = objProto.hasOwnProperty;
+        push = ArrayProto.push,
+        slice = ArrayProto.slice,
+        concat = ArrayProto.concat,
+        toString = ObjProto.toString,
+        hasOwnProperty = ObjProto.hasOwnProperty;
 
     // All **ECMAScript 5** native function implementations that we hope to use
     // are declared here.
     var
         nativeIsArray = Array.isArray,
         nativeKeys = Object.keys,
-        nativeBind = funcProto.bind;
+        nativeBind = FuncProto.bind;
 
     // Create a safe reference to the Underscore object for use below.
     var _ = function(obj) {
@@ -652,7 +652,7 @@
     // ------------------
 
     // Reusable constructor function for prototype setting.
-    var ctor = function() {};
+    var Ctor = function() {};
 
     // Create a function bound to a given object (assigning `this`, and arguments,
     // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
@@ -664,9 +664,9 @@
         args = slice.call(arguments, 2);
         bound = function() {
             if (!(this instanceof bound)) return func.apply(context, args.concat(slice.call(arguments)));
-            ctor.prototype = func.prototype;
-            var self = new ctor;
-            ctor.prototype = null;
+            Ctor.prototype = func.prototype;
+            var self = new Ctor;
+            Ctor.prototype = null;
             var result = func.apply(self, args.concat(slice.call(arguments)));
             if (_.isObject(result)) return result;
             return self;
@@ -1393,7 +1393,7 @@
 
     // Add all mutator Array functions to the wrapper.
     _.each(["pop", "push", "reverse", "shift", "sort", "splice", "unshift"], function(name) {
-        var method = arrayProto[name];
+        var method = ArrayProto[name];
         _.prototype[name] = function() {
             var obj = this._wrapped;
             method.apply(obj, arguments);
@@ -1404,7 +1404,7 @@
 
     // Add all accessor Array functions to the wrapper.
     _.each(["concat", "join", "slice"], function(name) {
-        var method = arrayProto[name];
+        var method = ArrayProto[name];
         _.prototype[name] = function() {
             return result.call(this, method.apply(this._wrapped, arguments));
         };

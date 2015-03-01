@@ -88,7 +88,7 @@ namespace DevBootstrapper {
                 using (DevIdentityDbContext db = new DevIdentityDbContext()) {
                     _setting = new CoreSetting() {
                         // Set the id to be auto in db.
-                        CoreSettingID = 1,
+                        CoreSettingId = 1,
                         ApplicationName = "Developers Organism Component",
                         ApplicationSubtitle = "Subtitle",
                         ApplicationDescription = "Developers Organism component for website maintenance.",
@@ -118,12 +118,12 @@ namespace DevBootstrapper {
                         SmtpHost = "smtp.gmail.com",
                         SmtpMailPort = 587,
                         GoogleMetaTag = "Meta tag",
-                        FacebookClientID = 123,
+                        FacebookClientId = 123,
                         FacebookSecret = "FB App Secret",
                         IsFacebookAuthentication = true,
                         NotifyDeveloperOnError = true,
                         IsConfirmMailRequired = true,
-                        IsSMTPSSL = true,
+                        IsSmtpssl = true,
                         IsFirstUserFound = false
                     };
                     db.CoreSettings.Add(_setting);
@@ -155,7 +155,7 @@ namespace DevBootstrapper {
                 AppVar.Setting = Setting;
                 AppVar.SetCommonMetaDescriptionToEmpty();
                 //Configure this with add a sender email.
-                DevMVCComponent.Starter.Mailer = new DevMVCComponent.Mailers.CustomMailConfig(Setting.SenderEmail, Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSMTPSSL);
+                DevMVCComponent.Starter.Mailer = new DevMVCComponent.Mailers.CustomMailConfig(Setting.SenderEmail, Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmtpssl);
                 //if false then no email on error.
                 DevMVCComponent.Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 

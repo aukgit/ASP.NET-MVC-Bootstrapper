@@ -133,7 +133,7 @@ $(function () {
             }
             var mainDiv = $(mainDivContainerSelector);
             var innerDiv = mainDiv.find(innerDivSelectorForPlacingCombo);
-            hideDiv();
+            _hideDiv();
             parentjQueryCombo.change(function () {
                 var parentComboValue = parentjQueryCombo.val();
                 var actualUrl = urlToGetJson + "/" + parentComboValue;
@@ -143,20 +143,20 @@ $(function () {
                     url: actualUrl,
                     success: function (response) {
                         if (response.length === 0) {
-                            hideDiv();
+                            _hideDiv();
                             return;
                         }
                         innerDiv = $(mainDivContainerSelector + " " + innerDivSelectorForPlacingCombo);
                         // items exist.
-                        showDiv(); //remove inner options if exist any
-                        createCombo(response); // create if necessary and then append options to it.
+                        _showDiv(); //remove inner options if exist any
+                        _createCombo(response); // create if necessary and then append options to it.
                     },
                     error: function (xhr, status, error) {
-                        hideDiv();
+                        _hideDiv();
                     }
                 });
             });
-            function hideDiv() {
+            function _hideDiv() {
                 if (mainDiv.length > 0) {
                     mainDiv.hide();
                 } else {
@@ -165,7 +165,7 @@ $(function () {
             }
 
 
-            function showDiv() {
+            function _showDiv() {
                 // remove select if exist.
                 var options = innerDiv.find("select, div.bootstrap-select");
                 if (options.length > 0) {
@@ -174,7 +174,7 @@ $(function () {
                 mainDiv.show("slow");
             }
 
-            function createCombo(response) {
+            function _createCombo(response) {
                 if (!_.isEmpty(placedComboId)) {
                     placedComboId = " id='" + placedComboId + "' ";
                 } else {
@@ -359,7 +359,7 @@ $(function () {
             }
         },
 
-        validateInputFromServer: function (jQuerytextBoxSelector, validationUrl, internalValidatorSpanClassName, isAlwaysFocusUntilValid, isDisable, minChars, isSubmitTheWholeForm, onInvalidStringStatementInCrossMark, onValidStringStatementInCheckMark, $formGiven, maxTryLimit) {
+        validateInputFromServer: function (jQuerytextBoxSelector, validationURL, internalValidatorSpanClassName, isAlwaysFocusUntilValid, isDisable, minChars, isSubmitTheWholeForm, onInvalidStringStatementInCrossMark, onValidStringStatementInCheckMark, $formGiven, maxTryLimit) {
             /// <summary>
             /// Made validation easy on the fly with a server response.
             /// </summary>
@@ -473,7 +473,7 @@ $(function () {
                     $.ajax({
                         type: "POST",
                         dataType: "JSON",
-                        url: validationUrl,
+                        url: validationURL,
                         data: formData,
                         success: function (response) {
                             sentRequestCount = sentRequestCount + 1;

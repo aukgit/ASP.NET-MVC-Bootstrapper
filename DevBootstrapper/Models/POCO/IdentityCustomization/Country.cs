@@ -9,7 +9,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CountryId { get; set; }
+        public int CountryID { get; set; }
 
         [StringLength(50)]
         [Required]
@@ -83,7 +83,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         ///     TimezoneID non-relating from UserTimeZoneTable
         ///     Only those which doesn't have multiple timezones will be here.
         /// </summary>
-        public int? RelatedTimeZoneId { get; set; }
+        public int? RelatedTimeZoneID { get; set; }
 
         public bool IsSingleTimeZone { get; set; }
 
@@ -106,7 +106,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         public ICollection<CountryCurrency> CountryCurrencies { get; set; }
 
         [ForeignKey("CountryID")]
-        public ICollection<CountryDetectByIp> CountryDetectByIPs { get; set; }
+        public ICollection<CountryDetectByIP> CountryDetectByIPs { get; set; }
 
         [ForeignKey("CountryID")]
         public ICollection<CountryTimezoneRelation> CountryTimezoneRelations { get; set; }

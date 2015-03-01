@@ -14,7 +14,7 @@ namespace DevBootstrapper.Controllers {
             }
             var getZones = CachedQueriedData.GetTimezones(id);
             if (getZones != null) {
-                var represent = getZones.Select(n => new { text = n.Display, id = n.UserTimeZoneID });
+                var represent = getZones.Select(n => new { text = n.Display, id = n.UserTimeZoneId });
                 return Json(represent.ToList(), JsonRequestBehavior.AllowGet);
             }
             return Json(null, JsonRequestBehavior.AllowGet);
@@ -28,7 +28,7 @@ namespace DevBootstrapper.Controllers {
             var languges = CachedQueriedData.GetLanguages(id);
             if (languges != null) {
                 var represent =
-                    languges.Select(n => new { text = n.Language + " - " + n.NativeName, id = n.CountryLanguageID });
+                    languges.Select(n => new { text = n.Language + " - " + n.NativeName, id = n.CountryLanguageId });
                 return Json(represent.ToList(), JsonRequestBehavior.AllowGet);
             }
             return Json(null, JsonRequestBehavior.AllowGet);

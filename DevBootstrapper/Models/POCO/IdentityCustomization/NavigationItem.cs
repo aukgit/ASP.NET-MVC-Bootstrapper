@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class NavigationItem {
-        public int NavigationItemId { get; set; }
-        public int NavigationId { get; set; }
+        public int NavigationItemID { get; set; }
+        public int NavigationID { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(250)]
@@ -21,14 +21,14 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Display(Name = "Element ID",
             Description =
                 "Html ID related to this list-item. Prefer not to use because classes are the mordern practice.")]
-        public string ElementId { get; set; }
+        public string ElementID { get; set; }
 
         [Required]
         [StringLength(600)]
-        public string RelativeUrl { get; set; }
+        public string RelativeURL { get; set; }
 
         public int Ordering { get; set; }
         public bool HasDropDown { get; set; }
-        public int? ParentNavigationId { get; set; }
+        public int? ParentNavigationID { get; set; }
     }
 }

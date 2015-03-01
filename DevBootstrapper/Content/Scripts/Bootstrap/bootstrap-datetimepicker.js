@@ -52,7 +52,7 @@ THE SOFTWARE.
 
     var dpgId = 0,
 
-        dateTimePicker = function(element, options) {
+        DateTimePicker = function(element, options) {
             var defaults = $.fn.datetimepicker.defaults,
 
                 icons = {
@@ -1353,7 +1353,7 @@ THE SOFTWARE.
             var $this = $(this),
                 data = $this.data("DateTimePicker");
             if (!data) {
-                $this.data("DateTimePicker", new dateTimePicker(this, options));
+                $this.data("DateTimePicker", new DateTimePicker(this, options));
             }
         });
     };
