@@ -2,7 +2,7 @@ using System.Web;
 using System.Web.Mvc;
 using MarkdownDeep;
 
-namespace DevBootstrapper.Modules.ValidatorExtentions {
+namespace DevBootstrapper.ValidatorExtentions {
     /// <summary>
     ///     Helper class for transforming Markdown.
     /// </summary>

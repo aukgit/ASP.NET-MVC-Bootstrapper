@@ -202,7 +202,7 @@ namespace DevBootstrapper {
         #endregion
 
         #region Connection Strings and Constants
-        //public const string DefaultConnection = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\DevBootstrapper-Accounts.mdf;Initial Catalog=DevBootstrapper-Accounts;Integrated Security=True";
+        //public const string DefaultConnection = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\WereViewApp-Accounts.mdf;Initial Catalog=WereViewApp-Accounts;Integrated Security=True";
 
         private static readonly string DefaultConnection =
              ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;

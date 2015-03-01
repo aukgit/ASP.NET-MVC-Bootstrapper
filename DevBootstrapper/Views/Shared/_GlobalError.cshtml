@@ -1,14 +1,17 @@
-﻿@{
+﻿@using DevBootstrapper.Modules.Session
+@using DevBootstrapper.Modules.UserError
+@{
     var errors = AppConfig.GetGlobalError();
-    var auth  = Session[DevBootstrapper.Modules.Session.SessionNames.AuthError];
+    var auth = Session[SessionNames.AuthError];
 }
 @if (auth != null) {
-    <h1 class="h3"><label class="label label-danger"></label>auth</h1>
-    Session[DevBootstrapper.Modules.Session.SessionNames.AuthError] = null;
+    <h1 class="h3">
+        <label class="label label-danger"></label>auth
+    </h1>
+    Session[SessionNames.AuthError] = null;
 }
 
 @if (errors != null) {
-
     var errorList = errors.GetErrors();
     if (errorList != null) {
         <div class="col-md-12 col-sm-12 col-lg-12 global-error">
@@ -18,11 +21,19 @@
                     <li>
                         <span class="@errors.GetCssForError(error)">@error.ErrorMessage</span>
                         @if (@error.Solution != null) {
+<<<<<<< HEAD
                             <span class="@DevBootstrapper.Modules.UserError.ErrorCollector.SolutionStateClass">@error.Solution</span>
                         }
                         @if (@error.Link != null) {
                             <a href="@error.Link" class="error-solution-link" title="@error.LinkTitle">
                                 <span class="@DevBootstrapper.Modules.UserError.ErrorCollector.SolutionStateLinkClass" title="@error.LinkTitle">@error.LinkTitle</span>
+=======
+                            <span class="@ErrorCollector.SOLUTION_STATE_CLASS">@error.Solution</span>
+                        }
+                        @if (@error.Link != null) {
+                            <a href="@error.Link" class="error-solution-link" title="@error.LinkTitle">
+                                <span class="@ErrorCollector.SOLUTION_STATE_LINK_CLASS" title="@error.LinkTitle">@error.LinkTitle</span>
+>>>>>>> parent of c7c6039... complete and okay for first time
                             </a>
                         }
                     </li>

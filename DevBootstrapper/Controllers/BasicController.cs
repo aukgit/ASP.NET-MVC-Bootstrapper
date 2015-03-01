@@ -3,23 +3,29 @@ using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.UserError;
 
 namespace DevBootstrapper.Controllers {
-
+    //[CompressFilter(Order=1)]
+    //[CacheFilter(Duration=8)]
     public abstract class BasicController : Controller {
+<<<<<<< HEAD
         internal ErrorCollector ErrorCollector;
         internal readonly ApplicationDbContext Db;
+=======
+        internal ErrorCollector _errorCollector;
+        internal readonly ApplicationDbContext db;
+>>>>>>> parent of c7c6039... complete and okay for first time
 
-        protected BasicController() {
+        public BasicController() {
         }
 
-        protected BasicController(bool applicationDbContextRequried) {
+        public BasicController(bool applicationDbContextRequried) {
             if (applicationDbContextRequried) {
                 Db = new ApplicationDbContext();
             }
         }
 
-        protected BasicController(bool applicationDbContextRequried, bool errorCollectorRequried) {
+        public BasicController(bool applicationDbContextRequried, bool errorCollectorRequried) {
             if (errorCollectorRequried) {
-                ErrorCollector = new ErrorCollector();
+                _errorCollector = new ErrorCollector();
             }
             if (applicationDbContextRequried) {
                 Db = new ApplicationDbContext();
@@ -30,8 +36,8 @@ namespace DevBootstrapper.Controllers {
             if (Db != null) {
                 Db.Dispose();
             }
-            if (ErrorCollector != null) {
-                ErrorCollector.Dispose();
+            if (_errorCollector != null) {
+                _errorCollector.Dispose();
             }
             base.Dispose(disposing);
         }

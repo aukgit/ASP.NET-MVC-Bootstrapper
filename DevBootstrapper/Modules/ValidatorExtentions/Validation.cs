@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 
-namespace DevBootstrapper.Modules.ValidatorExtentions {
+namespace DevBootstrapper.ValidatorExtentions {
     public static class Validation {
         /// <summary>
         ///     Checks the ModelState for an error, and returns the given error string if there is one, or null if there is no

@@ -10,8 +10,8 @@ namespace DevBootstrapper.Modules.Cookie {
     ///     Retrieve cookies from request.
     /// </summary>
     public class CookieProcessor {
-        private readonly string _cookieName = "";
-        private readonly DateTime _defaultExpiration = DateTime.Now.AddHours(5);
+        private readonly string CookieName = "";
+        private readonly DateTime defaultExpiration = DateTime.Now.AddHours(5);
 
         #region Remove Cookies
 
@@ -41,7 +41,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// <param name="baseContext">Pass this.HttpContext</param>
         /// <param name="cookieName">Pass the default cookie name.</param>
         public CookieProcessor(string cookieName) {
-            _cookieName = cookieName;
+            CookieName = cookieName;
         }
 
         #endregion
@@ -56,7 +56,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// </summary>
         /// <param name="Object"></param>
         public void Save(object Object) {
-            Save(Object, _cookieName, false, _defaultExpiration);
+            Save(Object, CookieName, false, defaultExpiration);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// <param name="Object">Pass the object.</param>
         /// <param name="cookie">Name of the cookie</param>
         public void Save(object Object, string cookie) {
-            Save(Object, cookie, false, _defaultExpiration);
+            Save(Object, cookie, false, defaultExpiration);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// <param name="Object">Pass the object</param>
         /// <param name="checkBeforeExist">Don't save if already exist.</param>
         public void Save(object Object, bool checkBeforeExist) {
-            Save(Object, null, checkBeforeExist, _defaultExpiration);
+            Save(Object, null, checkBeforeExist, defaultExpiration);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// <param name="expiration"></param>
         public void Save(object Object, string cookieName, bool checkBeforeExist, DateTime expiration) {
             if (cookieName == null) {
-                cookieName = _cookieName;
+                cookieName = CookieName;
             }
             var httpCookie = new HttpCookie(cookieName) {
                 Expires = expiration
@@ -177,7 +177,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// </summary>
         /// <returns>Returns string or null.</returns>
         public NameValueCollection Read() {
-            var httpCookie = HttpContext.Current.Request.Cookies[_cookieName];
+            var httpCookie = HttpContext.Current.Request.Cookies[CookieName];
             if (httpCookie != null) {
                 if (httpCookie.Values.Count > 1) {
                     // complex type not a value.
@@ -195,7 +195,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// <returns>Return object or null.</returns>
         public NameValueCollection Read(string cookieName) {
             if (cookieName == null) {
-                cookieName = _cookieName;
+                cookieName = CookieName;
             }
             var httpCookie = HttpContext.Current.Request.Cookies[cookieName];
             if (httpCookie != null) {
@@ -229,7 +229,7 @@ namespace DevBootstrapper.Modules.Cookie {
         /// </summary>
         /// <returns>Returns string or null.</returns>
         public string ReadString() {
-            var httpCookie = HttpContext.Current.Request.Cookies[_cookieName];
+            var httpCookie = HttpContext.Current.Request.Cookies[CookieName];
             if (httpCookie != null) {
                 if (httpCookie.Values.Count == 1) {
                     // complex type not a value.

@@ -28,10 +28,6 @@ namespace DevBootstrapper {
                 "~/Content/Scripts/jQuery/jquery.validate*",
                 "~/Content/Scripts/underscore.js",
                 "~/Content/Scripts/jQuery/moment.js",
-                 "~/Scripts/moment.js",
-
-
-                "~/Content/Scripts/jQuery/jquery.elastic.source.js",
                 "~/Content/Scripts/Bootstrap/bootstrap-datetimepicker.js",
                 "~/Content/Scripts/Bootstrap/bootstrap-select.js",
                 "~/Content/Scripts/Bootstrap/bootstrap-table.js",
@@ -44,6 +40,7 @@ namespace DevBootstrapper {
 
             #endregion
 
+<<<<<<< HEAD
             #region Upload
             bundles.Add(new ScriptBundle("~/bundles/upload").Include(
                                 "~/Content/Scripts/DevOrgCompoents/Upload/jquery.ui.widget.js",
@@ -61,6 +58,8 @@ namespace DevBootstrapper {
                            ));
             #endregion
 
+=======
+>>>>>>> parent of c7c6039... complete and okay for first time
             #region Mordernizer
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr", mordernizerCdn)
@@ -85,7 +84,7 @@ namespace DevBootstrapper {
 
             bundles.Add(new StyleBundle("~/Content/css/styles").Include(
                 "~/Content/css/bootstrap.theme.unitied.css",
-                "~/Content/css/size.css",
+                "~/Content/css/site.css",
                 "~/Content/css/flags32.css",
                 "~/Content/css/flags32-combo.css",
                 "~/Content/css/bootstrap-datetimepicker.css",
@@ -95,7 +94,7 @@ namespace DevBootstrapper {
                 "~/Content/css/star-rating.css",
                 "~/Content/css/miscellaneous.css",
                 "~/Content/css/bootstrap-select.css",
-                "~/Content/css/override-css.css"
+                "~/Content/css/overridecss.css"
                 ));
 
             #endregion

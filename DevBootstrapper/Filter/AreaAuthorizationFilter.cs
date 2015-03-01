@@ -4,7 +4,7 @@ using DevBootstrapper.Modules.Session;
 
 namespace DevBootstrapper.Filter {
     public class AreaAuthorizeAttribute : ActionFilterAttribute {
-        private readonly string[] _restrictedAreas = { "Admin" }; // area names to protect
+        private readonly string[] _RestrictedAreas = { "Admin" }; // area names to protect
 
         public override void OnActionExecuting(ActionExecutingContext filterContext) {
             var routeData = filterContext.RouteData;
@@ -17,7 +17,7 @@ namespace DevBootstrapper.Filter {
                 return;
             }
 
-            if (_restrictedAreas.All(m => m != currentArea)) {
+            if (_RestrictedAreas.All(m => m != currentArea)) {
                 return;
             }
 
