@@ -1,6 +1,7 @@
 ﻿@import "hats/lesshat.less";
 
 @question-mark-for-description-color: rgb(189, 189, 189);
+
 body {
     font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -11,9 +12,8 @@ body {
 
 
 .question-mark-for-description {
-    
     cursor: pointer;
-    .font-size(22px);
+    .font-size(26px);
     position: relative;
     .top(5px);
     display: inline-block;
@@ -27,8 +27,12 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     color: @question-mark-for-description-color;
-}
 
-.question-mark-for-description:before {
-    content: "\e085" !important;
+    &:hover {
+        color:brown;
+    }
+
+    &:before {
+        content: "\e085";
+    }
 }

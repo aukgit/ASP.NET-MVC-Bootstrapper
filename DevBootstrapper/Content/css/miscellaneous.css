@@ -89,6 +89,7 @@ textarea:hover,
 input[type="text"]:hover,
 input[type="number"]:hover,
 input[type="date"]:hover,
+input[type="password"]:hover,
 input[type="email"]:hover { border: 1px solid #ACDFEE; }
 
 .editor-combo { width: 188px; }

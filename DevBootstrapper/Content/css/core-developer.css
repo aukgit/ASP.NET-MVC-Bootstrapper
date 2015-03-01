@@ -6,8 +6,8 @@
 }
 .question-mark-for-description {
   cursor: pointer;
-  font-size: 22px;
-  font-size: 1.375em;
+  font-size: 26px;
+  font-size: 1.625em;
   position: relative;
   top: 5px;
   top: 0.5rem;
@@ -23,6 +23,9 @@
   box-sizing: border-box;
   color: #bdbdbd;
 }
+.question-mark-for-description:hover {
+  color: brown;
+}
 .question-mark-for-description:before {
-  content: "\e085" !important;
+  content: "\e085";
 }
