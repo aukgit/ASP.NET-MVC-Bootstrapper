@@ -529,7 +529,7 @@
     <Content Include="Content\css\fixing-css.css.map">
       <DependentUpon>fixing-css.css</DependentUpon>
     </Content>
-    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs-old without generic.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs--old without generic.t4" />
     <None Include="Content\Scripts\Miscellaneous\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
