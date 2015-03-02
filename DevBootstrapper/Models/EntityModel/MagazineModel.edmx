@@ -2293,7 +2293,7 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MagazineEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MagazineEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Advertises" EntityType="Self.Advertise" />
           <EntitySet Name="AdvertisePaymentConfirmeds" EntityType="Self.AdvertisePaymentConfirmed" />
           <EntitySet Name="AdvertiseRequests" EntityType="Self.AdvertiseRequest" />
@@ -2954,6 +2954,7 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
