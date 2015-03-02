@@ -41,36 +41,6 @@
 					</tr>
 				</thead>
 				<tbody>			
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.ArticleState.State)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.ArticleState.State)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.Category.CategoryDisplay)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.Category.CategoryDisplay)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.Language.LanguageID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.Language.LanguageID)
-						</td>
-					</tr>	
 		
 			@Html.HiddenFor(model => model.ArticleID)
 			
@@ -136,16 +106,6 @@
 			
 					<tr>
 						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.FeatureMediaID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.FeatureMediaID)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
 							@Html.DisplayNameFor(model => model.PublishDate)
 						</td>
 						<td>:</td>
@@ -166,26 +126,6 @@
 			
 					<tr>
 						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.WrittenByUserID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.WrittenByUserID)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.LastModifiedByUserID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.LastModifiedByUserID)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
 							@Html.DisplayNameFor(model => model.MetaDescription1)
 						</td>
 						<td>:</td>
@@ -201,26 +141,6 @@
 						<td>:</td>
 						<td class="dev-label-value">
 							@Html.DisplayFor(model => model.MetaDescription2)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.VerifiedByUserID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.VerifiedByUserID)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.OriginalArticleID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.OriginalArticleID)
 						</td>
 					</tr>	
 			
@@ -251,16 +171,6 @@
 						<td>:</td>
 						<td class="dev-label-value">
 							@Html.DisplayFor(model => model.ThumbsUp)
-						</td>
-					</tr>	
-			
-					<tr>
-						<td class="dev-label-property">
-							@Html.DisplayNameFor(model => model.NextPageArticleID)
-						</td>
-						<td>:</td>
-						<td class="dev-label-value">
-							@Html.DisplayFor(model => model.NextPageArticleID)
 						</td>
 					</tr>	
 			
@@ -361,6 +271,96 @@
 						<td>:</td>
 						<td class="dev-label-value">
 							@Html.DisplayFor(model => model.IsNextPageExist)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.Article2.Title)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.Article2.Title)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.Article3.Title)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.Article3.Title)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.ArticleState.State)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.ArticleState.State)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.Category.CategoryDisplay)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.Category.CategoryDisplay)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.Language.LanguageID)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.Language.LanguageID)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.MediaFile.Title)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.MediaFile.Title)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.User.UserName)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.User.UserName)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.User1.UserName)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.User1.UserName)
+						</td>
+					</tr>	
+			
+					<tr>
+						<td class="dev-label-property">
+							@Html.DisplayNameFor(model => model.User2.UserName)
+						</td>
+						<td>:</td>
+						<td class="dev-label-value">
+							@Html.DisplayFor(model => model.User2.UserName)
 						</td>
 					</tr>	
    

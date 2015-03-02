@@ -29,15 +29,6 @@
 	<!--<caption>@viewName</caption>-->
 	<thead>
 		<tr>		
-			<th data-field="ArticleState.State">
-				@Html.DisplayNameFor(model => model.ArticleState.State)
-			</th>
-			<th data-field="Category.CategoryDisplay">
-				@Html.DisplayNameFor(model => model.Category.CategoryDisplay)
-			</th>
-			<th data-field="Language.LanguageID">
-				@Html.DisplayNameFor(model => model.Language.LanguageID)
-			</th>
 			<th data-field="Title">
 				@Html.DisplayNameFor(model => model.Title)
 			</th>
@@ -56,32 +47,17 @@
 			<th data-field="Page4">
 				@Html.DisplayNameFor(model => model.Page4)
 			</th>
-			<th data-field="FeatureMediaID">
-				@Html.DisplayNameFor(model => model.FeatureMediaID)
-			</th>
 			<th data-field="PublishDate">
 				@Html.DisplayNameFor(model => model.PublishDate)
 			</th>
 			<th data-field="ModifiedDate">
 				@Html.DisplayNameFor(model => model.ModifiedDate)
 			</th>
-			<th data-field="WrittenByUserID">
-				@Html.DisplayNameFor(model => model.WrittenByUserID)
-			</th>
-			<th data-field="LastModifiedByUserID">
-				@Html.DisplayNameFor(model => model.LastModifiedByUserID)
-			</th>
 			<th data-field="MetaDescription1">
 				@Html.DisplayNameFor(model => model.MetaDescription1)
 			</th>
 			<th data-field="MetaDescription2">
 				@Html.DisplayNameFor(model => model.MetaDescription2)
-			</th>
-			<th data-field="VerifiedByUserID">
-				@Html.DisplayNameFor(model => model.VerifiedByUserID)
-			</th>
-			<th data-field="OriginalArticleID">
-				@Html.DisplayNameFor(model => model.OriginalArticleID)
 			</th>
 			<th data-field="TotalViewed">
 				@Html.DisplayNameFor(model => model.TotalViewed)
@@ -91,9 +67,6 @@
 			</th>
 			<th data-field="ThumbsUp">
 				@Html.DisplayNameFor(model => model.ThumbsUp)
-			</th>
-			<th data-field="NextPageArticleID">
-				@Html.DisplayNameFor(model => model.NextPageArticleID)
 			</th>
 			<th data-field="IsVerified">
 				@Html.DisplayNameFor(model => model.IsVerified)
@@ -125,21 +98,39 @@
 			<th data-field="IsNextPageExist">
 				@Html.DisplayNameFor(model => model.IsNextPageExist)
 			</th>
+			<th data-field="Article2.Title">
+				@Html.DisplayNameFor(model => model.Article2.Title)
+			</th>
+			<th data-field="Article3.Title">
+				@Html.DisplayNameFor(model => model.Article3.Title)
+			</th>
+			<th data-field="ArticleState.State">
+				@Html.DisplayNameFor(model => model.ArticleState.State)
+			</th>
+			<th data-field="Category.CategoryDisplay">
+				@Html.DisplayNameFor(model => model.Category.CategoryDisplay)
+			</th>
+			<th data-field="Language.LanguageID">
+				@Html.DisplayNameFor(model => model.Language.LanguageID)
+			</th>
+			<th data-field="MediaFile.Title">
+				@Html.DisplayNameFor(model => model.MediaFile.Title)
+			</th>
+			<th data-field="User.UserName">
+				@Html.DisplayNameFor(model => model.User.UserName)
+			</th>
+			<th data-field="User1.UserName">
+				@Html.DisplayNameFor(model => model.User1.UserName)
+			</th>
+			<th data-field="User2.UserName">
+				@Html.DisplayNameFor(model => model.User2.UserName)
+			</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (var item in Model) {
 			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.ArticleState.State)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Category.CategoryDisplay)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Language.LanguageID)
-				</td>
 		
 				<td>
 					@{editLinkName = Html.DisplayFor(model => item.Title).ToString();}
@@ -161,31 +152,16 @@
 					@Html.DisplayFor(modelItem => item.Page4)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.FeatureMediaID)
-				</td>
-				<td>
 					@Html.DisplayFor(modelItem => item.PublishDate)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.ModifiedDate)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.WrittenByUserID)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.LastModifiedByUserID)
-				</td>
-				<td>
 					@Html.DisplayFor(modelItem => item.MetaDescription1)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.MetaDescription2)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.VerifiedByUserID)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.OriginalArticleID)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.TotalViewed)
@@ -195,9 +171,6 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.ThumbsUp)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.NextPageArticleID)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.IsVerified)
@@ -228,6 +201,33 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.IsNextPageExist)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Article2.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Article3.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ArticleState.State)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category.CategoryDisplay)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Language.LanguageID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MediaFile.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.User.UserName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.User1.UserName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.User2.UserName)
 				</td>
 				<td>			
 					<a href="@Url.Action("Details", new { id=item.ArticleID })" title="Details of @editLinkName." class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-print"></span> Details</a>

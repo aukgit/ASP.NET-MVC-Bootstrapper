@@ -53,7 +53,15 @@
 				</div>
 			</div>
 		</div>
-        @Html.EditorFor(model => model.FeatureMediaID)
+        <div class="form-group FeatureMediaID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.FeatureMediaID)<span class="red ">*</span></label>
+				<div class="col-md-10 FeatureMediaID-combo-div">
+					@Html.DropDownList("FeatureMediaID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true})
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.FeatureMediaID)." title="Please select @Html.DisplayNameFor(m=> m.FeatureMediaID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
         @Html.EditorFor(model => model.PublishDate)
         <div class="form-group ArticleStateID-main">
 			<div class="controls">
@@ -65,16 +73,56 @@
 			</div>
 		</div>
         @Html.EditorFor(model => model.ModifiedDate)
-        @Html.EditorFor(model => model.WrittenByUserID)
-        @Html.EditorFor(model => model.LastModifiedByUserID)
+        <div class="form-group WrittenByUserID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.WrittenByUserID)<span class="red ">*</span></label>
+				<div class="col-md-10 WrittenByUserID-combo-div">
+					@Html.DropDownList("WrittenByUserID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true})
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.WrittenByUserID)." title="Please select @Html.DisplayNameFor(m=> m.WrittenByUserID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
+        <div class="form-group LastModifiedByUserID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.LastModifiedByUserID)<span class="red ">*</span></label>
+				<div class="col-md-10 LastModifiedByUserID-combo-div">
+					@Html.DropDownList("LastModifiedByUserID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true})
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.LastModifiedByUserID)." title="Please select @Html.DisplayNameFor(m=> m.LastModifiedByUserID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
         @Html.EditorFor(model => model.MetaDescription1)
         @Html.EditorFor(model => model.MetaDescription2)
-        @Html.EditorFor(model => model.VerifiedByUserID)
-        @Html.EditorFor(model => model.OriginalArticleID)
+        <div class="form-group VerifiedByUserID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.VerifiedByUserID)<span class="red ">*</span></label>
+				<div class="col-md-10 VerifiedByUserID-combo-div">
+					@Html.DropDownList("VerifiedByUserID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true})
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.VerifiedByUserID)." title="Please select @Html.DisplayNameFor(m=> m.VerifiedByUserID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
+        <div class="form-group OriginalArticleID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.OriginalArticleID)<span class="red ">*</span></label>
+				<div class="col-md-10 OriginalArticleID-combo-div">
+					@Html.DropDownList("OriginalArticleID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true})
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.OriginalArticleID)." title="Please select @Html.DisplayNameFor(m=> m.OriginalArticleID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
         @Html.EditorFor(model => model.TotalViewed)
         @Html.EditorFor(model => model.LastModifiedCount)
         @Html.EditorFor(model => model.ThumbsUp)
-        @Html.EditorFor(model => model.NextPageArticleID)
+        <div class="form-group NextPageArticleID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.NextPageArticleID)<span class="red ">*</span></label>
+				<div class="col-md-10 NextPageArticleID-combo-div">
+					@Html.DropDownList("NextPageArticleID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true})
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.NextPageArticleID)." title="Please select @Html.DisplayNameFor(m=> m.NextPageArticleID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
         <div class="form-group LanguageID-main">
 			<div class="controls">
 				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.LanguageID)<span class="red ">*</span></label>
