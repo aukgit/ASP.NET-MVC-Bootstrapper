@@ -25,13 +25,25 @@
         htmlAttributes.Add("Value", ViewBag.Value);
     }
 
+    if (ViewBag.LiveSearch == null) {
+        ViewBag.LiveSearch = true;
+    }
+
 }
-<div class="form-group">
-    <div class="controls">
-        <label class="col-md-2 control-label">ViewData.ModelMetadata.DisplayName<span class="red ">@isRequiredStar</span></label>
-        <div class="col-md-10">
-            
-            <a href="#" data-toggle="tooltip" data-original-title="Please select your country, it's going to verify against your IP." title="Please select your country, it's going to verify against your IP." class="tooltip-show"><span class="question-mark-for-description"></span></a>
+<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+    <div class="controls combo-@ViewData.ModelMetadata.PropertyName">
+        <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
+            @ViewData.ModelMetadata.DisplayName 
+            <span class="red">@isRequiredStar</span>
+        </label>
+        <div class="col-md-10 combo-holding-div">
+            @Html.DropDownList("@ViewData.ModelMetadata.PropertyName", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = @ViewBag.LiveSearch })
+            @if (@ViewData.ModelMetadata.Description != null) {
+                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="question-mark-for-description"></span></a>
+            }
+            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
+                <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>
+            </a>
         </div>
     </div>
 </div>
