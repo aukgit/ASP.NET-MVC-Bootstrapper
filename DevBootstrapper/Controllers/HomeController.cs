@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 
 namespace DevBootstrapper.Controllers {
-    public class HomeController : AdvanceController {
+    public class HomeController : BasicController {
         public HomeController()
             : base(true) {
         }

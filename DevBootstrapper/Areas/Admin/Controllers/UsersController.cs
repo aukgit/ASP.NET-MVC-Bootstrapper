@@ -11,7 +11,7 @@ using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Role;
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
-    public class UsersController : AdvanceController {
+    public class UsersController : BasicController {
         #region Constructors
 
         public UsersController()

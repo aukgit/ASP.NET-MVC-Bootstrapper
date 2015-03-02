@@ -231,7 +231,9 @@
     </Compile>
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdvanceController.cs" />
+    <Compile Include="Controllers\AdvanceController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\BasicController.cs">
       <SubType>Code</SubType>
@@ -246,123 +248,46 @@
     </Compile>
     <Compile Include="Models\DesignPattern\Interfaces\IDevUserRole.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUser.cs" />
-    <Compile Include="Models\EntityModel\Advertise.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\AdvertisePaymentConfirmed.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\AdvertiseRequest.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\AdvertiseType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Article.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\ArticleState.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Category.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Comment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\DraftLog.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\FileType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Keyword.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Language.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Level.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EntityModel\MagazineModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MagazineModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\EntityModel\MediaArticleRelation.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Medium.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\ModifyLog.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\MoneyObtained.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\NotificationType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\NotifiedRelation.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Notify.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\PaymentMethod.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\Point.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\ProfileBasedSearch.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\RelatedArticle.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\SalaryPaid.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\SalaryType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\SendArticle.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\TimeZone.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\TopSearch.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\URL.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\UserRole.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\ViewSearchingArticle.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityModel\XPGainedType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\EntityModel\POCO\Advertise.cs" />
+    <Compile Include="Models\EntityModel\POCO\AdvertisePaymentConfirmed.cs" />
+    <Compile Include="Models\EntityModel\POCO\AdvertiseRequest.cs" />
+    <Compile Include="Models\EntityModel\POCO\AdvertiseType.cs" />
+    <Compile Include="Models\EntityModel\POCO\Article.cs" />
+    <Compile Include="Models\EntityModel\POCO\ArticleState.cs" />
+    <Compile Include="Models\EntityModel\POCO\Category.cs" />
+    <Compile Include="Models\EntityModel\POCO\Comment.cs" />
+    <Compile Include="Models\EntityModel\POCO\DraftLog.cs" />
+    <Compile Include="Models\EntityModel\POCO\FileType.cs" />
+    <Compile Include="Models\EntityModel\POCO\Keyword.cs" />
+    <Compile Include="Models\EntityModel\POCO\Language.cs" />
+    <Compile Include="Models\EntityModel\POCO\Level.cs" />
+    <Compile Include="Models\EntityModel\POCO\MediaArticleRelation.cs" />
+    <Compile Include="Models\EntityModel\POCO\Medium.cs" />
+    <Compile Include="Models\Context\MagazineEntities.cs" />
+    <Compile Include="Models\EntityModel\POCO\ModifyLog.cs" />
+    <Compile Include="Models\EntityModel\POCO\MoneyObtained.cs" />
+    <Compile Include="Models\EntityModel\POCO\NotificationType.cs" />
+    <Compile Include="Models\EntityModel\POCO\NotifiedRelation.cs" />
+    <Compile Include="Models\EntityModel\POCO\Notify.cs" />
+    <Compile Include="Models\EntityModel\POCO\PaymentMethod.cs" />
+    <Compile Include="Models\EntityModel\POCO\Point.cs" />
+    <Compile Include="Models\EntityModel\POCO\ProfileBasedSearch.cs" />
+    <Compile Include="Models\EntityModel\POCO\RelatedArticle.cs" />
+    <Compile Include="Models\EntityModel\POCO\SalaryPaid.cs" />
+    <Compile Include="Models\EntityModel\POCO\SalaryType.cs" />
+    <Compile Include="Models\EntityModel\POCO\SendArticle.cs" />
+    <Compile Include="Models\EntityModel\POCO\TimeZone.cs" />
+    <Compile Include="Models\EntityModel\POCO\TopSearch.cs" />
+    <Compile Include="Models\EntityModel\POCO\URL.cs" />
+    <Compile Include="Models\EntityModel\POCO\User.cs" />
+    <Compile Include="Models\EntityModel\POCO\UserRole.cs" />
+    <Compile Include="Models\EntityModel\POCO\ViewSearchingArticle.cs" />
+    <Compile Include="Models\EntityModel\POCO\XPGainedType.cs" />
     <Compile Include="Models\Inputs.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\Country.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\CountryAlternativeName.cs" />
@@ -604,6 +529,7 @@
     <Content Include="Content\css\fixing-css.css.map">
       <DependentUpon>fixing-css.css</DependentUpon>
     </Content>
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs-old without generic.t4" />
     <None Include="Content\Scripts\Miscellaneous\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
@@ -729,6 +655,9 @@
     <Folder Include="Content\Scripts\npm\" />
     <Folder Include="Content\Scripts\OthersComponents\" />
     <Folder Include="Models\DesignPattern\Abstracts\" />
+    <Folder Include="Models\EntityModel\Derivable\" />
+    <Folder Include="Models\EntityModel\ExtenedWithCustomMethods\" />
+    <Folder Include="Models\EntityModel\Structs\" />
     <Folder Include="Models\POCO\AdditionalDatabase\" />
     <Folder Include="Models\POCO\Plugable\" />
     <Folder Include="Modules\Filters\" />
@@ -743,16 +672,6 @@
       <LastGenOutput>MagazineModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\EntityModel\MagazineModel.edmx.diagram">
-      <DependentUpon>MagazineModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EntityModel\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>MagazineModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EntityModel\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.cs</LastGenOutput>
       <DependentUpon>MagazineModel.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />

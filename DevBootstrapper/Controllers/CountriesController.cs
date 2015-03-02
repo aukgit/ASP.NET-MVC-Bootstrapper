@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 
 namespace DevBootstrapper.Controllers {
-    public class CountriesController : AdvanceController {
+    public class CountriesController : BasicController {
         #region Constructors
 
         public CountriesController()

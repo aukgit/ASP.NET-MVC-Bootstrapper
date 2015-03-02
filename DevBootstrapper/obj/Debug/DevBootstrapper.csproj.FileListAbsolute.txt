@@ -147,3 +147,6 @@ E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.Razor.
 E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.xml
 E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Deployment.xml
 E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Razor.xml
+C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevTrends.MvcDonutCaching.dll
+C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevTrends.MvcDonutCaching.pdb
+C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevTrends.MvcDonutCaching.xml
