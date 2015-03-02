@@ -26,11 +26,8 @@ namespace DevBootstrapper {
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                 "~/Content/Scripts/jQuery/jquery.validate*",
-                "~/Content/Scripts/underscore.js",
+                "~/Content/Scripts/jQuery/underscore.js",
                 "~/Content/Scripts/jQuery/moment.js",
-                 "~/Scripts/moment.js",
-
-
                 "~/Content/Scripts/jQuery/jquery.elastic.source.js",
                 "~/Content/Scripts/Bootstrap/bootstrap-datetimepicker.js",
                 "~/Content/Scripts/Bootstrap/bootstrap-select.js",
@@ -64,7 +61,7 @@ namespace DevBootstrapper {
             #region Mordernizer
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr", mordernizerCdn)
-                .Include("~/Content/Scripts/modernizr-*") //if no CDN
+                .Include("~/Content/Scripts/Bootstrap/modernizr-*") //if no CDN
                 );
 
             #endregion
