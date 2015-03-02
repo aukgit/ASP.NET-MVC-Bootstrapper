@@ -1,9 +1,4 @@
-﻿/*---------------------------------------------------
-    Developers Organism
-  ---------------------------------------------------
-    Written by Alim Ul Karim
-  ---------------------------------------------------*/
-div.checkbox > label {
+﻿div.checkbox > label {
   padding-left: 0;
 }
 div.checkbox {
@@ -96,6 +91,18 @@ span.input-group-addon {
   display: inline-block;
   height: 38px;
   width: 38px;
+}
+.datepicker span.input-group-addon,
+.datetimepicker span.input-group-addon {
+  margin-bottom: 2px;
+  background-color: inherit;
+  color: inherit;
+}
+.datepicker span.input-group-addon:hover,
+.datetimepicker span.input-group-addon:hover {
+  background-color: brown;
+  cursor: pointer;
+  color: white;
 }
 input.form-control.datetime-input,
 input.form-control.date-input {

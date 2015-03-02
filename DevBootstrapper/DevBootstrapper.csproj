@@ -340,9 +340,6 @@
     </Content>
     <Content Include="Content\css\dataTables.bootstrap.css" />
     <Content Include="Content\css\fixing-css.css" />
-    <Content Include="Content\css\fixing-css.min.css">
-      <DependentUpon>fixing-css.css</DependentUpon>
-    </Content>
     <Content Include="Content\css\flags32-combo.css" />
     <Content Include="Content\css\flags32.css" />
     <Content Include="Content\css\flags32.png" />
@@ -370,7 +367,6 @@
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\Scripts\DevOrgCompoents\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\Upload\canvas-to-blob.min.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\Upload\devOrgUploadConfig - Copy.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\Upload\devOrgUploadConfig.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\Upload\jquery.fileupload-audio.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\Upload\jquery.fileupload-image.js" />

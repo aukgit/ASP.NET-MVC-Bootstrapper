@@ -56,7 +56,7 @@ $(function () {
             4);
 
         $.devOrg.enterToNextTextBox(".register-form", false);
-        $.devOrg.uxFriendlySlide("form.register-form", true);
+        //$.devOrg.uxFriendlySlide("form.register-form", true);
         $.devOrg.countryFlagRefresh($.devOrg.Constants.countryComboSelector,
             $.devOrg.Constants.countryDropDownItemsSelector,
             $.devOrg.Constants.btnSelector);

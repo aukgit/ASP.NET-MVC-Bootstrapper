@@ -90,7 +90,7 @@ $(function () {
                 // console.log("executed");
                 var listItem = dropDownItems.find("li.selected");
                 var spanText = listItem.find("a > span").text().toString();
-                var newCallingCode = $.devOrg.getTextBetween(spanText, "(", ")");
+                var newCallingCode = $.devOrg.subStringMod(spanText, "(", ")");
                 var getWrittenPhoneNumber = phoneNumberBox.val();
                 // console.log(listItem);
                 newCallingCode = $.devOrg.replaceStartsWith(newCallingCode, "+", "");
@@ -109,7 +109,7 @@ $(function () {
             // $("#selectID option")[index].selected = true;
         },
 
-        getTextBetween: function (givenString, startSequence, endingSequence) {
+        subStringMod: function (givenString, startSequence, endingSequence) {
             if (_.isString(givenString)) {
                 var index1 = givenString.indexOf(startSequence);
                 if (index1 > -1) {
