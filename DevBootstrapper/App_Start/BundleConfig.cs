@@ -43,17 +43,16 @@ namespace DevBootstrapper {
 
             #region Upload
             bundles.Add(new ScriptBundle("~/bundles/upload").Include(
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.ui.widget.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/load-image.all.min.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/canvas-to-blob.min.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.iframe-transport.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-process.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-image.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-audio.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-video.js",
-                                "~/Content/Scripts/DevOrgCompoents/Upload/jquery.fileupload-validate.js",
-                //"~/Content/Scripts/DevOrgCompoents/Upload/bootstrap-progressbar.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.ui.widget.js",
+                                "~/Content/Scripts/jQuery/Upload/load-image.all.min.js",
+                                "~/Content/Scripts/jQuery/Upload/canvas-to-blob.min.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.iframe-transport.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-process.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-image.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-audio.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-video.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-validate.js",                
                                 "~/Content/Scripts/DevOrgCompoents/Upload/devOrgUploadConfig.js"
                            ));
             #endregion

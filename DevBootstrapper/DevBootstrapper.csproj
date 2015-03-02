@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,6 +23,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -386,7 +388,7 @@
     <Content Include="Content\Scripts\Bootstrap\bootstrap-table-filter.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap.js" />
     <Content Include="Content\Scripts\Bootstrap\respond.js" />
-    <Content Include="Content\Scripts\respond.min.js" />
+    <Content Include="Content\Scripts\Bootstrap\respond.min.js" />
     <Content Include="Content\Scripts\Bootstrap\star-rating.js" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ExternalDll\DevMVCComponent.dll" />
@@ -474,12 +476,12 @@
     <Content Include="Content\Less\fixing-css.less" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <None Include="Content\Scripts\_references.js" />
+    <None Include="Content\Scripts\Miscellaneous\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\CustomJS.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\DevOrgComponent.js" />
-    <Content Include="Content\Scripts\html5shiv.js" />
+    <Content Include="Content\Scripts\Bootstrap\html5shiv.js" />
     <None Include="Content\Scripts\jQuery\jquery-2.1.3.intellisense.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.js" />
@@ -500,9 +502,9 @@
     <Content Include="Content\Scripts\Markdown\mdd_modal_background.png" />
     <Content Include="Content\Scripts\Markdown\mdd_styles.css" />
     <Content Include="Content\Scripts\Markdown\mdd_toolbar.png" />
-    <Content Include="Content\Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\Scripts\Bootstrap\modernizr-2.8.3.js" />
     <Content Include="Content\Scripts\jQuery\moment.js" />
-    <Content Include="Content\Scripts\underscore.js" />
+    <Content Include="Content\Scripts\jQuery\underscore.js" />
     <Content Include="Content\Scripts\jQuery\validation.js" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Byte.cshtml" />
@@ -596,10 +598,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Country\" />
     <Folder Include="Areas\Admin\Views\Default\" />
-    <Folder Include="Content\Scripts\Miscellaneous\" />
-    <Folder Include="Content\Scripts\npn\" />
+    <Folder Include="Content\Scripts\npm\" />
     <Folder Include="Content\Scripts\OthersComponents\" />
-    <Folder Include="Content\TypeScripts\" />
     <Folder Include="Models\DesignPattern\Abstracts\" />
     <Folder Include="Models\EntityModel\" />
     <Folder Include="Models\POCO\AdditionalDatabase\" />
@@ -613,11 +613,15 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\TypeScripts\DevelopersOrganismComponent.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
