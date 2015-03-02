@@ -43,6 +43,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DevBootstrapper.Controllers;
+using DevTrends.MvcDonutCaching;
 <# foreach (var namespaceName in RequiredNamespaces) { #>
 using <#= namespaceName #>;
 <# } #>
@@ -98,7 +99,7 @@ namespace <#= Namespace #>
 		const string ControllerName = "<#= ControllerRootName #>";
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/<#= ControllerRootName #>/";
-        const string PartialControllerUrl = "/Partials/";
+        const string CurrentControllerRemoveOutputCacheUrl = "/Partials/Get<#= ModelTypeName #>ID";
 
 		#endregion
 
@@ -182,7 +183,8 @@ namespace <#= Namespace #>
 			try	{                
 				var changes = db.SaveChanges(<#= ModelVariable #>);
 				if(changes > 0){
-                    
+                    RemoveOutputCacheOnIndex();
+                    RemoveOutputCache(CurrentControllerRemoveOutputCacheUrl);
 					return true;
 				}
 			} catch (Exception ex){
@@ -345,8 +347,7 @@ namespace <#= Namespace #>
                 await db.SaveChangesAsync();
 <# } else { #>
                 bool state = SaveDatabase(ViewStates.Create, <#= ModelVariable #>);
-				if (state) {
-                    RemoveOutputCacheOnIndex();					
+				if (state) {			
 					AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
 				} else {					
 					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
@@ -403,8 +404,7 @@ namespace <#= Namespace #>
                 await db.SaveChangesAsync();
 <# } else { #>
                 bool state = SaveDatabase(ViewStates.Edit, <#= ModelVariable #>);
-				if (state) {					
-					RemoveOutputCacheOnIndex();
+				if (state) {
                     AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
 				} else {					
 					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
@@ -456,8 +456,7 @@ namespace <#= Namespace #>
 <# } else { #>
             bool state = SaveDatabase(ViewStates.Delete, <#= ModelVariable #>);
 			if (!state) {			
-				AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save
-				
+				AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save				
                 return View(<#= ModelVariable #>);
 			}
 <# } #>			
