@@ -25,12 +25,11 @@ textarea.form-control {
 .inner-addon {
   position: relative;
 }
-/* style icon */
 .inner-addon .glyphicon {
-  /*padding: 10px;*/
   padding: 1px 11px 2px 7px;
   pointer-events: none;
   position: absolute;
+  top: -1px;
 }
 /* align icon */
 .left-addon .glyphicon {
@@ -262,3 +261,4 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
   background-color: #9dd1ec;
   color: #333;
 }
+/*# sourceMappingURL=fixing-css.css.map */

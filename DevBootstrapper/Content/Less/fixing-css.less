@@ -28,16 +28,15 @@ input.form-control, select.form-control, textarea.form-control {
 
 .inner-addon {
     position: relative;
+    .glyphicon {
+        padding: 1px 11px 2px 7px;
+        pointer-events: none;
+        position: absolute;
+        top: -1px;
+    }
 }
 
-/* style icon */
 
-.inner-addon .glyphicon {
-    /*padding: 10px;*/
-    padding: 1px 11px 2px 7px;
-    pointer-events: none;
-    position: absolute;
-}
 
 /* align icon */
 
@@ -52,7 +51,7 @@ input.form-control, select.form-control, textarea.form-control {
 /* add padding  */
 
 .left-addon input {
-    padding-left: 30px;
+    padding-left: 30px; 
 }
 
 .right-addon input {
@@ -121,11 +120,12 @@ span.input-group-addon {
     span.input-group-addon {
         margin-bottom: 2px;
         background-color: inherit;
-        color:inherit;
+        color: inherit;
+
         &:hover {
             background-color: brown;
-            cursor:pointer;
-            color:white;
+            cursor: pointer;
+            color: white;
         }
     }
 }
