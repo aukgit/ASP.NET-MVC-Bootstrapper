@@ -162,6 +162,8 @@ namespace DevBootstrapper.Models.Context {
         }
 
         #endregion
+
+        public System.Data.Entity.DbSet<DevBootstrapper.Models.POCO.Identity.ApplicationUser> ApplicationUsers { get; set; }
     }
 
     #endregion

@@ -227,6 +227,7 @@
     <Compile Include="Areas\Admin\Controllers\RolesController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasicController.cs">
@@ -476,6 +477,14 @@
     <Content Include="Content\Less\fixing-css.less" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\css\fixing-css.css.map">
+      <DependentUpon>fixing-css.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Test\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <None Include="Content\Scripts\Miscellaneous\_references.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
