@@ -1,0 +1,2962 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MagazineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Advertise">
+          <Key>
+            <PropertyRef Name="AdvertiseID" />
+          </Key>
+          <Property Name="AdvertiseID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="MediaID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="AdvertiseTypeID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertisePaymentConfirmed">
+          <Key>
+            <PropertyRef Name="AdvertisePaymentConfirmedID" />
+          </Key>
+          <Property Name="AdvertisePaymentConfirmedID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdvertiseRequestID" Type="bigint" Nullable="false" />
+          <Property Name="AdvertiseID" Type="bigint" Nullable="false" />
+          <Property Name="GeneratedPayment" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Paid" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PaymentMethodID" Type="tinyint" Nullable="false" />
+          <Property Name="ConfirmByUserID" Type="bigint" Nullable="false" />
+          <Property Name="PaidByUserID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertiseRequest">
+          <Key>
+            <PropertyRef Name="AdvertiseRequestID" />
+          </Key>
+          <Property Name="AdvertiseRequestID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Started" Type="smalldatetime" Nullable="false" />
+          <Property Name="Ended" Type="smalldatetime" Nullable="false" />
+          <Property Name="AdvertiseID" Type="bigint" Nullable="false" />
+          <Property Name="DaysToShow" Type="tinyint" Nullable="false" />
+          <Property Name="GeneratedPayment" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DaysToAdded" Type="tinyint" Nullable="false" />
+          <Property Name="IsPaymentVerified" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertiseType">
+          <Key>
+            <PropertyRef Name="AdvertiseTypeID" />
+          </Key>
+          <Property Name="AdvertiseTypeID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AmountRequired" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+          </Key>
+          <Property Name="ArticleID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Page1" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Page2" Type="nvarchar" MaxLength="800" />
+          <Property Name="Page3" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Page4" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="FeatureMediaID" Type="bigint" />
+          <Property Name="PublishDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="ArticleStateID" Type="tinyint" Nullable="false" />
+          <Property Name="ModifiedDate" Type="smalldatetime" />
+          <Property Name="WrittenByUserID" Type="bigint" Nullable="false" />
+          <Property Name="LastModifiedByUserID" Type="bigint" Nullable="false" />
+          <Property Name="MetaDescription1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MetaDescription2" Type="nvarchar" MaxLength="300" />
+          <Property Name="VerifiedByUserID" Type="bigint" />
+          <Property Name="OriginalArticleID" Type="bigint" />
+          <Property Name="TotalViewed" Type="bigint" Nullable="false" />
+          <Property Name="LastModifiedCount" Type="tinyint" Nullable="false" />
+          <Property Name="ThumbsUp" Type="bigint" Nullable="false" />
+          <Property Name="NextPageArticleID" Type="bigint" />
+          <Property Name="LanguageID" Type="tinyint" Nullable="false" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+          <Property Name="IsProblematic" Type="bit" Nullable="false" />
+          <Property Name="IsSendByUser" Type="bit" Nullable="false" />
+          <Property Name="IsInDefaultLanguage" Type="bit" Nullable="false" />
+          <Property Name="IsCommentsEnabled" Type="bit" Nullable="false" />
+          <Property Name="IsReportedFromAnySource" Type="bit" Nullable="false" />
+          <Property Name="IsReportActionSolved" Type="bit" Nullable="false" />
+          <Property Name="IsAnyDraftExist" Type="bit" Nullable="false" />
+          <Property Name="IsPreviousPageExist" Type="bit" Nullable="false" />
+          <Property Name="IsNextPageExist" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArticleState">
+          <Key>
+            <PropertyRef Name="ArticleStateID" />
+          </Key>
+          <Property Name="ArticleStateID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryDisplay" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Expression1" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Expression2" Type="nvarchar" MaxLength="500" />
+          <Property Name="Expression3" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="ReplyCommentID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="DraftLog">
+          <Key>
+            <PropertyRef Name="DraftLogID" />
+          </Key>
+          <Property Name="DraftLogID" Type="bigint" Nullable="false" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Page1" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Page2" Type="nvarchar" MaxLength="800" />
+          <Property Name="Page3" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Page4" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="FileTypeID" />
+          </Key>
+          <Property Name="FileTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfFile" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="KeywordID" />
+          </Key>
+          <Property Name="KeywordID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Word" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="tinyint" Nullable="false" />
+          <Property Name="AspNETLanguageID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelRepresentation" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MinPoints" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="MediaID" />
+          </Key>
+          <Property Name="MediaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="FileTypeID" Type="smallint" Nullable="false" />
+          <Property Name="EmbedHTML" Type="varchar" MaxLength="300" />
+          <Property Name="IsVideo" Type="bit" Nullable="false" />
+          <Property Name="Description1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description2" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MediaArticleRelation">
+          <Key>
+            <PropertyRef Name="MediaArticleRelationID" />
+          </Key>
+          <Property Name="MediaArticleRelationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MediaID" Type="bigint" Nullable="false" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModifyLog">
+          <Key>
+            <PropertyRef Name="ModifyLogID" />
+          </Key>
+          <Property Name="ModifyLogID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedByUserID" Type="bigint" Nullable="false" />
+          <Property Name="Reason" Type="varchar" MaxLength="100" />
+          <Property Name="ArticleStateID" Type="tinyint" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="IsCreated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoneyObtained">
+          <Key>
+            <PropertyRef Name="MoneyObtainedID" />
+          </Key>
+          <Property Name="MoneyObtainedID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="MoneyAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="XPUsed" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Dated" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsMoneyReceivedByUser" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotificationType">
+          <Key>
+            <PropertyRef Name="NotificationTypeID" />
+          </Key>
+          <Property Name="NotificationTypeID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotifiedRelation">
+          <Key>
+            <PropertyRef Name="NotifiedRelationID" />
+          </Key>
+          <Property Name="NotifiedRelationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotifyID" Type="bigint" Nullable="false" />
+          <Property Name="SeenByUserID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Notify">
+          <Key>
+            <PropertyRef Name="NotifyID" />
+          </Key>
+          <Property Name="NotifyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserID" Type="bigint" />
+          <Property Name="FromWhomUserID" Type="bigint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="NotificationTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="Dated" Type="smalldatetime" Nullable="false" />
+          <Property Name="ToUserRoleID" Type="tinyint" Nullable="false" />
+          <Property Name="IsImportant" Type="bit" Nullable="false" />
+          <Property Name="IsGlobal" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="tinyint" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="PointID" />
+          </Key>
+          <Property Name="PointID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="XP" Type="float" Nullable="false" />
+          <Property Name="Dated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="XPGainedTypeID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileBasedSearch">
+          <Key>
+            <PropertyRef Name="ProfileBasedSearchID" />
+          </Key>
+          <Property Name="ProfileBasedSearchID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="SearchingText" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsHighPriority" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelatedArticle">
+          <Key>
+            <PropertyRef Name="RelatedArticleID" />
+          </Key>
+          <Property Name="RelatedArticleID" Type="bigint" Nullable="false" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+          <Property Name="RelArticleID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalaryPaid">
+          <Key>
+            <PropertyRef Name="SalaryPaidID" />
+          </Key>
+          <Property Name="SalaryPaidID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="Dated" Type="smalldatetime" Nullable="false" />
+          <Property Name="PaidYear" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="PaidMonth" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="AmountPaid" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalaryType">
+          <Key>
+            <PropertyRef Name="SalaryTypeID" />
+          </Key>
+          <Property Name="SalaryTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="SalaryTypeName" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="MonthlySalary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsMonthlyCheck" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SendArticle">
+          <Key>
+            <PropertyRef Name="SendArticleID" />
+          </Key>
+          <Property Name="SendArticleID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="GainedXP" Type="float" Nullable="false" />
+          <Property Name="WrittenByUserID" Type="bigint" Nullable="false" />
+          <Property Name="ProcessedByUserId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="TimeZone">
+          <Key>
+            <PropertyRef Name="TimeZoneID" />
+          </Key>
+          <Property Name="TimeZoneID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeZoneInfoID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimeZoneDisplay" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="TopSearch">
+          <Key>
+            <PropertyRef Name="TopSearchID" />
+          </Key>
+          <Property Name="TopSearchID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SearchingText" Type="nvarchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="URL">
+          <Key>
+            <PropertyRef Name="URLID" />
+          </Key>
+          <Property Name="URLID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Domain" Type="nvarchar" MaxLength="255" />
+          <Property Name="Otherpart1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Otherpart2" Type="nvarchar" MaxLength="300" />
+          <Property Name="Otherpart3" Type="nvarchar" MaxLength="600" />
+          <Property Name="LinkDisplay" Type="nvarchar" MaxLength="1358" StoreGeneratedPattern="Computed" />
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+          <Property Name="FriendlyText" Type="nvarchar" MaxLength="80" />
+          <Property Name="AlsoKnownAs" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="TimeZoneID" Type="smallint" Nullable="false" />
+          <Property Name="UserRoleID" Type="tinyint" Nullable="false" />
+          <Property Name="TotalXP" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="LevelID" Type="smallint" Nullable="false" />
+          <Property Name="LeftXPToTrade" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="SalaryTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="JoinedDate" Type="date" Nullable="false" />
+          <Property Name="LastVisited" Type="smalldatetime" Nullable="false" />
+          <Property Name="StartingSalaryDate" Type="date" Nullable="false" />
+          <Property Name="IsEmployee" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Priority" Type="tinyint" Nullable="false" />
+          <Property Name="XPRequired" Type="int" Nullable="false" />
+          <Property Name="CanAqurieByXP" Type="bit" Nullable="false" />
+          <Property Name="NestedRoleID" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="XPGainedType">
+          <Key>
+            <PropertyRef Name="XPGainedTypeID" />
+          </Key>
+          <Property Name="XPGainedTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="XPTypeName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PointForThisType" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOTSTRAPPER\APP_DATA\MAGAZINE.MDF.dbo.ViewSearchingArticle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewSearchingArticle">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+            <PropertyRef Name="PublishDate" />
+            <PropertyRef Name="TotalViewed" />
+          </Key>
+          <Property Name="ArticleID" Type="bigint" Nullable="false" />
+          <Property Name="FullSearhingtext" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PublishDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="TotalViewed" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Advertise_AdvertiseType">
+          <End Role="AdvertiseType" Type="Self.AdvertiseType" Multiplicity="1" />
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertiseType">
+              <PropertyRef Name="AdvertiseTypeID" />
+            </Principal>
+            <Dependent Role="Advertise">
+              <PropertyRef Name="AdvertiseTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertise_Media">
+          <End Role="Media" Type="Self.Media" Multiplicity="0..1" />
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaID" />
+            </Principal>
+            <Dependent Role="Advertise">
+              <PropertyRef Name="MediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertise_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Advertise">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_Advertise">
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertise">
+              <PropertyRef Name="AdvertiseID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="AdvertiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_AdvertiseRequest">
+          <End Role="AdvertiseRequest" Type="Self.AdvertiseRequest" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertiseRequest">
+              <PropertyRef Name="AdvertiseRequestID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="AdvertiseRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PaymentMethodID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="PaidByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="ConfirmByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertiseRequest_Advertise">
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="1" />
+          <End Role="AdvertiseRequest" Type="Self.AdvertiseRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertise">
+              <PropertyRef Name="AdvertiseID" />
+            </Principal>
+            <Dependent Role="AdvertiseRequest">
+              <PropertyRef Name="AdvertiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article1" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="Article1">
+              <PropertyRef Name="OriginalArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Article1">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article1" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="Article1">
+              <PropertyRef Name="NextPageArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_ArticleState">
+          <End Role="ArticleState" Type="Self.ArticleState" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleState">
+              <PropertyRef Name="ArticleStateID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="ArticleStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Media">
+          <End Role="Media" Type="Self.Media" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="FeatureMediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="WrittenByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="LastModifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_User2">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="VerifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="ReplyCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DraftLog_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="DraftLog" Type="Self.DraftLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="DraftLog">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keyword_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="Keyword" Type="Self.Keyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="Keyword">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Media" Type="Self.Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_FileType">
+          <End Role="FileType" Type="Self.FileType" Multiplicity="1" />
+          <End Role="Media" Type="Self.Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileType">
+              <PropertyRef Name="FileTypeID" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MediaArticleRelation_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="MediaArticleRelation" Type="Self.MediaArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="MediaArticleRelation">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MediaArticleRelation_Media">
+          <End Role="Media" Type="Self.Media" Multiplicity="1" />
+          <End Role="MediaArticleRelation" Type="Self.MediaArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaID" />
+            </Principal>
+            <Dependent Role="MediaArticleRelation">
+              <PropertyRef Name="MediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModifyLog_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ModifyLog" Type="Self.ModifyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ModifyLog">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModifyLog_ArticleState">
+          <End Role="ArticleState" Type="Self.ArticleState" Multiplicity="1" />
+          <End Role="ModifyLog" Type="Self.ModifyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleState">
+              <PropertyRef Name="ArticleStateID" />
+            </Principal>
+            <Dependent Role="ModifyLog">
+              <PropertyRef Name="ArticleStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModifyLog_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ModifyLog" Type="Self.ModifyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ModifyLog">
+              <PropertyRef Name="ModifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoneyObtained_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MoneyObtained" Type="Self.MoneyObtained" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MoneyObtained">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotifiedRelation_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="NotifiedRelation" Type="Self.NotifiedRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="NotifiedRelation">
+              <PropertyRef Name="SeenByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_NotificationType">
+          <End Role="NotificationType" Type="Self.NotificationType" Multiplicity="1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationType">
+              <PropertyRef Name="NotificationTypeID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="NotificationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="ToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="FromWhomUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="ToUserRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Point_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Point_XPGainedType">
+          <End Role="XPGainedType" Type="Self.XPGainedType" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XPGainedType">
+              <PropertyRef Name="XPGainedTypeID" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="XPGainedTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileBasedSearch_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ProfileBasedSearch" Type="Self.ProfileBasedSearch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ProfileBasedSearch">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedArticle_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="RelatedArticle" Type="Self.RelatedArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="RelatedArticle">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedArticle_Article1">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="RelatedArticle" Type="Self.RelatedArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="RelatedArticle">
+              <PropertyRef Name="RelArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalaryPaid_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SalaryPaid" Type="Self.SalaryPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SalaryPaid">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SendArticle_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="SendArticle" Type="Self.SendArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="SendArticle">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SendArticle_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SendArticle" Type="Self.SendArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SendArticle">
+              <PropertyRef Name="WrittenByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SendArticle_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="SendArticle" Type="Self.SendArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SendArticle">
+              <PropertyRef Name="ProcessedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URL_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="URL" Type="Self.URL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="URL">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Level">
+          <End Role="Level" Type="Self.Level" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_SalaryType">
+          <End Role="SalaryType" Type="Self.SalaryType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalaryType">
+              <PropertyRef Name="SalaryTypeID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="SalaryTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_TimeZone">
+          <End Role="TimeZone" Type="Self.TimeZone" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="TimeZoneID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TimeZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+          <End Role="UserRole1" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="UserRole1">
+              <PropertyRef Name="NestedRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MagazineModelStoreContainer">
+          <EntitySet Name="Advertise" EntityType="Self.Advertise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertisePaymentConfirmed" EntityType="Self.AdvertisePaymentConfirmed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertiseRequest" EntityType="Self.AdvertiseRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertiseType" EntityType="Self.AdvertiseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleState" EntityType="Self.ArticleState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DraftLog" EntityType="Self.DraftLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileType" EntityType="Self.FileType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keyword" EntityType="Self.Keyword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MediaArticleRelation" EntityType="Self.MediaArticleRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModifyLog" EntityType="Self.ModifyLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoneyObtained" EntityType="Self.MoneyObtained" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationType" EntityType="Self.NotificationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotifiedRelation" EntityType="Self.NotifiedRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notify" EntityType="Self.Notify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Point" EntityType="Self.Point" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileBasedSearch" EntityType="Self.ProfileBasedSearch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelatedArticle" EntityType="Self.RelatedArticle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryPaid" EntityType="Self.SalaryPaid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryType" EntityType="Self.SalaryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SendArticle" EntityType="Self.SendArticle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeZone" EntityType="Self.TimeZone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopSearch" EntityType="Self.TopSearch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="URL" EntityType="Self.URL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XPGainedType" EntityType="Self.XPGainedType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewSearchingArticle" EntityType="Self.ViewSearchingArticle" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewSearchingArticle].[ArticleID] AS [ArticleID], 
+    [ViewSearchingArticle].[FullSearhingtext] AS [FullSearhingtext], 
+    [ViewSearchingArticle].[PublishDate] AS [PublishDate], 
+    [ViewSearchingArticle].[TotalViewed] AS [TotalViewed]
+    FROM [dbo].[ViewSearchingArticle] AS [ViewSearchingArticle]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Advertise_AdvertiseType" Association="Self.FK_Advertise_AdvertiseType">
+            <End Role="AdvertiseType" EntitySet="AdvertiseType" />
+            <End Role="Advertise" EntitySet="Advertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertise_Media" Association="Self.FK_Advertise_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Advertise" EntitySet="Advertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertise_User" Association="Self.FK_Advertise_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Advertise" EntitySet="Advertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_Advertise" Association="Self.FK_AdvertisePaymentConfirmed_Advertise">
+            <End Role="Advertise" EntitySet="Advertise" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_AdvertiseRequest" Association="Self.FK_AdvertisePaymentConfirmed_AdvertiseRequest">
+            <End Role="AdvertiseRequest" EntitySet="AdvertiseRequest" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_PaymentMethod" Association="Self.FK_AdvertisePaymentConfirmed_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_User" Association="Self.FK_AdvertisePaymentConfirmed_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_User1" Association="Self.FK_AdvertisePaymentConfirmed_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertiseRequest_Advertise" Association="Self.FK_AdvertiseRequest_Advertise">
+            <End Role="Advertise" EntitySet="Advertise" />
+            <End Role="AdvertiseRequest" EntitySet="AdvertiseRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Article" Association="Self.FK_Article_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Article1" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Article1" Association="Self.FK_Article_Article1">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Article1" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_ArticleState" Association="Self.FK_Article_ArticleState">
+            <End Role="ArticleState" EntitySet="ArticleState" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Category" Association="Self.FK_Article_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Language" Association="Self.FK_Article_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Media" Association="Self.FK_Article_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_User" Association="Self.FK_Article_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_User1" Association="Self.FK_Article_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_User2" Association="Self.FK_Article_User2">
+            <End Role="User" EntitySet="User" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Comment" Association="Self.FK_Comment_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Comment1" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DraftLog_Article" Association="Self.FK_DraftLog_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="DraftLog" EntitySet="DraftLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keyword_Article" Association="Self.FK_Keyword_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Keyword" EntitySet="Keyword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Category" Association="Self.FK_Media_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_FileType" Association="Self.FK_Media_FileType">
+            <End Role="FileType" EntitySet="FileType" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MediaArticleRelation_Article" Association="Self.FK_MediaArticleRelation_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="MediaArticleRelation" EntitySet="MediaArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MediaArticleRelation_Media" Association="Self.FK_MediaArticleRelation_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="MediaArticleRelation" EntitySet="MediaArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModifyLog_Article" Association="Self.FK_ModifyLog_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ModifyLog" EntitySet="ModifyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModifyLog_ArticleState" Association="Self.FK_ModifyLog_ArticleState">
+            <End Role="ArticleState" EntitySet="ArticleState" />
+            <End Role="ModifyLog" EntitySet="ModifyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModifyLog_User" Association="Self.FK_ModifyLog_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ModifyLog" EntitySet="ModifyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoneyObtained_User" Association="Self.FK_MoneyObtained_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MoneyObtained" EntitySet="MoneyObtained" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotifiedRelation_User" Association="Self.FK_NotifiedRelation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="NotifiedRelation" EntitySet="NotifiedRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_NotificationType" Association="Self.FK_Notify_NotificationType">
+            <End Role="NotificationType" EntitySet="NotificationType" />
+            <End Role="Notify" EntitySet="Notify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_User" Association="Self.FK_Notify_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notify" EntitySet="Notify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_User1" Association="Self.FK_Notify_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notify" EntitySet="Notify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_UserRole" Association="Self.FK_Notify_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="Notify" EntitySet="Notify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Point_User" Association="Self.FK_Point_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Point" EntitySet="Point" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Point_XPGainedType" Association="Self.FK_Point_XPGainedType">
+            <End Role="XPGainedType" EntitySet="XPGainedType" />
+            <End Role="Point" EntitySet="Point" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileBasedSearch_User" Association="Self.FK_ProfileBasedSearch_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ProfileBasedSearch" EntitySet="ProfileBasedSearch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedArticle_Article" Association="Self.FK_RelatedArticle_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="RelatedArticle" EntitySet="RelatedArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedArticle_Article1" Association="Self.FK_RelatedArticle_Article1">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="RelatedArticle" EntitySet="RelatedArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalaryPaid_User" Association="Self.FK_SalaryPaid_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SalaryPaid" EntitySet="SalaryPaid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendArticle_Article" Association="Self.FK_SendArticle_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="SendArticle" EntitySet="SendArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendArticle_User" Association="Self.FK_SendArticle_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SendArticle" EntitySet="SendArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendArticle_User1" Association="Self.FK_SendArticle_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="SendArticle" EntitySet="SendArticle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URL_Article" Association="Self.FK_URL_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="URL" EntitySet="URL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Level" Association="Self.FK_User_Level">
+            <End Role="Level" EntitySet="Level" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_SalaryType" Association="Self.FK_User_SalaryType">
+            <End Role="SalaryType" EntitySet="SalaryType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_TimeZone" Association="Self.FK_User_TimeZone">
+            <End Role="TimeZone" EntitySet="TimeZone" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_UserRole" Association="Self.FK_UserRole_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="UserRole1" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MagazineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Advertise">
+          <Key>
+            <PropertyRef Name="AdvertiseID" />
+          </Key>
+          <Property Name="AdvertiseID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Keywords" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MediaID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="AdvertiseTypeID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AdvertiseType" Relationship="Self.FK_Advertise_AdvertiseType" FromRole="Advertise" ToRole="AdvertiseType" />
+          <NavigationProperty Name="Medium" Relationship="Self.FK_Advertise_Media" FromRole="Advertise" ToRole="Media" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Advertise_User" FromRole="Advertise" ToRole="User" />
+          <NavigationProperty Name="AdvertisePaymentConfirmeds" Relationship="Self.FK_AdvertisePaymentConfirmed_Advertise" FromRole="Advertise" ToRole="AdvertisePaymentConfirmed" />
+          <NavigationProperty Name="AdvertiseRequests" Relationship="Self.FK_AdvertiseRequest_Advertise" FromRole="Advertise" ToRole="AdvertiseRequest" />
+        </EntityType>
+        <EntityType Name="AdvertisePaymentConfirmed">
+          <Key>
+            <PropertyRef Name="AdvertisePaymentConfirmedID" />
+          </Key>
+          <Property Name="AdvertisePaymentConfirmedID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdvertiseRequestID" Type="Int64" Nullable="false" />
+          <Property Name="AdvertiseID" Type="Int64" Nullable="false" />
+          <Property Name="GeneratedPayment" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Paid" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PaymentMethodID" Type="Byte" Nullable="false" />
+          <Property Name="ConfirmByUserID" Type="Int64" Nullable="false" />
+          <Property Name="PaidByUserID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Advertise" Relationship="Self.FK_AdvertisePaymentConfirmed_Advertise" FromRole="AdvertisePaymentConfirmed" ToRole="Advertise" />
+          <NavigationProperty Name="AdvertiseRequest" Relationship="Self.FK_AdvertisePaymentConfirmed_AdvertiseRequest" FromRole="AdvertisePaymentConfirmed" ToRole="AdvertiseRequest" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_AdvertisePaymentConfirmed_PaymentMethod" FromRole="AdvertisePaymentConfirmed" ToRole="PaymentMethod" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AdvertisePaymentConfirmed_User" FromRole="AdvertisePaymentConfirmed" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_AdvertisePaymentConfirmed_User1" FromRole="AdvertisePaymentConfirmed" ToRole="User" />
+        </EntityType>
+        <EntityType Name="AdvertiseRequest">
+          <Key>
+            <PropertyRef Name="AdvertiseRequestID" />
+          </Key>
+          <Property Name="AdvertiseRequestID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Started" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Ended" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AdvertiseID" Type="Int64" Nullable="false" />
+          <Property Name="DaysToShow" Type="Byte" Nullable="false" />
+          <Property Name="GeneratedPayment" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DaysToAdded" Type="Byte" Nullable="false" />
+          <Property Name="IsPaymentVerified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advertise" Relationship="Self.FK_AdvertiseRequest_Advertise" FromRole="AdvertiseRequest" ToRole="Advertise" />
+          <NavigationProperty Name="AdvertisePaymentConfirmeds" Relationship="Self.FK_AdvertisePaymentConfirmed_AdvertiseRequest" FromRole="AdvertiseRequest" ToRole="AdvertisePaymentConfirmed" />
+        </EntityType>
+        <EntityType Name="AdvertiseType">
+          <Key>
+            <PropertyRef Name="AdvertiseTypeID" />
+          </Key>
+          <Property Name="AdvertiseTypeID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AmountRequired" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Advertises" Relationship="Self.FK_Advertise_AdvertiseType" FromRole="AdvertiseType" ToRole="Advertise" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+          </Key>
+          <Property Name="ArticleID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Page1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Page2" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Page3" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Page4" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="FeatureMediaID" Type="Int64" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ArticleStateID" Type="Byte" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="WrittenByUserID" Type="Int64" Nullable="false" />
+          <Property Name="LastModifiedByUserID" Type="Int64" Nullable="false" />
+          <Property Name="MetaDescription1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MetaDescription2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VerifiedByUserID" Type="Int64" />
+          <Property Name="OriginalArticleID" Type="Int64" />
+          <Property Name="TotalViewed" Type="Int64" Nullable="false" />
+          <Property Name="LastModifiedCount" Type="Byte" Nullable="false" />
+          <Property Name="ThumbsUp" Type="Int64" Nullable="false" />
+          <Property Name="NextPageArticleID" Type="Int64" />
+          <Property Name="LanguageID" Type="Byte" Nullable="false" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="IsProblematic" Type="Boolean" Nullable="false" />
+          <Property Name="IsSendByUser" Type="Boolean" Nullable="false" />
+          <Property Name="IsInDefaultLanguage" Type="Boolean" Nullable="false" />
+          <Property Name="IsCommentsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="IsReportedFromAnySource" Type="Boolean" Nullable="false" />
+          <Property Name="IsReportActionSolved" Type="Boolean" Nullable="false" />
+          <Property Name="IsAnyDraftExist" Type="Boolean" Nullable="false" />
+          <Property Name="IsPreviousPageExist" Type="Boolean" Nullable="false" />
+          <Property Name="IsNextPageExist" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Article1" Relationship="Self.FK_Article_Article" FromRole="Article" ToRole="Article1" />
+          <NavigationProperty Name="Article2" Relationship="Self.FK_Article_Article" FromRole="Article1" ToRole="Article" />
+          <NavigationProperty Name="Article11" Relationship="Self.FK_Article_Article1" FromRole="Article" ToRole="Article1" />
+          <NavigationProperty Name="Article3" Relationship="Self.FK_Article_Article1" FromRole="Article1" ToRole="Article" />
+          <NavigationProperty Name="ArticleState" Relationship="Self.FK_Article_ArticleState" FromRole="Article" ToRole="ArticleState" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Article_Category" FromRole="Article" ToRole="Category" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_Article_Language" FromRole="Article" ToRole="Language" />
+          <NavigationProperty Name="Medium" Relationship="Self.FK_Article_Media" FromRole="Article" ToRole="Media" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Article_User" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Article_User1" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="User2" Relationship="Self.FK_Article_User2" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="DraftLogs" Relationship="Self.FK_DraftLog_Article" FromRole="Article" ToRole="DraftLog" />
+          <NavigationProperty Name="Keywords" Relationship="Self.FK_Keyword_Article" FromRole="Article" ToRole="Keyword" />
+          <NavigationProperty Name="MediaArticleRelations" Relationship="Self.FK_MediaArticleRelation_Article" FromRole="Article" ToRole="MediaArticleRelation" />
+          <NavigationProperty Name="ModifyLogs" Relationship="Self.FK_ModifyLog_Article" FromRole="Article" ToRole="ModifyLog" />
+          <NavigationProperty Name="RelatedArticles" Relationship="Self.FK_RelatedArticle_Article" FromRole="Article" ToRole="RelatedArticle" />
+          <NavigationProperty Name="RelatedArticles1" Relationship="Self.FK_RelatedArticle_Article1" FromRole="Article" ToRole="RelatedArticle" />
+          <NavigationProperty Name="SendArticles" Relationship="Self.FK_SendArticle_Article" FromRole="Article" ToRole="SendArticle" />
+          <NavigationProperty Name="URLs" Relationship="Self.FK_URL_Article" FromRole="Article" ToRole="URL" />
+        </EntityType>
+        <EntityType Name="ArticleState">
+          <Key>
+            <PropertyRef Name="ArticleStateID" />
+          </Key>
+          <Property Name="ArticleStateID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_ArticleState" FromRole="ArticleState" ToRole="Article" />
+          <NavigationProperty Name="ModifyLogs" Relationship="Self.FK_ModifyLog_ArticleState" FromRole="ArticleState" ToRole="ModifyLog" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryDisplay" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_Category" FromRole="Category" ToRole="Article" />
+          <NavigationProperty Name="Media" Relationship="Self.FK_Media_Category" FromRole="Category" ToRole="Media" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Guid" Nullable="false" />
+          <Property Name="Expression1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Expression2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Expression3" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="ReplyCommentID" Type="Guid" />
+          <NavigationProperty Name="Comment1" Relationship="Self.FK_Comment_Comment" FromRole="Comment" ToRole="Comment1" />
+          <NavigationProperty Name="Comment2" Relationship="Self.FK_Comment_Comment" FromRole="Comment1" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="DraftLog">
+          <Key>
+            <PropertyRef Name="DraftLogID" />
+          </Key>
+          <Property Name="DraftLogID" Type="Int64" Nullable="false" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Page1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Page2" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Page3" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Page4" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_DraftLog_Article" FromRole="DraftLog" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="FileTypeID" />
+          </Key>
+          <Property Name="FileTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfFile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Media" Relationship="Self.FK_Media_FileType" FromRole="FileType" ToRole="Media" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="KeywordID" />
+          </Key>
+          <Property Name="KeywordID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Word" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Keyword_Article" FromRole="Keyword" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="Byte" Nullable="false" />
+          <Property Name="AspNETLanguageID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_Language" FromRole="Language" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelRepresentation" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MinPoints" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Level" FromRole="Level" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Medium">
+          <Key>
+            <PropertyRef Name="MediaID" />
+          </Key>
+          <Property Name="MediaID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileTypeID" Type="Int16" Nullable="false" />
+          <Property Name="EmbedHTML" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IsVideo" Type="Boolean" Nullable="false" />
+          <Property Name="Description1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Advertises" Relationship="Self.FK_Advertise_Media" FromRole="Media" ToRole="Advertise" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_Media" FromRole="Media" ToRole="Article" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Media_Category" FromRole="Media" ToRole="Category" />
+          <NavigationProperty Name="FileType" Relationship="Self.FK_Media_FileType" FromRole="Media" ToRole="FileType" />
+          <NavigationProperty Name="MediaArticleRelations" Relationship="Self.FK_MediaArticleRelation_Media" FromRole="Media" ToRole="MediaArticleRelation" />
+        </EntityType>
+        <EntityType Name="MediaArticleRelation">
+          <Key>
+            <PropertyRef Name="MediaArticleRelationID" />
+          </Key>
+          <Property Name="MediaArticleRelationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MediaID" Type="Int64" Nullable="false" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_MediaArticleRelation_Article" FromRole="MediaArticleRelation" ToRole="Article" />
+          <NavigationProperty Name="Medium" Relationship="Self.FK_MediaArticleRelation_Media" FromRole="MediaArticleRelation" ToRole="Media" />
+        </EntityType>
+        <EntityType Name="ModifyLog">
+          <Key>
+            <PropertyRef Name="ModifyLogID" />
+          </Key>
+          <Property Name="ModifyLogID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedByUserID" Type="Int64" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ArticleStateID" Type="Byte" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsCreated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_ModifyLog_Article" FromRole="ModifyLog" ToRole="Article" />
+          <NavigationProperty Name="ArticleState" Relationship="Self.FK_ModifyLog_ArticleState" FromRole="ModifyLog" ToRole="ArticleState" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ModifyLog_User" FromRole="ModifyLog" ToRole="User" />
+        </EntityType>
+        <EntityType Name="MoneyObtained">
+          <Key>
+            <PropertyRef Name="MoneyObtainedID" />
+          </Key>
+          <Property Name="MoneyObtainedID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="MoneyAmount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="XPUsed" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Dated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsMoneyReceivedByUser" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_MoneyObtained_User" FromRole="MoneyObtained" ToRole="User" />
+        </EntityType>
+        <EntityType Name="NotificationType">
+          <Key>
+            <PropertyRef Name="NotificationTypeID" />
+          </Key>
+          <Property Name="NotificationTypeID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Notifies" Relationship="Self.FK_Notify_NotificationType" FromRole="NotificationType" ToRole="Notify" />
+        </EntityType>
+        <EntityType Name="NotifiedRelation">
+          <Key>
+            <PropertyRef Name="NotifiedRelationID" />
+          </Key>
+          <Property Name="NotifiedRelationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotifyID" Type="Int64" Nullable="false" />
+          <Property Name="SeenByUserID" Type="Int64" />
+          <NavigationProperty Name="User" Relationship="Self.FK_NotifiedRelation_User" FromRole="NotifiedRelation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Notify">
+          <Key>
+            <PropertyRef Name="NotifyID" />
+          </Key>
+          <Property Name="NotifyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserID" Type="Int64" />
+          <Property Name="FromWhomUserID" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NotificationTypeID" Type="Byte" Nullable="false" />
+          <Property Name="Dated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToUserRoleID" Type="Byte" Nullable="false" />
+          <Property Name="IsImportant" Type="Boolean" Nullable="false" />
+          <Property Name="IsGlobal" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NotificationType" Relationship="Self.FK_Notify_NotificationType" FromRole="Notify" ToRole="NotificationType" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Notify_User" FromRole="Notify" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Notify_User1" FromRole="Notify" ToRole="User" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_Notify_UserRole" FromRole="Notify" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="Byte" Nullable="false" />
+          <Property Name="PaymentType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AdvertisePaymentConfirmeds" Relationship="Self.FK_AdvertisePaymentConfirmed_PaymentMethod" FromRole="PaymentMethod" ToRole="AdvertisePaymentConfirmed" />
+        </EntityType>
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="PointID" />
+          </Key>
+          <Property Name="PointID" Type="Guid" Nullable="false" />
+          <Property Name="XP" Type="Double" Nullable="false" />
+          <Property Name="Dated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="XPGainedTypeID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Point_User" FromRole="Point" ToRole="User" />
+          <NavigationProperty Name="XPGainedType" Relationship="Self.FK_Point_XPGainedType" FromRole="Point" ToRole="XPGainedType" />
+        </EntityType>
+        <EntityType Name="ProfileBasedSearch">
+          <Key>
+            <PropertyRef Name="ProfileBasedSearchID" />
+          </Key>
+          <Property Name="ProfileBasedSearchID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="SearchingText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsHighPriority" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ProfileBasedSearch_User" FromRole="ProfileBasedSearch" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RelatedArticle">
+          <Key>
+            <PropertyRef Name="RelatedArticleID" />
+          </Key>
+          <Property Name="RelatedArticleID" Type="Int64" Nullable="false" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <Property Name="RelArticleID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_RelatedArticle_Article" FromRole="RelatedArticle" ToRole="Article" />
+          <NavigationProperty Name="Article1" Relationship="Self.FK_RelatedArticle_Article1" FromRole="RelatedArticle" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="SalaryPaid">
+          <Key>
+            <PropertyRef Name="SalaryPaidID" />
+          </Key>
+          <Property Name="SalaryPaidID" Type="Int64" Nullable="false" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="Dated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PaidYear" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PaidMonth" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SalaryPaid_User" FromRole="SalaryPaid" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SalaryType">
+          <Key>
+            <PropertyRef Name="SalaryTypeID" />
+          </Key>
+          <Property Name="SalaryTypeID" Type="Byte" Nullable="false" />
+          <Property Name="SalaryTypeName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MonthlySalary" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsMonthlyCheck" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_SalaryType" FromRole="SalaryType" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SendArticle">
+          <Key>
+            <PropertyRef Name="SendArticleID" />
+          </Key>
+          <Property Name="SendArticleID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="GainedXP" Type="Double" Nullable="false" />
+          <Property Name="WrittenByUserID" Type="Int64" Nullable="false" />
+          <Property Name="ProcessedByUserId" Type="Int64" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_SendArticle_Article" FromRole="SendArticle" ToRole="Article" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SendArticle_User" FromRole="SendArticle" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_SendArticle_User1" FromRole="SendArticle" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TimeZone">
+          <Key>
+            <PropertyRef Name="TimeZoneID" />
+          </Key>
+          <Property Name="TimeZoneID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeZoneInfoID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TimeZoneDisplay" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_TimeZone" FromRole="TimeZone" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TopSearch">
+          <Key>
+            <PropertyRef Name="TopSearchID" />
+          </Key>
+          <Property Name="TopSearchID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SearchingText" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="URL">
+          <Key>
+            <PropertyRef Name="URLID" />
+          </Key>
+          <Property Name="URLID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Domain" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Otherpart1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Otherpart2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Otherpart3" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="LinkDisplay" Type="String" MaxLength="1358" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <Property Name="FriendlyText" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="AlsoKnownAs" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_URL_Article" FromRole="URL" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeZoneID" Type="Int16" Nullable="false" />
+          <Property Name="UserRoleID" Type="Byte" Nullable="false" />
+          <Property Name="TotalXP" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="LevelID" Type="Int16" Nullable="false" />
+          <Property Name="LeftXPToTrade" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="SalaryTypeID" Type="Byte" Nullable="false" />
+          <Property Name="JoinedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastVisited" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartingSalaryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsEmployee" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advertises" Relationship="Self.FK_Advertise_User" FromRole="User" ToRole="Advertise" />
+          <NavigationProperty Name="AdvertisePaymentConfirmeds" Relationship="Self.FK_AdvertisePaymentConfirmed_User" FromRole="User" ToRole="AdvertisePaymentConfirmed" />
+          <NavigationProperty Name="AdvertisePaymentConfirmeds1" Relationship="Self.FK_AdvertisePaymentConfirmed_User1" FromRole="User" ToRole="AdvertisePaymentConfirmed" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_User" FromRole="User" ToRole="Article" />
+          <NavigationProperty Name="Articles1" Relationship="Self.FK_Article_User1" FromRole="User" ToRole="Article" />
+          <NavigationProperty Name="Articles2" Relationship="Self.FK_Article_User2" FromRole="User" ToRole="Article" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Level" Relationship="Self.FK_User_Level" FromRole="User" ToRole="Level" />
+          <NavigationProperty Name="ModifyLogs" Relationship="Self.FK_ModifyLog_User" FromRole="User" ToRole="ModifyLog" />
+          <NavigationProperty Name="MoneyObtaineds" Relationship="Self.FK_MoneyObtained_User" FromRole="User" ToRole="MoneyObtained" />
+          <NavigationProperty Name="NotifiedRelations" Relationship="Self.FK_NotifiedRelation_User" FromRole="User" ToRole="NotifiedRelation" />
+          <NavigationProperty Name="Notifies" Relationship="Self.FK_Notify_User" FromRole="User" ToRole="Notify" />
+          <NavigationProperty Name="Notifies1" Relationship="Self.FK_Notify_User1" FromRole="User" ToRole="Notify" />
+          <NavigationProperty Name="Points" Relationship="Self.FK_Point_User" FromRole="User" ToRole="Point" />
+          <NavigationProperty Name="ProfileBasedSearches" Relationship="Self.FK_ProfileBasedSearch_User" FromRole="User" ToRole="ProfileBasedSearch" />
+          <NavigationProperty Name="SalaryPaids" Relationship="Self.FK_SalaryPaid_User" FromRole="User" ToRole="SalaryPaid" />
+          <NavigationProperty Name="SalaryType" Relationship="Self.FK_User_SalaryType" FromRole="User" ToRole="SalaryType" />
+          <NavigationProperty Name="SendArticles" Relationship="Self.FK_SendArticle_User" FromRole="User" ToRole="SendArticle" />
+          <NavigationProperty Name="SendArticles1" Relationship="Self.FK_SendArticle_User1" FromRole="User" ToRole="SendArticle" />
+          <NavigationProperty Name="TimeZone" Relationship="Self.FK_User_TimeZone" FromRole="User" ToRole="TimeZone" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Priority" Type="Byte" Nullable="false" />
+          <Property Name="XPRequired" Type="Int32" Nullable="false" />
+          <Property Name="CanAqurieByXP" Type="Boolean" Nullable="false" />
+          <Property Name="NestedRoleID" Type="Byte" />
+          <NavigationProperty Name="Notifies" Relationship="Self.FK_Notify_UserRole" FromRole="UserRole" ToRole="Notify" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_UserRole" FromRole="UserRole" ToRole="User" />
+          <NavigationProperty Name="UserRole1" Relationship="Self.FK_UserRole_UserRole" FromRole="UserRole" ToRole="UserRole1" />
+          <NavigationProperty Name="UserRole2" Relationship="Self.FK_UserRole_UserRole" FromRole="UserRole1" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="XPGainedType">
+          <Key>
+            <PropertyRef Name="XPGainedTypeID" />
+          </Key>
+          <Property Name="XPGainedTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="XPTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PointForThisType" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Points" Relationship="Self.FK_Point_XPGainedType" FromRole="XPGainedType" ToRole="Point" />
+        </EntityType>
+        <EntityType Name="ViewSearchingArticle">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+            <PropertyRef Name="PublishDate" />
+            <PropertyRef Name="TotalViewed" />
+          </Key>
+          <Property Name="ArticleID" Type="Int64" Nullable="false" />
+          <Property Name="FullSearhingtext" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TotalViewed" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Advertise_AdvertiseType">
+          <End Role="AdvertiseType" Type="Self.AdvertiseType" Multiplicity="1" />
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertiseType">
+              <PropertyRef Name="AdvertiseTypeID" />
+            </Principal>
+            <Dependent Role="Advertise">
+              <PropertyRef Name="AdvertiseTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertise_Media">
+          <End Role="Media" Type="Self.Medium" Multiplicity="0..1" />
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaID" />
+            </Principal>
+            <Dependent Role="Advertise">
+              <PropertyRef Name="MediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertise_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Advertise">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_Advertise">
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertise">
+              <PropertyRef Name="AdvertiseID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="AdvertiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertiseRequest_Advertise">
+          <End Role="Advertise" Type="Self.Advertise" Multiplicity="1" />
+          <End Role="AdvertiseRequest" Type="Self.AdvertiseRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertise">
+              <PropertyRef Name="AdvertiseID" />
+            </Principal>
+            <Dependent Role="AdvertiseRequest">
+              <PropertyRef Name="AdvertiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_AdvertiseRequest">
+          <End Role="AdvertiseRequest" Type="Self.AdvertiseRequest" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertiseRequest">
+              <PropertyRef Name="AdvertiseRequestID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="AdvertiseRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PaymentMethodID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="PaidByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvertisePaymentConfirmed_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AdvertisePaymentConfirmed" Type="Self.AdvertisePaymentConfirmed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AdvertisePaymentConfirmed">
+              <PropertyRef Name="ConfirmByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article1" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="Article1">
+              <PropertyRef Name="OriginalArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Article1">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article1" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="Article1">
+              <PropertyRef Name="NextPageArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_ArticleState">
+          <End Role="ArticleState" Type="Self.ArticleState" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleState">
+              <PropertyRef Name="ArticleStateID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="ArticleStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Media">
+          <End Role="Media" Type="Self.Medium" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="FeatureMediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="WrittenByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="LastModifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_User2">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="VerifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DraftLog_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="DraftLog" Type="Self.DraftLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="DraftLog">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keyword_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="Keyword" Type="Self.Keyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="Keyword">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MediaArticleRelation_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="MediaArticleRelation" Type="Self.MediaArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="MediaArticleRelation">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModifyLog_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ModifyLog" Type="Self.ModifyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ModifyLog">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedArticle_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="RelatedArticle" Type="Self.RelatedArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="RelatedArticle">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelatedArticle_Article1">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="RelatedArticle" Type="Self.RelatedArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="RelatedArticle">
+              <PropertyRef Name="RelArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SendArticle_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="SendArticle" Type="Self.SendArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="SendArticle">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URL_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="URL" Type="Self.URL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="URL">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModifyLog_ArticleState">
+          <End Role="ArticleState" Type="Self.ArticleState" Multiplicity="1" />
+          <End Role="ModifyLog" Type="Self.ModifyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleState">
+              <PropertyRef Name="ArticleStateID" />
+            </Principal>
+            <Dependent Role="ModifyLog">
+              <PropertyRef Name="ArticleStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Media" Type="Self.Medium" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="ReplyCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_FileType">
+          <End Role="FileType" Type="Self.FileType" Multiplicity="1" />
+          <End Role="Media" Type="Self.Medium" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileType">
+              <PropertyRef Name="FileTypeID" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Level">
+          <End Role="Level" Type="Self.Level" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MediaArticleRelation_Media">
+          <End Role="Media" Type="Self.Medium" Multiplicity="1" />
+          <End Role="MediaArticleRelation" Type="Self.MediaArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaID" />
+            </Principal>
+            <Dependent Role="MediaArticleRelation">
+              <PropertyRef Name="MediaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModifyLog_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ModifyLog" Type="Self.ModifyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ModifyLog">
+              <PropertyRef Name="ModifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoneyObtained_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MoneyObtained" Type="Self.MoneyObtained" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MoneyObtained">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_NotificationType">
+          <End Role="NotificationType" Type="Self.NotificationType" Multiplicity="1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationType">
+              <PropertyRef Name="NotificationTypeID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="NotificationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotifiedRelation_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="NotifiedRelation" Type="Self.NotifiedRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="NotifiedRelation">
+              <PropertyRef Name="SeenByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="ToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="FromWhomUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notify_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Notify" Type="Self.Notify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="Notify">
+              <PropertyRef Name="ToUserRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Point_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Point_XPGainedType">
+          <End Role="XPGainedType" Type="Self.XPGainedType" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XPGainedType">
+              <PropertyRef Name="XPGainedTypeID" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="XPGainedTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileBasedSearch_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ProfileBasedSearch" Type="Self.ProfileBasedSearch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ProfileBasedSearch">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalaryPaid_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SalaryPaid" Type="Self.SalaryPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SalaryPaid">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_SalaryType">
+          <End Role="SalaryType" Type="Self.SalaryType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalaryType">
+              <PropertyRef Name="SalaryTypeID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="SalaryTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SendArticle_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SendArticle" Type="Self.SendArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SendArticle">
+              <PropertyRef Name="WrittenByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SendArticle_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="SendArticle" Type="Self.SendArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SendArticle">
+              <PropertyRef Name="ProcessedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_TimeZone">
+          <End Role="TimeZone" Type="Self.TimeZone" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="TimeZoneID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TimeZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+          <End Role="UserRole1" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="UserRole1">
+              <PropertyRef Name="NestedRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MagazineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Advertises" EntityType="Self.Advertise" />
+          <EntitySet Name="AdvertisePaymentConfirmeds" EntityType="Self.AdvertisePaymentConfirmed" />
+          <EntitySet Name="AdvertiseRequests" EntityType="Self.AdvertiseRequest" />
+          <EntitySet Name="AdvertiseTypes" EntityType="Self.AdvertiseType" />
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="ArticleStates" EntityType="Self.ArticleState" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="DraftLogs" EntityType="Self.DraftLog" />
+          <EntitySet Name="FileTypes" EntityType="Self.FileType" />
+          <EntitySet Name="Keywords" EntityType="Self.Keyword" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Levels" EntityType="Self.Level" />
+          <EntitySet Name="Media" EntityType="Self.Medium" />
+          <EntitySet Name="MediaArticleRelations" EntityType="Self.MediaArticleRelation" />
+          <EntitySet Name="ModifyLogs" EntityType="Self.ModifyLog" />
+          <EntitySet Name="MoneyObtaineds" EntityType="Self.MoneyObtained" />
+          <EntitySet Name="NotificationTypes" EntityType="Self.NotificationType" />
+          <EntitySet Name="NotifiedRelations" EntityType="Self.NotifiedRelation" />
+          <EntitySet Name="Notifies" EntityType="Self.Notify" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="Points" EntityType="Self.Point" />
+          <EntitySet Name="ProfileBasedSearches" EntityType="Self.ProfileBasedSearch" />
+          <EntitySet Name="RelatedArticles" EntityType="Self.RelatedArticle" />
+          <EntitySet Name="SalaryPaids" EntityType="Self.SalaryPaid" />
+          <EntitySet Name="SalaryTypes" EntityType="Self.SalaryType" />
+          <EntitySet Name="SendArticles" EntityType="Self.SendArticle" />
+          <EntitySet Name="TimeZones" EntityType="Self.TimeZone" />
+          <EntitySet Name="TopSearches" EntityType="Self.TopSearch" />
+          <EntitySet Name="URLs" EntityType="Self.URL" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="XPGainedTypes" EntityType="Self.XPGainedType" />
+          <EntitySet Name="ViewSearchingArticles" EntityType="Self.ViewSearchingArticle" />
+          <AssociationSet Name="FK_Advertise_AdvertiseType" Association="Self.FK_Advertise_AdvertiseType">
+            <End Role="AdvertiseType" EntitySet="AdvertiseTypes" />
+            <End Role="Advertise" EntitySet="Advertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertise_Media" Association="Self.FK_Advertise_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Advertise" EntitySet="Advertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertise_User" Association="Self.FK_Advertise_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Advertise" EntitySet="Advertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_Advertise" Association="Self.FK_AdvertisePaymentConfirmed_Advertise">
+            <End Role="Advertise" EntitySet="Advertises" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertiseRequest_Advertise" Association="Self.FK_AdvertiseRequest_Advertise">
+            <End Role="Advertise" EntitySet="Advertises" />
+            <End Role="AdvertiseRequest" EntitySet="AdvertiseRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_AdvertiseRequest" Association="Self.FK_AdvertisePaymentConfirmed_AdvertiseRequest">
+            <End Role="AdvertiseRequest" EntitySet="AdvertiseRequests" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_PaymentMethod" Association="Self.FK_AdvertisePaymentConfirmed_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_User" Association="Self.FK_AdvertisePaymentConfirmed_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvertisePaymentConfirmed_User1" Association="Self.FK_AdvertisePaymentConfirmed_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AdvertisePaymentConfirmed" EntitySet="AdvertisePaymentConfirmeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Article" Association="Self.FK_Article_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Article1" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Article1" Association="Self.FK_Article_Article1">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Article1" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_ArticleState" Association="Self.FK_Article_ArticleState">
+            <End Role="ArticleState" EntitySet="ArticleStates" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Category" Association="Self.FK_Article_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Language" Association="Self.FK_Article_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Media" Association="Self.FK_Article_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_User" Association="Self.FK_Article_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_User1" Association="Self.FK_Article_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_User2" Association="Self.FK_Article_User2">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DraftLog_Article" Association="Self.FK_DraftLog_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="DraftLog" EntitySet="DraftLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keyword_Article" Association="Self.FK_Keyword_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Keyword" EntitySet="Keywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MediaArticleRelation_Article" Association="Self.FK_MediaArticleRelation_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="MediaArticleRelation" EntitySet="MediaArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModifyLog_Article" Association="Self.FK_ModifyLog_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="ModifyLog" EntitySet="ModifyLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedArticle_Article" Association="Self.FK_RelatedArticle_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="RelatedArticle" EntitySet="RelatedArticles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelatedArticle_Article1" Association="Self.FK_RelatedArticle_Article1">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="RelatedArticle" EntitySet="RelatedArticles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendArticle_Article" Association="Self.FK_SendArticle_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="SendArticle" EntitySet="SendArticles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URL_Article" Association="Self.FK_URL_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="URL" EntitySet="URLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModifyLog_ArticleState" Association="Self.FK_ModifyLog_ArticleState">
+            <End Role="ArticleState" EntitySet="ArticleStates" />
+            <End Role="ModifyLog" EntitySet="ModifyLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_Category" Association="Self.FK_Media_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Comment" Association="Self.FK_Comment_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Comment1" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_FileType" Association="Self.FK_Media_FileType">
+            <End Role="FileType" EntitySet="FileTypes" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Level" Association="Self.FK_User_Level">
+            <End Role="Level" EntitySet="Levels" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MediaArticleRelation_Media" Association="Self.FK_MediaArticleRelation_Media">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="MediaArticleRelation" EntitySet="MediaArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModifyLog_User" Association="Self.FK_ModifyLog_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ModifyLog" EntitySet="ModifyLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoneyObtained_User" Association="Self.FK_MoneyObtained_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="MoneyObtained" EntitySet="MoneyObtaineds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_NotificationType" Association="Self.FK_Notify_NotificationType">
+            <End Role="NotificationType" EntitySet="NotificationTypes" />
+            <End Role="Notify" EntitySet="Notifies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotifiedRelation_User" Association="Self.FK_NotifiedRelation_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="NotifiedRelation" EntitySet="NotifiedRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_User" Association="Self.FK_Notify_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notify" EntitySet="Notifies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_User1" Association="Self.FK_Notify_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notify" EntitySet="Notifies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notify_UserRole" Association="Self.FK_Notify_UserRole">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="Notify" EntitySet="Notifies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Point_User" Association="Self.FK_Point_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Point" EntitySet="Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Point_XPGainedType" Association="Self.FK_Point_XPGainedType">
+            <End Role="XPGainedType" EntitySet="XPGainedTypes" />
+            <End Role="Point" EntitySet="Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileBasedSearch_User" Association="Self.FK_ProfileBasedSearch_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ProfileBasedSearch" EntitySet="ProfileBasedSearches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalaryPaid_User" Association="Self.FK_SalaryPaid_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SalaryPaid" EntitySet="SalaryPaids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_SalaryType" Association="Self.FK_User_SalaryType">
+            <End Role="SalaryType" EntitySet="SalaryTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendArticle_User" Association="Self.FK_SendArticle_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SendArticle" EntitySet="SendArticles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendArticle_User1" Association="Self.FK_SendArticle_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SendArticle" EntitySet="SendArticles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_TimeZone" Association="Self.FK_User_TimeZone">
+            <End Role="TimeZone" EntitySet="TimeZones" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_UserRole" Association="Self.FK_UserRole_UserRole">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="UserRole1" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MagazineModelStoreContainer" CdmEntityContainer="MagazineEntities">
+          <EntitySetMapping Name="Advertises">
+            <EntityTypeMapping TypeName="MagazineModel.Advertise">
+              <MappingFragment StoreEntitySet="Advertise">
+                <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AdvertiseTypeID" ColumnName="AdvertiseTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertisePaymentConfirmeds">
+            <EntityTypeMapping TypeName="MagazineModel.AdvertisePaymentConfirmed">
+              <MappingFragment StoreEntitySet="AdvertisePaymentConfirmed">
+                <ScalarProperty Name="AdvertisePaymentConfirmedID" ColumnName="AdvertisePaymentConfirmedID" />
+                <ScalarProperty Name="AdvertiseRequestID" ColumnName="AdvertiseRequestID" />
+                <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+                <ScalarProperty Name="GeneratedPayment" ColumnName="GeneratedPayment" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="ConfirmByUserID" ColumnName="ConfirmByUserID" />
+                <ScalarProperty Name="PaidByUserID" ColumnName="PaidByUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertiseRequests">
+            <EntityTypeMapping TypeName="MagazineModel.AdvertiseRequest">
+              <MappingFragment StoreEntitySet="AdvertiseRequest">
+                <ScalarProperty Name="AdvertiseRequestID" ColumnName="AdvertiseRequestID" />
+                <ScalarProperty Name="Started" ColumnName="Started" />
+                <ScalarProperty Name="Ended" ColumnName="Ended" />
+                <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+                <ScalarProperty Name="DaysToShow" ColumnName="DaysToShow" />
+                <ScalarProperty Name="GeneratedPayment" ColumnName="GeneratedPayment" />
+                <ScalarProperty Name="DaysToAdded" ColumnName="DaysToAdded" />
+                <ScalarProperty Name="IsPaymentVerified" ColumnName="IsPaymentVerified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertiseTypes">
+            <EntityTypeMapping TypeName="MagazineModel.AdvertiseType">
+              <MappingFragment StoreEntitySet="AdvertiseType">
+                <ScalarProperty Name="AdvertiseTypeID" ColumnName="AdvertiseTypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="AmountRequired" ColumnName="AmountRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="MagazineModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Page1" ColumnName="Page1" />
+                <ScalarProperty Name="Page2" ColumnName="Page2" />
+                <ScalarProperty Name="Page3" ColumnName="Page3" />
+                <ScalarProperty Name="Page4" ColumnName="Page4" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="FeatureMediaID" ColumnName="FeatureMediaID" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="WrittenByUserID" ColumnName="WrittenByUserID" />
+                <ScalarProperty Name="LastModifiedByUserID" ColumnName="LastModifiedByUserID" />
+                <ScalarProperty Name="MetaDescription1" ColumnName="MetaDescription1" />
+                <ScalarProperty Name="MetaDescription2" ColumnName="MetaDescription2" />
+                <ScalarProperty Name="VerifiedByUserID" ColumnName="VerifiedByUserID" />
+                <ScalarProperty Name="OriginalArticleID" ColumnName="OriginalArticleID" />
+                <ScalarProperty Name="TotalViewed" ColumnName="TotalViewed" />
+                <ScalarProperty Name="LastModifiedCount" ColumnName="LastModifiedCount" />
+                <ScalarProperty Name="ThumbsUp" ColumnName="ThumbsUp" />
+                <ScalarProperty Name="NextPageArticleID" ColumnName="NextPageArticleID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="IsProblematic" ColumnName="IsProblematic" />
+                <ScalarProperty Name="IsSendByUser" ColumnName="IsSendByUser" />
+                <ScalarProperty Name="IsInDefaultLanguage" ColumnName="IsInDefaultLanguage" />
+                <ScalarProperty Name="IsCommentsEnabled" ColumnName="IsCommentsEnabled" />
+                <ScalarProperty Name="IsReportedFromAnySource" ColumnName="IsReportedFromAnySource" />
+                <ScalarProperty Name="IsReportActionSolved" ColumnName="IsReportActionSolved" />
+                <ScalarProperty Name="IsAnyDraftExist" ColumnName="IsAnyDraftExist" />
+                <ScalarProperty Name="IsPreviousPageExist" ColumnName="IsPreviousPageExist" />
+                <ScalarProperty Name="IsNextPageExist" ColumnName="IsNextPageExist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleStates">
+            <EntityTypeMapping TypeName="MagazineModel.ArticleState">
+              <MappingFragment StoreEntitySet="ArticleState">
+                <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MagazineModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryDisplay" ColumnName="CategoryDisplay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MagazineModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="Expression1" ColumnName="Expression1" />
+                <ScalarProperty Name="Expression2" ColumnName="Expression2" />
+                <ScalarProperty Name="Expression3" ColumnName="Expression3" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ReplyCommentID" ColumnName="ReplyCommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DraftLogs">
+            <EntityTypeMapping TypeName="MagazineModel.DraftLog">
+              <MappingFragment StoreEntitySet="DraftLog">
+                <ScalarProperty Name="DraftLogID" ColumnName="DraftLogID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Page1" ColumnName="Page1" />
+                <ScalarProperty Name="Page2" ColumnName="Page2" />
+                <ScalarProperty Name="Page3" ColumnName="Page3" />
+                <ScalarProperty Name="Page4" ColumnName="Page4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileTypes">
+            <EntityTypeMapping TypeName="MagazineModel.FileType">
+              <MappingFragment StoreEntitySet="FileType">
+                <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
+                <ScalarProperty Name="TypeOfFile" ColumnName="TypeOfFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keywords">
+            <EntityTypeMapping TypeName="MagazineModel.Keyword">
+              <MappingFragment StoreEntitySet="Keyword">
+                <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+                <ScalarProperty Name="Word" ColumnName="Word" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="MagazineModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="AspNETLanguageID" ColumnName="AspNETLanguageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="MagazineModel.Level">
+              <MappingFragment StoreEntitySet="Level">
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="LevelRepresentation" ColumnName="LevelRepresentation" />
+                <ScalarProperty Name="MinPoints" ColumnName="MinPoints" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="MagazineModel.Medium">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
+                <ScalarProperty Name="EmbedHTML" ColumnName="EmbedHTML" />
+                <ScalarProperty Name="IsVideo" ColumnName="IsVideo" />
+                <ScalarProperty Name="Description1" ColumnName="Description1" />
+                <ScalarProperty Name="Description2" ColumnName="Description2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MediaArticleRelations">
+            <EntityTypeMapping TypeName="MagazineModel.MediaArticleRelation">
+              <MappingFragment StoreEntitySet="MediaArticleRelation">
+                <ScalarProperty Name="MediaArticleRelationID" ColumnName="MediaArticleRelationID" />
+                <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModifyLogs">
+            <EntityTypeMapping TypeName="MagazineModel.ModifyLog">
+              <MappingFragment StoreEntitySet="ModifyLog">
+                <ScalarProperty Name="ModifyLogID" ColumnName="ModifyLogID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedByUserID" ColumnName="ModifiedByUserID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="IsCreated" ColumnName="IsCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoneyObtaineds">
+            <EntityTypeMapping TypeName="MagazineModel.MoneyObtained">
+              <MappingFragment StoreEntitySet="MoneyObtained">
+                <ScalarProperty Name="MoneyObtainedID" ColumnName="MoneyObtainedID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MoneyAmount" ColumnName="MoneyAmount" />
+                <ScalarProperty Name="XPUsed" ColumnName="XPUsed" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="IsMoneyReceivedByUser" ColumnName="IsMoneyReceivedByUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationTypes">
+            <EntityTypeMapping TypeName="MagazineModel.NotificationType">
+              <MappingFragment StoreEntitySet="NotificationType">
+                <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotifiedRelations">
+            <EntityTypeMapping TypeName="MagazineModel.NotifiedRelation">
+              <MappingFragment StoreEntitySet="NotifiedRelation">
+                <ScalarProperty Name="NotifiedRelationID" ColumnName="NotifiedRelationID" />
+                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifies">
+            <EntityTypeMapping TypeName="MagazineModel.Notify">
+              <MappingFragment StoreEntitySet="Notify">
+                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
+                <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+                <ScalarProperty Name="FromWhomUserID" ColumnName="FromWhomUserID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="ToUserRoleID" ColumnName="ToUserRoleID" />
+                <ScalarProperty Name="IsImportant" ColumnName="IsImportant" />
+                <ScalarProperty Name="IsGlobal" ColumnName="IsGlobal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="MagazineModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Points">
+            <EntityTypeMapping TypeName="MagazineModel.Point">
+              <MappingFragment StoreEntitySet="Point">
+                <ScalarProperty Name="PointID" ColumnName="PointID" />
+                <ScalarProperty Name="XP" ColumnName="XP" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="XPGainedTypeID" ColumnName="XPGainedTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileBasedSearches">
+            <EntityTypeMapping TypeName="MagazineModel.ProfileBasedSearch">
+              <MappingFragment StoreEntitySet="ProfileBasedSearch">
+                <ScalarProperty Name="ProfileBasedSearchID" ColumnName="ProfileBasedSearchID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SearchingText" ColumnName="SearchingText" />
+                <ScalarProperty Name="IsHighPriority" ColumnName="IsHighPriority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelatedArticles">
+            <EntityTypeMapping TypeName="MagazineModel.RelatedArticle">
+              <MappingFragment StoreEntitySet="RelatedArticle">
+                <ScalarProperty Name="RelatedArticleID" ColumnName="RelatedArticleID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="RelArticleID" ColumnName="RelArticleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryPaids">
+            <EntityTypeMapping TypeName="MagazineModel.SalaryPaid">
+              <MappingFragment StoreEntitySet="SalaryPaid">
+                <ScalarProperty Name="SalaryPaidID" ColumnName="SalaryPaidID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="PaidYear" ColumnName="PaidYear" />
+                <ScalarProperty Name="PaidMonth" ColumnName="PaidMonth" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryTypes">
+            <EntityTypeMapping TypeName="MagazineModel.SalaryType">
+              <MappingFragment StoreEntitySet="SalaryType">
+                <ScalarProperty Name="SalaryTypeID" ColumnName="SalaryTypeID" />
+                <ScalarProperty Name="SalaryTypeName" ColumnName="SalaryTypeName" />
+                <ScalarProperty Name="MonthlySalary" ColumnName="MonthlySalary" />
+                <ScalarProperty Name="IsMonthlyCheck" ColumnName="IsMonthlyCheck" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SendArticles">
+            <EntityTypeMapping TypeName="MagazineModel.SendArticle">
+              <MappingFragment StoreEntitySet="SendArticle">
+                <ScalarProperty Name="SendArticleID" ColumnName="SendArticleID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="GainedXP" ColumnName="GainedXP" />
+                <ScalarProperty Name="WrittenByUserID" ColumnName="WrittenByUserID" />
+                <ScalarProperty Name="ProcessedByUserId" ColumnName="ProcessedByUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeZones">
+            <EntityTypeMapping TypeName="MagazineModel.TimeZone">
+              <MappingFragment StoreEntitySet="TimeZone">
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="TimeZoneInfoID" ColumnName="TimeZoneInfoID" />
+                <ScalarProperty Name="TimeZoneDisplay" ColumnName="TimeZoneDisplay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopSearches">
+            <EntityTypeMapping TypeName="MagazineModel.TopSearch">
+              <MappingFragment StoreEntitySet="TopSearch">
+                <ScalarProperty Name="TopSearchID" ColumnName="TopSearchID" />
+                <ScalarProperty Name="SearchingText" ColumnName="SearchingText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="URLs">
+            <EntityTypeMapping TypeName="MagazineModel.URL">
+              <MappingFragment StoreEntitySet="URL">
+                <ScalarProperty Name="URLID" ColumnName="URLID" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="Otherpart1" ColumnName="Otherpart1" />
+                <ScalarProperty Name="Otherpart2" ColumnName="Otherpart2" />
+                <ScalarProperty Name="Otherpart3" ColumnName="Otherpart3" />
+                <ScalarProperty Name="LinkDisplay" ColumnName="LinkDisplay" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="FriendlyText" ColumnName="FriendlyText" />
+                <ScalarProperty Name="AlsoKnownAs" ColumnName="AlsoKnownAs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MagazineModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+                <ScalarProperty Name="TotalXP" ColumnName="TotalXP" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="LeftXPToTrade" ColumnName="LeftXPToTrade" />
+                <ScalarProperty Name="SalaryTypeID" ColumnName="SalaryTypeID" />
+                <ScalarProperty Name="JoinedDate" ColumnName="JoinedDate" />
+                <ScalarProperty Name="LastVisited" ColumnName="LastVisited" />
+                <ScalarProperty Name="StartingSalaryDate" ColumnName="StartingSalaryDate" />
+                <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="MagazineModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="XPRequired" ColumnName="XPRequired" />
+                <ScalarProperty Name="CanAqurieByXP" ColumnName="CanAqurieByXP" />
+                <ScalarProperty Name="NestedRoleID" ColumnName="NestedRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XPGainedTypes">
+            <EntityTypeMapping TypeName="MagazineModel.XPGainedType">
+              <MappingFragment StoreEntitySet="XPGainedType">
+                <ScalarProperty Name="XPGainedTypeID" ColumnName="XPGainedTypeID" />
+                <ScalarProperty Name="XPTypeName" ColumnName="XPTypeName" />
+                <ScalarProperty Name="PointForThisType" ColumnName="PointForThisType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSearchingArticles">
+            <EntityTypeMapping TypeName="MagazineModel.ViewSearchingArticle">
+              <MappingFragment StoreEntitySet="ViewSearchingArticle">
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="FullSearhingtext" ColumnName="FullSearhingtext" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="TotalViewed" ColumnName="TotalViewed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
