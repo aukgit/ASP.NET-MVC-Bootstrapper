@@ -4,401 +4,392 @@
     <EntitySetMapping Name="Advertises">
       <EntityTypeMapping TypeName="MagazineModel.Advertise">
         <MappingFragment StoreEntitySet="Advertise">
-          <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
-          <ScalarProperty Name="MediaID" ColumnName="MediaID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="AdvertiseTypeID" ColumnName="AdvertiseTypeID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AdvertisePaymentConfirmeds">
       <EntityTypeMapping TypeName="MagazineModel.AdvertisePaymentConfirmed">
         <MappingFragment StoreEntitySet="AdvertisePaymentConfirmed">
-          <ScalarProperty Name="AdvertisePaymentConfirmedID" ColumnName="AdvertisePaymentConfirmedID" />
-          <ScalarProperty Name="AdvertiseRequestID" ColumnName="AdvertiseRequestID" />
-          <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
-          <ScalarProperty Name="GeneratedPayment" ColumnName="GeneratedPayment" />
-          <ScalarProperty Name="Paid" ColumnName="Paid" />
-          <ScalarProperty Name="Discount" ColumnName="Discount" />
-          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
-          <ScalarProperty Name="ConfirmByUserID" ColumnName="ConfirmByUserID" />
           <ScalarProperty Name="PaidByUserID" ColumnName="PaidByUserID" />
+          <ScalarProperty Name="ConfirmByUserID" ColumnName="ConfirmByUserID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="GeneratedPayment" ColumnName="GeneratedPayment" />
+          <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+          <ScalarProperty Name="AdvertiseRequestID" ColumnName="AdvertiseRequestID" />
+          <ScalarProperty Name="AdvertisePaymentConfirmedID" ColumnName="AdvertisePaymentConfirmedID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AdvertiseRequests">
       <EntityTypeMapping TypeName="MagazineModel.AdvertiseRequest">
         <MappingFragment StoreEntitySet="AdvertiseRequest">
-          <ScalarProperty Name="AdvertiseRequestID" ColumnName="AdvertiseRequestID" />
-          <ScalarProperty Name="Started" ColumnName="Started" />
-          <ScalarProperty Name="Ended" ColumnName="Ended" />
-          <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
-          <ScalarProperty Name="DaysToShow" ColumnName="DaysToShow" />
-          <ScalarProperty Name="GeneratedPayment" ColumnName="GeneratedPayment" />
-          <ScalarProperty Name="DaysToAdded" ColumnName="DaysToAdded" />
           <ScalarProperty Name="IsPaymentVerified" ColumnName="IsPaymentVerified" />
+          <ScalarProperty Name="DaysToAdded" ColumnName="DaysToAdded" />
+          <ScalarProperty Name="GeneratedPayment" ColumnName="GeneratedPayment" />
+          <ScalarProperty Name="DaysToShow" ColumnName="DaysToShow" />
+          <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+          <ScalarProperty Name="Ended" ColumnName="Ended" />
+          <ScalarProperty Name="Started" ColumnName="Started" />
+          <ScalarProperty Name="AdvertiseRequestID" ColumnName="AdvertiseRequestID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AdvertiseTypes">
       <EntityTypeMapping TypeName="MagazineModel.AdvertiseType">
         <MappingFragment StoreEntitySet="AdvertiseType">
-          <ScalarProperty Name="AdvertiseTypeID" ColumnName="AdvertiseTypeID" />
-          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
           <ScalarProperty Name="AmountRequired" ColumnName="AmountRequired" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="AdvertiseTypeID" ColumnName="AdvertiseTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Articles">
       <EntityTypeMapping TypeName="MagazineModel.Article">
         <MappingFragment StoreEntitySet="Article">
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Page1" ColumnName="Page1" />
-          <ScalarProperty Name="Page2" ColumnName="Page2" />
-          <ScalarProperty Name="Page3" ColumnName="Page3" />
-          <ScalarProperty Name="Page4" ColumnName="Page4" />
-          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-          <ScalarProperty Name="FeatureMediaID" ColumnName="FeatureMediaID" />
-          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
-          <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="WrittenByUserID" ColumnName="WrittenByUserID" />
-          <ScalarProperty Name="LastModifiedByUserID" ColumnName="LastModifiedByUserID" />
-          <ScalarProperty Name="MetaDescription1" ColumnName="MetaDescription1" />
-          <ScalarProperty Name="MetaDescription2" ColumnName="MetaDescription2" />
-          <ScalarProperty Name="VerifiedByUserID" ColumnName="VerifiedByUserID" />
-          <ScalarProperty Name="OriginalArticleID" ColumnName="OriginalArticleID" />
-          <ScalarProperty Name="TotalViewed" ColumnName="TotalViewed" />
-          <ScalarProperty Name="LastModifiedCount" ColumnName="LastModifiedCount" />
-          <ScalarProperty Name="ThumbsUp" ColumnName="ThumbsUp" />
-          <ScalarProperty Name="NextPageArticleID" ColumnName="NextPageArticleID" />
-          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
-          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
-          <ScalarProperty Name="IsProblematic" ColumnName="IsProblematic" />
-          <ScalarProperty Name="IsSendByUser" ColumnName="IsSendByUser" />
-          <ScalarProperty Name="IsInDefaultLanguage" ColumnName="IsInDefaultLanguage" />
-          <ScalarProperty Name="IsCommentsEnabled" ColumnName="IsCommentsEnabled" />
-          <ScalarProperty Name="IsReportedFromAnySource" ColumnName="IsReportedFromAnySource" />
-          <ScalarProperty Name="IsReportActionSolved" ColumnName="IsReportActionSolved" />
-          <ScalarProperty Name="IsAnyDraftExist" ColumnName="IsAnyDraftExist" />
-          <ScalarProperty Name="IsPreviousPageExist" ColumnName="IsPreviousPageExist" />
           <ScalarProperty Name="IsNextPageExist" ColumnName="IsNextPageExist" />
+          <ScalarProperty Name="IsPreviousPageExist" ColumnName="IsPreviousPageExist" />
+          <ScalarProperty Name="IsAnyDraftExist" ColumnName="IsAnyDraftExist" />
+          <ScalarProperty Name="IsReportActionSolved" ColumnName="IsReportActionSolved" />
+          <ScalarProperty Name="IsReportedFromAnySource" ColumnName="IsReportedFromAnySource" />
+          <ScalarProperty Name="IsCommentsEnabled" ColumnName="IsCommentsEnabled" />
+          <ScalarProperty Name="IsInDefaultLanguage" ColumnName="IsInDefaultLanguage" />
+          <ScalarProperty Name="IsSendByUser" ColumnName="IsSendByUser" />
+          <ScalarProperty Name="IsProblematic" ColumnName="IsProblematic" />
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="NextPageArticleID" ColumnName="NextPageArticleID" />
+          <ScalarProperty Name="ThumbsUp" ColumnName="ThumbsUp" />
+          <ScalarProperty Name="LastModifiedCount" ColumnName="LastModifiedCount" />
+          <ScalarProperty Name="TotalViewed" ColumnName="TotalViewed" />
+          <ScalarProperty Name="OriginalArticleID" ColumnName="OriginalArticleID" />
+          <ScalarProperty Name="VerifiedByUserID" ColumnName="VerifiedByUserID" />
+          <ScalarProperty Name="MetaDescription2" ColumnName="MetaDescription2" />
+          <ScalarProperty Name="MetaDescription1" ColumnName="MetaDescription1" />
+          <ScalarProperty Name="LastModifiedByUserID" ColumnName="LastModifiedByUserID" />
+          <ScalarProperty Name="WrittenByUserID" ColumnName="WrittenByUserID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="FeatureMediaID" ColumnName="FeatureMediaID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Page4" ColumnName="Page4" />
+          <ScalarProperty Name="Page3" ColumnName="Page3" />
+          <ScalarProperty Name="Page2" ColumnName="Page2" />
+          <ScalarProperty Name="Page1" ColumnName="Page1" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ArticleStates">
       <EntityTypeMapping TypeName="MagazineModel.ArticleState">
         <MappingFragment StoreEntitySet="ArticleState">
-          <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
           <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="MagazineModel.Category">
         <MappingFragment StoreEntitySet="Category">
-          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
           <ScalarProperty Name="CategoryDisplay" ColumnName="CategoryDisplay" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="MagazineModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
-          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
-          <ScalarProperty Name="Expression1" ColumnName="Expression1" />
-          <ScalarProperty Name="Expression2" ColumnName="Expression2" />
-          <ScalarProperty Name="Expression3" ColumnName="Expression3" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ReplyCommentID" ColumnName="ReplyCommentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Expression3" ColumnName="Expression3" />
+          <ScalarProperty Name="Expression2" ColumnName="Expression2" />
+          <ScalarProperty Name="Expression1" ColumnName="Expression1" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DraftLogs">
       <EntityTypeMapping TypeName="MagazineModel.DraftLog">
         <MappingFragment StoreEntitySet="DraftLog">
-          <ScalarProperty Name="DraftLogID" ColumnName="DraftLogID" />
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Page1" ColumnName="Page1" />
-          <ScalarProperty Name="Page2" ColumnName="Page2" />
-          <ScalarProperty Name="Page3" ColumnName="Page3" />
           <ScalarProperty Name="Page4" ColumnName="Page4" />
+          <ScalarProperty Name="Page3" ColumnName="Page3" />
+          <ScalarProperty Name="Page2" ColumnName="Page2" />
+          <ScalarProperty Name="Page1" ColumnName="Page1" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="DraftLogID" ColumnName="DraftLogID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FileTypes">
       <EntityTypeMapping TypeName="MagazineModel.FileType">
         <MappingFragment StoreEntitySet="FileType">
-          <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
           <ScalarProperty Name="TypeOfFile" ColumnName="TypeOfFile" />
+          <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Keywords">
       <EntityTypeMapping TypeName="MagazineModel.Keyword">
         <MappingFragment StoreEntitySet="Keyword">
-          <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
-          <ScalarProperty Name="Word" ColumnName="Word" />
           <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Languages">
       <EntityTypeMapping TypeName="MagazineModel.Language">
         <MappingFragment StoreEntitySet="Language">
-          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
           <ScalarProperty Name="AspNETLanguageID" ColumnName="AspNETLanguageID" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Levels">
       <EntityTypeMapping TypeName="MagazineModel.Level">
         <MappingFragment StoreEntitySet="Level">
-          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
-          <ScalarProperty Name="LevelRepresentation" ColumnName="LevelRepresentation" />
           <ScalarProperty Name="MinPoints" ColumnName="MinPoints" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Media">
-      <EntityTypeMapping TypeName="MagazineModel.Medium">
-        <MappingFragment StoreEntitySet="Media">
-          <ScalarProperty Name="MediaID" ColumnName="MediaID" />
-          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
-          <ScalarProperty Name="EmbedHTML" ColumnName="EmbedHTML" />
-          <ScalarProperty Name="IsVideo" ColumnName="IsVideo" />
-          <ScalarProperty Name="Description1" ColumnName="Description1" />
-          <ScalarProperty Name="Description2" ColumnName="Description2" />
+          <ScalarProperty Name="LevelRepresentation" ColumnName="LevelRepresentation" />
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MediaArticleRelations">
       <EntityTypeMapping TypeName="MagazineModel.MediaArticleRelation">
         <MappingFragment StoreEntitySet="MediaArticleRelation">
-          <ScalarProperty Name="MediaArticleRelationID" ColumnName="MediaArticleRelationID" />
-          <ScalarProperty Name="MediaID" ColumnName="MediaID" />
           <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+          <ScalarProperty Name="MediaArticleRelationID" ColumnName="MediaArticleRelationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MediaFiles">
+      <EntityTypeMapping TypeName="MagazineModel.MediaFile">
+        <MappingFragment StoreEntitySet="MediaFile">
+          <ScalarProperty Name="Description2" ColumnName="Description2" />
+          <ScalarProperty Name="Description1" ColumnName="Description1" />
+          <ScalarProperty Name="IsVideo" ColumnName="IsVideo" />
+          <ScalarProperty Name="EmbedHTML" ColumnName="EmbedHTML" />
+          <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="MediaFileID" ColumnName="MediaFileID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ModifyLogs">
       <EntityTypeMapping TypeName="MagazineModel.ModifyLog">
         <MappingFragment StoreEntitySet="ModifyLog">
-          <ScalarProperty Name="ModifyLogID" ColumnName="ModifyLogID" />
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ModifiedByUserID" ColumnName="ModifiedByUserID" />
-          <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
-          <ScalarProperty Name="IP" ColumnName="IP" />
           <ScalarProperty Name="IsCreated" ColumnName="IsCreated" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="ArticleStateID" ColumnName="ArticleStateID" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="ModifiedByUserID" ColumnName="ModifiedByUserID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="ModifyLogID" ColumnName="ModifyLogID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MoneyObtaineds">
       <EntityTypeMapping TypeName="MagazineModel.MoneyObtained">
         <MappingFragment StoreEntitySet="MoneyObtained">
-          <ScalarProperty Name="MoneyObtainedID" ColumnName="MoneyObtainedID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="MoneyAmount" ColumnName="MoneyAmount" />
-          <ScalarProperty Name="XPUsed" ColumnName="XPUsed" />
-          <ScalarProperty Name="Dated" ColumnName="Dated" />
           <ScalarProperty Name="IsMoneyReceivedByUser" ColumnName="IsMoneyReceivedByUser" />
+          <ScalarProperty Name="Dated" ColumnName="Dated" />
+          <ScalarProperty Name="XPUsed" ColumnName="XPUsed" />
+          <ScalarProperty Name="MoneyAmount" ColumnName="MoneyAmount" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="MoneyObtainedID" ColumnName="MoneyObtainedID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NotificationTypes">
       <EntityTypeMapping TypeName="MagazineModel.NotificationType">
         <MappingFragment StoreEntitySet="NotificationType">
-          <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NotifiedRelations">
       <EntityTypeMapping TypeName="MagazineModel.NotifiedRelation">
         <MappingFragment StoreEntitySet="NotifiedRelation">
-          <ScalarProperty Name="NotifiedRelationID" ColumnName="NotifiedRelationID" />
-          <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
           <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+          <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
+          <ScalarProperty Name="NotifiedRelationID" ColumnName="NotifiedRelationID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Notifies">
       <EntityTypeMapping TypeName="MagazineModel.Notify">
         <MappingFragment StoreEntitySet="Notify">
-          <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
-          <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
-          <ScalarProperty Name="FromWhomUserID" ColumnName="FromWhomUserID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
-          <ScalarProperty Name="Dated" ColumnName="Dated" />
-          <ScalarProperty Name="ToUserRoleID" ColumnName="ToUserRoleID" />
-          <ScalarProperty Name="IsImportant" ColumnName="IsImportant" />
           <ScalarProperty Name="IsGlobal" ColumnName="IsGlobal" />
+          <ScalarProperty Name="IsImportant" ColumnName="IsImportant" />
+          <ScalarProperty Name="ToUserRoleID" ColumnName="ToUserRoleID" />
+          <ScalarProperty Name="Dated" ColumnName="Dated" />
+          <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FromWhomUserID" ColumnName="FromWhomUserID" />
+          <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+          <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PaymentMethods">
       <EntityTypeMapping TypeName="MagazineModel.PaymentMethod">
         <MappingFragment StoreEntitySet="PaymentMethod">
-          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
           <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Points">
       <EntityTypeMapping TypeName="MagazineModel.Point">
         <MappingFragment StoreEntitySet="Point">
-          <ScalarProperty Name="PointID" ColumnName="PointID" />
-          <ScalarProperty Name="XP" ColumnName="XP" />
-          <ScalarProperty Name="Dated" ColumnName="Dated" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="XPGainedTypeID" ColumnName="XPGainedTypeID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Dated" ColumnName="Dated" />
+          <ScalarProperty Name="XP" ColumnName="XP" />
+          <ScalarProperty Name="PointID" ColumnName="PointID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProfileBasedSearches">
       <EntityTypeMapping TypeName="MagazineModel.ProfileBasedSearch">
         <MappingFragment StoreEntitySet="ProfileBasedSearch">
-          <ScalarProperty Name="ProfileBasedSearchID" ColumnName="ProfileBasedSearchID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="SearchingText" ColumnName="SearchingText" />
           <ScalarProperty Name="IsHighPriority" ColumnName="IsHighPriority" />
+          <ScalarProperty Name="SearchingText" ColumnName="SearchingText" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProfileBasedSearchID" ColumnName="ProfileBasedSearchID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RelatedArticles">
       <EntityTypeMapping TypeName="MagazineModel.RelatedArticle">
         <MappingFragment StoreEntitySet="RelatedArticle">
-          <ScalarProperty Name="RelatedArticleID" ColumnName="RelatedArticleID" />
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
           <ScalarProperty Name="RelArticleID" ColumnName="RelArticleID" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="RelatedArticleID" ColumnName="RelatedArticleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SalaryPaids">
       <EntityTypeMapping TypeName="MagazineModel.SalaryPaid">
         <MappingFragment StoreEntitySet="SalaryPaid">
-          <ScalarProperty Name="SalaryPaidID" ColumnName="SalaryPaidID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Dated" ColumnName="Dated" />
-          <ScalarProperty Name="PaidYear" ColumnName="PaidYear" />
-          <ScalarProperty Name="PaidMonth" ColumnName="PaidMonth" />
           <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="PaidMonth" ColumnName="PaidMonth" />
+          <ScalarProperty Name="PaidYear" ColumnName="PaidYear" />
+          <ScalarProperty Name="Dated" ColumnName="Dated" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SalaryPaidID" ColumnName="SalaryPaidID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SalaryTypes">
       <EntityTypeMapping TypeName="MagazineModel.SalaryType">
         <MappingFragment StoreEntitySet="SalaryType">
-          <ScalarProperty Name="SalaryTypeID" ColumnName="SalaryTypeID" />
-          <ScalarProperty Name="SalaryTypeName" ColumnName="SalaryTypeName" />
-          <ScalarProperty Name="MonthlySalary" ColumnName="MonthlySalary" />
           <ScalarProperty Name="IsMonthlyCheck" ColumnName="IsMonthlyCheck" />
+          <ScalarProperty Name="MonthlySalary" ColumnName="MonthlySalary" />
+          <ScalarProperty Name="SalaryTypeName" ColumnName="SalaryTypeName" />
+          <ScalarProperty Name="SalaryTypeID" ColumnName="SalaryTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SendArticles">
       <EntityTypeMapping TypeName="MagazineModel.SendArticle">
         <MappingFragment StoreEntitySet="SendArticle">
-          <ScalarProperty Name="SendArticleID" ColumnName="SendArticleID" />
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
-          <ScalarProperty Name="GainedXP" ColumnName="GainedXP" />
-          <ScalarProperty Name="WrittenByUserID" ColumnName="WrittenByUserID" />
           <ScalarProperty Name="ProcessedByUserId" ColumnName="ProcessedByUserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TimeZones">
-      <EntityTypeMapping TypeName="MagazineModel.TimeZone">
-        <MappingFragment StoreEntitySet="TimeZone">
-          <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
-          <ScalarProperty Name="TimeZoneInfoID" ColumnName="TimeZoneInfoID" />
-          <ScalarProperty Name="TimeZoneDisplay" ColumnName="TimeZoneDisplay" />
+          <ScalarProperty Name="WrittenByUserID" ColumnName="WrittenByUserID" />
+          <ScalarProperty Name="GainedXP" ColumnName="GainedXP" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="SendArticleID" ColumnName="SendArticleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TopSearches">
       <EntityTypeMapping TypeName="MagazineModel.TopSearch">
         <MappingFragment StoreEntitySet="TopSearch">
-          <ScalarProperty Name="TopSearchID" ColumnName="TopSearchID" />
           <ScalarProperty Name="SearchingText" ColumnName="SearchingText" />
+          <ScalarProperty Name="TopSearchID" ColumnName="TopSearchID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="URLs">
       <EntityTypeMapping TypeName="MagazineModel.URL">
         <MappingFragment StoreEntitySet="URL">
-          <ScalarProperty Name="URLID" ColumnName="URLID" />
-          <ScalarProperty Name="Domain" ColumnName="Domain" />
-          <ScalarProperty Name="Otherpart1" ColumnName="Otherpart1" />
-          <ScalarProperty Name="Otherpart2" ColumnName="Otherpart2" />
-          <ScalarProperty Name="Otherpart3" ColumnName="Otherpart3" />
-          <ScalarProperty Name="LinkDisplay" ColumnName="LinkDisplay" />
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="FriendlyText" ColumnName="FriendlyText" />
           <ScalarProperty Name="AlsoKnownAs" ColumnName="AlsoKnownAs" />
+          <ScalarProperty Name="FriendlyText" ColumnName="FriendlyText" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="LinkDisplay" ColumnName="LinkDisplay" />
+          <ScalarProperty Name="Otherpart3" ColumnName="Otherpart3" />
+          <ScalarProperty Name="Otherpart2" ColumnName="Otherpart2" />
+          <ScalarProperty Name="Otherpart1" ColumnName="Otherpart1" />
+          <ScalarProperty Name="Domain" ColumnName="Domain" />
+          <ScalarProperty Name="URLID" ColumnName="URLID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="MagazineModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-          <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
-          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
-          <ScalarProperty Name="TotalXP" ColumnName="TotalXP" />
-          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
-          <ScalarProperty Name="LeftXPToTrade" ColumnName="LeftXPToTrade" />
-          <ScalarProperty Name="SalaryTypeID" ColumnName="SalaryTypeID" />
-          <ScalarProperty Name="JoinedDate" ColumnName="JoinedDate" />
-          <ScalarProperty Name="LastVisited" ColumnName="LastVisited" />
-          <ScalarProperty Name="StartingSalaryDate" ColumnName="StartingSalaryDate" />
           <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+          <ScalarProperty Name="StartingSalaryDate" ColumnName="StartingSalaryDate" />
+          <ScalarProperty Name="LastVisited" ColumnName="LastVisited" />
+          <ScalarProperty Name="JoinedDate" ColumnName="JoinedDate" />
+          <ScalarProperty Name="SalaryTypeID" ColumnName="SalaryTypeID" />
+          <ScalarProperty Name="LeftXPToTrade" ColumnName="LeftXPToTrade" />
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+          <ScalarProperty Name="TotalXP" ColumnName="TotalXP" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserRoles">
       <EntityTypeMapping TypeName="MagazineModel.UserRole">
         <MappingFragment StoreEntitySet="UserRole">
-          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
-          <ScalarProperty Name="Role" ColumnName="Role" />
-          <ScalarProperty Name="Priority" ColumnName="Priority" />
-          <ScalarProperty Name="XPRequired" ColumnName="XPRequired" />
-          <ScalarProperty Name="CanAqurieByXP" ColumnName="CanAqurieByXP" />
           <ScalarProperty Name="NestedRoleID" ColumnName="NestedRoleID" />
+          <ScalarProperty Name="CanAqurieByXP" ColumnName="CanAqurieByXP" />
+          <ScalarProperty Name="XPRequired" ColumnName="XPRequired" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="XPGainedTypes">
       <EntityTypeMapping TypeName="MagazineModel.XPGainedType">
         <MappingFragment StoreEntitySet="XPGainedType">
-          <ScalarProperty Name="XPGainedTypeID" ColumnName="XPGainedTypeID" />
-          <ScalarProperty Name="XPTypeName" ColumnName="XPTypeName" />
           <ScalarProperty Name="PointForThisType" ColumnName="PointForThisType" />
+          <ScalarProperty Name="XPTypeName" ColumnName="XPTypeName" />
+          <ScalarProperty Name="XPGainedTypeID" ColumnName="XPGainedTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ViewSearchingArticles">
       <EntityTypeMapping TypeName="MagazineModel.ViewSearchingArticle">
         <MappingFragment StoreEntitySet="ViewSearchingArticle">
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-          <ScalarProperty Name="FullSearhingtext" ColumnName="FullSearhingtext" />
-          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
           <ScalarProperty Name="TotalViewed" ColumnName="TotalViewed" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="FullSearhingtext" ColumnName="FullSearhingtext" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,0 +1,243 @@
+﻿@using DevBootstrapper.Models.EntityModel.POCO
+@model IEnumerable<Article>
+
+@{
+    ViewBag.Title = "Article";
+	string title = ViewBag.Title;
+    string subtitle = ViewBag.Title;
+	string controller = (string)ViewBag.controller;
+    string viewName = "Index";
+    string editLinkName = "";
+	/*
+	bool noItemsExist = Model == null;
+	if (!noItemsExist) {
+		noItemsExist = Model.Count() == 0;
+	}
+	*/
+}
+
+<h2 class="h3 gap-from-top-small">
+	<span class="glyphicon glyphicon-th-list"></span> 
+	@Html.SamePageLink(title, subtitle, false)
+</h2>
+<div class="small-bottom-gap"></div>
+
+<p class="create-btn-p">
+    <a href="@Url.Action("Create")" title="Create a new item." class="btn btn-warning create-save"><span class="glyphicon glyphicon-plus"></span> Create</a>
+</p>
+<table class="table table-hover bootstrap-table-do" data-toggle="table" data-toolbar="#filter-bar" data-show-filter="true" data-show-columns="true" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-export="true" data-pagination="true">
+	<!--<caption>@viewName</caption>-->
+	<thead>
+		<tr>		
+			<th data-field="ArticleState.State">
+				@Html.DisplayNameFor(model => model.ArticleState.State)
+			</th>
+			<th data-field="Category.CategoryDisplay">
+				@Html.DisplayNameFor(model => model.Category.CategoryDisplay)
+			</th>
+			<th data-field="Language.LanguageID">
+				@Html.DisplayNameFor(model => model.Language.LanguageID)
+			</th>
+			<th data-field="Title">
+				@Html.DisplayNameFor(model => model.Title)
+			</th>
+			<th data-field="Description">
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th data-field="Page1">
+				@Html.DisplayNameFor(model => model.Page1)
+			</th>
+			<th data-field="Page2">
+				@Html.DisplayNameFor(model => model.Page2)
+			</th>
+			<th data-field="Page3">
+				@Html.DisplayNameFor(model => model.Page3)
+			</th>
+			<th data-field="Page4">
+				@Html.DisplayNameFor(model => model.Page4)
+			</th>
+			<th data-field="FeatureMediaID">
+				@Html.DisplayNameFor(model => model.FeatureMediaID)
+			</th>
+			<th data-field="PublishDate">
+				@Html.DisplayNameFor(model => model.PublishDate)
+			</th>
+			<th data-field="ModifiedDate">
+				@Html.DisplayNameFor(model => model.ModifiedDate)
+			</th>
+			<th data-field="WrittenByUserID">
+				@Html.DisplayNameFor(model => model.WrittenByUserID)
+			</th>
+			<th data-field="LastModifiedByUserID">
+				@Html.DisplayNameFor(model => model.LastModifiedByUserID)
+			</th>
+			<th data-field="MetaDescription1">
+				@Html.DisplayNameFor(model => model.MetaDescription1)
+			</th>
+			<th data-field="MetaDescription2">
+				@Html.DisplayNameFor(model => model.MetaDescription2)
+			</th>
+			<th data-field="VerifiedByUserID">
+				@Html.DisplayNameFor(model => model.VerifiedByUserID)
+			</th>
+			<th data-field="OriginalArticleID">
+				@Html.DisplayNameFor(model => model.OriginalArticleID)
+			</th>
+			<th data-field="TotalViewed">
+				@Html.DisplayNameFor(model => model.TotalViewed)
+			</th>
+			<th data-field="LastModifiedCount">
+				@Html.DisplayNameFor(model => model.LastModifiedCount)
+			</th>
+			<th data-field="ThumbsUp">
+				@Html.DisplayNameFor(model => model.ThumbsUp)
+			</th>
+			<th data-field="NextPageArticleID">
+				@Html.DisplayNameFor(model => model.NextPageArticleID)
+			</th>
+			<th data-field="IsVerified">
+				@Html.DisplayNameFor(model => model.IsVerified)
+			</th>
+			<th data-field="IsProblematic">
+				@Html.DisplayNameFor(model => model.IsProblematic)
+			</th>
+			<th data-field="IsSendByUser">
+				@Html.DisplayNameFor(model => model.IsSendByUser)
+			</th>
+			<th data-field="IsInDefaultLanguage">
+				@Html.DisplayNameFor(model => model.IsInDefaultLanguage)
+			</th>
+			<th data-field="IsCommentsEnabled">
+				@Html.DisplayNameFor(model => model.IsCommentsEnabled)
+			</th>
+			<th data-field="IsReportedFromAnySource">
+				@Html.DisplayNameFor(model => model.IsReportedFromAnySource)
+			</th>
+			<th data-field="IsReportActionSolved">
+				@Html.DisplayNameFor(model => model.IsReportActionSolved)
+			</th>
+			<th data-field="IsAnyDraftExist">
+				@Html.DisplayNameFor(model => model.IsAnyDraftExist)
+			</th>
+			<th data-field="IsPreviousPageExist">
+				@Html.DisplayNameFor(model => model.IsPreviousPageExist)
+			</th>
+			<th data-field="IsNextPageExist">
+				@Html.DisplayNameFor(model => model.IsNextPageExist)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model) {
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.ArticleState.State)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category.CategoryDisplay)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Language.LanguageID)
+				</td>
+		
+				<td>
+					@{editLinkName = Html.DisplayFor(model => item.Title).ToString();}
+					<a href="@Url.Action("Edit", new { id=item.ArticleID })" title="@editLinkName edit..."><span class="glyphicon glyphicon-pencil"></span> @editLinkName</a>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Page1)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Page2)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Page3)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Page4)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FeatureMediaID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PublishDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ModifiedDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WrittenByUserID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LastModifiedByUserID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MetaDescription1)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MetaDescription2)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.VerifiedByUserID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.OriginalArticleID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TotalViewed)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LastModifiedCount)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ThumbsUp)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NextPageArticleID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsVerified)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsProblematic)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsSendByUser)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsInDefaultLanguage)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsCommentsEnabled)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsReportedFromAnySource)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsReportActionSolved)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsAnyDraftExist)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsPreviousPageExist)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsNextPageExist)
+				</td>
+				<td>			
+					<a href="@Url.Action("Details", new { id=item.ArticleID })" title="Details of @editLinkName." class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-print"></span> Details</a>
+					<a href="@Url.Action("Delete", new { id=item.ArticleID })" title="Delete @editLinkName" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>            
+				</td>
+			</tr>
+		}
+	</tbody>
+
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

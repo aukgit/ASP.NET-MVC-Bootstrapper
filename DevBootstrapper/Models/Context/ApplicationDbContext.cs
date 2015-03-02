@@ -164,6 +164,14 @@ namespace DevBootstrapper.Models.Context {
         #endregion
 
         public System.Data.Entity.DbSet<DevBootstrapper.Models.POCO.Identity.ApplicationUser> ApplicationUsers { get; set; }
+
+        public System.Data.Entity.DbSet<DevBootstrapper.Models.EntityModel.POCO.Article> Articles { get; set; }
+
+        public System.Data.Entity.DbSet<DevBootstrapper.Models.EntityModel.POCO.ArticleState> ArticleStates { get; set; }
+
+        public System.Data.Entity.DbSet<DevBootstrapper.Models.EntityModel.POCO.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<DevBootstrapper.Models.EntityModel.POCO.Language> Languages { get; set; }
     }
 
     #endregion

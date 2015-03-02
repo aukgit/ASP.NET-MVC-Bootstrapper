@@ -152,19 +152,6 @@
     <Property Name="LevelRepresentation" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="MinPoints" Type="decimal" Precision="18" Scale="4" Nullable="false" />
   </EntityType>
-  <EntityType Name="Media">
-    <Key>
-      <PropertyRef Name="MediaID" />
-    </Key>
-    <Property Name="MediaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CategoryID" Type="int" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
-    <Property Name="FileTypeID" Type="smallint" Nullable="false" />
-    <Property Name="EmbedHTML" Type="varchar" MaxLength="300" />
-    <Property Name="IsVideo" Type="bit" Nullable="false" />
-    <Property Name="Description1" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description2" Type="nvarchar" MaxLength="100" />
-  </EntityType>
   <EntityType Name="MediaArticleRelation">
     <Key>
       <PropertyRef Name="MediaArticleRelationID" />
@@ -172,6 +159,19 @@
     <Property Name="MediaArticleRelationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MediaID" Type="bigint" Nullable="false" />
     <Property Name="ArticleID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MediaFile">
+    <Key>
+      <PropertyRef Name="MediaFileID" />
+    </Key>
+    <Property Name="MediaFileID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="FileTypeID" Type="smallint" Nullable="false" />
+    <Property Name="EmbedHTML" Type="varchar" MaxLength="300" />
+    <Property Name="IsVideo" Type="bit" Nullable="false" />
+    <Property Name="Description1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description2" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="ModifyLog">
     <Key>
@@ -291,14 +291,6 @@
     <Property Name="WrittenByUserID" Type="bigint" Nullable="false" />
     <Property Name="ProcessedByUserId" Type="bigint" />
   </EntityType>
-  <EntityType Name="TimeZone">
-    <Key>
-      <PropertyRef Name="TimeZoneID" />
-    </Key>
-    <Property Name="TimeZoneID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TimeZoneInfoID" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="TimeZoneDisplay" Type="varchar" MaxLength="70" />
-  </EntityType>
   <EntityType Name="TopSearch">
     <Key>
       <PropertyRef Name="TopSearchID" />
@@ -359,7 +351,7 @@
     <Property Name="PointForThisType" Type="float" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOTSTRAPPER\APP_DATA\MAGAZINE.MDF.dbo.ViewSearchingArticle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\ALIM.ALIM-PC\DOCUMENTS\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOTSTRAPPER\APP_DATA\MAGAZINE.MDF.dbo.ViewSearchingArticle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ViewSearchingArticle">
     <Key>
       <PropertyRef Name="ArticleID" />
@@ -384,11 +376,11 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Advertise_Media">
-    <End Role="Media" Type="Self.Media" Multiplicity="0..1" />
+    <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="0..1" />
     <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Media">
-        <PropertyRef Name="MediaID" />
+      <Principal Role="MediaFile">
+        <PropertyRef Name="MediaFileID" />
       </Principal>
       <Dependent Role="Advertise">
         <PropertyRef Name="MediaID" />
@@ -540,11 +532,11 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Article_Media">
-    <End Role="Media" Type="Self.Media" Multiplicity="0..1" />
+    <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="0..1" />
     <End Role="Article" Type="Self.Article" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Media">
-        <PropertyRef Name="MediaID" />
+      <Principal Role="MediaFile">
+        <PropertyRef Name="MediaFileID" />
       </Principal>
       <Dependent Role="Article">
         <PropertyRef Name="FeatureMediaID" />
@@ -637,24 +629,24 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
   </Association>
   <Association Name="FK_Media_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1" />
-    <End Role="Media" Type="Self.Media" Multiplicity="*" />
+    <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Category">
         <PropertyRef Name="CategoryID" />
       </Principal>
-      <Dependent Role="Media">
+      <Dependent Role="MediaFile">
         <PropertyRef Name="CategoryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Media_FileType">
     <End Role="FileType" Type="Self.FileType" Multiplicity="1" />
-    <End Role="Media" Type="Self.Media" Multiplicity="*" />
+    <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="FileType">
         <PropertyRef Name="FileTypeID" />
       </Principal>
-      <Dependent Role="Media">
+      <Dependent Role="MediaFile">
         <PropertyRef Name="FileTypeID" />
       </Dependent>
     </ReferentialConstraint>
@@ -672,11 +664,11 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MediaArticleRelation_Media">
-    <End Role="Media" Type="Self.Media" Multiplicity="1" />
+    <End Role="MediaFile" Type="Self.MediaFile" Multiplicity="1" />
     <End Role="MediaArticleRelation" Type="Self.MediaArticleRelation" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Media">
-        <PropertyRef Name="MediaID" />
+      <Principal Role="MediaFile">
+        <PropertyRef Name="MediaFileID" />
       </Principal>
       <Dependent Role="MediaArticleRelation">
         <PropertyRef Name="MediaID" />
@@ -935,18 +927,6 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_TimeZone">
-    <End Role="TimeZone" Type="Self.TimeZone" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TimeZone">
-        <PropertyRef Name="TimeZoneID" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="TimeZoneID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_User_UserRole">
     <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -985,8 +965,8 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     <EntitySet Name="Keyword" EntityType="Self.Keyword" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MediaArticleRelation" EntityType="Self.MediaArticleRelation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MediaFile" EntityType="Self.MediaFile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ModifyLog" EntityType="Self.ModifyLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MoneyObtained" EntityType="Self.MoneyObtained" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NotificationType" EntityType="Self.NotificationType" Schema="dbo" store:Type="Tables" />
@@ -999,7 +979,6 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     <EntitySet Name="SalaryPaid" EntityType="Self.SalaryPaid" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalaryType" EntityType="Self.SalaryType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SendArticle" EntityType="Self.SendArticle" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TimeZone" EntityType="Self.TimeZone" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TopSearch" EntityType="Self.TopSearch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="URL" EntityType="Self.URL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -1018,7 +997,7 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
       <End Role="Advertise" EntitySet="Advertise" />
     </AssociationSet>
     <AssociationSet Name="FK_Advertise_Media" Association="Self.FK_Advertise_Media">
-      <End Role="Media" EntitySet="Media" />
+      <End Role="MediaFile" EntitySet="MediaFile" />
       <End Role="Advertise" EntitySet="Advertise" />
     </AssociationSet>
     <AssociationSet Name="FK_Advertise_User" Association="Self.FK_Advertise_User">
@@ -1070,7 +1049,7 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
       <End Role="Article" EntitySet="Article" />
     </AssociationSet>
     <AssociationSet Name="FK_Article_Media" Association="Self.FK_Article_Media">
-      <End Role="Media" EntitySet="Media" />
+      <End Role="MediaFile" EntitySet="MediaFile" />
       <End Role="Article" EntitySet="Article" />
     </AssociationSet>
     <AssociationSet Name="FK_Article_User" Association="Self.FK_Article_User">
@@ -1103,18 +1082,18 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     </AssociationSet>
     <AssociationSet Name="FK_Media_Category" Association="Self.FK_Media_Category">
       <End Role="Category" EntitySet="Category" />
-      <End Role="Media" EntitySet="Media" />
+      <End Role="MediaFile" EntitySet="MediaFile" />
     </AssociationSet>
     <AssociationSet Name="FK_Media_FileType" Association="Self.FK_Media_FileType">
       <End Role="FileType" EntitySet="FileType" />
-      <End Role="Media" EntitySet="Media" />
+      <End Role="MediaFile" EntitySet="MediaFile" />
     </AssociationSet>
     <AssociationSet Name="FK_MediaArticleRelation_Article" Association="Self.FK_MediaArticleRelation_Article">
       <End Role="Article" EntitySet="Article" />
       <End Role="MediaArticleRelation" EntitySet="MediaArticleRelation" />
     </AssociationSet>
     <AssociationSet Name="FK_MediaArticleRelation_Media" Association="Self.FK_MediaArticleRelation_Media">
-      <End Role="Media" EntitySet="Media" />
+      <End Role="MediaFile" EntitySet="MediaFile" />
       <End Role="MediaArticleRelation" EntitySet="MediaArticleRelation" />
     </AssociationSet>
     <AssociationSet Name="FK_ModifyLog_Article" Association="Self.FK_ModifyLog_Article">
@@ -1199,10 +1178,6 @@ warning 6002: The table/view 'E:\WORKING\GITHUB\ASP.NET-MVC-BOOTSTRAPPER\DEVBOOT
     </AssociationSet>
     <AssociationSet Name="FK_User_SalaryType" Association="Self.FK_User_SalaryType">
       <End Role="SalaryType" EntitySet="SalaryType" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_TimeZone" Association="Self.FK_User_TimeZone">
-      <End Role="TimeZone" EntitySet="TimeZone" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">

@@ -1,0 +1,116 @@
+﻿@model DevBootstrapper.Models.EntityModel.POCO.Article
+
+@{
+    ViewBag.Title = "Creating Article";
+	string title = ViewBag.Title;
+    string subtitle = ViewBag.Title;
+	var token = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller = (string)ViewBag.controller;
+	string viewName = "Create";
+
+}
+
+
+<h1 class="h2 gap-from-top-small">
+	<span class="glyphicon glyphicon-plus-sign"></span>  
+	@Html.SamePageLink(title, subtitle, false)
+</h1>
+<hr />
+@using (Html.BeginForm(viewName, controller, FormMethod.Post, new { @class = "form-horizontal Create-@ViewBag.Title", role = "form" })) 
+{
+   <div class="form-horizontal">
+		@token
+		<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <div class="input-group-btn inline">
+                        <button class="btn btn-success" title="Save and create a new one."><i class="glyphicon glyphicon-plus"></i> Create</button>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+		@Html.Partial("_SuccessMessage")
+
+		
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.EditorFor(model => model.Title)
+        @Html.EditorFor(model => model.Description)
+        @Html.EditorFor(model => model.Page1)
+        @Html.EditorFor(model => model.Page2)
+        @Html.EditorFor(model => model.Page3)
+        @Html.EditorFor(model => model.Page4)
+		<div class="form-group CategoryID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.CategoryID)<span class="red ">*</span></label>
+				<div class="col-md-10 CategoryID-combo-div">
+					@Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true })
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.CategoryID)." title="Please select @Html.DisplayNameFor(m=> m.CategoryID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
+        
+        @Html.EditorFor(model => model.FeatureMediaID)
+        @Html.EditorFor(model => model.PublishDate)
+		<div class="form-group ArticleStateID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.ArticleStateID)<span class="red ">*</span></label>
+				<div class="col-md-10 ArticleStateID-combo-div">
+					@Html.DropDownList("ArticleStateID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true })
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.ArticleStateID)." title="Please select @Html.DisplayNameFor(m=> m.ArticleStateID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
+        
+        @Html.EditorFor(model => model.ModifiedDate)
+        @Html.EditorFor(model => model.WrittenByUserID)
+        @Html.EditorFor(model => model.LastModifiedByUserID)
+        @Html.EditorFor(model => model.MetaDescription1)
+        @Html.EditorFor(model => model.MetaDescription2)
+        @Html.EditorFor(model => model.VerifiedByUserID)
+        @Html.EditorFor(model => model.OriginalArticleID)
+        @Html.EditorFor(model => model.TotalViewed)
+        @Html.EditorFor(model => model.LastModifiedCount)
+        @Html.EditorFor(model => model.ThumbsUp)
+        @Html.EditorFor(model => model.NextPageArticleID)
+		<div class="form-group LanguageID-main">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.LanguageID)<span class="red ">*</span></label>
+				<div class="col-md-10 LanguageID-combo-div">
+					@Html.DropDownList("LanguageID", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true })
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.LanguageID)." title="Please select @Html.DisplayNameFor(m=> m.LanguageID)." class="tooltip-show"><span class="glyphicon glyphicon-question-sign font-size-22 glyphicon-top-fix almost-white"></span></a>
+				</div>
+			</div>
+		</div>
+        
+        @Html.EditorFor(model => model.IsVerified)
+        @Html.EditorFor(model => model.IsProblematic)
+        @Html.EditorFor(model => model.IsSendByUser)
+        @Html.EditorFor(model => model.IsInDefaultLanguage)
+        @Html.EditorFor(model => model.IsCommentsEnabled)
+        @Html.EditorFor(model => model.IsReportedFromAnySource)
+        @Html.EditorFor(model => model.IsReportActionSolved)
+        @Html.EditorFor(model => model.IsAnyDraftExist)
+        @Html.EditorFor(model => model.IsPreviousPageExist)
+        @Html.EditorFor(model => model.IsNextPageExist)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <div class="input-group-btn inline">
+                        <button class="btn btn-success" title="Save and create a new one."><i class="glyphicon glyphicon-plus"></i> Create</button>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+    </div>
+}
+@Html.Partial("_ValidatorCommonForm", new ViewDataDictionary { 
+    {"token",token}
+})
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
