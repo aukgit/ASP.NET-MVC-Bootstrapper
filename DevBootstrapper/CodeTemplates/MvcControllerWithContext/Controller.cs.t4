@@ -97,7 +97,8 @@ namespace <#= Namespace #>
 		const string CreatedSaved = "Transaction is successfully added to the database.";
 		const string ControllerName = "<#= ControllerRootName #>";
 		///Constant value for where the controller is actually visible.
-		const string ControllerVisibleUrl = "";
+		const string ControllerVisibleUrl = "/<#= ControllerRootName #>/";
+        const string PartialControllerUrl = "/Partials/";
 
 		#endregion
 
@@ -178,9 +179,10 @@ namespace <#= Namespace #>
 					break;
 			}
 
-			try	{
+			try	{                
 				var changes = db.SaveChanges(<#= ModelVariable #>);
 				if(changes > 0){
+                    
 					return true;
 				}
 			} catch (Exception ex){
@@ -191,6 +193,20 @@ namespace <#= Namespace #>
 		#endregion
 
 		#region DropDowns Generate
+
+        #region DropDowns to paste into the partial
+            
+<#  if(relatedProperties.Values != null && relatedProperties.Values.Count() > 0) { 
+      foreach (var property in relatedProperties.Values) { #>
+            [DonutOutputCache(CacheProfile = "YearNoParam")]
+            public JsonResult Get<#= property.ForeignKeyPropertyNames[0] #>() {
+                var data = db.<#= property.EntitySetName #>.Select(n => new {id = n.<#= property.PrimaryKeyNames[0] #>, value = n.<#= property.DisplayPropertyName #>}).ToList();
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+      
+<#      } 
+    } #>
+        #endregion
 
 		public void GetDropDowns(<#= bindAttribute #><#= ModelTypeName #> <#= ModelVariable #> = null){
 <#  if(relatedProperties.Values != null && relatedProperties.Values.Count() > 0) { #>
@@ -216,6 +232,7 @@ namespace <#= Namespace #>
 		#endregion
 
 		#region Index
+        [OutputCache(CacheProfile = "Year")]
 <# if (UseAsync) { #>
         public async Task<ActionResult> Index() {
 <# } else { #>
@@ -246,6 +263,7 @@ namespace <#= Namespace #>
 
 		#region Index Find - Commented
 		/*
+        [OutputCache(CacheProfile = "Year")]
 <# if (UseAsync) { #>
         public async Task<ActionResult> Index(<#= primaryKeyNullableTypeName #> id) {
 <# } else { #>
@@ -296,7 +314,7 @@ namespace <#= Namespace #>
 
 		#region Create or Add
         public ActionResult Create() {        
-			GetDropDowns();
+			//GetDropDowns();
 			bool viewOf = ViewTapping(ViewStates.Create);
             return View();
         }
@@ -317,7 +335,7 @@ namespace <#= Namespace #>
         public ActionResult Create(<#= bindAttribute #><#= ModelTypeName #> <#= ModelVariable #>) {
 <# } #>
 			bool viewOf = ViewTapping(ViewStates.CreatePostBefore, <#= ModelVariable #>);
-			GetDropDowns(<#= ModelVariable #>);
+			//GetDropDowns(<#= ModelVariable #>);
             if (ModelState.IsValid) {            
 <# if(!String.IsNullOrEmpty(primaryKeyType) && String.Equals("System.Guid", primaryKeyType, StringComparison.OrdinalIgnoreCase)) { #>
                 <#= ModelVariable #>.<#= primaryKeyName #> = Guid.NewGuid();
@@ -327,7 +345,8 @@ namespace <#= Namespace #>
                 await db.SaveChangesAsync();
 <# } else { #>
                 bool state = SaveDatabase(ViewStates.Create, <#= ModelVariable #>);
-				if (state) {					
+				if (state) {
+                    RemoveOutputCacheOnIndex();					
 					AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
 				} else {					
 					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
@@ -361,7 +380,7 @@ namespace <#= Namespace #>
                 return HttpNotFound();
             }
 			bool viewOf = ViewTapping(ViewStates.Edit, <#= ModelVariable #>);
-			GetDropDowns(<#= ModelVariable #>); // Generating drop downs
+			//GetDropDowns(<#= ModelVariable #>); // Generating drop downs
             return View(<#= ModelVariable #>);
         }
 
@@ -385,7 +404,8 @@ namespace <#= Namespace #>
 <# } else { #>
                 bool state = SaveDatabase(ViewStates.Edit, <#= ModelVariable #>);
 				if (state) {					
-					AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
+					RemoveOutputCacheOnIndex();
+                    AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
 				} else {					
 					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
 				}
@@ -394,7 +414,7 @@ namespace <#= Namespace #>
                 return RedirectToAction("Index");
             }
             viewOf = ViewTapping(ViewStates.EditPostAfter, <#= ModelVariable #> , false);
-        	GetDropDowns(<#= ModelVariable #>);
+        	//GetDropDowns(<#= ModelVariable #>);
             AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(<#= ModelVariable #>);
         }
@@ -437,7 +457,8 @@ namespace <#= Namespace #>
             bool state = SaveDatabase(ViewStates.Delete, <#= ModelVariable #>);
 			if (!state) {			
 				AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save
-				return View(<#= ModelVariable #>);
+				
+                return View(<#= ModelVariable #>);
 			}
 <# } #>			
             return RedirectToAction("Index");
