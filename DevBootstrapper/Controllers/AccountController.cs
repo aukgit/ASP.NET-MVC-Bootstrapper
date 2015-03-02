@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using DevBootstrapper.Filter;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.ViewModels;
