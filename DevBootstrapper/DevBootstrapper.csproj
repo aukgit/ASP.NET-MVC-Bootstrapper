@@ -234,6 +234,7 @@
     <Compile Include="Controllers\AdvanceController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\Articles1Controller.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
@@ -647,6 +648,11 @@
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Articles1\Create.cshtml" />
+    <Content Include="Views\Articles1\Delete.cshtml" />
+    <Content Include="Views\Articles1\Details.cshtml" />
+    <Content Include="Views\Articles1\Edit.cshtml" />
+    <Content Include="Views\Articles1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />
