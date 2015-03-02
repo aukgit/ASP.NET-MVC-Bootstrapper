@@ -11,7 +11,7 @@ using DevBootstrapper.Models.EntityModel.POCO;
 
 namespace DevBootstrapper.Controllers
 {
-    public class ArticlesController : GenericController< MagazineEntities > {
+    public class ArticlesController : GenericController<MagazineEntities> {
 
 		#region Developer Comments - Alim Ul karim
         /*
@@ -20,14 +20,14 @@ namespace DevBootstrapper.Controllers
          *  https://fb.com/DevelopersOrganism
          *  mailto:alim@developers-organism.com	
          *  Google 'https://www.google.com.bd/search?q=Alim-ul-karim'
-         *  Dated First Written : 23 Mar 2014
-         *  Modified : 03 March 2015
+         *  First Written : 23 Mar 2014
+         *  Modified      : 03 March 2015
          * * */
-        #endregion
+		#endregion
 
-        #region Constants
+		#region Constants
 
-        const string DeletedError = "Sorry for the inconvenience, last record is not removed. Please be in touch with admin.";
+		const string DeletedError = "Sorry for the inconvenience, last record is not removed. Please be in touch with admin.";
 		const string DeletedSaved = "Removed successfully.";
 		const string EditedSaved = "Modified successfully.";
 		const string EditedError = "Sorry for the inconvenience, transaction is failed to save into the database. Please be in touch with admin.";
@@ -44,9 +44,11 @@ namespace DevBootstrapper.Controllers
 		internal enum ViewStates {
             Index,
             Create,
-            CreatePost,
+            CreatePostBefore,
+            CreatePostAfter,
             Edit,
-            EditPost,
+            EditPostBefore,
+            EditPostAfter,
             Details,
             Delete,
             DeletePost
@@ -58,6 +60,7 @@ namespace DevBootstrapper.Controllers
 		
 		public ArticlesController(): base(true){
 			ViewBag.controller = ControllerName;
+            ViewBag.visibleUrl = ControllerVisibleUrl;
 		} 
 
 		#endregion
@@ -66,7 +69,7 @@ namespace DevBootstrapper.Controllers
 		/// <summary>
         /// Always tap once before going into the view.
         /// </summary>
-        /// <param name="ViewStates">Say the view state, where it is calling from.</param>
+        /// <param name="view">Say the view state, where it is calling from.</param>
         /// <param name="Article">Gives the model if it is a editing state or creating posting state or when deleting.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
 		bool ViewTapping(ViewStates view, Article article = null){
@@ -75,13 +78,17 @@ namespace DevBootstrapper.Controllers
 					break;
 				case ViewStates.Create:
 					break;
-				case ViewStates.CreatePost: // before saving it
+				case ViewStates.CreatePostBefore: // before saving it
+					break;
+                case ViewStates.CreatePostAfter: // after saving
 					break;
 				case ViewStates.Edit:
 					break;
 				case ViewStates.Details:
 					break;
-				case ViewStates.EditPost: // before saving it
+				case ViewStates.EditPostBefore: // before saving it
+					break;
+                case ViewStates.EditPostAfter: // after saving
 					break;
 				case ViewStates.Delete:
 					break;
@@ -92,14 +99,13 @@ namespace DevBootstrapper.Controllers
 
 		#region Save database common method
 
-        /// <summary>
+		/// <summary>
         /// Better approach to save things into database(than db.SaveChanges()) for this controller.
         /// </summary>
-        /// <param name="ViewStates">Say the view state, where it is calling from.</param>
+        /// <param name="view">Say the view state, where it is calling from.</param>
         /// <param name="article">Your model information to send in email to developer when failed to save.</param>
-        /// <param name="view"></param>
         /// <returns>If successfully saved returns true or else false.</returns>
-        bool SaveDatabase(ViewStates view, Article article = null){
+		bool SaveDatabase(ViewStates view, Article article = null, bool entityValidState = true){
 			// working those at HttpPost time.
 			switch (view){
 				case ViewStates.Create:
@@ -179,9 +185,9 @@ namespace DevBootstrapper.Controllers
             return View(articles.ToList());
         }
 		*/
-        #endregion
+		#endregion
 
-        #region Details
+		#region Details
         public ActionResult Details(System.Int64 id) {
         
             if (id == null) {
@@ -215,20 +221,22 @@ namespace DevBootstrapper.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Article article) {
-			bool viewOf = ViewTapping(ViewStates.CreatePost, article);
+			bool viewOf = ViewTapping(ViewStates.CreatePostBefore, article);
 			GetDropDowns(article);
             if (ModelState.IsValid) {            
                 db.Articles.Add(article);
                 bool state = SaveDatabase(ViewStates.Create, article);
 				if (state) {					
-					AppVar.SetSavedStatus(ViewBag,CreatedSaved); // Saved Successfully.
+					AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
 				} else {					
-					AppVar.SetErrorStatus(ViewBag,CreatedError); // Failed to save
+					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
 				}
 				
+                viewOf = ViewTapping(ViewStates.CreatePostAfter, article,state);
                 return View(article);
-            }			
-			AppVar.SetErrorStatus(ViewBag,CreatedError); // Failed to Save
+            }
+            viewOf = ViewTapping(ViewStates.CreatePostAfter, article, false);			
+			AppVar.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
             return View(article);
         }
 		#endregion
@@ -254,7 +262,7 @@ namespace DevBootstrapper.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Article article) {
-			bool viewOf = ViewTapping(ViewStates.EditPost, article);
+			bool viewOf = ViewTapping(ViewStates.EditPostBefore, article);
             if (ModelState.IsValid)
             {
                 db.Entry(article).State = EntityState.Modified;
@@ -265,11 +273,12 @@ namespace DevBootstrapper.Controllers
 					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
 				}
 				
+                viewOf = ViewTapping(ViewStates.EditPostAfter, article , state);
                 return RedirectToAction("Index");
             }
-
+            viewOf = ViewTapping(ViewStates.EditPostAfter, article , false);
         	GetDropDowns(article);
-            AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to save
+            AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(article);
         }
 		#endregion

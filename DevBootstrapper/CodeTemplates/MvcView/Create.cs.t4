@@ -21,7 +21,7 @@ if(IsPartialView) {
     string subtitle = ViewBag.Title;
 	var token = (MvcHtmlString)@Html.AntiForgeryToken();
 	string controller = (string)ViewBag.controller;
-	string viewName = "<#= ViewName#>";
+	const string viewName = "<#= ViewName#>";
 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {

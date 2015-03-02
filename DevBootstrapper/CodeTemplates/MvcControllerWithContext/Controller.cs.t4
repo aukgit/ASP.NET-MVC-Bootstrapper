@@ -73,7 +73,7 @@ namespace <#= Namespace #>
         bindAttribute = String.Empty;
     }
 #>
-    public class <#= ControllerName #> : GenericController< <#= ContextTypeName #> > {
+    public class <#= ControllerName #> : GenericController<<#= ContextTypeName #>> {
 
 		#region Developer Comments - Alim Ul karim
         /*
@@ -82,8 +82,8 @@ namespace <#= Namespace #>
          *  https://fb.com/DevelopersOrganism
          *  mailto:alim@developers-organism.com	
          *  Google 'https://www.google.com.bd/search?q=Alim-ul-karim'
-         *  Dated First Written : 23 Mar 2014
-         *  Modified            : 03 March 2015
+         *  First Written : 23 Mar 2014
+         *  Modified      : 03 March 2015
          * * */
 		#endregion
 
@@ -106,9 +106,11 @@ namespace <#= Namespace #>
 		internal enum ViewStates {
             Index,
             Create,
-            CreatePost,
+            CreatePostBefore,
+            CreatePostAfter,
             Edit,
-            EditPost,
+            EditPostBefore,
+            EditPostAfter,
             Details,
             Delete,
             DeletePost
@@ -130,7 +132,7 @@ namespace <#= Namespace #>
         /// Always tap once before going into the view.
         /// </summary>
         /// <param name="view">Say the view state, where it is calling from.</param>
-        /// <param name="<#= ModelTypeName #>">Gives the model if it is a editing state or creating posting state or when deleting.</param>
+        /// <param name="<#= ModelVariable #>">Gives the model if it is a editing state or creating posting state or when deleting.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
 		bool ViewTapping(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null){
 			switch (view){
@@ -138,13 +140,17 @@ namespace <#= Namespace #>
 					break;
 				case ViewStates.Create:
 					break;
-				case ViewStates.CreatePost: // before saving it
+				case ViewStates.CreatePostBefore: // before saving it
+					break;
+                case ViewStates.CreatePostAfter: // after saving
 					break;
 				case ViewStates.Edit:
 					break;
 				case ViewStates.Details:
 					break;
-				case ViewStates.EditPost: // before saving it
+				case ViewStates.EditPostBefore: // before saving it
+					break;
+                case ViewStates.EditPostAfter: // after saving
 					break;
 				case ViewStates.Delete:
 					break;
@@ -161,7 +167,7 @@ namespace <#= Namespace #>
         /// <param name="view">Say the view state, where it is calling from.</param>
         /// <param name="<#= ModelVariable #>">Your model information to send in email to developer when failed to save.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
-		bool SaveDatabase(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null){
+		bool SaveDatabase(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null, bool entityValidState = true){
 			// working those at HttpPost time.
 			switch (view){
 				case ViewStates.Create:
@@ -310,7 +316,7 @@ namespace <#= Namespace #>
 <# } else { #>
         public ActionResult Create(<#= bindAttribute #><#= ModelTypeName #> <#= ModelVariable #>) {
 <# } #>
-			bool viewOf = ViewTapping(ViewStates.CreatePost, <#= ModelVariable #>);
+			bool viewOf = ViewTapping(ViewStates.CreatePostBefore, <#= ModelVariable #>);
 			GetDropDowns(<#= ModelVariable #>);
             if (ModelState.IsValid) {            
 <# if(!String.IsNullOrEmpty(primaryKeyType) && String.Equals("System.Guid", primaryKeyType, StringComparison.OrdinalIgnoreCase)) { #>
@@ -327,8 +333,10 @@ namespace <#= Namespace #>
 					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
 				}
 <# } #>				
+                viewOf = ViewTapping(ViewStates.CreatePostAfter, <#= ModelVariable #>,state);
                 return View(<#= ModelVariable #>);
-            }			
+            }
+            viewOf = ViewTapping(ViewStates.CreatePostAfter, <#= ModelVariable #>, false);			
 			AppVar.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
             return View(<#= ModelVariable #>);
         }
@@ -368,7 +376,7 @@ namespace <#= Namespace #>
 <# } else { #>
         public ActionResult Edit(<#= bindAttribute #><#= ModelTypeName #> <#= ModelVariable #>) {
 <# } #>
-			bool viewOf = ViewTapping(ViewStates.EditPost, <#= ModelVariable #>);
+			bool viewOf = ViewTapping(ViewStates.EditPostBefore, <#= ModelVariable #>);
             if (ModelState.IsValid)
             {
                 db.Entry(<#= ModelVariable #>).State = EntityState.Modified;
@@ -382,9 +390,10 @@ namespace <#= Namespace #>
 					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
 				}
 <# } #>				
+                viewOf = ViewTapping(ViewStates.EditPostAfter, <#= ModelVariable #> , state);
                 return RedirectToAction("Index");
             }
-
+            viewOf = ViewTapping(ViewStates.EditPostAfter, <#= ModelVariable #> , false);
         	GetDropDowns(<#= ModelVariable #>);
             AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(<#= ModelVariable #>);
