@@ -83,7 +83,7 @@ namespace <#= Namespace #>
          *  https://fb.com/DevelopersOrganism
          *  mailto:alim@developers-organism.com	
          *  Google 'https://www.google.com.bd/search?q=Alim-ul-karim'
-         *  First Written : 23 Mar 2014
+         *  First Written : 23 March 2014
          *  Modified      : 03 March 2015
          * * */
 		#endregion
@@ -196,11 +196,11 @@ namespace <#= Namespace #>
 
 		#region DropDowns Generate
 
-        #region DropDowns to paste into the partial
+        #region <#= ControllerName #> : DropDowns to paste into the partial
             
 <#  if(relatedProperties.Values != null && relatedProperties.Values.Count() > 0) { 
       foreach (var property in relatedProperties.Values) { #>
-            [DonutOutputCache(CacheProfile = "YearNoParam")]
+            // [DonutOutputCache(CacheProfile = "YearNoParam")]
             public JsonResult Get<#= property.ForeignKeyPropertyNames[0] #>() {
                 var data = db.<#= property.EntitySetName #>.Select(n => new {id = n.<#= property.PrimaryKeyNames[0] #>, value = n.<#= property.DisplayPropertyName #>}).ToList();
                 return Json(data, JsonRequestBehavior.AllowGet);

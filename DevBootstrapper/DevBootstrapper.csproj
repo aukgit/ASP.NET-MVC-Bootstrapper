@@ -235,6 +235,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\BasicController.cs">
       <SubType>Code</SubType>
