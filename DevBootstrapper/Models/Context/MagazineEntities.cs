@@ -2,7 +2,6 @@
 using System.Data.Entity.Infrastructure;
 using DevBootstrapper.Models.EntityModel.POCO;
 using DevBootstrapper.Modules.Extensions.Context;
-using TimeZone = DevBootstrapper.Models.EntityModel.POCO.TimeZone;
 
 namespace DevBootstrapper.Models.Context
 {
@@ -11,6 +10,7 @@ namespace DevBootstrapper.Models.Context
         public MagazineEntities()
             : base("name=MagazineEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,8 +31,8 @@ namespace DevBootstrapper.Models.Context
         public virtual DbSet<Keyword> Keywords { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
-        public virtual DbSet<Medium> Media { get; set; }
         public virtual DbSet<MediaArticleRelation> MediaArticleRelations { get; set; }
+        public virtual DbSet<MediaFile> MediaFiles { get; set; }
         public virtual DbSet<ModifyLog> ModifyLogs { get; set; }
         public virtual DbSet<MoneyObtained> MoneyObtaineds { get; set; }
         public virtual DbSet<NotificationType> NotificationTypes { get; set; }
@@ -45,7 +45,6 @@ namespace DevBootstrapper.Models.Context
         public virtual DbSet<SalaryPaid> SalaryPaids { get; set; }
         public virtual DbSet<SalaryType> SalaryTypes { get; set; }
         public virtual DbSet<SendArticle> SendArticles { get; set; }
-        public virtual DbSet<TimeZone> TimeZones { get; set; }
         public virtual DbSet<TopSearch> TopSearches { get; set; }
         public virtual DbSet<URL> URLs { get; set; }
         public virtual DbSet<User> Users { get; set; }

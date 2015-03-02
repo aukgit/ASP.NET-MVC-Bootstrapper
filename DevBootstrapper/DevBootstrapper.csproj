@@ -267,7 +267,7 @@
     <Compile Include="Models\EntityModel\POCO\Language.cs" />
     <Compile Include="Models\EntityModel\POCO\Level.cs" />
     <Compile Include="Models\EntityModel\POCO\MediaArticleRelation.cs" />
-    <Compile Include="Models\EntityModel\POCO\Medium.cs" />
+    <Compile Include="Models\EntityModel\POCO\MediaFile.cs" />
     <Compile Include="Models\Context\MagazineEntities.cs" />
     <Compile Include="Models\EntityModel\POCO\ModifyLog.cs" />
     <Compile Include="Models\EntityModel\POCO\MoneyObtained.cs" />
@@ -281,7 +281,6 @@
     <Compile Include="Models\EntityModel\POCO\SalaryPaid.cs" />
     <Compile Include="Models\EntityModel\POCO\SalaryType.cs" />
     <Compile Include="Models\EntityModel\POCO\SendArticle.cs" />
-    <Compile Include="Models\EntityModel\POCO\TimeZone.cs" />
     <Compile Include="Models\EntityModel\POCO\TopSearch.cs" />
     <Compile Include="Models\EntityModel\POCO\URL.cs" />
     <Compile Include="Models\EntityModel\POCO\User.cs" />
@@ -658,6 +657,7 @@
     <Folder Include="Models\DesignPattern\Abstracts\" />
     <Folder Include="Models\EntityModel\Derivable\" />
     <Folder Include="Models\EntityModel\ExtenedWithCustomMethods\" />
+    <Folder Include="Models\EntityModel\Garbage\" />
     <Folder Include="Models\EntityModel\Structs\" />
     <Folder Include="Models\POCO\AdditionalDatabase\" />
     <Folder Include="Models\POCO\Plugable\" />

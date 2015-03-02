@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
-using DevBootstrapper.Models.EntityModel;
 using DevBootstrapper.Modules.Extensions.Context;
 using DevBootstrapper.Modules.UserError;
 
