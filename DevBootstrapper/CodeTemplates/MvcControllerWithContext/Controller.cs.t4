@@ -322,14 +322,14 @@ namespace <#= Namespace #>
 <# } else { #>
                 bool state = SaveDatabase(ViewStates.Create, <#= ModelVariable #>);
 				if (state) {					
-					AppVar.SetSavedStatus(ViewBag,_createdSaved); // Saved Successfully.
+					AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
 				} else {					
-					AppVar.SetErrorStatus(ViewBag,_createdError); // Failed to save
+					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
 				}
 <# } #>				
                 return View(<#= ModelVariable #>);
             }			
-			AppVar.SetErrorStatus(ViewBag,_createdError); // Failed to Save
+			AppVar.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
             return View(<#= ModelVariable #>);
         }
 		#endregion
@@ -377,16 +377,16 @@ namespace <#= Namespace #>
 <# } else { #>
                 bool state = SaveDatabase(ViewStates.Edit, <#= ModelVariable #>);
 				if (state) {					
-					AppVar.SetSavedStatus(ViewBag, _editedSaved); // Saved Successfully.
+					AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
 				} else {					
-					AppVar.SetErrorStatus(ViewBag, _editedError); // Failed to Save
+					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
 				}
 <# } #>				
                 return RedirectToAction("Index");
             }
 
         	GetDropDowns(<#= ModelVariable #>);
-            AppVar.SetErrorStatus(ViewBag, _editedError); // Failed to save
+            AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(<#= ModelVariable #>);
         }
 		#endregion
