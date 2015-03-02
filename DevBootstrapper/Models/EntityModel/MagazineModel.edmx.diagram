@@ -5,90 +5,90 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8c8f99013a314c7b8fc8ffd176633ea8" Name="Diagram1">
-        <EntityTypeShape EntityType="MagazineModel.Advertise" Width="1.5" PointX="5.25" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.AdvertisePaymentConfirmed" Width="1.5" PointX="10.75" PointY="30.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.AdvertiseRequest" Width="1.5" PointX="7.5" PointY="36.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.AdvertiseType" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Article" Width="1.5" PointX="8.25" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.ArticleState" Width="1.5" PointX="6" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Category" Width="1.5" PointX="0.75" PointY="38.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Comment" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.DraftLog" Width="1.5" PointX="10.5" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.FileType" Width="1.5" PointX="0.75" PointY="41.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Keyword" Width="1.5" PointX="10.5" PointY="27.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Language" Width="1.5" PointX="6" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Level" Width="1.5" PointX="0.75" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Medium" Width="1.5" PointX="3" PointY="39.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.MediaArticleRelation" Width="1.5" PointX="13.5" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.ModifyLog" Width="1.5" PointX="13.5" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.MoneyObtained" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.NotificationType" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.NotifiedRelation" Width="1.5" PointX="5.25" PointY="45.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Notify" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.PaymentMethod" Width="1.5" PointX="8.5" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.Point" Width="1.5" PointX="5.25" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.ProfileBasedSearch" Width="1.5" PointX="5.25" PointY="55.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.RelatedArticle" Width="1.5" PointX="10.5" PointY="36.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.SalaryPaid" Width="1.5" PointX="5.25" PointY="58.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.SalaryType" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.SendArticle" Width="1.5" PointX="13.5" PointY="32.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.TimeZone" Width="1.5" PointX="0.75" PointY="32.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.TopSearch" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.URL" Width="1.5" PointX="10.5" PointY="42.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.User" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.UserRole" Width="1.5" PointX="0.75" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.XPGainedType" Width="1.5" PointX="3" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MagazineModel.ViewSearchingArticle" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="MagazineModel.FK_Advertise_AdvertiseType" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Advertise_Media" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Advertise_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_Advertise" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_AdvertiseRequest_Advertise" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_AdvertiseRequest" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_PaymentMethod" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_User1" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_Article1" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_ArticleState" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_Language" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_Media" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_User1" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Article_User2" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_DraftLog_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Keyword_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_MediaArticleRelation_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_ModifyLog_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_RelatedArticle_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_RelatedArticle_Article1" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_SendArticle_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_URL_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_ModifyLog_ArticleState" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Media_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Comment_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Comment_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Media_FileType" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_User_Level" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_MediaArticleRelation_Media" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_ModifyLog_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_MoneyObtained_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Notify_NotificationType" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_NotifiedRelation_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Notify_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Notify_User1" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Notify_UserRole" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Point_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_Point_XPGainedType" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_ProfileBasedSearch_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_SalaryPaid_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_User_SalaryType" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_SendArticle_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_SendArticle_User1" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_User_TimeZone" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_User_UserRole" ManuallyRouted="false" />
-        <AssociationConnector Association="MagazineModel.FK_UserRole_UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MagazineModel.Advertise" Width="1.5" PointX="5.25" PointY="25" />
+        <EntityTypeShape EntityType="MagazineModel.AdvertisePaymentConfirmed" Width="1.5" PointX="12.75" PointY="24" />
+        <EntityTypeShape EntityType="MagazineModel.AdvertiseRequest" Width="1.5" PointX="7.5" PointY="20.125" />
+        <EntityTypeShape EntityType="MagazineModel.AdvertiseType" Width="1.5" PointX="3" PointY="22.25" />
+        <EntityTypeShape EntityType="MagazineModel.Article" Width="1.5" PointX="8.25" PointY="24.125" />
+        <EntityTypeShape EntityType="MagazineModel.ArticleState" Width="1.5" PointX="6" PointY="17.5" />
+        <EntityTypeShape EntityType="MagazineModel.Category" Width="1.5" PointX="0.75" PointY="16.875" />
+        <EntityTypeShape EntityType="MagazineModel.Comment" Width="1.5" PointX="5.25" PointY="57.75" />
+        <EntityTypeShape EntityType="MagazineModel.DraftLog" Width="1.5" PointX="10.5" PointY="24.25" />
+        <EntityTypeShape EntityType="MagazineModel.FileType" Width="1.5" PointX="0.75" PointY="19.375" />
+        <EntityTypeShape EntityType="MagazineModel.Keyword" Width="1.5" PointX="10.5" PointY="43.75" />
+        <EntityTypeShape EntityType="MagazineModel.Language" Width="1.5" PointX="6" PointY="38.125" />
+        <EntityTypeShape EntityType="MagazineModel.Level" Width="1.5" PointX="0.75" PointY="28.75" />
+        <EntityTypeShape EntityType="MagazineModel.Medium" Width="1.5" PointX="3" PointY="17.125" />
+        <EntityTypeShape EntityType="MagazineModel.MediaArticleRelation" Width="1.5" PointX="13.5" PointY="33.625" />
+        <EntityTypeShape EntityType="MagazineModel.ModifyLog" Width="1.5" PointX="15.5" PointY="25" />
+        <EntityTypeShape EntityType="MagazineModel.MoneyObtained" Width="1.5" PointX="5.25" PointY="28.875" />
+        <EntityTypeShape EntityType="MagazineModel.NotificationType" Width="1.5" PointX="3" PointY="34.875" />
+        <EntityTypeShape EntityType="MagazineModel.NotifiedRelation" Width="1.5" PointX="5.25" PointY="22.5" />
+        <EntityTypeShape EntityType="MagazineModel.Notify" Width="1.5" PointX="5.25" PointY="32.875" />
+        <EntityTypeShape EntityType="MagazineModel.PaymentMethod" Width="1.5" PointX="10.5" PointY="21" />
+        <EntityTypeShape EntityType="MagazineModel.Point" Width="1.5" PointX="11.25" PointY="28.5" />
+        <EntityTypeShape EntityType="MagazineModel.ProfileBasedSearch" Width="1.5" PointX="5.25" PointY="55" />
+        <EntityTypeShape EntityType="MagazineModel.RelatedArticle" Width="1.5" PointX="10.5" PointY="41.125" />
+        <EntityTypeShape EntityType="MagazineModel.SalaryPaid" Width="1.5" PointX="5.25" PointY="51.875" />
+        <EntityTypeShape EntityType="MagazineModel.SalaryType" Width="1.5" PointX="0.75" PointY="25.5" />
+        <EntityTypeShape EntityType="MagazineModel.SendArticle" Width="1.5" PointX="13.5" PointY="29.25" />
+        <EntityTypeShape EntityType="MagazineModel.TimeZone" Width="1.5" PointX="0.75" PointY="36" />
+        <EntityTypeShape EntityType="MagazineModel.TopSearch" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MagazineModel.URL" Width="1.5" PointX="10.5" PointY="33.5" />
+        <EntityTypeShape EntityType="MagazineModel.User" Width="1.5" PointX="3" PointY="25.75" />
+        <EntityTypeShape EntityType="MagazineModel.UserRole" Width="1.5" PointX="0.75" PointY="32.25" />
+        <EntityTypeShape EntityType="MagazineModel.XPGainedType" Width="1.5" PointX="9" PointY="37.75" />
+        <EntityTypeShape EntityType="MagazineModel.ViewSearchingArticle" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="MagazineModel.FK_Advertise_AdvertiseType" />
+        <AssociationConnector Association="MagazineModel.FK_Advertise_Media" />
+        <AssociationConnector Association="MagazineModel.FK_Advertise_User" />
+        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_Advertise" />
+        <AssociationConnector Association="MagazineModel.FK_AdvertiseRequest_Advertise" />
+        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_AdvertiseRequest" />
+        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_PaymentMethod" />
+        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_User" />
+        <AssociationConnector Association="MagazineModel.FK_AdvertisePaymentConfirmed_User1" />
+        <AssociationConnector Association="MagazineModel.FK_Article_Article" />
+        <AssociationConnector Association="MagazineModel.FK_Article_Article1" />
+        <AssociationConnector Association="MagazineModel.FK_Article_ArticleState" />
+        <AssociationConnector Association="MagazineModel.FK_Article_Category" />
+        <AssociationConnector Association="MagazineModel.FK_Article_Language" />
+        <AssociationConnector Association="MagazineModel.FK_Article_Media" />
+        <AssociationConnector Association="MagazineModel.FK_Article_User" />
+        <AssociationConnector Association="MagazineModel.FK_Article_User1" />
+        <AssociationConnector Association="MagazineModel.FK_Article_User2" />
+        <AssociationConnector Association="MagazineModel.FK_DraftLog_Article" />
+        <AssociationConnector Association="MagazineModel.FK_Keyword_Article" />
+        <AssociationConnector Association="MagazineModel.FK_MediaArticleRelation_Article" />
+        <AssociationConnector Association="MagazineModel.FK_ModifyLog_Article" />
+        <AssociationConnector Association="MagazineModel.FK_RelatedArticle_Article" />
+        <AssociationConnector Association="MagazineModel.FK_RelatedArticle_Article1" />
+        <AssociationConnector Association="MagazineModel.FK_SendArticle_Article" />
+        <AssociationConnector Association="MagazineModel.FK_URL_Article" />
+        <AssociationConnector Association="MagazineModel.FK_ModifyLog_ArticleState" />
+        <AssociationConnector Association="MagazineModel.FK_Media_Category" />
+        <AssociationConnector Association="MagazineModel.FK_Comment_Comment" />
+        <AssociationConnector Association="MagazineModel.FK_Comment_User" />
+        <AssociationConnector Association="MagazineModel.FK_Media_FileType" />
+        <AssociationConnector Association="MagazineModel.FK_User_Level" />
+        <AssociationConnector Association="MagazineModel.FK_MediaArticleRelation_Media" />
+        <AssociationConnector Association="MagazineModel.FK_ModifyLog_User" />
+        <AssociationConnector Association="MagazineModel.FK_MoneyObtained_User" />
+        <AssociationConnector Association="MagazineModel.FK_Notify_NotificationType" />
+        <AssociationConnector Association="MagazineModel.FK_NotifiedRelation_User" />
+        <AssociationConnector Association="MagazineModel.FK_Notify_User" />
+        <AssociationConnector Association="MagazineModel.FK_Notify_User1" />
+        <AssociationConnector Association="MagazineModel.FK_Notify_UserRole" />
+        <AssociationConnector Association="MagazineModel.FK_Point_User" />
+        <AssociationConnector Association="MagazineModel.FK_Point_XPGainedType" />
+        <AssociationConnector Association="MagazineModel.FK_ProfileBasedSearch_User" />
+        <AssociationConnector Association="MagazineModel.FK_SalaryPaid_User" />
+        <AssociationConnector Association="MagazineModel.FK_User_SalaryType" />
+        <AssociationConnector Association="MagazineModel.FK_SendArticle_User" />
+        <AssociationConnector Association="MagazineModel.FK_SendArticle_User1" />
+        <AssociationConnector Association="MagazineModel.FK_User_TimeZone" />
+        <AssociationConnector Association="MagazineModel.FK_User_UserRole" />
+        <AssociationConnector Association="MagazineModel.FK_UserRole_UserRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
