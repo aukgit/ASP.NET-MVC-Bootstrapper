@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.EntityModel.POCO;
+using DevTrends.MvcDonutCaching;
 
 namespace DevBootstrapper.Controllers
 {
@@ -70,9 +71,9 @@ namespace DevBootstrapper.Controllers
         /// Always tap once before going into the view.
         /// </summary>
         /// <param name="view">Say the view state, where it is calling from.</param>
-        /// <param name="Article">Gives the model if it is a editing state or creating posting state or when deleting.</param>
+        /// <param name="article">Gives the model if it is a editing state or creating posting state or when deleting.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
-		bool ViewTapping(ViewStates view, Article article = null){
+		bool ViewTapping(ViewStates view, Article article = null, bool entityValidState = true){
 			switch (view){
 				case ViewStates.Index:
 					break;
@@ -105,7 +106,7 @@ namespace DevBootstrapper.Controllers
         /// <param name="view">Say the view state, where it is calling from.</param>
         /// <param name="article">Your model information to send in email to developer when failed to save.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
-		bool SaveDatabase(ViewStates view, Article article = null, bool entityValidState = true){
+		bool SaveDatabase(ViewStates view, Article article = null){
 			// working those at HttpPost time.
 			switch (view){
 				case ViewStates.Create:
@@ -129,7 +130,13 @@ namespace DevBootstrapper.Controllers
 		#endregion
 
 		#region DropDowns Generate
+        [DonutOutputCache(CacheProfile = "YearNoParam")]
+        public JsonResult GetOriginalArticleID() {
 
+            var data = db.Articles.Select(n => new {n.ArticleID, n.Title}).ToList();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 		public void GetDropDowns(Article article = null){
 			if(article != null){
 				ViewBag.OriginalArticleID = new SelectList(db.Articles.ToList(), "ArticleID", "Title", article.OriginalArticleID);
@@ -152,7 +159,6 @@ namespace DevBootstrapper.Controllers
 				ViewBag.LastModifiedByUserID = new SelectList(db.Users.ToList(), "UserID", "UserName");
 				ViewBag.VerifiedByUserID = new SelectList(db.Users.ToList(), "UserID", "UserName");
 			}
-			
 		}
 
 		public void GetDropDowns(System.Int64 id){			
@@ -172,7 +178,7 @@ namespace DevBootstrapper.Controllers
         public ActionResult Index() { 
         
             var articles = db.Articles.Include(a => a.Article2).Include(a => a.Article3).Include(a => a.ArticleState).Include(a => a.Category).Include(a => a.Language).Include(a => a.MediaFile).Include(a => a.User).Include(a => a.User1).Include(a => a.User2);
-			bool viewOf = ViewTapping(ViewStates.Index);
+			var viewOf = ViewTapping(ViewStates.Index);
             return View(articles.ToList());
         }
 		#endregion
@@ -221,7 +227,7 @@ namespace DevBootstrapper.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Article article) {
-			bool viewOf = ViewTapping(ViewStates.CreatePostBefore, article);
+			ViewTapping(ViewStates.CreatePostBefore, article);
 			GetDropDowns(article);
             if (ModelState.IsValid) {            
                 db.Articles.Add(article);
@@ -232,10 +238,10 @@ namespace DevBootstrapper.Controllers
 					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
 				}
 				
-                viewOf = ViewTapping(ViewStates.CreatePostAfter, article,state);
+                ViewTapping(ViewStates.CreatePostAfter, article,state);
                 return View(article);
             }
-            viewOf = ViewTapping(ViewStates.CreatePostAfter, article, false);			
+            ViewTapping(ViewStates.CreatePostAfter, article, false);			
 			AppVar.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
             return View(article);
         }
@@ -313,6 +319,14 @@ namespace DevBootstrapper.Controllers
 		public void RemoveOutputCache(string url) {
 			HttpResponse.RemoveOutputCacheItem(url);
 		}
+
+        public void RemoveOutputCacheOnIndex() {
+            var cacheManager = new OutputCacheManager();
+            cacheManager.RemoveItems(ControllerName, "Index");
+            cacheManager.RemoveItems(ControllerName, "List");
+            cacheManager = null;
+            GC.Collect();
+        }
 		#endregion
     }
 

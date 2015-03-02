@@ -134,7 +134,7 @@ namespace <#= Namespace #>
         /// <param name="view">Say the view state, where it is calling from.</param>
         /// <param name="<#= ModelVariable #>">Gives the model if it is a editing state or creating posting state or when deleting.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
-		bool ViewTapping(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null){
+		bool ViewTapping(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null, bool entityValidState = true){
 			switch (view){
 				case ViewStates.Index:
 					break;
@@ -167,7 +167,7 @@ namespace <#= Namespace #>
         /// <param name="view">Say the view state, where it is calling from.</param>
         /// <param name="<#= ModelVariable #>">Your model information to send in email to developer when failed to save.</param>
         /// <returns>If successfully saved returns true or else false.</returns>
-		bool SaveDatabase(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null, bool entityValidState = true){
+		bool SaveDatabase(ViewStates view, <#= ModelTypeName #> <#= ModelVariable #> = null){
 			// working those at HttpPost time.
 			switch (view){
 				case ViewStates.Create:
@@ -448,6 +448,14 @@ namespace <#= Namespace #>
 		public void RemoveOutputCache(string url) {
 			HttpResponse.RemoveOutputCacheItem(url);
 		}
+        
+        public void RemoveOutputCacheOnIndex() {
+            var cacheManager = new OutputCacheManager();
+            cacheManager.RemoveItems(ControllerName, "Index");
+            cacheManager.RemoveItems(ControllerName, "List");
+            cacheManager = null;
+            GC.Collect();
+        }
 		#endregion
     }
 

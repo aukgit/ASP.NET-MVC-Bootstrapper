@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.UserError;
 
@@ -34,6 +35,8 @@ namespace DevBootstrapper.Controllers {
                 ErrorCollector.Dispose();
             }
             base.Dispose(disposing);
+            GC.Collect();
+
         }
     }
 }
