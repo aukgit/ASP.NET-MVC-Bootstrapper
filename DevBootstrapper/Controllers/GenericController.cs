@@ -6,7 +6,7 @@ using DevBootstrapper.Modules.UserError;
 
 namespace DevBootstrapper.Controllers {
 
-    public abstract class GenericController<TContext> where TContext : DevDbContext, Controllers {
+    public abstract class GenericController<TContext> : Controller where TContext : DevDbContext, new() {
         internal ErrorCollector ErrorCollector;
         internal readonly TContext db;
 
@@ -21,7 +21,7 @@ namespace DevBootstrapper.Controllers {
 
         protected GenericController(bool applicationDbContextRequried, bool errorCollectorRequried) {
             if (errorCollectorRequried) {
-                ErrorCollector = new TContext();
+                ErrorCollector = new ErrorCollector();
             }
             if (applicationDbContextRequried) {
                 db = new TContext();
