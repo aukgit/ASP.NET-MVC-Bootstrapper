@@ -7,14 +7,14 @@ namespace DevBootstrapper.Controllers {
 
     public abstract class AdvanceController : Controller {
         internal ErrorCollector ErrorCollector;
-        internal readonly MagazineEntities db;
+        internal readonly YourEntities db;
 
         protected AdvanceController() {
         }
 
         protected AdvanceController(bool applicationDbContextRequried) {
             if (applicationDbContextRequried) {
-                db = new MagazineEntities();
+                db = new YourEntities();
             }
         }
 
@@ -23,7 +23,7 @@ namespace DevBootstrapper.Controllers {
                 ErrorCollector = new ErrorCollector();
             }
             if (applicationDbContextRequried) {
-                db = new MagazineEntities();
+                db = new YourEntities();
             }
         }
 
