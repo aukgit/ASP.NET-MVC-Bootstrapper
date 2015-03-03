@@ -16,12 +16,13 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "Creating <#= ViewDataTypeShortName #>";
-	string title = ViewBag.Title;
-    string subtitle = ViewBag.Title;
-	var token = (MvcHtmlString)@Html.AntiForgeryToken();
-	string controller = (string)ViewBag.controller;
-	const string viewName = "<#= ViewName#>";
+    ViewBag.Title           = "Creating <#= ViewDataTypeShortName #>";
+	string title            = ViewBag.Title;
+    string subtitle         = ViewBag.Title;
+	var token               = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller       = (string)ViewBag.controller;
+	const string viewName   = "<#= ViewName#>";
+    bool dropDownDynamic    = (bool)ViewBag.dropDownDynamic;
 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
@@ -125,12 +126,20 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             if (isControlHtmlAttributesSupported) {
 #>
         <!-- DropDown -->
-		@Html.EditorFor(model => model.<#= property.PropertyName #>, "IEnumerable")        
+		if(dropDownDynamic){
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic")
+        } else {
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDown", new {@SelectData = ViewBag.<#= property.PropertyName #>})            
+        }
 <#
             } else {
 #>
 		<!-- DropDown -->
-        @Html.EditorFor(model => model.<#= property.PropertyName #>, "IEnumerable")
+        if(dropDownDynamic){
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic")
+        } else {
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDown", new {@SelectData = ViewBag.<#= property.PropertyName #>})            
+        }
 <#
             }
         } else {

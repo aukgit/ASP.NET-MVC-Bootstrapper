@@ -26,7 +26,7 @@ namespace DevBootstrapper.Controllers
          * * */
 		#endregion
 
-		#region Constants
+		#region Constants and variables
 
 		const string DeletedError = "Sorry for the inconvenience, last record is not removed. Please be in touch with admin.";
 		const string DeletedSaved = "Removed successfully.";
@@ -139,7 +139,7 @@ namespace DevBootstrapper.Controllers
             
             // [DonutOutputCache(CacheProfile = "YearNoParam")]
             public JsonResult GetReportsTo() {
-                var data = db.Employees.Select(n => new {id = n.EmployeeID, value = n.LastName}).ToList();
+                var data = db.Employees.Select(n => new {id = n.EmployeeID, display = n.LastName}).ToList();
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
       

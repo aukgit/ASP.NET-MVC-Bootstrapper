@@ -35,12 +35,13 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "Editing " + Html.DisplayFor(model => model.<#= displayFieldx #>);
-	string title = ViewBag.Title;
-    string subtitle = ViewBag.Title;
-    var token = (MvcHtmlString)@Html.AntiForgeryToken();
-	string controller = (string)ViewBag.controller;
-	string viewName = "<#= ViewName#>";
+    ViewBag.Title           = "Editing " + Html.DisplayFor(model => model.<#= displayFieldx #>);
+	string title            = ViewBag.Title;
+    string subtitle         = ViewBag.Title;
+    var token               = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller       = (string)ViewBag.controller;
+	string viewName         = "<#= ViewName#>";
+    bool dropDownDynamic    = (bool)ViewBag.dropDownDynamic;
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -144,31 +145,21 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         if (property.IsForeignKey) { 
             if (isControlHtmlAttributesSupported) {
 #>
-        <div class="form-group select-<#= property.PropertyName #>-row row-select">
-			<div class="controls">
-				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.<#= property.PropertyName #>)<span class="red ">*</span></label>
-				<div class="col-md-10">
-					<div data-dev-component="true" class="select-load-dynamic select-load-dynamic-<#= property.PropertyName #>" data-prop-name="<#= property.PropertyName #>" data-select-load-dynamic="true" data-url="" data-dependable="false" data-dependable-prop="">
-                        @*@Html.DropDownList("<#= property.PropertyName #>", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true })*@
-                    </div>
-					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.<#= property.PropertyName #>)." title="Please select @Html.DisplayNameFor(m=> m.<#= property.PropertyName #>)." class="tooltip-show"><span class="question-mark-for-description"></span></a>
-				</div>
-			</div>
-		</div>
+        <!-- DropDown -->
+		if(dropDownDynamic){
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic")
+        } else {
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDown", new {@SelectData = ViewBag.<#= property.PropertyName #>})            
+        }
 <#
             } else {
 #>
-        <div class="form-group select-<#= property.PropertyName #>-row row-select">
-			<div class="controls">
-				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.<#= property.PropertyName #>)<span class="red ">*</span></label>
-				<div class="col-md-10">
-                    <div data-dev-component="true" class="select-load-dynamic select-load-dynamic-<#= property.PropertyName #>" data-prop-name="<#= property.PropertyName #>" data-select-load-dynamic="true" data-url="" data-dependable="false" data-dependable-prop="">
-                        @*@Html.DropDownList("<#= property.PropertyName #>", String.Empty)*@
-                    </div>					
-					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.<#= property.PropertyName #>)." title="Please select @Html.DisplayNameFor(m=> m.<#= property.PropertyName #>)." class="tooltip-show"><span class="question-mark-for-description"></span></a>
-				</div>
-			</div>
-		</div>
+        <!-- DropDown -->
+		if(dropDownDynamic){
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic")
+        } else {
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDown", new {@SelectData = ViewBag.<#= property.PropertyName #>})            
+        }
 <#
             }
         } else {

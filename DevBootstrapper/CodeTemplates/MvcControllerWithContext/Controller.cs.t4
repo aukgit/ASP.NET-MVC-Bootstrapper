@@ -88,7 +88,7 @@ namespace <#= Namespace #>
          * * */
 		#endregion
 
-		#region Constants
+		#region Constants and variables
 
 		const string DeletedError = "Sorry for the inconvenience, last record is not removed. Please be in touch with admin.";
 		const string DeletedSaved = "Removed successfully.";
@@ -100,7 +100,7 @@ namespace <#= Namespace #>
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/<#= ControllerRootName #>/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/Get<#= ModelTypeName #>ID";
-        bool DropDownDynamic = false;
+        bool DropDownDynamic = true;
 		#endregion
 
 		#region Enums
@@ -203,7 +203,7 @@ namespace <#= Namespace #>
       foreach (var property in relatedProperties.Values) { #>
             // [DonutOutputCache(CacheProfile = "YearNoParam")]
             public JsonResult Get<#= property.ForeignKeyPropertyNames[0] #>() {
-                var data = db.<#= property.EntitySetName #>.Select(n => new {id = n.<#= property.PrimaryKeyNames[0] #>, value = n.<#= property.DisplayPropertyName #>}).ToList();
+                var data = db.<#= property.EntitySetName #>.Select(n => new {id = n.<#= property.PrimaryKeyNames[0] #>, display = n.<#= property.DisplayPropertyName #>}).ToList();
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
       
