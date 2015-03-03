@@ -611,7 +611,7 @@
     <Content Include="Views\Shared\EditorTemplates\UploaderAuto.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UploaderPlain.cshtml" />
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\IEnumerable.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DropDown.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />

@@ -38,7 +38,7 @@ namespace DevBootstrapper.Controllers
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/Employees/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/GetEmployeeID";
-
+        bool DropDownDynamic = false;
 		#endregion
 
 		#region Enums
@@ -63,6 +63,7 @@ namespace DevBootstrapper.Controllers
 		public EmployeesController(): base(true){
 			ViewBag.controller = ControllerName;
             ViewBag.visibleUrl = ControllerVisibleUrl;
+            ViewBag.dropDownDynamic = DropDownDynamic;
 		} 
 
 		#endregion
@@ -197,14 +198,18 @@ namespace DevBootstrapper.Controllers
 
 		#region Create or Add
         public ActionResult Create() {        
-			//GetDropDowns();
+			if(DropDownDynamic == false){
+                GetDropDowns();
+            }
 			bool viewOf = ViewTapping(ViewStates.Create);
             return View();
         }
 
 		/*
 		public ActionResult Create(System.Int32 id) {        
-			GetDropDowns(id); // Generate hidden.
+			if(DropDownDynamic == false){
+                GetDropDowns(id);// Generate hidden.
+            }
 			bool viewOf = ViewTapping(ViewStates.Create);
             return View();
         }
@@ -214,7 +219,9 @@ namespace DevBootstrapper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Employee employee) {
 			bool viewOf = ViewTapping(ViewStates.CreatePostBefore, employee);
-			//GetDropDowns(employee);
+			if(DropDownDynamic == false){
+                GetDropDowns(employee);
+            }
             if (ModelState.IsValid) {            
                 db.Employees.Add(employee);
                 bool state = SaveDatabase(ViewStates.Create, employee);
@@ -245,7 +252,9 @@ namespace DevBootstrapper.Controllers
                 return HttpNotFound();
             }
 			bool viewOf = ViewTapping(ViewStates.Edit, employee);
-			//GetDropDowns(employee); // Generating drop downs
+			if(DropDownDynamic == false){
+                GetDropDowns(employee); // Generating drop downs
+            }
             return View(employee);
         }
 
@@ -269,7 +278,9 @@ namespace DevBootstrapper.Controllers
                 return RedirectToAction("Index");
             }
             viewOf = ViewTapping(ViewStates.EditPostAfter, employee , false);
-        	//GetDropDowns(employee);
+        	if(DropDownDynamic == false){
+                GetDropDowns(employee); // Generating drop downs
+            }
             AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(employee);
         }

@@ -100,7 +100,7 @@ namespace <#= Namespace #>
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/<#= ControllerRootName #>/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/Get<#= ModelTypeName #>ID";
-
+        bool DropDownDynamic = false;
 		#endregion
 
 		#region Enums
@@ -125,6 +125,7 @@ namespace <#= Namespace #>
 		public <#= ControllerName #>(): base(true){
 			ViewBag.controller = ControllerName;
             ViewBag.visibleUrl = ControllerVisibleUrl;
+            ViewBag.dropDownDynamic = DropDownDynamic;
 		} 
 
 		#endregion
@@ -316,14 +317,18 @@ namespace <#= Namespace #>
 
 		#region Create or Add
         public ActionResult Create() {        
-			//GetDropDowns();
+			if(DropDownDynamic == false){
+                GetDropDowns();
+            }
 			bool viewOf = ViewTapping(ViewStates.Create);
             return View();
         }
 
 		/*
 		public ActionResult Create(<#= primaryKeyNullableTypeName #> id) {        
-			GetDropDowns(id); // Generate hidden.
+			if(DropDownDynamic == false){
+                GetDropDowns(id);// Generate hidden.
+            }
 			bool viewOf = ViewTapping(ViewStates.Create);
             return View();
         }
@@ -337,7 +342,9 @@ namespace <#= Namespace #>
         public ActionResult Create(<#= bindAttribute #><#= ModelTypeName #> <#= ModelVariable #>) {
 <# } #>
 			bool viewOf = ViewTapping(ViewStates.CreatePostBefore, <#= ModelVariable #>);
-			//GetDropDowns(<#= ModelVariable #>);
+			if(DropDownDynamic == false){
+                GetDropDowns(<#= ModelVariable #>);
+            }
             if (ModelState.IsValid) {            
 <# if(!String.IsNullOrEmpty(primaryKeyType) && String.Equals("System.Guid", primaryKeyType, StringComparison.OrdinalIgnoreCase)) { #>
                 <#= ModelVariable #>.<#= primaryKeyName #> = Guid.NewGuid();
@@ -381,7 +388,9 @@ namespace <#= Namespace #>
                 return HttpNotFound();
             }
 			bool viewOf = ViewTapping(ViewStates.Edit, <#= ModelVariable #>);
-			//GetDropDowns(<#= ModelVariable #>); // Generating drop downs
+			if(DropDownDynamic == false){
+                GetDropDowns(<#= ModelVariable #>); // Generating drop downs
+            }
             return View(<#= ModelVariable #>);
         }
 
@@ -414,7 +423,9 @@ namespace <#= Namespace #>
                 return RedirectToAction("Index");
             }
             viewOf = ViewTapping(ViewStates.EditPostAfter, <#= ModelVariable #> , false);
-        	//GetDropDowns(<#= ModelVariable #>);
+        	if(DropDownDynamic == false){
+                GetDropDowns(<#= ModelVariable #>); // Generating drop downs
+            }
             AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(<#= ModelVariable #>);
         }
