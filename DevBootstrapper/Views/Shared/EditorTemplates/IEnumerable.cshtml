@@ -1,4 +1,4 @@
-@model IEnumerable<object>
+@model IEnumerable<SelectListItem>
 
 @{
     var isRequired = ViewData.ModelMetadata.IsRequired;
@@ -41,7 +41,13 @@
             <span class="red">@isRequiredStar</span>
         </label>
         <div class="col-md-10 combo-holding-div">
-            @Html.DropDownList(ViewData.ModelMetadata.PropertyName, null, htmlAttributes: new { @class = "form-control selectpicker", data_style = @ViewBag.Style, data_live_search = @ViewBag.LiveSearch })
+            @Html.DropDownList(ViewData.ModelMetadata.PropertyName,
+                               Model,
+                               htmlAttributes: new {
+                                   @class = "form-control selectpicker",
+                                   data_style = @ViewBag.Style,
+                                   data_live_search = @ViewBag.LiveSearch
+                               })
             @if (@ViewData.ModelMetadata.Description != null) {
                 <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="question-mark-for-description"></span></a>
             }
