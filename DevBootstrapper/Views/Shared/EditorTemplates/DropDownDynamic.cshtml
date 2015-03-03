@@ -45,13 +45,6 @@
             </label>
             <div class="col-md-10 select-holding-div">
                 
-                @Html.DropDownList(ViewData.ModelMetadata.PropertyName,
-                                   selectListData,
-                                   htmlAttributes: new {
-                                       @class = "form-control selectpicker",
-                                       data_style = @ViewBag.Style,
-                                       data_live_search = @ViewBag.LiveSearch
-                                   })
                 @if (@ViewData.ModelMetadata.Description != null) {
                     <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="question-mark-for-description"></span></a>
                 }
