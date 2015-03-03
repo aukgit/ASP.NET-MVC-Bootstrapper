@@ -38,7 +38,7 @@ namespace DevBootstrapper.Controllers
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/Employees/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/GetEmployeeID";
-        bool DropDownDynamic = false;
+        bool DropDownDynamic = true;
 		#endregion
 
 		#region Enums

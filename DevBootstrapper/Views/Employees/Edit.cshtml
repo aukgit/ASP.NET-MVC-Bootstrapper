@@ -2,12 +2,13 @@
 @model Employee
 
 @{
-    ViewBag.Title = "Editing " + Html.DisplayFor(model => model.LastName);
-	string title = ViewBag.Title;
-    string subtitle = ViewBag.Title;
-    var token = (MvcHtmlString)@Html.AntiForgeryToken();
-	string controller = (string)ViewBag.controller;
-	string viewName = "Edit";
+    ViewBag.Title           = "Editing " + Html.DisplayFor(model => model.LastName);
+	string title            = ViewBag.Title;
+    string subtitle         = ViewBag.Title;
+    var token               = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller       = (string)ViewBag.controller;
+	string viewName         = "Edit";
+    bool dropDownDynamic    = (bool)ViewBag.dropDownDynamic;
 }
 
 
@@ -53,17 +54,12 @@
         @Html.EditorFor(model => model.Extension)
         @Html.EditorFor(model => model.Photo)
         @Html.EditorFor(model => model.Notes)
-        <div class="form-group select-ReportsTo-row row-select">
-			<div class="controls">
-				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.ReportsTo)<span class="red ">*</span></label>
-				<div class="col-md-10">
-					<div data-dev-component="true" class="select-load-dynamic select-load-dynamic-ReportsTo" data-prop-name="ReportsTo" data-select-load-dynamic="true" data-url="" data-dependable="false" data-dependable-prop="">
-                        @*@Html.DropDownList("ReportsTo", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true })*@
-                    </div>
-					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.ReportsTo)." title="Please select @Html.DisplayNameFor(m=> m.ReportsTo)." class="tooltip-show"><span class="question-mark-for-description"></span></a>
-				</div>
-			</div>
-		</div>
+        <!-- DropDown -->
+		if(dropDownDynamic){
+            @Html.EditorFor(model => model.ReportsTo, "DropDownDynamic")
+        } else {
+            @Html.EditorFor(model => model.ReportsTo, "DropDown", new {@SelectData = ViewBag.ReportsTo})            
+        }
         @Html.EditorFor(model => model.PhotoPath)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
