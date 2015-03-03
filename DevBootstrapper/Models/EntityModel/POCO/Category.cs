@@ -15,14 +15,14 @@ namespace DevBootstrapper.Models.EntityModel.POCO
     {
         public Category()
         {
-            this.Articles = new HashSet<Article>();
-            this.MediaFiles = new HashSet<MediaFile>();
+            this.Products = new HashSet<Product>();
         }
     
         public int CategoryID { get; set; }
-        public string CategoryDisplay { get; set; }
+        public string CategoryName { get; set; }
+        public string Description { get; set; }
+        public byte[] Picture { get; set; }
     
-        public virtual ICollection<Article> Articles { get; set; }
-        public virtual ICollection<MediaFile> MediaFiles { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

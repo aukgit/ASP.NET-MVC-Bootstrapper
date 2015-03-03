@@ -234,8 +234,6 @@
     <Compile Include="Controllers\AdvanceController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\Articles1Controller.cs" />
-    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\BasicController.cs">
@@ -249,47 +247,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Context\NorthwindEntities.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUserRole.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUser.cs" />
-    <Compile Include="Models\EntityModel\MagazineModel.Designer.cs">
+    <Compile Include="Models\EntityModel\NorthwindModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MagazineModel.edmx</DependentUpon>
+      <DependentUpon>NorthwindModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\EntityModel\POCO\Advertise.cs" />
-    <Compile Include="Models\EntityModel\POCO\AdvertisePaymentConfirmed.cs" />
-    <Compile Include="Models\EntityModel\POCO\AdvertiseRequest.cs" />
-    <Compile Include="Models\EntityModel\POCO\AdvertiseType.cs" />
-    <Compile Include="Models\EntityModel\POCO\Article.cs" />
-    <Compile Include="Models\EntityModel\POCO\ArticleState.cs" />
     <Compile Include="Models\EntityModel\POCO\Category.cs" />
-    <Compile Include="Models\EntityModel\POCO\Comment.cs" />
-    <Compile Include="Models\EntityModel\POCO\DraftLog.cs" />
-    <Compile Include="Models\EntityModel\POCO\FileType.cs" />
-    <Compile Include="Models\EntityModel\POCO\Keyword.cs" />
-    <Compile Include="Models\EntityModel\POCO\Language.cs" />
-    <Compile Include="Models\EntityModel\POCO\Level.cs" />
-    <Compile Include="Models\EntityModel\POCO\MediaArticleRelation.cs" />
-    <Compile Include="Models\EntityModel\POCO\MediaFile.cs" />
-    <Compile Include="Models\Context\MagazineEntities.cs" />
-    <Compile Include="Models\EntityModel\POCO\ModifyLog.cs" />
-    <Compile Include="Models\EntityModel\POCO\MoneyObtained.cs" />
-    <Compile Include="Models\EntityModel\POCO\NotificationType.cs" />
-    <Compile Include="Models\EntityModel\POCO\NotifiedRelation.cs" />
-    <Compile Include="Models\EntityModel\POCO\Notify.cs" />
-    <Compile Include="Models\EntityModel\POCO\PaymentMethod.cs" />
-    <Compile Include="Models\EntityModel\POCO\Point.cs" />
-    <Compile Include="Models\EntityModel\POCO\ProfileBasedSearch.cs" />
-    <Compile Include="Models\EntityModel\POCO\RelatedArticle.cs" />
-    <Compile Include="Models\EntityModel\POCO\SalaryPaid.cs" />
-    <Compile Include="Models\EntityModel\POCO\SalaryType.cs" />
-    <Compile Include="Models\EntityModel\POCO\SendArticle.cs" />
-    <Compile Include="Models\EntityModel\POCO\TopSearch.cs" />
-    <Compile Include="Models\EntityModel\POCO\URL.cs" />
-    <Compile Include="Models\EntityModel\POCO\User.cs" />
-    <Compile Include="Models\EntityModel\POCO\UserRole.cs" />
-    <Compile Include="Models\EntityModel\POCO\ViewSearchingArticle.cs" />
-    <Compile Include="Models\EntityModel\POCO\XPGainedType.cs" />
+    <Compile Include="Models\EntityModel\POCO\Customer.cs" />
+    <Compile Include="Models\EntityModel\POCO\CustomerDemographic.cs" />
+    <Compile Include="Models\EntityModel\POCO\Employee.cs" />
+    <Compile Include="Models\EntityModel\POCO\NorthwindModel.Context.cs" />
+    <Compile Include="Models\EntityModel\POCO\OrderDetail.cs" />
+    <Compile Include="Models\EntityModel\POCO\Product.cs" />
+    <Compile Include="Models\EntityModel\POCO\ProductOrder.cs" />
+    <Compile Include="Models\EntityModel\POCO\Region.cs" />
+    <Compile Include="Models\EntityModel\POCO\Shipper.cs" />
+    <Compile Include="Models\EntityModel\POCO\Supplier.cs" />
+    <Compile Include="Models\EntityModel\POCO\Territory.cs" />
     <Compile Include="Models\Inputs.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\Country.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\CountryAlternativeName.cs" />
@@ -370,9 +347,9 @@
     <Compile Include="Utility\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Magazine.mdf" />
-    <Content Include="App_Data\Magazine_log.ldf">
-      <DependentUpon>Magazine.mdf</DependentUpon>
+    <Content Include="App_Data\Northwind.mdf" />
+    <Content Include="App_Data\Northwind_log.ldf">
+      <DependentUpon>Northwind.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\StoredProceduresCreate\ResetRoles.sql" />
     <Content Include="App_Data\StoredProceduresCreate\ResetCoreSettings.sql" />
@@ -643,16 +620,6 @@
     <Content Include="Views\Shared\EditorTemplates\UploaderPlain.cshtml" />
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\IEnumerable.cshtml" />
-    <Content Include="Views\Articles\Create.cshtml" />
-    <Content Include="Views\Articles\Delete.cshtml" />
-    <Content Include="Views\Articles\Details.cshtml" />
-    <Content Include="Views\Articles\Edit.cshtml" />
-    <Content Include="Views\Articles\Index.cshtml" />
-    <Content Include="Views\Articles1\Create.cshtml" />
-    <Content Include="Views\Articles1\Delete.cshtml" />
-    <Content Include="Views\Articles1\Details.cshtml" />
-    <Content Include="Views\Articles1\Edit.cshtml" />
-    <Content Include="Views\Articles1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />
@@ -676,12 +643,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\EntityModel\MagazineModel.edmx">
+    <EntityDeploy Include="Models\EntityModel\NorthwindModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MagazineModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NorthwindModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\EntityModel\MagazineModel.edmx.diagram">
-      <DependentUpon>MagazineModel.edmx</DependentUpon>
+    <Content Include="Models\EntityModel\NorthwindModel.edmx.diagram">
+      <DependentUpon>NorthwindModel.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
