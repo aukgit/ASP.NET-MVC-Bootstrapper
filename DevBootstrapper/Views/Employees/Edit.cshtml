@@ -1,0 +1,87 @@
+﻿@using DevBootstrapper.Models.EntityModel.POCO
+@model Employee
+
+@{
+    ViewBag.Title = "Editing " + Html.DisplayFor(model => model.LastName);
+	string title = ViewBag.Title;
+    string subtitle = ViewBag.Title;
+    var token = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller = (string)ViewBag.controller;
+	string viewName = "Edit";
+}
+
+
+
+<h1 class="h2 gap-from-top-small">
+	<span class="glyphicon glyphicon-edit"></span>  
+	@Html.SamePageLink(title, subtitle, false)
+</h1>
+<hr />
+@using (Html.BeginForm(viewName, controller, FormMethod.Post, new { @class = "form-horizontal Create-@ViewBag.Title", role = "form" })) 
+{
+   <div class="form-horizontal">
+		@token
+		<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <a href="@Url.Action("Delete", new { id = Model.EmployeeID })" title="Delete this record?" class="btn btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <div class="input-group-btn inline">
+                        <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+		@Html.Partial("_SuccessMessage")
+		
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		
+		@Html.HiddenFor(model => model.EmployeeID)
+        @Html.EditorFor(model => model.LastName)
+        @Html.EditorFor(model => model.FirstName)
+        @Html.EditorFor(model => model.Title)
+        @Html.EditorFor(model => model.TitleOfCourtesy)
+        @Html.EditorFor(model => model.BirthDate)
+        @Html.EditorFor(model => model.HireDate)
+        @Html.EditorFor(model => model.Address)
+        @Html.EditorFor(model => model.City)
+        @Html.EditorFor(model => model.Region)
+        @Html.EditorFor(model => model.PostalCode)
+        @Html.EditorFor(model => model.Country)
+        @Html.EditorFor(model => model.HomePhone)
+        @Html.EditorFor(model => model.Extension)
+        @Html.EditorFor(model => model.Photo)
+        @Html.EditorFor(model => model.Notes)
+        <div class="form-group select-ReportsTo-row row-select">
+			<div class="controls">
+				<label class="col-md-2 control-label">@Html.DisplayNameFor(m=> m.ReportsTo)<span class="red ">*</span></label>
+				<div class="col-md-10">
+					<div data-dev-component="true" class="select-load-dynamic select-load-dynamic-ReportsTo" data-prop-name="ReportsTo" data-select-load-dynamic="true" data-url="" data-dependable="false" data-dependable-prop="">
+                        @*@Html.DropDownList("ReportsTo", null, htmlAttributes: new { @class = "form-control selectpicker", data_style = "btn-success", data_live_search = true })*@
+                    </div>
+					<a href="#" data-toggle="tooltip" data-original-title="Please select @Html.DisplayNameFor(m=> m.ReportsTo)." title="Please select @Html.DisplayNameFor(m=> m.ReportsTo)." class="tooltip-show"><span class="question-mark-for-description"></span></a>
+				</div>
+			</div>
+		</div>
+        @Html.EditorFor(model => model.PhotoPath)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <a href="@Url.Action("Delete", new { id = Model.EmployeeID })" title="Delete this record?" class="btn btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <div class="input-group-btn inline">
+                        <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+    </div>
+}
+
+@Html.Partial("_ValidatorCommonForm", new ViewDataDictionary { 
+    {"token",token}
+})
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
