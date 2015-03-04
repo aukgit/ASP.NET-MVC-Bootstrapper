@@ -231,7 +231,7 @@ $(function () {
                 var optionStarting = "<option class='devorgCombo-item " + itemClasses + "'";
                 var optionEnding = "</option>";
                 for (var i = 0; i < length; i++) {
-                    if (i == 0) {
+                    if (i === 0) {
                         selected = "";
                     }
                     options += optionStarting + selected + "value='" + listOfItems[i].id + "'>" + extraHtmlWithEachElement + listOfItems[i].text + optionEnding;
