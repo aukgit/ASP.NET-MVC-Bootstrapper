@@ -32,19 +32,31 @@
         if (ViewBag.Style == null) {
             ViewBag.Style = "btn-success";
         }
+
+        if (ViewBag.Id != null) {
+            ViewBag.Id = " id='" + ViewBag.Id + "' ";
+        }
         //ViewBag.SelectData = SelectList
 
-        var selectListData = (IEnumerable<SelectListItem>)ViewBag.SelectData;
+        // var selectListData = (IEnumerable<SelectListItem>)ViewBag.SelectData;
 
     }
-    <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+    <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName dynamic-select-container">
         <div class="controls">
             <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
                 @ViewData.ModelMetadata.DisplayName
                 <span class="red">@isRequiredStar</span>
             </label>
-            <div class="col-md-10 select-holding-div">
-                
+            <div class="col-md-10 select-holding-div select-dynamic-holding-div">
+                <div class="dynamic-select-load"
+                     data-prop="@ViewData.ModelMetadata.PropertyName"
+                     data-dev-dynamic-select="true"
+                     data-url=""
+                     data-value=""
+                     data-dependable=""
+                     @ViewBag.Id>
+                    
+                </div>
                 @if (@ViewData.ModelMetadata.Description != null) {
                     <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="question-mark-for-description"></span></a>
                 }

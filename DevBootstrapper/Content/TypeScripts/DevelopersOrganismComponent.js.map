@@ -1,1 +1,1 @@
-{"version":3,"file":"DevelopersOrganismComponent.js","sourceRoot":"","sources":["DevelopersOrganismComponent.ts"],"names":[],"mappings":""}
+{"version":3,"file":"DevelopersOrganismComponent.js","sourceRoot":"","sources":["DevelopersOrganismComponent.ts"],"names":["DevOrg","DevOrg.f"],"mappings":"AAAA,IAAO,MAAM,CAKZ;AALD,WAAO,MAAM,EAAC,CAAC;IACXA,IAAIA,CAACA,GAAGA,OAAOA,CAACA;IAChBA,SAAgBA,CAACA;QACbC,MAAMA,CAACA,CAACA,CAACA;IACbA,CAACA;IAFeD,QAACA,GAADA,CAEfA,CAAAA;AACLA,CAACA,EALM,MAAM,KAAN,MAAM,QAKZ"}
