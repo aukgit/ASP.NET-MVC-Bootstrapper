@@ -272,8 +272,13 @@ namespace DevBootstrapper.Modules.Cache {
         }
 
         public void TableStatusSetUnChanged(string table) {
-            var path = _defaultDependencyFileLocation + table + ".table";
-            File.WriteAllText(path, UnChanged);
+            try {
+                var path = _defaultDependencyFileLocation + table + ".table";
+                File.WriteAllText(path, UnChanged);
+            } catch (Exception ex) {
+                DevMVCComponent.Starter.HanldeError.HandleBy(ex);
+            }
+            
         }
 
         /// <summary>
