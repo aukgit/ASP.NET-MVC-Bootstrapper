@@ -29,7 +29,7 @@ $.devOrg.dynamicSelect = {
     dataValueAttribute: "data-value",
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
 
-    dynamicSelectLoad: function() {
+    dynamicSelectLoad: function(additionalSelector, returnedJsonIdColumnName,returnedJsonDisplayColumnName) {
         /// <summary>
         /// select div and push info based on properties
         /// class="dynamic-select-load"
@@ -42,7 +42,7 @@ $.devOrg.dynamicSelect = {
         ///      data-load-auto="true/false">
         /// </summary>
         "use strict";
-        var selector = "div." + this.dynamicSelectClass + "[" + this.isDynamicSelectElementAttribute + "=true]";
+        var selector = "div." + this.dynamicSelectClass + "[" + this.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
         var $dynamicDiv = $(selector);
 
         var length = $dynamicDiv.length;
@@ -51,18 +51,35 @@ $.devOrg.dynamicSelect = {
             var url = $div.attr("data-url");
 
             if (!_.isEmpty(url)) {
-                processJsonDynamicSelect($div);
+                processJsonDynamicSelect($div, returnedJsonIdColumnName, returnedJsonDisplayColumnName);
             }
         }
     },
 
-    processJsonDynamicSelect: function ($div) {
+    processJsonDynamicSelect: function ($div, returnedJsonIdColumnName, returnedJsonDisplayColumnName) {
         "use strict";
+
+
         var isDependable = $div.attr(this.isDependableAttribute);
         var url = $div.attr(this.urlAttribute);
+
+        if (_.isUndefined(returnedJsonIdColumnName) || _.isNull(returnedJsonIdColumnName)) {
+            returnedJsonIdColumnName = "id";
+        }
+
+        if (_.isUndefined(returnedJsonDisplayColumnName) || _.isNull(returnedJsonDisplayColumnName)) {
+            returnedJsonDisplayColumnName = "display";
+        }
+
         if (isDependable === 'false') {
             // no dependency yet.
-            $.getJSON()
+            $.getJSON(url).then(function(data) {
+                //successfully got  the json
+
+            },
+            function(jqXHR, textStatus, err) {
+                console.error.log("can't retrived the data from given url : " + url);
+            });
         }
     }
 }
