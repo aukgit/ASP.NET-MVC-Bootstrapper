@@ -38,6 +38,7 @@ namespace DevBootstrapper.Controllers
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/Employees/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/GetEmployeeID";
+        const string DynamicLoadPartialController = "/Partials/";
         bool DropDownDynamic = true;
 		#endregion
 
@@ -64,6 +65,7 @@ namespace DevBootstrapper.Controllers
 			ViewBag.controller = ControllerName;
             ViewBag.visibleUrl = ControllerVisibleUrl;
             ViewBag.dropDownDynamic = DropDownDynamic;
+            ViewBag.dynamicLoadPartialController = DynamicLoadPartialController;
 		} 
 
 		#endregion

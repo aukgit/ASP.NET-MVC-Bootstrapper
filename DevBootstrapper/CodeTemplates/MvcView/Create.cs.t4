@@ -23,7 +23,7 @@ if(IsPartialView) {
 	string controller           = (string)ViewBag.controller;
 	const string viewName       = "<#= ViewName#>";
     bool dropDownDynamic        = (bool)ViewBag.dropDownDynamic;
-    string partialController    = ViewBag.dynamicLoadPartialController
+    string partialController    = ViewBag.dynamicLoadPartialController;
 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
@@ -127,8 +127,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             if (isControlHtmlAttributesSupported) {
 #>
         <!-- DropDown -->
-		if(dropDownDynamic){
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic", new {@Url = @partialController + "Get<#= property.PropertyName #>"  ,@IsDependable = false,@LiveSearch = true,@Style = null,@Id = null, @DynamicLoad = true})
+		@if(dropDownDynamic){
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic", new {@Url = @partialController + "Get<#= property.PropertyName #>" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
         } else {
             @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDown", new {@SelectData = ViewBag.<#= property.PropertyName #>})            
         }
@@ -136,8 +136,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             } else {
 #>
 		<!-- DropDown -->
-        if(dropDownDynamic){
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic", new {@Url = @partialController + "Get<#= property.PropertyName #>"  ,@IsDependable = false,@LiveSearch = true,@Style = null,@Id = null, @DynamicLoad = true})
+        @if(dropDownDynamic){
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDownDynamic", new {@Url = @partialController + "Get<#= property.PropertyName #>" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
         } else {
             @Html.EditorFor(model => model.<#= property.PropertyName #>, "DropDown", new {@SelectData = ViewBag.<#= property.PropertyName #>})            
         }

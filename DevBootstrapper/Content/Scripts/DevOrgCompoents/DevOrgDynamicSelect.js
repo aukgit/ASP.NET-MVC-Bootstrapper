@@ -31,7 +31,7 @@ $.devOrg.dynamicSelect = {
     additionalCssAttribute: "data-additional-css",
     liveSearchAttribute: "data-live-search",
     $dynamicSelectContainerDiv: $("div.dynamic-select-container[data-dynamic-select-container=true]"),
-    dynamicSelectLoad: function (additionalSelector) {
+    initalize: function (additionalSelector) {
         /// <summary>
         /// select div and push info based on properties
         /// class="dynamic-select-load"
@@ -44,10 +44,17 @@ $.devOrg.dynamicSelect = {
         ///      data-load-auto="true/false">
         /// </summary>
         "use strict";
+        if (additionalSelector === undefined) {
+            additionalSelector = "";
+        }
+
         var selector = "div." + this.dynamicSelectClass + "[" + this.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
         var $dynamicDiv = $(selector);
 
         var length = $dynamicDiv.length;
+
+        
+
         for (var i = 0; i < length; i++) {
             var $div = $($dynamicDiv[i]);
             var url = $div.attr("data-url");

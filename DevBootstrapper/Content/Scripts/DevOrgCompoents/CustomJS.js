@@ -1,16 +1,27 @@
-﻿/// <reference path="DevOrgRegSlide.js" />
-/// <reference path="../jquery-2.1.1.js" />
-/// <reference path="../jquery-2.1.1.intellisense.js" />
-/// <reference path="../bootstrap.js" />
-/// <reference path="../bootstrap-select.js" />
-/// <reference path="../bootstrap-datepicker.js" />
-/// <reference path="../bootstrap-datetimepicker.js" />
+﻿/// <reference path="../jQuery/jquery-2.1.3.js" />
+/// <reference path="../jQuery/jquery-2.1.3.intellisense.js" />
+/// <reference path="../jQuery/jquery.number.js" />
+/// <reference path="../jQuery/jquery.unobtrusive-ajax.js" />
+/// <reference path="../jQuery/jquery.validate-vsdoc.js" />
+/// <reference path="../jQuery/jquery.validate.js" />
+/// <reference path="../jQuery/jquery.validate.unobtrusive.js" />
+/// <reference path="../jQuery/moment.js" />
+/// <reference path="../jQuery/underscore.js" />
+/// <reference path="../jQuery/validation.js" />
+/// <reference path="../jQuery/Upload/jquery.fileupload.js" />
+/// <reference path="../Bootstrap/bootstrap.js" />
+/// <reference path="../Bootstrap/bootstrap-select.js" />
+/// <reference path="../Bootstrap/bootstrap-table-export.js" />
+/// <reference path="../Bootstrap/bootstrap-table-filter.js" />
+/// <reference path="../Bootstrap/bootstrap-datetimepicker.js" />
+/// <reference path="../Bootstrap/bootstrap-datepicker.js" />
+/// <reference path="../Bootstrap/common-tasks-run-every-page.js" />
+/// <reference path="../Bootstrap/modernizr-2.8.3.js" />
+/// <reference path="../Bootstrap/respond.js" />
+/// <reference path="../Bootstrap/star-rating.js" />
+/// <reference path="DevOrgDynamicSelect.js" />
 /// <reference path="DevOrgComponent.js" />
-/// <reference path="../dataTables.bootstrap.js" />
-/// <reference path="../underscore.js" />
-/// <reference path="../../Content/Scripts/star-rating.js" />
-/// <reference path="../../Content/Scripts/bootstrap-table-filter.js" />
-/// <reference path="../../Content/Scripts/Scripts/jquery.elastic.source.js" />
+
 /*
  * Written by Alim Ul Karim
  * Developers Organism
@@ -99,6 +110,7 @@ $(function () {
         $tables.bootstrapTable();
     }
 
+    $.devOrg.dynamicSelect.initalize();//load dynamic select
 
     $("select.selectpicker").selectpicker();
     $.devOrg.bootstrapComboSelectIndex("select.selectpicker", 0);
@@ -164,5 +176,5 @@ $(function () {
 
     });
 
-
+    
 });

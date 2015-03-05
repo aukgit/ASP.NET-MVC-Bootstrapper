@@ -690,7 +690,7 @@ $.devOrg = {
         }
     },
     ratingMordernize: function () {
-        "use strict";
+
         var ratingItems = $(".rating-5");
 
         if (ratingItems.length > 0) {

@@ -216,6 +216,9 @@ THE SOFTWARE.
                     } else {
                         eData = picker.element.find("input").data();
                     }
+                    if (eData === undefined) {
+                        return;
+                    }
                     if (eData.dateFormat !== undefined) {
                         picker.options.format = eData.dateFormat;
                     }

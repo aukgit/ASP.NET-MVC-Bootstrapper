@@ -36,6 +36,7 @@ namespace DevBootstrapper {
                 "~/Content/Scripts/Bootstrap/bootstrap-table-export.js",
                 "~/Content/Scripts/Bootstrap/star-rating.js",
                 "~/Content/Scripts/DevOrgCompoents/DevOrgComponent.js",
+                "~/Content/Scripts/DevOrgCompoents/DevOrgDynamicSelect.js",
                 "~/Content/Scripts/DevOrgCompoents/CustomJS.js"
                 ));
 

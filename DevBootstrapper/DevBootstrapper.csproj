@@ -407,6 +407,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\Scripts\DevOrgCompoents\DevOrgDynamicSelect.js" />
     <Content Include="Content\Scripts\jQuery\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\jQuery\Upload\canvas-to-blob.min.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\Upload\devOrgUploadConfig.js" />
@@ -612,12 +613,12 @@
     <Content Include="Views\Shared\EditorTemplates\UploaderPlain.cshtml" />
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDown.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DropDownDynamic.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DropDownDynamic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />
@@ -627,6 +628,7 @@
     <Folder Include="Areas\Admin\Views\Default\" />
     <Folder Include="Content\Scripts\npm\" />
     <Folder Include="Content\Scripts\OthersComponents\" />
+    <Folder Include="Content\TypeScripts\" />
     <Folder Include="Models\DesignPattern\Abstracts\" />
     <Folder Include="Models\EntityModel\Derivable\" />
     <Folder Include="Models\EntityModel\ExtenedWithCustomMethods\" />
@@ -649,9 +651,6 @@
       <DependentUpon>NorthwindModel.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Content\TypeScripts\DevelopersOrganismComponent.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
