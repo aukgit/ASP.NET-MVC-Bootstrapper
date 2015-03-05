@@ -390,7 +390,6 @@ $.devOrg = {
     },
 
     validateInputFromServer: function (jQuerytextBoxSelector, validationUrl, internalValidatorSpanClassName, isAlwaysFocusUntilValid, isDisable, minChars, isSubmitTheWholeForm, onInvalidStringStatementInCrossMark, onValidStringStatementInCheckMark, $formGiven, maxTryLimit) {
-        "use strict";
         /// <summary>
         ///     Made validation easy on the fly with a server response.
         /// </summary>
@@ -406,6 +405,9 @@ $.devOrg = {
         ///     valid statement show on the check mark. By default: fieldDisplayname +
         ///     is available and valid
         /// </param>
+
+        "use strict";
+
         //if (_.isEmpty(isSubmitTheWholeForm)) {
         //    isSubmitTheWholeForm = false;
         //}
@@ -465,7 +467,7 @@ $.devOrg = {
                     formData = $formGiven.serializeArray();
                 }
 
-                console.log(formData);
+                //console.log(formData);
 
                 var validatorName = "span.CustomValidation." + internalValidatorSpanClassName;
                 var token = $("input[name=__RequestVerificationToken]").val();
@@ -613,7 +615,9 @@ $.devOrg = {
 
 
     fillRegisterFieldsOnDemo: function () {
-
+        /// <summary>
+        /// Test Function
+        /// </summary>
         var i = 0;
         var controls = $(".form-group");
         var $fields = controls.find("input[type=text]");
@@ -650,7 +654,10 @@ $.devOrg = {
     },
     //'.make-it-tab'
     bootstrapTabsMordernize: function (tabSelector) {
-        
+        /// <summary>
+        /// give jQuery selector to add tab functionality
+        /// </summary>
+        /// <param name="tabSelector"></param>
         "use strict";
         var bootstrapTabs = $(tabSelector);
         if (bootstrapTabs.length > 0) {

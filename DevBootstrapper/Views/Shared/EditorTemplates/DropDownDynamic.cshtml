@@ -52,13 +52,14 @@
         </label>
         <div class="col-md-10 select-holding-div select-dynamic-holding-div">
             <div class="dynamic-select-load"
-                    data-prop="@ViewData.ModelMetadata.PropertyName"
-                    data-dev-dynamic-select="true"
-                    data-url="@ViewBag.Url"
-                    data-value="Model"
-                    data-dependable="@ViewBag.IsDependable"
-                    @ViewBag.Id
-                    data-load-auto="@ViewBag.DynamicLoad">
+                 data-prop="@ViewData.ModelMetadata.PropertyName"
+                 data-dev-dynamic-select="@ViewBag.DynamicLoad"
+                 data-url="@ViewBag.Url"
+                 data-value="Model"
+                 data-dependable="@ViewBag.IsDependable"
+                 data-dependable-prop-name=""
+                 @ViewBag.Id
+                >
 
             </div>
             @if (@ViewData.ModelMetadata.Description != null) {
