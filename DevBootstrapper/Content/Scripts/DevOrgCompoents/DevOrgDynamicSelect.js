@@ -30,7 +30,7 @@ $.devOrg.dynamicSelect = {
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
     additionalCssAttribute: "data-additional-css",
     liveSearchAttribute: "data-live-search",
-
+    $dynamicSelectContainerDiv: $("div.dynamic-select-container[data-dynamic-select-container=true]"),
     dynamicSelectLoad: function (additionalSelector) {
         /// <summary>
         /// select div and push info based on properties
@@ -76,20 +76,28 @@ $.devOrg.dynamicSelect = {
         if (isDependable === 'false') {
             // no dependency yet.
             $.getJSON(url).then(function (jsonData) {
-                //successfully got  the json
-                var options = "";
-                for (var i = 0; i < data.length; i++) { // build options
-                    if (!_.isEmpty(value) && (value === data[i].id || data[i].display === value)) {
-                        options += ("<option value='" + data[i].id + "' Selected='selected'>" + data[i].display + "</option>");
-                    } else {
-                        options += ("<option value='" + data[i].id + "'>" + data[i].display + "</option>");
-                    }
-                }
+                if (jsonData.length > 0) {
 
-                var compactSelectHtml = $(options)
-                                        .appendTo(selectBox);
-                $div.append(compactSelectHtml);
-                
+                    $div.hide();
+                    //successfully got  the json
+                    var options = "";
+                    for (var i = 0; i < jsonData.length; i++) { // build options
+                        if (!_.isEmpty(value) && (value === jsonData[i].id || jsonData[i].display === value)) {
+                            options += ("<option value='" + jsonData[i].id + "' Selected='selected'>" + jsonData[i].display + "</option>");
+                        } else {
+                            options += ("<option value='" + jsonData[i].id + "'>" + jsonData[i].display + "</option>");
+                        }
+                    }
+
+                    var compactSelectHtml = $(options)
+                        .appendTo(selectBox);
+                    $div.append(compactSelectHtml);
+                    $div.show('slow');
+                } else {
+                    // no data found
+                    // hide the container
+                    this.$dynamicSelectContainerDiv.hide();
+                }
             },
             function (jqXHR, textStatus, err) {
                 console.error.log("Can't retrieved the data from given url : " + url);
