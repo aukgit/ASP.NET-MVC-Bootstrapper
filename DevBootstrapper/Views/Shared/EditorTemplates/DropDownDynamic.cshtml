@@ -55,11 +55,12 @@
                  data-prop="@ViewData.ModelMetadata.PropertyName"
                  data-dev-dynamic-select="@ViewBag.DynamicLoad"
                  data-url="@ViewBag.Url"
-                 data-value="Model"
+                 data-value="@Model"
+                 data-additional-css=""
+                 data-live-search="@ViewBag.LiveSearch"
                  data-dependable="@ViewBag.IsDependable"
                  data-dependable-prop-name=""
-                 @ViewBag.Id
-                >
+                 @ViewBag.Id>
 
             </div>
             @if (@ViewData.ModelMetadata.Description != null) {

@@ -22,14 +22,16 @@
 
 $.devOrg.dynamicSelect = {
     isDependableAttribute: "data-dependable",
-    dependablePropertyNameAttribute:"data-dependable-prop-name",
+    dependablePropertyNameAttribute: "data-dependable-prop-name",
     propertyNameAttribute: "data-prop",
     dynamicSelectClass: "dynamic-select-load",
     urlAttribute: "data-url",
     dataValueAttribute: "data-value",
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
+    additionalCssAttribute: "data-additional-css",
+    liveSearchAttribute: "data-live-search",
 
-    dynamicSelectLoad: function(additionalSelector, returnedJsonIdColumnName,returnedJsonDisplayColumnName) {
+    dynamicSelectLoad: function (additionalSelector) {
         /// <summary>
         /// select div and push info based on properties
         /// class="dynamic-select-load"
@@ -51,34 +53,46 @@ $.devOrg.dynamicSelect = {
             var url = $div.attr("data-url");
 
             if (!_.isEmpty(url)) {
-                processJsonDynamicSelect($div, returnedJsonIdColumnName, returnedJsonDisplayColumnName);
+                processJsonDynamicSelect($div);
             }
         }
     },
 
-    processJsonDynamicSelect: function ($div, returnedJsonIdColumnName, returnedJsonDisplayColumnName) {
+    processJsonDynamicSelect: function ($div) {
         "use strict";
 
 
         var isDependable = $div.attr(this.isDependableAttribute);
         var url = $div.attr(this.urlAttribute);
+        var value = $div.attr(this.dataValueAttribute);
+        var liveSearch = $div.attr(this.liveSearchAttribute);
+        var additionCss = $div.attr(this.additionalCssAttribute);
+        var propName = $div.attr(this.propertyNameAttribute);
+        var addAttr = "data-style='btn-success " + additionCss + "'" +
+                      "data-live-search='" + liveSearch + "'";
+        var selectBox = $("<select name='" + propName + "' " + addAttr + " />");
 
-        if (_.isUndefined(returnedJsonIdColumnName) || _.isNull(returnedJsonIdColumnName)) {
-            returnedJsonIdColumnName = "id";
-        }
-
-        if (_.isUndefined(returnedJsonDisplayColumnName) || _.isNull(returnedJsonDisplayColumnName)) {
-            returnedJsonDisplayColumnName = "display";
-        }
 
         if (isDependable === 'false') {
             // no dependency yet.
-            $.getJSON(url).then(function(data) {
+            $.getJSON(url).then(function (jsonData) {
                 //successfully got  the json
+                var options = "";
+                for (var i = 0; i < data.length; i++) { // build options
+                    if (!_.isEmpty(value) && (value === data[i].id || data[i].display === value)) {
+                        options += ("<option value='" + data[i].id + "' Selected='selected'>" + data[i].display + "</option>");
+                    } else {
+                        options += ("<option value='" + data[i].id + "'>" + data[i].display + "</option>");
+                    }
+                }
 
+                var compactSelectHtml = $(options)
+                                        .appendTo(selectBox);
+                $div.append(compactSelectHtml);
+                
             },
-            function(jqXHR, textStatus, err) {
-                console.error.log("can't retrived the data from given url : " + url);
+            function (jqXHR, textStatus, err) {
+                console.error.log("Can't retrieved the data from given url : " + url);
             });
         }
     }
