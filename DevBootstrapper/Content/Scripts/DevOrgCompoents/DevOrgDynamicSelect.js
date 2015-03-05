@@ -60,7 +60,7 @@ $.devOrg.dynamicSelect = {
             var url = $div.attr("data-url");
 
             if (!_.isEmpty(url)) {
-                processJsonDynamicSelect($div);
+                this.processJsonDynamicSelect($div);
             }
         }
     },
@@ -77,8 +77,8 @@ $.devOrg.dynamicSelect = {
         var propName = $div.attr(this.propertyNameAttribute);
         var addAttr = "data-style='btn-success " + additionCss + "'" +
                       "data-live-search='" + liveSearch + "'";
-        var selectBox = $("<select name='" + propName + "' " + addAttr + " />");
-
+        var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='selectpicker form-control' >";
+        var selectBoxEnd = "</select>";
 
         if (isDependable === 'false') {
             // no dependency yet.
@@ -96,9 +96,8 @@ $.devOrg.dynamicSelect = {
                         }
                     }
 
-                    var compactSelectHtml = $(options)
-                        .appendTo(selectBox);
-                    $div.append(compactSelectHtml);
+                    var compactSelectHtml = selectBoxStart + options + selectBoxEnd;
+                    $div.html(compactSelectHtml);
                     $div.show('slow');
                 } else {
                     // no data found
