@@ -83,8 +83,9 @@ $.devOrg.dynamicSelect = {
         var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='selectpicker form-control' >";
         var selectBoxEnd = "</select>";
 
-        if (isDependable === 'false') {
+        if (isDependable === "false") {
             // no dependency yet.
+            getJsonProcessSelectDynamicOptions(url, $div, selectBoxStart, selectBoxEnd);
 
         } else {
             // dependency
@@ -92,18 +93,18 @@ $.devOrg.dynamicSelect = {
             var $parentSelectDiv = this.$allDynamicImmidiaeSelectDivs.filter("[" + this.dependablePropertyNameAttribute + "=" + dependablePropName + "]");
             var $parentSelect = $parentSelectDiv.find("select");
             url += $parentSelect.val();
-
-
-
-            $parentSelect.change(function() {
-
+            
+            $parentSelect.change(function () {
+                $div.html("");
+                getJsonProcessSelectDynamicOptions(url, $div, selectBoxStart, selectBoxEnd);
             });
         }
     },
-    parentSelectStateChangeFunction: function() {
+    //parentSelectStateChangeFunction: function() {
         
-    },
+    //},
     fixUrlWithSlash: function (url) {
+        "use strict";
         /// <summary>
         /// if url doesn't contain slash at end
         /// slash will be added
@@ -112,13 +113,14 @@ $.devOrg.dynamicSelect = {
         /// <param name="url">site.com/ or site.com will return site.com/</param>
         var len = url.length;
         var lastChar = url[len - 1];
-        if (lastChar !== '/') {
-            url += '/';
+        if (lastChar !== "/") {
+            url += "/";
         }
         return url;
     },
 
     getJsonProcessSelectDynamicOptions: function (url, $div, selectStart, selectEnd) {
+        "use strict";
         $.getJSON(url).then(function (jsonData) {
             if (jsonData.length > 0) {
                 $div.hide();
@@ -134,7 +136,7 @@ $.devOrg.dynamicSelect = {
 
                 var compactSelectHtml = selectStart + options + selectEnd;
                 $div.html(compactSelectHtml);
-                $div.show('slow');
+                $div.show("slow");
             } else {
                 // no data found
                 // hide the container

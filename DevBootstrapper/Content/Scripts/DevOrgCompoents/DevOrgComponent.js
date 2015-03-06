@@ -146,17 +146,17 @@ $.devOrg = {
     // json sender should sends as id and text only.
     smartDependableCombo: function (parentjQuerySelector, mainDivContainerSelector, innerDivSelectorForPlacingCombo, urlToGetJson, placeComboName, placedComboId, placedComboClass, placedComboAdditionalClassesWithItems, placedComboAdditionalHtmlWithEachItem) {
         "use strict";
-        var parentjQueryCombo = $(parentjQuerySelector);
-        if (_.isEmpty(parentjQueryCombo)) {
+        var $parentjQueryCombo = $(parentjQuerySelector);
+        if (_.isEmpty($parentjQueryCombo)) {
             console.error.log("error raised from developers organism component's smartDependableCombo that no parent is detected.");
             return; // nothing exist in parent.
         }
-        var mainDiv = $(mainDivContainerSelector);
-        var innerDiv = mainDiv.find(innerDivSelectorForPlacingCombo);
+        var $mainDiv = $(mainDivContainerSelector);
+        var $innerDiv = $mainDiv.find(innerDivSelectorForPlacingCombo);
 
         function hideDiv() {
-            if (mainDiv.length > 0) {
-                mainDiv.hide();
+            if ($mainDiv.length > 0) {
+                $mainDiv.hide();
             } else {
                 console.error.log("devOrg->smartDependableCombo: main div not found for '" + mainDivContainerSelector + "'");
             }
@@ -166,11 +166,11 @@ $.devOrg = {
 
         function showDiv() {
             // remove select if exist.
-            var options = innerDiv.find("select, div.bootstrap-select");
+            var options = $innerDiv.find("select, div.bootstrap-select");
             if (options.length > 0) {
                 options.remove();
             }
-            mainDiv.show("slow");
+            $mainDiv.show("slow");
         }
 
         function createCombo(response) {
@@ -190,15 +190,15 @@ $.devOrg = {
             }
 
 
-            innerDiv.prepend("<select " + placeComboName + " class='devOrgSmartCombo form-control " + placedComboClass + " selectpicker'" + placedComboId + "data-style='" + placedComboClass + "' data-live-search='true'></select>");
-            var combo = innerDiv.find("select");
+            $innerDiv.prepend("<select " + placeComboName + " class='devOrgSmartCombo form-control " + placedComboClass + " selectpicker'" + placedComboId + "data-style='" + placedComboClass + "' data-live-search='true'></select>");
+            var combo = $innerDiv.find("select");
             $.devOrg.appenedComboElement(combo, response, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithItems);
             combo.selectpicker();
         }
 
-        parentjQueryCombo.change(function () {
+        $parentjQueryCombo.change(function () {
             "use strict";
-            var parentComboValue = parentjQueryCombo.val();
+            var parentComboValue = $parentjQueryCombo.val();
             var actualUrl = urlToGetJson + "/" + parentComboValue;
             $.ajax({
                 type: "POST",
@@ -209,7 +209,7 @@ $.devOrg = {
                         hideDiv();
                         return;
                     }
-                    innerDiv = $(mainDivContainerSelector + " " + innerDivSelectorForPlacingCombo);
+                    $innerDiv = $(mainDivContainerSelector + " " + innerDivSelectorForPlacingCombo);
                     // items exist.
                     showDiv(); //remove inner options if exist any
                     createCombo(response); // create if necessary and then append options to it.
