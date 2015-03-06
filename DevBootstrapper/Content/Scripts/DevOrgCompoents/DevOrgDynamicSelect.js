@@ -103,10 +103,14 @@ $.devOrg.dynamicSelect = {
             var $parentSelect = $parentSelectDiv.find("select");
             if ($parentSelect.length > 0) {
                 $parentSelect.change(function () {
-                    var parentValue = $(this).val();
+                    var $currentSelect = $(this);
+                    var parentValue = $currentSelect.val();
+                    if (parentValue === null) {
+                       
+                    }
                     var tempUrl = url + parentValue;
                     $div.html("");
-                    this.getJsonProcessSelectDynamicOptions(tempUrl, $div, selectBoxStart, selectBoxEnd, value);
+                    this.getJsonProcessSelectDynamicOptions(tempUrl, $div, selectBoxStart, selectBoxEnd);
                 });
             } else {
                 this.$dependancySelectsHasNotProcessed.push($div);
@@ -133,7 +137,17 @@ $.devOrg.dynamicSelect = {
     },
 
     getJsonProcessSelectDynamicOptions: function (url, $div, selectStart, selectEnd, value) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="$div"></param>
+        /// <param name="selectStart"></param>
+        /// <param name="selectEnd"></param>
+        /// <param name="value"></param>
         "use strict";
+        var propName = $div.attr(this.propertyNameAttribute);
+
         $.getJSON(url).then(function (jsonData) {
             if (jsonData.length > 0) {
                 $div.hide();
@@ -154,7 +168,8 @@ $.devOrg.dynamicSelect = {
             } else {
                 // no data found
                 // hide the container
-                this.$dynamicSelectContainerDiv.hide();
+                var selectOfParentDiv = "[.form-row-" + propName + "]";
+                this.$dynamicSelectContainerDiv.filter(selectOfParentDiv).hide();
             }
         },
         function (jqXHR, textStatus, err) {

@@ -191,15 +191,15 @@ $.devOrg = {
 
 
             $innerDiv.prepend("<select " + placeComboName + " class='devOrgSmartCombo form-control " + placedComboClass + " selectpicker'" + placedComboId + "data-style='" + placedComboClass + "' data-live-search='true'></select>");
-            var combo = $innerDiv.find("select");
-            $.devOrg.appenedComboElement(combo, response, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithItems);
-            combo.selectpicker();
+            var $combo = $innerDiv.find("select");
+            $.devOrg.appenedComboElement($combo, response, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithItems);
+            $combo.selectpicker();
         }
 
         $parentjQueryCombo.change(function () {
             "use strict";
-            var parentComboValue = $parentjQueryCombo.val();
-            var actualUrl = urlToGetJson + "/" + parentComboValue;
+            var $parentComboValue = $parentjQueryCombo.val();
+            var actualUrl = urlToGetJson + "/" + $parentComboValue;
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
@@ -223,7 +223,14 @@ $.devOrg = {
     // listOfItems = expected a json item with id and text property
     // extraHtmlWithEachElement : represents like below
     // <option .. > extraHtmlWithEachElement Item </option>
-    appenedComboElement: function (combo, listOfItems, extraHtmlWithEachElement, itemClasses) {
+    appenedComboElement: function ($combo, listOfItems, extraHtmlWithEachElement, itemClasses) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="$combo"></param>
+        /// <param name="listOfItems"></param>
+        /// <param name="extraHtmlWithEachElement"></param>
+        /// <param name="itemClasses"></param>
         "use strict";
         // followed by the best practice : http:// allthingscraig.com/blog/2012/09/28/best-practice-appending-items-to-the-dom-using-jquery/
         if (_.isEmpty(itemClasses)) {
@@ -244,7 +251,7 @@ $.devOrg = {
                 }
                 options += optionStarting + selected + "value='" + listOfItems[i].id + "'>" + extraHtmlWithEachElement + listOfItems[i].text + optionEnding;
             }
-            combo.append(options);
+            $combo.append(options);
         }
     },
     bootstrapComboSelectbyFindingValue: function (comboSelector, searchForvalue) {
