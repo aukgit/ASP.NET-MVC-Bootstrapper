@@ -31,7 +31,8 @@ $.devOrg.dynamicSelect = {
     additionalCssAttribute: "data-additional-css",
     liveSearchAttribute: "data-live-search",
     $dynamicSelectContainerDiv: $("div.dynamic-select-container[data-dynamic-select-container=true]"),
-    initalize: function (additionalSelector) {
+    $allDynamicImmidiaeSelectDivs: null, // will be defined from initialize function
+    initialize: function (additionalSelector) {
         /// <summary>
         /// select div and push info based on properties
         /// class="dynamic-select-load"
@@ -50,10 +51,10 @@ $.devOrg.dynamicSelect = {
 
         var selector = "div." + this.dynamicSelectClass + "[" + this.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
         var $dynamicDiv = $(selector);
-
+        this.$allDynamicImmidiaeSelectDivs = $dynamicDiv;
         var length = $dynamicDiv.length;
 
-        
+
 
         for (var i = 0; i < length; i++) {
             var $div = $($dynamicDiv[i]);
@@ -70,6 +71,8 @@ $.devOrg.dynamicSelect = {
 
 
         var isDependable = $div.attr(this.isDependableAttribute);
+        var dependablePropName = $div.attr(this.dependablePropertyNameAttribute);
+
         var url = $div.attr(this.urlAttribute);
         var value = $div.attr(this.dataValueAttribute);
         var liveSearch = $div.attr(this.liveSearchAttribute);
@@ -82,32 +85,42 @@ $.devOrg.dynamicSelect = {
 
         if (isDependable === 'false') {
             // no dependency yet.
-            $.getJSON(url).then(function (jsonData) {
-                if (jsonData.length > 0) {
 
-                    $div.hide();
-                    //successfully got  the json
-                    var options = "";
-                    for (var i = 0; i < jsonData.length; i++) { // build options
-                        if (!_.isEmpty(value) && (value === jsonData[i].id || jsonData[i].display === value)) {
-                            options += ("<option value='" + jsonData[i].id + "' Selected='selected'>" + jsonData[i].display + "</option>");
-                        } else {
-                            options += ("<option value='" + jsonData[i].id + "'>" + jsonData[i].display + "</option>");
-                        }
-                    }
-
-                    var compactSelectHtml = selectBoxStart + options + selectBoxEnd;
-                    $div.html(compactSelectHtml);
-                    $div.show('slow');
-                } else {
-                    // no data found
-                    // hide the container
-                    this.$dynamicSelectContainerDiv.hide();
-                }
-            },
-            function (jqXHR, textStatus, err) {
-                console.error.log("Can't retrieved the data from given url : " + url);
-            });
+        } else {
+            // dependency
+            if (url.)
+            var $parentSelectDiv = this.$allDynamicImmidiaeSelectDivs.filter("[" + this.dependablePropertyNameAttribute + "=" + dependablePropName + "]");
+            var $parentSelect = $parentSelectDiv.find("select");
+            url += $parentSelect.val();
         }
+    },
+
+    getJsonProcessSelectDynamicOptions: function (url, $div, selectStart, selectEnd) {
+        $.getJSON(url).then(function (jsonData) {
+            if (jsonData.length > 0) {
+                $div.hide();
+                //successfully got  the json
+                var options = "";
+                for (var i = 0; i < jsonData.length; i++) { // build options
+                    if (!_.isEmpty(value) && (value === jsonData[i].id || jsonData[i].display === value)) {
+                        options += ("<option value='" + jsonData[i].id + "' Selected='selected'>" + jsonData[i].display + "</option>");
+                    } else {
+                        options += ("<option value='" + jsonData[i].id + "'>" + jsonData[i].display + "</option>");
+                    }
+                }
+
+                var compactSelectHtml = selectStart + options + selectEnd;
+                $div.html(compactSelectHtml);
+                $div.show('slow');
+            } else {
+                // no data found
+                // hide the container
+                this.$dynamicSelectContainerDiv.hide();
+            }
+        },
+        function (jqXHR, textStatus, err) {
+            console.error.log("Can't retrieved the data from given url : " + url);
+        });
     }
+
 }

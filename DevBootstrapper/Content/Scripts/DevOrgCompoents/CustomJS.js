@@ -110,7 +110,7 @@ $(function () {
         $tables.bootstrapTable();
     }
 
-    $.devOrg.dynamicSelect.initalize();//load dynamic select
+    $.devOrg.dynamicSelect.initialize();//load dynamic select
 
     $("select.selectpicker").selectpicker();
     $.devOrg.bootstrapComboSelectIndex("select.selectpicker", 0);
