@@ -1,0 +1,90 @@
+﻿@using DevBootstrapper.Models.EntityModel.POCO
+@model ProductOrder
+
+@{
+    ViewBag.Title               = "Editing " + Html.DisplayFor(model => model.CustomerID);
+	string title                = ViewBag.Title;
+    string subtitle             = ViewBag.Title;
+    var token                   = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller           = (string)ViewBag.controller;
+	string viewName             = "Edit";
+    bool dropDownDynamic        = (bool)ViewBag.dropDownDynamic;
+    string partialController    = ViewBag.dynamicLoadPartialController;
+}
+
+
+
+<h1 class="h2 gap-from-top-small">
+	<span class="glyphicon glyphicon-edit"></span>  
+	@Html.SamePageLink(title, subtitle, false)
+</h1>
+<hr />
+@using (Html.BeginForm(viewName, controller, FormMethod.Post, new { @class = "form-horizontal Create-@ViewBag.Title", role = "form" })) 
+{
+   <div class="form-horizontal">
+		@token
+		<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <a href="@Url.Action("Delete", new { id = Model.ProductOrderID })" title="Delete this record?" class="btn btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <div class="input-group-btn inline">
+                        <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+		@Html.Partial("_SuccessMessage")
+		
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		
+		@Html.HiddenFor(model => model.ProductOrderID)
+        <!-- DropDown -->
+		@if(dropDownDynamic){
+            @Html.EditorFor(model => model.CustomerID, "DropDownDynamic", new {@Url = @partialController + "GetCustomerID" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+        } else {
+            @Html.EditorFor(model => model.CustomerID, "DropDown", new {@SelectData = ViewBag.CustomerID})            
+        }
+        <!-- DropDown -->
+		@if(dropDownDynamic){
+            @Html.EditorFor(model => model.EmployeeID, "DropDownDynamic", new {@Url = @partialController + "GetEmployeeID" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+        } else {
+            @Html.EditorFor(model => model.EmployeeID, "DropDown", new {@SelectData = ViewBag.EmployeeID})            
+        }
+        @Html.EditorFor(model => model.OrderDate)
+        @Html.EditorFor(model => model.RequiredDate)
+        @Html.EditorFor(model => model.ShippedDate)
+        <!-- DropDown -->
+		@if(dropDownDynamic){
+            @Html.EditorFor(model => model.ShipVia, "DropDownDynamic", new {@Url = @partialController + "GetShipVia" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+        } else {
+            @Html.EditorFor(model => model.ShipVia, "DropDown", new {@SelectData = ViewBag.ShipVia})            
+        }
+        @Html.EditorFor(model => model.Freight)
+        @Html.EditorFor(model => model.ShipName)
+        @Html.EditorFor(model => model.ShipAddress)
+        @Html.EditorFor(model => model.ShipCity)
+        @Html.EditorFor(model => model.ShipRegion)
+        @Html.EditorFor(model => model.ShipPostalCode)
+        @Html.EditorFor(model => model.ShipCountry)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                    <a href="@Url.Action("Delete", new { id = Model.ProductOrderID })" title="Delete this record?" class="btn btn-danger" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <div class="input-group-btn inline">
+                        <button title="Save and create new one" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+    </div>
+}
+
+@Html.Partial("_ValidatorCommonForm", new ViewDataDictionary { 
+    {"token",token}
+})
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
