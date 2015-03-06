@@ -37,7 +37,7 @@ namespace DevBootstrapper.Controllers
 
         #region ProductOrdersController : DropDowns to paste into the partial
         public JsonResult GetEmployeeID() {
-            var data = db.Employees.Select(n => new { id = n.EmployeeID, display = n.LastName }).ToList();
+            var data = db.Employees.Select(n => new { id = n.EmployeeID, display = n.LastName + " (" + n.EmployeeID + ")" }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         // [DonutOutputCache(CacheProfile = "YearNoParam")]

@@ -102,10 +102,11 @@ $.devOrg.dynamicSelect = {
             var $parentSelectDiv = $(selectOfParentDiv);
             var $parentSelect = $parentSelectDiv.find("select");
             if ($parentSelect.length > 0) {
-                url += $parentSelect.val();
                 $parentSelect.change(function () {
+                    var parentValue = $(this).val();
+                    var tempUrl = url + parentValue;
                     $div.html("");
-                    this.getJsonProcessSelectDynamicOptions(url, $div, selectBoxStart, selectBoxEnd, value);
+                    this.getJsonProcessSelectDynamicOptions(tempUrl, $div, selectBoxStart, selectBoxEnd, value);
                 });
             } else {
                 this.$dependancySelectsHasNotProcessed.push($div);

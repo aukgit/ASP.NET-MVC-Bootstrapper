@@ -12,7 +12,7 @@ using DevBootstrapper.Models.EntityModel.POCO;
 
 namespace DevBootstrapper.Controllers
 {
-    public class ProductOrdersController : GenericController<NorthwindEntities> {
+    public class ProductOrdersXController : GenericController<NorthwindEntities> {
 
 		#region Developer Comments - Alim Ul karim
         /*
@@ -61,7 +61,7 @@ namespace DevBootstrapper.Controllers
 
 		#region Constructors
 		
-		public ProductOrdersController(): base(true){
+		public ProductOrdersXController(): base(true){
 			ViewBag.controller = ControllerName;
             ViewBag.visibleUrl = ControllerVisibleUrl;
             ViewBag.dropDownDynamic = DropDownDynamic;
