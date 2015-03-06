@@ -12,7 +12,7 @@ using DevTrends.MvcDonutCaching;
 
 namespace DevBootstrapper.Controllers
 {
-    [DonutOutputCache(CacheProfile = "YearNoParam")]
+    [OutputCache(CacheProfile = "YearNoParam")]
     public class PartialsController : GenericController<NorthwindEntities> {
         
         

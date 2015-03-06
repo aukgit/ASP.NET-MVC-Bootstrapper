@@ -106,11 +106,12 @@ $.devOrg.dynamicSelect = {
                     var $currentSelect = $(this);
                     var parentValue = $currentSelect.val();
                     if (parentValue === null) {
-                       
+                        $currentSelect.val($currentSelect.find("option:first").val());
+                        parentValue = $currentSelect.val();
                     }
                     var tempUrl = url + parentValue;
                     $div.html("");
-                    this.getJsonProcessSelectDynamicOptions(tempUrl, $div, selectBoxStart, selectBoxEnd);
+                    $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions(tempUrl, $div, selectBoxStart, selectBoxEnd);
                 });
             } else {
                 this.$dependancySelectsHasNotProcessed.push($div);
@@ -146,7 +147,7 @@ $.devOrg.dynamicSelect = {
         /// <param name="selectEnd"></param>
         /// <param name="value"></param>
         "use strict";
-        var propName = $div.attr(this.propertyNameAttribute);
+        var propName = $div.attr($.devOrg.dynamicSelect.propertyNameAttribute);
 
         $.getJSON(url).then(function (jsonData) {
             if (jsonData.length > 0) {
@@ -168,8 +169,8 @@ $.devOrg.dynamicSelect = {
             } else {
                 // no data found
                 // hide the container
-                var selectOfParentDiv = "[.form-row-" + propName + "]";
-                this.$dynamicSelectContainerDiv.filter(selectOfParentDiv).hide();
+                var selectOfParentDiv = "div.form-row-" + propName + "";
+                $.devOrg.dynamicSelect.$dynamicSelectContainerDiv.filter(selectOfParentDiv).hide();
             }
         },
         function (jqXHR, textStatus, err) {
