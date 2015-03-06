@@ -137,15 +137,7 @@ namespace DevBootstrapper.Controllers
 
 		#region DropDowns Generate
 
-        #region EmployeesController : DropDowns to paste into the partial
-            
-            // [DonutOutputCache(CacheProfile = "YearNoParam")]
-            public JsonResult GetReportsTo() {
-                var data = db.Employees.Select(n => new {id = n.EmployeeID, display = n.LastName}).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
-      
-        #endregion
+        
 
 		public void GetDropDowns(Employee employee = null){
 			if(employee != null){

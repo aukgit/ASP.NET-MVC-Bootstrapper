@@ -625,6 +625,11 @@
     <Content Include="Views\ProductOrders\Details.cshtml" />
     <Content Include="Views\ProductOrders\Edit.cshtml" />
     <Content Include="Views\ProductOrders\Index.cshtml" />
+    <Content Include="Views\ProductOrders1\Create.cshtml" />
+    <Content Include="Views\ProductOrders1\Delete.cshtml" />
+    <Content Include="Views\ProductOrders1\Details.cshtml" />
+    <Content Include="Views\ProductOrders1\Edit.cshtml" />
+    <Content Include="Views\ProductOrders1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />

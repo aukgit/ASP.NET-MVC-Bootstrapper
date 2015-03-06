@@ -137,27 +137,7 @@ namespace DevBootstrapper.Controllers
 
 		#region DropDowns Generate
 
-        #region ProductOrdersController : DropDowns to paste into the partial
-            
-            // [DonutOutputCache(CacheProfile = "YearNoParam")]
-            public JsonResult GetCustomerID() {
-                var data = db.Customers.Select(n => new {id = n.CustomerID, display = n.CompanyName}).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
-      
-            // [DonutOutputCache(CacheProfile = "YearNoParam")]
-            public JsonResult GetEmployeeID() {
-                var data = db.Employees.Select(n => new {id = n.EmployeeID, display = n.LastName}).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
-      
-            // [DonutOutputCache(CacheProfile = "YearNoParam")]
-            public JsonResult GetShipVia() {
-                var data = db.Shippers.Select(n => new {id = n.ShipperID, display = n.CompanyName}).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
-      
-        #endregion
+        
 
 		public void GetDropDowns(ProductOrder productOrder = null){
 			if(productOrder != null){

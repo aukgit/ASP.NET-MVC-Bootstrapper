@@ -49,12 +49,12 @@
         } else {
             @Html.EditorFor(model => model.EmployeeID, "DropDown", new {@SelectData = ViewBag.EmployeeID})            
         }
-        @Html.EditorFor(model => model.OrderDate)
-        @Html.EditorFor(model => model.RequiredDate)
-        @Html.EditorFor(model => model.ShippedDate)
+        @Html.EditorFor(model => model.OrderDate, "Date")
+        @Html.EditorFor(model => model.RequiredDate, "Date")
+        @Html.EditorFor(model => model.ShippedDate, "Date")
         <!-- DropDown -->
 		@if(dropDownDynamic){
-            @Html.EditorFor(model => model.ShipVia, "DropDownDynamic", new { @Url = @partialController + "GetShipVia", @IsDependable = "false", @DependablePropertyName = "EmployeeID" /* ,,@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+            @Html.EditorFor(model => model.ShipVia, "DropDownDynamic", new { @Url = @partialController + "GetShipVia", @IsDependable = "true", @DependablePropertyName = "EmployeeID" /* ,,@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
         } else {
             @Html.EditorFor(model => model.ShipVia, "DropDown", new {@SelectData = ViewBag.ShipVia})            
         }
