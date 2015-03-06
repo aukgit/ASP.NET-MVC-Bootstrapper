@@ -88,11 +88,34 @@ $.devOrg.dynamicSelect = {
 
         } else {
             // dependency
-            if (url.)
+            url = this.fixUrlWithSlash(url);
             var $parentSelectDiv = this.$allDynamicImmidiaeSelectDivs.filter("[" + this.dependablePropertyNameAttribute + "=" + dependablePropName + "]");
             var $parentSelect = $parentSelectDiv.find("select");
             url += $parentSelect.val();
+
+
+
+            $parentSelect.change(function() {
+
+            });
         }
+    },
+    parentSelectStateChangeFunction: function() {
+        
+    },
+    fixUrlWithSlash: function (url) {
+        /// <summary>
+        /// if url doesn't contain slash at end
+        /// slash will be added
+        /// 
+        /// </summary>
+        /// <param name="url">site.com/ or site.com will return site.com/</param>
+        var len = url.length;
+        var lastChar = url[len - 1];
+        if (lastChar !== '/') {
+            url += '/';
+        }
+        return url;
     },
 
     getJsonProcessSelectDynamicOptions: function (url, $div, selectStart, selectEnd) {
