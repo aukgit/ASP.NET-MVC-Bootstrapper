@@ -35,9 +35,11 @@ namespace DevBootstrapper {
                 "~/Content/Scripts/Bootstrap/bootstrap-table-filter.js",
                 "~/Content/Scripts/Bootstrap/bootstrap-table-export.js",
                 "~/Content/Scripts/Bootstrap/star-rating.js",
+                "~/Content/Scripts/Bootstrap/bootstrap3-typeahead.js",
+                "~/Content/Scripts/Bootstrap/bootstrap-tag.js",
                 "~/Content/Scripts/DevOrgCompoents/DevOrgComponent.js",
                 "~/Content/Scripts/DevOrgCompoents/DevOrgDynamicSelect.js",
-                "~/Content/Scripts/DevOrgCompoents/CustomJS.js"
+                "~/Content/Scripts/DevOrgCompoents/Every-Component-Runner.js"
                 ));
 
             #endregion
@@ -92,6 +94,7 @@ namespace DevBootstrapper {
                 "~/Content/css/star-rating.css",
                 "~/Content/css/miscellaneous.css",
                 "~/Content/css/bootstrap-select.css",
+                "~/Content/css/bootstrap-tag.css",
                 "~/Content/css/fixing-css.css",
                 "~/Content/css/core-developer.css",
                 "~/Content/css/core-developer-additions.css",

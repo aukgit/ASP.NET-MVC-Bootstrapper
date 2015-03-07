@@ -203,10 +203,6 @@ p.create-btn-p,
 .uploader-progress-info {
   display: inline;
 }
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  background-color: #cae1fc;
-}
 body div.container.body-content h1.gap-from-top-small > .glyphicon {
   font-size: 1em;
   top: 5px;
@@ -260,4 +256,9 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
   background-color: #9dd1ec;
   color: #333;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  /*background-color: #inheirt;
+    color:white;*/
 }

@@ -22,6 +22,7 @@
 
 
 /*
+* Version 2.2
 * Written by Alim Ul Karim
 * Developers Organism
 * https://www.facebook.com/DevelopersOrganism
