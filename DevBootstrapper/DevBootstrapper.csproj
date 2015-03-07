@@ -240,7 +240,7 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductOrdersXController.cs" />
+    <Compile Include="Controllers\ProductOrdersController.cs" />
     <Compile Include="Controllers\ValidatorController.cs" />
     <Compile Include="Filter\AreaAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -620,16 +620,11 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\ProductOrdersX\Create.cshtml" />
-    <Content Include="Views\ProductOrdersX\Delete.cshtml" />
-    <Content Include="Views\ProductOrdersX\Details.cshtml" />
-    <Content Include="Views\ProductOrdersX\Edit.cshtml" />
-    <Content Include="Views\ProductOrdersX\Index.cshtml" />
-    <Content Include="Views\ProductOrders1\Create.cshtml" />
-    <Content Include="Views\ProductOrders1\Delete.cshtml" />
-    <Content Include="Views\ProductOrders1\Details.cshtml" />
-    <Content Include="Views\ProductOrders1\Edit.cshtml" />
-    <Content Include="Views\ProductOrders1\Index.cshtml" />
+    <Content Include="Views\ProductOrders\Create.cshtml" />
+    <Content Include="Views\ProductOrders\Delete.cshtml" />
+    <Content Include="Views\ProductOrders\Details.cshtml" />
+    <Content Include="Views\ProductOrders\Edit.cshtml" />
+    <Content Include="Views\ProductOrders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DatabaseTables\" />

@@ -26,7 +26,7 @@
     }
 
     if (ViewBag.LiveSearch == null) {
-        ViewBag.LiveSearch = true;
+        ViewBag.LiveSearch = "true";
     }
 
     if (ViewBag.Style == null) {
@@ -51,7 +51,7 @@
             <span class="red">@isRequiredStar</span>
         </label>
         <div class="col-md-10 select-holding-div select-dynamic-holding-div">
-            <div class="dynamic-select-load"
+            <div class="d-select-ip-@ViewData.ModelMetadata.PropertyName dynamic-select-load"
                  data-prop="@ViewData.ModelMetadata.PropertyName"
                  data-dev-dynamic-select="@ViewBag.DynamicLoad"
                  data-url="@ViewBag.Url"
