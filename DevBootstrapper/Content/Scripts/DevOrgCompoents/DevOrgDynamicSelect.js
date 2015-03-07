@@ -64,7 +64,9 @@ $(function () {
 
                 var url = $div.attr("data-url");
                 if (!_.isEmpty(url) && isDependable === 'false') {
-                    $.devOrg.dynamicSelect.processJsonDynamicSelect($div);
+                    $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions($div);
+                    // dependency will be handled in side the parent when json is reviced in the parent
+
                 }
             }
             //length = $.devOrg.dynamicSelect.$dependancySelectsHasNotProcessed.length;
@@ -76,34 +78,7 @@ $(function () {
 
         },
 
-        processJsonDynamicSelect: function ($div) {
-            "use strict";
-
-
-            var isDependable = $div.attr($.devOrg.dynamicSelect.isDependableAttribute);
-            var dependablePropName = $div.attr($.devOrg.dynamicSelect.dependablePropertyNameAttribute);
-
-            var url = $div.attr($.devOrg.dynamicSelect.urlAttribute);
-            var value = $div.attr($.devOrg.dynamicSelect.dataValueAttribute);
-            var liveSearch = $div.attr($.devOrg.dynamicSelect.liveSearchAttribute);
-            var additionCss = $div.attr($.devOrg.dynamicSelect.additionalCssAttribute);
-            var propName = $div.attr($.devOrg.dynamicSelect.propertyNameAttribute);
-            var addAttr = "data-style='" + additionCss + "'" +
-                "data-live-search='" + liveSearch + "'";
-            var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='selectpicker form-control' >";
-            var selectBoxEnd = "</select>";
-
-
-
-            if (isDependable === "false") {
-                // no dependency yet.
-                $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions(url, $div, selectBoxStart, selectBoxEnd, value);
-
-            } else {
-                // dependency
-                
-            }
-        },
+       
         //parentSelectStateChangeFunction: function() {
 
         //},
@@ -143,7 +118,7 @@ $(function () {
             }
             return parentValue;
         },
-        getJsonProcessSelectDynamicOptions: function (url, $div, selectStart, selectEnd, value) {
+        getJsonProcessSelectDynamicOptions: function ($div) {
             /// <summary>
             /// 
             /// </summary>
@@ -153,9 +128,19 @@ $(function () {
             /// <param name="selectEnd"></param>
             /// <param name="value"></param>
             "use strict";
-            var propName = $div.attr($.devOrg.dynamicSelect.propertyNameAttribute);
-            var selectOfParentDiv = "div.form-row-" + propName + ":first";
-            var $containerDiv = $(selectOfParentDiv);
+
+            var url                 = $div.attr($.devOrg.dynamicSelect.urlAttribute);
+            var value               = $div.attr($.devOrg.dynamicSelect.dataValueAttribute);
+            var liveSearch          = $div.attr($.devOrg.dynamicSelect.liveSearchAttribute);
+            var additionCss         = $div.attr($.devOrg.dynamicSelect.additionalCssAttribute);
+            var propName            = $div.attr($.devOrg.dynamicSelect.propertyNameAttribute);
+            var addAttr             = "data-style='" + additionCss + "'" +
+                                      "data-live-search='" + liveSearch + "'";
+            var selectBoxStart      = "<select name='" + propName + "' " + addAttr + " class='selectpicker form-control' >";
+            var selectBoxEnd        = "</select>";
+            var selectOfParentDiv   = "div.form-row-" + propName + ":first";
+            var $containerDiv       = $(selectOfParentDiv);
+
             $.getJSON(url).then(function (jsonData) {
                 console.log(url + " . Data:");
                 console.log(jsonData);
