@@ -140,8 +140,10 @@ $(function () {
             $.getJSON(url).then(function (jsonData) {
                 console.log(url + " . Data:");
                 console.log(jsonData);
+                $containerDiv.hide();
+
                 if (jsonData.length > 0) {
-                    $div.hide();
+                    //$div.hide();
                     //successfully got  the json
                     var options = "";
                     for (var i = 0; i < jsonData.length; i++) { // build options
@@ -155,10 +157,11 @@ $(function () {
                     var compactSelectHtml = selectBoxStart + options + selectBoxEnd;
                     $div.html(compactSelectHtml);
 
-                    $div.show("slow");
-                    $containerDiv.show();
+                    //$div.show("slow");
+                    $containerDiv.show('slow');
                     // find any of the dependency if exist
                     var $parentSelect = $div.find("select:first");
+                    $parentSelect.selectpicker();
                     var $childDiv = $.devOrg.dynamicSelect.filterDependableDivByPropName(propName);
                     var childUrl = $.devOrg.dynamicSelect.getUrlFromDynamicSelectDiv($childDiv);
 
@@ -173,12 +176,9 @@ $(function () {
                             .getJsonProcessSelectDynamicOptions(
                                 $childDiv,
                                 tempUrl);
-                        });
+                        }).trigger('change');
                     }
-                } else {
-                    // no data found
-                    // hide the container
-                    $containerDiv.hide();
+               
                 }
             },
             function (jqXHR, textStatus, err) {
