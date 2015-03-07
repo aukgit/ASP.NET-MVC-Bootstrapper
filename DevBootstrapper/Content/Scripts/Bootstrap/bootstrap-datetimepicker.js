@@ -57,7 +57,7 @@ THE SOFTWARE.
 
                 icons = {
                     time: "glyphicon glyphicon-time",
-                    date: "glyphicon glyphicon-calendar",
+                    date: "fa fa-calendar",
                     up: "glyphicon glyphicon-chevron-up",
                     down: "glyphicon glyphicon-chevron-down"
                 },
@@ -291,7 +291,7 @@ THE SOFTWARE.
                         placePosition;
 
                     picker.width = picker.component ? picker.component.outerWidth() : picker.element.outerWidth();
-                    offset.top = offset.top + picker.element.outerHeight();
+                    offset.top = offset.top + picker.element.outerHeight()+10;
 
                     if (picker.options.direction === "up") {
                         placePosition = "top";

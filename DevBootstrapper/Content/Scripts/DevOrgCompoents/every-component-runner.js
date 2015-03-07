@@ -30,7 +30,6 @@
 */
 
 $(function () {
-    //tooltip trigger
 
 
     $.devOrg.Constants = {

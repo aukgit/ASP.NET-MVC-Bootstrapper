@@ -450,7 +450,6 @@
     <Content Include="Areas\Admin\Views\Config\Index.cshtml" />
     <Content Include="Content\Scripts\Angular\angular.js" />
     <Content Include="Content\Scripts\Angular\angular.min.js" />
-    <Content Include="Content\Scripts\Bootstrap\bootstrap-datepicker.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-datetimepicker.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-select.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-table-export.js" />
