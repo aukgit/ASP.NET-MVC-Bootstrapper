@@ -62,9 +62,9 @@ $(function () {
                 var $div = $($dynamicDiv[i]);
                 var isDependable = $div.attr($.devOrg.dynamicSelect.isDependableAttribute);
 
-                var url = $div.attr("data-url");
+                var url = $div.attr(this.urlAttribute);
                 if (!_.isEmpty(url) && isDependable === 'false') {
-                    $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions($div);
+                    $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions($div, url);
                     // dependency will be handled in side the parent when json is reviced in the parent
 
                 }
@@ -118,18 +118,14 @@ $(function () {
             }
             return parentValue;
         },
-        getJsonProcessSelectDynamicOptions: function ($div) {
+        getJsonProcessSelectDynamicOptions: function ($div, url) {
             /// <summary>
             /// 
             /// </summary>
-            /// <param name="url"></param>
             /// <param name="$div"></param>
-            /// <param name="selectStart"></param>
-            /// <param name="selectEnd"></param>
-            /// <param name="value"></param>
+            /// <param name="url">given url to get the json</param>
             "use strict";
 
-            var url                 = $div.attr($.devOrg.dynamicSelect.urlAttribute);
             var value               = $div.attr($.devOrg.dynamicSelect.dataValueAttribute);
             var liveSearch          = $div.attr($.devOrg.dynamicSelect.liveSearchAttribute);
             var additionCss         = $div.attr($.devOrg.dynamicSelect.additionalCssAttribute);
@@ -156,7 +152,7 @@ $(function () {
                         }
                     }
 
-                    var compactSelectHtml = selectStart + options + selectEnd;
+                    var compactSelectHtml = selectBoxStart + options + selectBoxEnd;
                     $div.html(compactSelectHtml);
 
                     $div.show("slow");
@@ -172,10 +168,12 @@ $(function () {
                             var parentValue = $.devOrg.dynamicSelect.selectFirstItemInSelectAndGetValue($currentSelect);
                             var tempUrl = childUrl + parentValue;
                             $childDiv.html("");
-                            $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions(tempUrl, $childDiv, selectBoxStart, selectBoxEnd);
+                            $.devOrg
+                            .dynamicSelect
+                            .getJsonProcessSelectDynamicOptions(
+                                $childDiv,
+                                tempUrl);
                         });
-                    } else {
-                        $.devOrg.dynamicSelect.$dependancySelectsHasNotProcessed.push($childDiv);
                     }
                 } else {
                     // no data found
