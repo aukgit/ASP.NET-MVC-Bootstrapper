@@ -41,8 +41,8 @@
         @Html.EditorFor(model => model.FirstName)
         @Html.EditorFor(model => model.Title)
         @Html.EditorFor(model => model.TitleOfCourtesy)
-        @Html.EditorFor(model => model.BirthDate)
-        @Html.EditorFor(model => model.HireDate)
+        @Html.EditorFor(model => model.BirthDate , "datetime")
+        @Html.EditorFor(model => model.HireDate, "date")
         @Html.EditorFor(model => model.Address)
         @Html.EditorFor(model => model.City)
         @Html.EditorFor(model => model.Region)
@@ -54,7 +54,7 @@
         @Html.EditorFor(model => model.Notes)
         <!-- DropDown -->
 		@if(dropDownDynamic){
-            @Html.EditorFor(model => model.ReportsTo, "DropDownDynamic", new {@Url = @partialController + "GetReportsTo" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+            @Html.EditorFor(model => model.ReportsTo, "DropDownDynamic", new {@Url = @partialController + "GetReportsTo" /* ,@IsDependable = "false", @DependablePropertyName = "YourPropertyName",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
         } else {
             @Html.EditorFor(model => model.ReportsTo, "DropDown", new {@SelectData = ViewBag.ReportsTo})            
         }

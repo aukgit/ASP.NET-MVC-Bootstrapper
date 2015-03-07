@@ -91,14 +91,14 @@ span.input-group-addon {
   height: 38px;
   width: 38px;
 }
-.datepicker span.input-group-addon,
-.datetimepicker span.input-group-addon {
+.datepicker-start span.input-group-addon,
+.datetimepicker-start span.input-group-addon {
   margin-bottom: 2px;
   background-color: inherit;
   color: inherit;
 }
-.datepicker span.input-group-addon:hover,
-.datetimepicker span.input-group-addon:hover {
+.datepicker-start span.input-group-addon:hover,
+.datetimepicker-start span.input-group-addon:hover {
   background-color: brown;
   cursor: pointer;
   color: white;
@@ -261,4 +261,3 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
   background-color: #9dd1ec;
   color: #333;
 }
-/*# sourceMappingURL=fixing-css.css.map */

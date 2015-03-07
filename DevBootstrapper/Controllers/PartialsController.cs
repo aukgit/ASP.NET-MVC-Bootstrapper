@@ -46,7 +46,7 @@ namespace DevBootstrapper.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        // [DonutOutputCache(CacheProfile = "YearNoParam")]
+        [OutputCache(CacheProfile = "Year")]
         public JsonResult GetShipVia(int id) {
             var data = db.Shippers.Where(n=> n.ShipperID == id).Select(n => new { id = n.ShipperID, display = n.CompanyName }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
