@@ -83,6 +83,7 @@ namespace DevBootstrapper {
             #region CSS Bundles
 
             bundles.Add(new StyleBundle("~/Content/css/styles").Include(
+				"~/Content/css/bootstrap.min.css",
                 "~/Content/css/bootstrap.theme.unitied.css",
                 "~/Content/css/size.css",
                 "~/Content/css/flags32.css",
