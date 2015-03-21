@@ -114,7 +114,15 @@ $(function () {
 
 
     // make tag component live
-    $("div.tag-input-div input[data-provide=tags]").tag();
+    function makeTagLive() {
+        var $createdTags = $("div.tag-input-div input[data-provide=tags]").tag();
+        if ($createdTags.length > 0) {
+            var placeHolder = $createdTags.attr('placeholder');
+            $createdTags.siblings("input").attr('placeholder', placeHolder);
+        }
+    }
+
+    makeTagLive();
 
     // make all selects to bootstrap select 
     $("select.selectpicker").selectpicker();
@@ -181,5 +189,5 @@ $(function () {
 
     });
 
-    
+
 });

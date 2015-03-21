@@ -102,3 +102,7 @@
   color: #FFFFFF;
   text-shadow: none;
 }
+.tag-input-div input {
+  height: 25px;
+  height: 2.5rem;
+}

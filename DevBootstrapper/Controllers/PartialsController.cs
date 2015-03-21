@@ -9,10 +9,12 @@ using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.Context;
 //using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
 using DevTrends.MvcDonutCaching;
+using DevBootstrapper.Filter;
 
 namespace DevBootstrapper.Controllers
 {
     [OutputCache(CacheProfile = "YearNoParam")]
+    [CacheFilterAttribute]
     //public class PartialsController : GenericController<Inherit it with your db context> {
     public class PartialsController : GenericController<NorthwindEntities> {
         

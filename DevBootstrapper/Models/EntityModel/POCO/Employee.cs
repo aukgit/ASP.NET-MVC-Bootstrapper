@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DevBootstrapper.Models.EntityModel.POCO
 {
@@ -36,6 +37,7 @@ namespace DevBootstrapper.Models.EntityModel.POCO
         public string HomePhone { get; set; }
         public string Extension { get; set; }
         public byte[] Photo { get; set; }
+        [Display(Name="Notes", Description="Notes are tags")]
         public string Notes { get; set; }
         public Nullable<int> ReportsTo { get; set; }
         public string PhotoPath { get; set; }

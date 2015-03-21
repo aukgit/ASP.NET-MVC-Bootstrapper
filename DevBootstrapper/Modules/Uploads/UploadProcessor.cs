@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Web;
+using DevBootstrapper.Models.DesignPattern.Interfaces;
 using DevMVCComponent;
 using ImageResizer;
 
@@ -280,7 +281,7 @@ namespace DevBootstrapper.Modules.Uploads {
             if (includeExtention) {
                 ext = "." + file.Extension;
             }
-            return file.UploadGuid + "-" + file.Sequence + tempString + ext;
+            return file.FileUploadId + "-" + file.Sequence + tempString + ext;
         }
 
         /// <summary>
@@ -299,7 +300,7 @@ namespace DevBootstrapper.Modules.Uploads {
             if (includeExtention) {
                 ext = "." + file.Extension;
             }
-            return file.UploadGuid + "-" + file.Sequence + tempString + ext;
+            return file.FileUploadId + "-" + file.Sequence + tempString + ext;
         }
     }
 }

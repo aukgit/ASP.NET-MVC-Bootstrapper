@@ -241,12 +241,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValidatorController.cs" />
     <Compile Include="Filter\AreaAuthorizationFilter.cs" />
+    <Compile Include="Filter\CacheFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\NorthwindEntities.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUserRole.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IDevUser.cs" />
+    <Compile Include="Models\DesignPattern\Interfaces\IUploadableFileCategory.cs" />
     <Compile Include="Models\EntityModel\NorthwindModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -320,8 +322,8 @@
     <Compile Include="Modules\TimeZone\Zone.cs" />
     <Compile Include="Modules\Type\DataTypeSupport.cs" />
     <Compile Include="Modules\Uploads\FileLocation.cs" />
-    <Compile Include="Modules\Uploads\IImageCategory.cs" />
-    <Compile Include="Modules\Uploads\IUploadableFile.cs" />
+    <Compile Include="Models\DesignPattern\Interfaces\IImageCategory.cs" />
+    <Compile Include="Models\DesignPattern\Interfaces\IUploadableFile.cs" />
     <Compile Include="Modules\Uploads\UploadProcessor.cs" />
     <Compile Include="Modules\UserError\ErrorCollector.cs" />
     <Compile Include="Modules\UserError\MessageConstants.cs" />

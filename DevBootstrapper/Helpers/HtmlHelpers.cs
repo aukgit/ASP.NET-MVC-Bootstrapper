@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using DevBootstrapper.Models.DesignPattern.Interfaces;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.DevUser;
@@ -369,7 +370,7 @@ namespace DevBootstrapper.Helpers {
             if (!asTemp) {
                 tempString = "";
             }
-            var fileName = file.UploadGuid + "-" + file.Sequence + tempString + "." + file.Extension;
+            var fileName = file.FileUploadId + "-" + file.Sequence + tempString + "." + file.Extension;
 
             var path = string.Format("{0}{1}", rootPath, fileName);
             return AppVar.Url + VirtualPathUtility.ToAbsolute(path);
@@ -385,7 +386,7 @@ namespace DevBootstrapper.Helpers {
             if (includeExtention) {
                 ext = "." + file.Extension;
             }
-            return file.UploadGuid + "-" + file.Sequence + tempString + ext;
+            return file.FileUploadId + "-" + file.Sequence + tempString + ext;
         }
 
         /// <summary>
