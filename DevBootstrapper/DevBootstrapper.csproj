@@ -393,6 +393,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\images\loading.gif" />
+    <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\DevOrgDynamicSelect.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
