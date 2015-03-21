@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Alim.Alim-PC\Documents\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\Models\EntityModel\NorthwindModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\Models\EntityModel\NorthwindModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
