@@ -11,7 +11,6 @@ namespace DevBootstrapper.Models.Context {
         }
 
         public DbSet<CoreSetting> CoreSettings { get; set; }
-        public DbSet<ImageResizeSetting> ImageResizeSettings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

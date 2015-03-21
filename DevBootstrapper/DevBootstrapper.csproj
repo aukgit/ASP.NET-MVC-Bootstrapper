@@ -223,7 +223,6 @@
     <Compile Include="Areas\Admin\Controllers\FeedbackCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedbacksController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ImageResizeSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\NavItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs">
@@ -277,12 +276,13 @@
     <Compile Include="Models\POCO\IdentityCustomization\CountryTranslation.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\Feedback.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\FeedbackCategory.cs" />
-    <Compile Include="Models\POCO\IdentityCustomization\ImageResizeSetting.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\Navigation.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\NavigationItem.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\RegisterCode.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\RegisterCodeUserRelation.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\TempUserRoleRelation.cs" />
+    <Compile Include="Models\POCO\IdentityCustomization\UploadableFile.cs" />
+    <Compile Include="Models\POCO\IdentityCustomization\UploadableFileCategory.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\UserTimeZone.cs" />
     <Compile Include="Models\Migrations\DevIdentity\Configuration.cs" />
     <Compile Include="Models\Migrations\Indentity\Configuration.cs" />
@@ -322,7 +322,7 @@
     <Compile Include="Modules\TimeZone\Zone.cs" />
     <Compile Include="Modules\Type\DataTypeSupport.cs" />
     <Compile Include="Modules\Uploads\FileLocation.cs" />
-    <Compile Include="Models\DesignPattern\Interfaces\IImageCategory.cs" />
+    <Compile Include="Models\DesignPattern\Interfaces\IUploadableImageCategory.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IUploadableFile.cs" />
     <Compile Include="Modules\Uploads\UploadProcessor.cs" />
     <Compile Include="Modules\UserError\ErrorCollector.cs" />

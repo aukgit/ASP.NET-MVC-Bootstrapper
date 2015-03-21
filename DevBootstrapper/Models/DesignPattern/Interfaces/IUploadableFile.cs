@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace DevBootstrapper.Models.DesignPattern.Interfaces {
-    public interface IUploadableFile {
+    public interface IUploadableFile : IUploadableImageCategory {
         Guid FileUploadId { get; set; }
         //IImageCategory Category { get; }
         short Sequence { get; set; }

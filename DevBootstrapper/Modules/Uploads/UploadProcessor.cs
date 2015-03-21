@@ -189,7 +189,7 @@ namespace DevBootstrapper.Modules.Uploads {
         ///     Best way to set it in class constructor.
         /// </param>
         /// <param name="rootPath"></param>
-        public void ProcessImage(IUploadableFile file, IImageCategory category, string sourceFileName = null,
+        public void ProcessImage(IUploadableFile file, IUploadableImageCategory category, string sourceFileName = null,
             string processedFileName = null, bool isSourceAddTemp = true, bool isPrivate = false,
             string additionalRootPath = null, string rootPath = null) {
             if (file != null && category != null) {

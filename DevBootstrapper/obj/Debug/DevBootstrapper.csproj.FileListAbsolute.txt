@@ -149,3 +149,4 @@ E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPag
 E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Razor.xml
 E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.dll
 E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.pdb
+E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.csprojResolveAssemblyReference.cache
