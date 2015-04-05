@@ -11,11 +11,13 @@ namespace DevBootstrapper {
 
             #region Login, Register, Authentication Additional Routes
 
+            const string accountController = "Account";
+
             routes.MapRoute(
                 name: "RegisterConfig",
                 url: "Register",
                 defaults: new {
-                    controller = "Account",
+                    controller = accountController,
                     action = "Register",
                     id = UrlParameter.Optional
                 },
@@ -25,7 +27,7 @@ namespace DevBootstrapper {
                 name: "SignInConfig",
                 url: "SignIn",
                 defaults: new {
-                    controller = "Account",
+                    controller = accountController,
                     action = "Login",
                     id = UrlParameter.Optional
                 },
@@ -36,7 +38,7 @@ namespace DevBootstrapper {
                 name: "LoginConfig",
                 url: "Login",
                 defaults: new {
-                    controller = "Account",
+                    controller = accountController,
                     action = "Login",
                     id = UrlParameter.Optional
                 },
@@ -47,7 +49,7 @@ namespace DevBootstrapper {
                 name: "SignOut",
                 url: "SignOut",
                 defaults: new {
-                    controller = "Account",
+                    controller = accountController,
                     action = "SignOut",
                     id = UrlParameter.Optional
                 },
@@ -58,7 +60,7 @@ namespace DevBootstrapper {
                 name: "ExternalSigninConfig",
                 url: "ExtSignin",
                 defaults: new {
-                    controller = "Account",
+                    controller = accountController,
                     action = "ExternalLogin",
                     id = UrlParameter.Optional
                 },
