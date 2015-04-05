@@ -7,41 +7,90 @@ namespace DevBootstrapper {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("elmah");
 
+            const string parentControllerNameSpace = "DevBootstrapper.Controllers";
+
             #region Login, Register, Authentication Additional Routes
 
-            routes.MapRoute("RegisterConfig", "Register",
-                new { controller = "Account", action = "Register", id = UrlParameter.Optional },
-                new[] { "DevBootstrapper.Controllers" }
-                );
-            routes.MapRoute("SignInConfig", "SignIn",
-                new { controller = "Account", action = "Login", id = UrlParameter.Optional },
-                new[] { "DevBootstrapper.Controllers" }
-                );
-            routes.MapRoute("LoginConfig", "Login",
-                new { controller = "Account", action = "Login", id = UrlParameter.Optional },
-                new[] { "DevBootstrapper.Controllers" }
-                );
+            routes.MapRoute(
+                name: "RegisterConfig",
+                url: "Register",
+                defaults: new {
+                    controller = "Account",
+                    action = "Register",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
+            routes.MapRoute(
+                name: "SignInConfig",
+                url: "SignIn",
+                defaults: new {
+                    controller = "Account",
+                    action = "Login",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
 
-            routes.MapRoute("SignOut", "SignOut",
-                new { controller = "Account", action = "SignOut", id = UrlParameter.Optional },
-                new[] { "DevBootstrapper.Controllers" }
-                );
+            routes.MapRoute(
+                name: "LoginConfig",
+                url: "Login",
+                defaults: new {
+                    controller = "Account",
+                    action = "Login",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
 
-            routes.MapRoute("ExternalSigninConfig", "ExtSignin",
-                new { controller = "Account", action = "ExternalLogin", id = UrlParameter.Optional },
-                new[] { "DevBootstrapper.Controllers" }
-                );
+            routes.MapRoute(
+                name: "SignOut",
+                url: "SignOut",
+                defaults: new {
+                    controller = "Account",
+                    action = "SignOut",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
+
+            routes.MapRoute(
+                name: "ExternalSigninConfig",
+                url: "ExtSignin",
+                defaults: new {
+                    controller = "Account",
+                    action = "ExternalLogin",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
 
             #endregion
 
             #region Default Route
 
-            routes.MapRoute("Direct", "{action}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }, new[] { "DevBootstrapper.Controllers" }
-                );
-            routes.MapRoute("Default", "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }, new[] { "DevBootstrapper.Controllers" }
-                );
+            routes.MapRoute(
+                name: "Direct",
+                url: "{action}",
+                defaults: new {
+                    controller = "Home",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new {
+                    controller = "Home",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { parentControllerNameSpace }
+            );
+
+
 
             #endregion
         }
