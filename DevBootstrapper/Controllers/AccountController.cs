@@ -17,6 +17,12 @@ using Microsoft.Owin.Security;
 namespace DevBootstrapper.Controllers {
     [Authorize]
     public class AccountController : Controller {
+        #region Constants and Variable
+        const string ControllerName = "Account";
+        ///Constant value for where the controller is actually visible.
+        const string DynamicLoadPartialController = "/Partials/";
+        #endregion
+
         #region Constructors
 
         public AccountController() {

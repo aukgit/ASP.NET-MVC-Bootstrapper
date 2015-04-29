@@ -10,6 +10,8 @@ using DevBootstrapper.Models.Context;
 //using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
 using DevTrends.MvcDonutCaching;
 using DevBootstrapper.Filter;
+using DevBootstrapper.Modules.Cache;
+using DevBootstrapper.Modules.Session;
 
 namespace DevBootstrapper.Controllers
 {
@@ -28,7 +30,46 @@ namespace DevBootstrapper.Controllers
 
 		#endregion
 
+        #region Drop down : Country, timezone, language
+        [OutputCache(CacheProfile = "YearNoParam")]
+        public JsonResult GetCountryId() {
+            using (var db2 = new ApplicationDbContext()) {
+                var data = db2.Countries
+                              .Select(n => new { id = n.CountryID, display = n.DisplayCountryName }).ToList();
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [OutputCache(CacheProfile = "Day", VaryByParam = "id")]
+        public ActionResult GetTimeZone(int id) {
+            if (SessionNames.IsValidationExceed("GetTimeZone", 100)) {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            var getZones = CachedQueriedData.GetTimezones(id);
+            if (getZones != null) {
+                var represent = getZones.Select(n => new { text = n.Display, id = n.UserTimeZoneID });
+                return Json(represent.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+        //[OutputCache(CacheProfile = "Day", VaryByParam = "id")]
+        public ActionResult GetLanguage(int id) {
+            if (SessionNames.IsValidationExceed("GetLanguage", 100)) {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            var languges = CachedQueriedData.GetLanguages(id);
+            if (languges != null) {
+                var represent =
+                    languges.Select(n => new { text = n.Language + " - " + n.NativeName, id = n.CountryLanguageID });
+                return Json(represent.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         #region Nortwind test
+
         #region EmployeesController : DropDowns to paste into the partial
 
         // [DonutOutputCache(CacheProfile = "YearNoParam")]

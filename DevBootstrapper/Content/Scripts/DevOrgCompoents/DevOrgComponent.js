@@ -123,7 +123,7 @@ $.devOrg = {
         }
 
         countryBox.ready(selectChangeState).change(selectChangeState);
-        //phoneNumberBox.keyup(selectChangeState);
+        // phoneNumberBox.keyup(selectChangeState);
         // $("#selectID option")[index].selected = true;
     },
 
@@ -263,7 +263,6 @@ $.devOrg = {
         "use strict";
         var combo = $(comboSelector + ">option");
         if (combo.length > 0 && index <= (combo.length - 1)) {
-
             var itemFound = $(combo[index]);
             var value = itemFound.val();
             $.devOrg.bootstrapComboSelectbyFindingValue(comboSelector, value);

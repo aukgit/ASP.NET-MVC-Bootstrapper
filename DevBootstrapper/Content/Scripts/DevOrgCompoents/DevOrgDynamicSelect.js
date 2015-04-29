@@ -36,13 +36,14 @@ $.devOrg.dynamicSelect = {
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
     additionalCssAttribute: "data-additional-css",
     liveSearchAttribute: "data-live-search",
+    isHtmlAttribute : "dev-isHtml",
     $dynamicSelectContainerDiv: $("div.dynamic-select-container[data-dynamic-select-container=true]"),
     $allDynamicImmidiaeSelectDivs: null, // will be defined from initialize function
     $dependancySelectsHasNotProcessed: [], //only populated if a dependency combo can't find parent.
 
     initialize: function (additionalSelector) {
         /// <summary>
-        /// select div and push info based on properties
+        /// select div and push info based on html properties
         /// class="dynamic-select-load"
         ///      data-prop="NameOfThePropertyInDatabase"
         ///      data-dev-dynamic-select="true"
@@ -75,9 +76,10 @@ $.devOrg.dynamicSelect = {
             }
         }
     },
-
+    isHtmlRequest: function ($div) {
+        return $div.attr($.devOrg.dynamicSelect.isHtmlAttribute);
+    },
     fixUrlWithSlash: function (url) {
-        "use strict";
         /// <summary>
         /// if url doesn't contain slash at end
         /// slash will be added
@@ -121,65 +123,82 @@ $.devOrg.dynamicSelect = {
         /// <param name="$div"></param>
         /// <param name="url">given url to get the json</param>
         "use strict";
+        var isHtml = $.devOrg.dynamicSelect.isHtml($div);
+        var requestType = "JSON";
+        if (isHtml) {
+            requestType = "HTML";
+        }
 
         var value = $div.attr($.devOrg.dynamicSelect.dataValueAttribute);
         var liveSearch = $div.attr($.devOrg.dynamicSelect.liveSearchAttribute);
         var additionCss = $div.attr($.devOrg.dynamicSelect.additionalCssAttribute);
         var propName = $div.attr($.devOrg.dynamicSelect.propertyNameAttribute);
         var addAttr = "data-style='" + additionCss + "'" +
-                                  "data-live-search='" + liveSearch + "'";
+                      "data-live-search='" + liveSearch + "'";
         var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='selectpicker form-control' >";
         var selectBoxEnd = "</select>";
         var selectOfParentDiv = "div.form-row-" + propName + ":first";
         var $containerDiv = $(selectOfParentDiv);
 
-        $.getJSON(url).then(function (jsonData) {
-            //console.log(url + " . Data:");
-            //console.log(jsonData);
-            $containerDiv.hide();
-            if (jsonData.length > 0) {
-                //$div.hide();
-                //successfully got  the json
-                var options = "";
-                for (var i = 0; i < jsonData.length; i++) { // build options
-                    if (!_.isEmpty(value) && (value === jsonData[i].id || jsonData[i].display === value)) {
-                        options += ("<option value='" + jsonData[i].id + "' Selected='selected'>" + jsonData[i].display + "</option>");
+        $.ajax({
+            type: "GET",
+            dataType: requestType, //json or html
+            url: url,
+            success: function(response) {
+                //console.log(url + " . Data:");
+                //console.log(jsonData);
+                $containerDiv.hide();
+                if (response.length > 0) {
+                    //$div.hide();
+                    //successfully got  the json
+                    var compactSelectHtml = "";
+                    if (isHtml) {
+                        // html
+                        $div.html(response);
                     } else {
-                        options += ("<option value='" + jsonData[i].id + "'>" + jsonData[i].display + "</option>");
+                        //json type
+                        var options = new Array(response.length + 5);
+                        for (var i = 0; i < response.length; i++) { // build options
+                            if (!_.isEmpty(value) && (value === response[i].id || response[i].display === value)) {
+                                options[i] = ("<option value='" + response[i].id + "' Selected='selected'>" + response[i].display + "</option>");
+                            } else {
+                                options[i] = ("<option value='" + response[i].id + "'>" + response[i].display + "</option>");
+                            }
+                        }
+                        compactSelectHtml = selectBoxStart + options.join("") + selectBoxEnd;
+                        $div.html(compactSelectHtml);
                     }
+
+                    //$div.show("slow");
+                    $containerDiv.show('slow');
+                    // find any of the dependency if exist
+                    var $parentSelect = $div.find("select:first");
+                    var isItemsExist = $parentSelect.find("option:first").length === 1;
+                    $.devOrg.dynamicSelect.selectFirstItemInSelectAndGetValue($parentSelect);
+                    $parentSelect.selectpicker();
+                    var $childDiv = $.devOrg.dynamicSelect.filterDependableDivByPropName(propName);
+                    var childUrl = $.devOrg.dynamicSelect.getUrlFromDynamicSelectDiv($childDiv);
+
+                    if ($parentSelect.length === 1 && isItemsExist && $childDiv.length === 1) {
+                        $parentSelect.change(function() {
+                            var $currentSelect = $(this);
+                            var parentValue = $currentSelect.val();
+                            var tempUrl = childUrl + parentValue;
+                            $childDiv.html("");
+                            $.devOrg
+                                .dynamicSelect
+                                .getJsonProcessSelectDynamicOptions(
+                                    $childDiv,
+                                    tempUrl);
+                        }).trigger('change');
+                    }
+
                 }
-
-                var compactSelectHtml = selectBoxStart + options + selectBoxEnd;
-                $div.html(compactSelectHtml);
-
-                //$div.show("slow");
-                $containerDiv.show('slow');
-                // find any of the dependency if exist
-                var $parentSelect = $div.find("select:first");
-                var isItemsExist = $parentSelect.find("option:first").length === 1;
-                $.devOrg.dynamicSelect.selectFirstItemInSelectAndGetValue($parentSelect);
-                $parentSelect.selectpicker();
-                var $childDiv = $.devOrg.dynamicSelect.filterDependableDivByPropName(propName);
-                var childUrl = $.devOrg.dynamicSelect.getUrlFromDynamicSelectDiv($childDiv);
-
-                if ($parentSelect.length === 1 && isItemsExist && $childDiv.length === 1) {
-                    $parentSelect.change(function () {
-                        var $currentSelect = $(this);
-                        var parentValue = $currentSelect.val();
-                        var tempUrl = childUrl + parentValue;
-                        $childDiv.html("");
-                        $.devOrg
-                        .dynamicSelect
-                        .getJsonProcessSelectDynamicOptions(
-                            $childDiv,
-                            tempUrl);
-                    }).trigger('change');
-                }
+            },
+            error: function(xhr, status, error) {
+                console.log("Error: Can't retrieved the data from given url : " + url + ". Error : " + error);
 
             }
-        },
-        function (jqXHR, textStatus, err) {
-            console.log("Error: Can't retrieved the data from given url : " + url + ". ");
         });
     }
 

@@ -46,8 +46,8 @@ $(function () {
         usernameValidationUrl: "/Validator/Username",
         //"/Validator/Email"        
         emailAddressValidationUrl: "/Validator/Email",
-        timeZoneJsonUrl: "/Common/GetTimeZone", // look like this /Common/GetTimeZone/CountryID
-        languageJsonUrl: "/Common/GetLanguage" // look like this /Common/GetTimeZone/CountryID
+        timeZoneJsonUrl: "/Partials/GetTimeZone", // look like this /Partials/GetTimeZone/CountryID
+        languageJsonUrl: "/Partials/GetLanguage" // look like this /Partials/GetTimeZone/CountryID
     };
 
     if ($.devOrg.Constants.registerForm.length > 0) {
