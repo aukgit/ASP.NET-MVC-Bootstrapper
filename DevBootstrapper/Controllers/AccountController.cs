@@ -200,8 +200,8 @@ namespace DevBootstrapper.Controllers {
 
 
         public void SetThingsInViewBag() {
-            ViewBag.Country = CachedQueriedData.GetCountries();
-            ViewBag.Country = CachedQueriedData.GetCountries();
+            //ViewBag.Country = CachedQueriedData.GetCountries();
+            //ViewBag.Country = CachedQueriedData.GetCountries();
         }
 
         #endregion

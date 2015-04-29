@@ -1,7 +1,6 @@
 ﻿@model DevBootstrapper.Models.ViewModels.RegisterViewModel
 @using DevBootstrapper.Models.POCO.IdentityCustomization
 @{
-    var countries = (List<Country>)ViewBag.Country;
     string partialController = ViewBag.dynamicLoadPartialController;
 }
 @Html.EditorFor(model => model.CountryID, "DropDownDynamic", new { @Url = @partialController + "GetCountryID", @IsHtml = "true" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})

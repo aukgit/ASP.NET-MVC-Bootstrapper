@@ -103,7 +103,7 @@ $(function () {
 
     }
 
-
+    // make tables look nice with pagination
     var $tables = $("table.bootstrap-table-do");
     if ($tables.length > 0) {
         $tables.bootstrapTable();

@@ -41,7 +41,7 @@ namespace DevBootstrapper.Helpers {
             if (isDependOnUserLogState && UserManager.IsAuthenticated()) {
                 cacheName += UserManager.GetCurrentUserName();
             }
-            var cache = (string) AppConfig.Caches.Get(cacheName);
+            var cache = (string)AppConfig.Caches.Get(cacheName);
 
             if (cache != null && !string.IsNullOrWhiteSpace(cache)) {
                 return new HtmlString(cache);
@@ -114,7 +114,6 @@ namespace DevBootstrapper.Helpers {
         #region Drop Downs
 
         #region Country
-
         /// <summary>
         /// </summary>
         /// <param name="helper"></param>
@@ -122,7 +121,7 @@ namespace DevBootstrapper.Helpers {
         /// <param name="classes">use  spaces to describe the classes</param>
         /// <param name="otherAttributes"></param>
         /// <returns></returns>
-        public static HtmlString DropDownCountry(this HtmlHelper helper, List<Country> countries, string classes = "",
+        public static string DropDownCountry(List<Country> countries, string classes = "",
             string otherAttributes = "", string contentAddedString = "") {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          " country-combo' data-live-search='true' name='CountryID' " + otherAttributes +
@@ -137,7 +136,19 @@ namespace DevBootstrapper.Helpers {
                 sb.Append("</option>").AppendLine();
             }
             sb.AppendLine("</select>");
-            return new HtmlString(sb.ToString());
+            return sb.ToString();
+        }
+        /// <summary>
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="countries"></param>
+        /// <param name="classes">use  spaces to describe the classes</param>
+        /// <param name="otherAttributes"></param>
+        /// <returns></returns>
+        public static HtmlString DropDownCountry(this HtmlHelper helper, List<Country> countries, string classes = "",
+            string otherAttributes = "", string contentAddedString = "") {
+            string strHtml = DropDownCountry(countries, classes, otherAttributes, contentAddedString);
+            return new HtmlString(strHtml);
         }
 
         #endregion
@@ -184,7 +195,7 @@ namespace DevBootstrapper.Helpers {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          "' data-live-search='true' name='" + htmlName + "' " + otherAttributes +
                                          " title='Choose...' data-style='" + classes + "'>";
-            var dt = CachedQueriedData.GetTable(tableName, connectionType, new[] {valueField, textField});
+            var dt = CachedQueriedData.GetTable(tableName, connectionType, new[] { valueField, textField });
             if (dt != null && dt.Rows.Count > 0) {
                 var sb = new StringBuilder(countryOptionsGenerate, dt.Rows.Count + 10);
                 DataRow row;
@@ -220,9 +231,9 @@ namespace DevBootstrapper.Helpers {
                 return input;
             }
             if (isShowElipseDot) {
-                return input.Substring(0, (int) length) + "...";
+                return input.Substring(0, (int)length) + "...";
             }
-            return input.Substring(0, (int) length);
+            return input.Substring(0, (int)length);
         }
 
         public static string Truncate(this HtmlHelper helper, string input, int starting, int length) {

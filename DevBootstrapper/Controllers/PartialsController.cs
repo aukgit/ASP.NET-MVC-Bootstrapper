@@ -10,6 +10,7 @@ using DevBootstrapper.Models.Context;
 //using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
 using DevTrends.MvcDonutCaching;
 using DevBootstrapper.Filter;
+using DevBootstrapper.Helpers;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Session;
 
@@ -32,12 +33,9 @@ namespace DevBootstrapper.Controllers
 
         #region Drop down : Country, timezone, language
         [OutputCache(CacheProfile = "YearNoParam")]
-        public JsonResult GetCountryId() {
-            using (var db2 = new ApplicationDbContext()) {
-                var data = db2.Countries
-                              .Select(n => new { id = n.CountryID, display = n.DisplayCountryName }).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
+        public string GetCountryId() {
+            var countries = CachedQueriedData.GetCountries();
+            return HtmlHelpers.DropDownCountry(countries);
         }
 
         [OutputCache(CacheProfile = "Day", VaryByParam = "id")]
