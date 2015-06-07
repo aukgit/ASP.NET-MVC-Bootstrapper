@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using Microsoft.AspNet.Identity.EntityFramework;
+
+#endregion
 
 namespace DevBootstrapper.Models.Context {
 
@@ -84,7 +88,7 @@ namespace DevBootstrapper.Models.Context {
         public DbSet<CountryLanguage> CountryLanguages { get; set; }
         public DbSet<CountryLanguageRelation> CountryLanguageRelations { get; set; }
         //public DbSet<CountryBorder> CountryBorders { get; set; }
-        public DbSet<CountryDetectByIP> CountryDetectByIPs { get; set; }
+        public DbSet<CountryDetectByIp> CountryDetectByIPs { get; set; }
         public DbSet<CountryDomain> CountryDomains { get; set; }
         public DbSet<CountryTimezoneRelation> CountryTimezoneRelations { get; set; }
         public DbSet<CountryTranslation> CountryTranslations { get; set; }
@@ -162,7 +166,6 @@ namespace DevBootstrapper.Models.Context {
         }
 
         #endregion
-
     }
 
     #endregion

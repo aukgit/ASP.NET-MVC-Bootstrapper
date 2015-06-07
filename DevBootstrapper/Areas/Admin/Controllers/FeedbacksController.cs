@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class FeedbacksController : BasicController {
@@ -21,26 +25,26 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         }
 
         public ActionResult Index() {
-            return View("Index", db.Feedbacks.Where(n => !n.IsViewed).ToList());
+            return View("Index", Db.Feedbacks.Where(n => !n.IsViewed).ToList());
         }
 
         public ActionResult UnSolved() {
-            return View("Index", db.Feedbacks.Where(n => n.IsUnSolved).ToList());
+            return View("Index", Db.Feedbacks.Where(n => n.IsUnSolved).ToList());
         }
 
         public ActionResult IsInProcess() {
-            return View("Index", db.Feedbacks.Where(n => n.IsSolved).ToList());
+            return View("Index", Db.Feedbacks.Where(n => n.IsSolved).ToList());
         }
 
         public ActionResult Solved() {
-            return View("Index", db.Feedbacks.Where(n => n.IsSolved).ToList());
+            return View("Index", Db.Feedbacks.Where(n => n.IsSolved).ToList());
         }
 
         public ActionResult Details(Int64 id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var feedback = db.Feedbacks.Find(id);
+            var feedback = Db.Feedbacks.Find(id);
             if (feedback == null) {
                 return HttpNotFound();
             }
@@ -51,7 +55,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var feedback = db.Feedbacks.Find(id);
+            var feedback = Db.Feedbacks.Find(id);
             if (feedback == null) {
                 return HttpNotFound();
             }
@@ -64,12 +68,12 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         public ActionResult Edit(Feedback feedback) {
             GetDropDowns();
             if (ModelState.IsValid) {
-                db.Entry(feedback).State = EntityState.Modified;
+                Db.Entry(feedback).State = EntityState.Modified;
                 feedback.IsSolved = true;
                 feedback.IsUnSolved = false;
                 feedback.IsViewed = true;
                 feedback.IsInProcess = false;
-                db.SaveChanges();
+                Db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -78,9 +82,9 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         }
 
         public ActionResult Delete(long id) {
-            var feedback = db.Feedbacks.Find(id);
-            db.Feedbacks.Remove(feedback);
-            db.SaveChanges();
+            var feedback = Db.Feedbacks.Find(id);
+            Db.Feedbacks.Remove(feedback);
+            Db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

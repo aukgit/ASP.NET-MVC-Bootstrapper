@@ -1,4 +1,4 @@
-﻿#region imports
+﻿#region using block
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,6 @@ using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Menu;
 using DevBootstrapper.Modules.TimeZone;
-using DevBootstrapper.Modules.Uploads;
 using DevMvcComponent.Enums;
 
 #endregion
@@ -42,7 +41,7 @@ namespace DevBootstrapper.Helpers {
             if (isDependOnUserLogState && UserManager.IsAuthenticated()) {
                 cacheName += UserManager.GetCurrentUserName();
             }
-            var cache = (string)AppConfig.Caches.Get(cacheName);
+            var cache = (string) AppConfig.Caches.Get(cacheName);
 
             if (cache != null && !string.IsNullOrWhiteSpace(cache)) {
                 return new HtmlString(cache);
@@ -115,6 +114,7 @@ namespace DevBootstrapper.Helpers {
         #region Drop Downs
 
         #region Country
+
         /// <summary>
         /// </summary>
         /// <param name="helper"></param>
@@ -127,10 +127,10 @@ namespace DevBootstrapper.Helpers {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          " country-combo' data-live-search='true' name='CountryID' " + otherAttributes +
                                          " title='Country' data-style='btn-success flag-combo fc-af'>";
-            var sb = new StringBuilder(countryOptionsGenerate, countries.Count * 7);
+            var sb = new StringBuilder(countryOptionsGenerate, countries.Count*7);
             foreach (var country in countries) {
                 sb.Append(string.Format("<option class='flag-country-combo flag {0}' title='| {1}' value='{2}'>",
-                    country.Alpha2Code.ToLower(), country.DisplayCountryName, country.CountryID));
+                    country.Alpha2Code.ToLower(), country.DisplayCountryName, country.CountryId));
                 sb.Append(contentAddedString);
                 //sb.Append();
                 sb.Append(country.DisplayCountryName);
@@ -139,6 +139,7 @@ namespace DevBootstrapper.Helpers {
             sb.AppendLine("</select>");
             return sb.ToString();
         }
+
         /// <summary>
         /// </summary>
         /// <param name="helper"></param>
@@ -148,7 +149,7 @@ namespace DevBootstrapper.Helpers {
         /// <returns></returns>
         public static HtmlString DropDownCountry(this HtmlHelper helper, List<Country> countries, string classes = "",
             string otherAttributes = "", string contentAddedString = "") {
-            string strHtml = DropDownCountry(countries, classes, otherAttributes, contentAddedString);
+            var strHtml = DropDownCountry(countries, classes, otherAttributes, contentAddedString);
             return new HtmlString(strHtml);
         }
 
@@ -196,7 +197,7 @@ namespace DevBootstrapper.Helpers {
             var countryOptionsGenerate = "<select class='form-control selectpicker " + classes +
                                          "' data-live-search='true' name='" + htmlName + "' " + otherAttributes +
                                          " title='Choose...' data-style='" + classes + "'>";
-            var dt = CachedQueriedData.GetTable(tableName, connectionType, new[] { valueField, textField });
+            var dt = CachedQueriedData.GetTable(tableName, connectionType, new[] {valueField, textField});
             if (dt != null && dt.Rows.Count > 0) {
                 var sb = new StringBuilder(countryOptionsGenerate, dt.Rows.Count + 10);
                 DataRow row;
@@ -232,9 +233,9 @@ namespace DevBootstrapper.Helpers {
                 return input;
             }
             if (isShowElipseDot) {
-                return input.Substring(0, (int)length) + "...";
+                return input.Substring(0, (int) length) + "...";
             }
-            return input.Substring(0, (int)length);
+            return input.Substring(0, (int) length);
         }
 
         public static string Truncate(this HtmlHelper helper, string input, int starting, int length) {
@@ -268,7 +269,7 @@ namespace DevBootstrapper.Helpers {
 
         public static HtmlString ContactFormActionLink(this HtmlHelper helper, string linkName, string title,
             string addClass = "") {
-            var markup = string.Format(MailHtml.CONTACT_US_LINK, title, linkName, addClass, AppVar.Url);
+            var markup = string.Format(MailHtml.ContactUsLink, title, linkName, addClass, AppVar.Url);
             return new HtmlString(markup);
         }
 

@@ -1,23 +1,19 @@
-﻿using System.Data.Entity;
+﻿#region using block
+
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using DevBootstrapper.Models.EntityModel.POCO;
 using DevBootstrapper.Modules.Extensions.Context;
 
-namespace DevBootstrapper.Models.Context
-{
-    public partial class NorthwindEntities : DevDbContext
-    {
+#endregion
+
+namespace DevBootstrapper.Models.Context {
+    public class NorthwindEntities : DevDbContext {
         public NorthwindEntities()
-            : base("name=NorthwindEntities")
-        {
-            this.Configuration.LazyLoadingEnabled = false;
+            : base("name=NorthwindEntities") {
+            Configuration.LazyLoadingEnabled = false;
         }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
+
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerDemographic> CustomerDemographics { get; set; }
@@ -29,5 +25,9 @@ namespace DevBootstrapper.Models.Context
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+            throw new UnintentionalCodeFirstException();
+        }
     }
 }

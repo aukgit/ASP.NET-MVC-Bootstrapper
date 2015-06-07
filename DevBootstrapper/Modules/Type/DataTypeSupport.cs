@@ -1,4 +1,8 @@
-﻿using System;
+﻿#region using block
+
+using System;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Type {
     public class DataTypeSupport {

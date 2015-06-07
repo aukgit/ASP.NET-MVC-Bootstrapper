@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class FeedbackCategoriesController : BasicController {
@@ -21,14 +25,14 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         }
 
         public ActionResult Index() {
-            return View(db.FeedbackCategories.ToList());
+            return View(Db.FeedbackCategories.ToList());
         }
 
         public ActionResult Details(Byte id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var feedbackCategory = db.FeedbackCategories.Find(id);
+            var feedbackCategory = Db.FeedbackCategories.Find(id);
             if (feedbackCategory == null) {
                 return HttpNotFound();
             }
@@ -44,8 +48,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         public ActionResult Create(FeedbackCategory feedbackCategory) {
             GetDropDowns();
             if (ModelState.IsValid) {
-                db.FeedbackCategories.Add(feedbackCategory);
-                db.SaveChanges();
+                Db.FeedbackCategories.Add(feedbackCategory);
+                Db.SaveChanges();
 
                 AppVar.SetSavedStatus(ViewBag);
                 return View(feedbackCategory);
@@ -59,7 +63,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var feedbackCategory = db.FeedbackCategories.Find(id);
+            var feedbackCategory = Db.FeedbackCategories.Find(id);
             if (feedbackCategory == null) {
                 return HttpNotFound();
             }
@@ -72,8 +76,8 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         public ActionResult Edit(FeedbackCategory feedbackCategory) {
             GetDropDowns();
             if (ModelState.IsValid) {
-                db.Entry(feedbackCategory).State = EntityState.Modified;
-                db.SaveChanges();
+                Db.Entry(feedbackCategory).State = EntityState.Modified;
+                Db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -82,9 +86,9 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         }
 
         public ActionResult Delete(byte id) {
-            var feedbackCategory = db.FeedbackCategories.Find(id);
-            db.FeedbackCategories.Remove(feedbackCategory);
-            db.SaveChanges();
+            var feedbackCategory = Db.FeedbackCategories.Find(id);
+            Db.FeedbackCategories.Remove(feedbackCategory);
+            Db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

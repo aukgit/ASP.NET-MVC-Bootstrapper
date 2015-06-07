@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Security.Claims;
 using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
@@ -11,6 +13,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Owin;
+
+#endregion
 
 //using DevBootstrapper.Modules.Garbage;
 
@@ -54,7 +58,7 @@ namespace DevBootstrapper {
 
             if (AppConfig.Setting.IsFacebookAuthentication) {
                 var facebookAuthenticationOptions = new FacebookAuthenticationOptions {
-                    AppId = AppConfig.Setting.FacebookClientID.ToString(),
+                    AppId = AppConfig.Setting.FacebookClientId.ToString(),
                     AppSecret = AppConfig.Setting.FacebookSecret,
                     AuthenticationType = "FB",
                     SignInAsAuthenticationType = "ExternalCookie",

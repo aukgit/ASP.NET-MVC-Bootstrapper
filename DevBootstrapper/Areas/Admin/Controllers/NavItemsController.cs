@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,6 +10,8 @@ using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 
+#endregion
+
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class NavItemsController : Controller {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
@@ -16,7 +20,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (navitionId == null) {
                 return _db.NavigationItems.ToList();
             }
-            return _db.NavigationItems.Where(n => n.NavigationID == navitionId).ToList();
+            return _db.NavigationItems.Where(n => n.NavigationId == navitionId).ToList();
         }
 
         private void AddMenuName(int id) {
@@ -32,7 +36,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         private void HasDropDownAttr(NavigationItem navigationItem) {
             if (!navigationItem.HasDropDown) {
-                navigationItem.ParentNavigationID = null;
+                navigationItem.ParentNavigationId = null;
             }
         }
 
@@ -44,7 +48,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(NavigationItem navigationItem) {
-            AddMenuName(navigationItem.NavigationID);
+            AddMenuName(navigationItem.NavigationId);
             if (ModelState.IsValid) {
                 HasDropDownAttr(navigationItem);
                 _db.NavigationItems.Add(navigationItem);
@@ -78,9 +82,9 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (ModelState.IsValid) {
                 _db.Entry(navigationItem).State = EntityState.Modified;
                 _db.SaveChanges();
-                return RedirectToAction("List", new { id = navigationItem.NavigationID });
+                return RedirectToAction("List", new {id = navigationItem.NavigationId});
             }
-            AddMenuName(navigationItem.NavigationID);
+            AddMenuName(navigationItem.NavigationId);
             AppConfig.Caches.RemoveAllFromCache();
             return View(navigationItem);
         }
@@ -91,7 +95,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             _db.SaveChanges();
             AddMenuName(navigationId);
             AppConfig.Caches.RemoveAllFromCache();
-            return RedirectToAction("List", new { id = navigationId });
+            return RedirectToAction("List", new {id = navigationId});
         }
 
         protected override void Dispose(bool disposing) {

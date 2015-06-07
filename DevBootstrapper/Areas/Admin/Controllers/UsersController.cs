@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -9,6 +11,8 @@ using DevBootstrapper.Models.ViewModels;
 using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Role;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class UsersController : BasicController {
@@ -71,7 +75,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             }
 
             try {
-                var changes = db.SaveChanges(applicationUser);
+                var changes = Db.SaveChanges(applicationUser);
                 if (changes > 0) {
                     return true;
                 }
@@ -87,7 +91,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult Index() {
             var viewOf = ViewTapping(ViewStates.Index);
-            return View(db.Users.ToList());
+            return View(Db.Users.ToList());
         }
 
         #endregion
@@ -96,7 +100,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult FilterBlockedUsers() {
             var viewOf = ViewTapping(ViewStates.FilterBlockedUsers);
-            return View("FilterBlockedUsers", db.Users.Where(n => n.IsBlocked).ToList());
+            return View("FilterBlockedUsers", Db.Users.Where(n => n.IsBlocked).ToList());
         }
 
         #endregion
@@ -104,7 +108,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         #region Details
 
         public ActionResult Details(long id) {
-            var applicationUser = db.Users.Find(id);
+            var applicationUser = Db.Users.Find(id);
             if (applicationUser == null) {
                 return HttpNotFound();
             }
@@ -172,16 +176,16 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public void GetDropDowns(ApplicationUser applicationUser) {
             ViewBag.CountryID =
-                new SelectList(db.Countries.Where(n => n.CountryID == applicationUser.CountryID).ToList(), "CountryID",
-                    "CountryName", applicationUser.CountryID);
+                new SelectList(Db.Countries.Where(n => n.CountryId == applicationUser.CountryId).ToList(), "CountryID",
+                    "CountryName", applicationUser.CountryId);
             ViewBag.UserTimeZoneID =
                 new SelectList(
-                    db.UserTimeZones.Where(n => n.UserTimeZoneID == applicationUser.UserTimeZoneID).ToList(),
-                    "UserTimeZoneID", "UTCName", applicationUser.UserTimeZoneID);
+                    Db.UserTimeZones.Where(n => n.UserTimeZoneId == applicationUser.UserTimeZoneId).ToList(),
+                    "UserTimeZoneID", "UTCName", applicationUser.UserTimeZoneId);
             ViewBag.CountryLanguageID =
                 new SelectList(
-                    db.CountryLanguages.Where(n => n.CountryLanguageID == applicationUser.CountryLanguageID).ToList(),
-                    "CountryLanguageID", "Language", applicationUser.CountryLanguageID);
+                    Db.CountryLanguages.Where(n => n.CountryLanguageId == applicationUser.CountryLanguageId).ToList(),
+                    "CountryLanguageID", "Language", applicationUser.CountryLanguageId);
         }
 
         public void GetDropDowns(long id) {
@@ -202,7 +206,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             manageRole.AllRoles = RoleManager.GetRoles();
             manageRole.UserInRoles = RoleManager.GetUserRolesAsApplicationRole(id).ToList();
             manageRole.UserDisplayName = user.DisplayName;
-            manageRole.UserId = user.UserID;
+            manageRole.UserId = user.UserId;
 
             return View(manageRole);
         }
@@ -211,7 +215,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult AddRole(long userId, long roleId) {
             RoleManager.AddRoleToUser(userId, roleId);
-            return RedirectToAction("ManageRoles", new { id = userId });
+            return RedirectToAction("ManageRoles", new {id = userId});
         }
 
         #endregion
@@ -220,7 +224,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult RemoveRole(long userId, long roleId) {
             RoleManager.RemoveUserRole(userId, roleId);
-            return RedirectToAction("ManageRoles", new { id = userId });
+            return RedirectToAction("ManageRoles", new {id = userId});
         }
 
         #endregion
@@ -244,12 +248,12 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UserBlock(UserBlockViewModel model) {
-            var user = db.Users.Find(model.UserId);
+            var user = Db.Users.Find(model.UserId);
             if (user != null) {
                 //same user
                 user.IsBlocked = true;
-                user.BlockedbyUserId = UserManager.GetCurrentUser().UserID;
-                db.Entry(user).State = EntityState.Modified;
+                user.BlockedbyUserId = UserManager.GetCurrentUser().UserId;
+                Db.Entry(user).State = EntityState.Modified;
                 if (SaveDatabase(ViewStates.EditPost, user)) {
                     var currentUserName = UserManager.GetCurrentUser().DisplayName;
 
@@ -282,13 +286,13 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EnableUserBlock(UserBlockViewModel model) {
-            var user = db.Users.Find(model.UserId);
+            var user = Db.Users.Find(model.UserId);
             if (user != null) {
                 //same user
                 user.IsBlocked = false;
                 user.BlockedbyUserId = 0;
                 user.BlockingReason = "";
-                db.Entry(user).State = EntityState.Modified;
+                Db.Entry(user).State = EntityState.Modified;
                 if (SaveDatabase(ViewStates.EditPost, user)) {
                     var currentUserName = UserManager.GetCurrentUser().DisplayName;
 

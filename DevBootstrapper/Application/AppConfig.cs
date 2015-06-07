@@ -1,71 +1,43 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Session;
 using DevBootstrapper.Modules.TimeZone;
-using DevBootstrapper.Modules.UserError;
+using DevMvcComponent;
 using DevMvcComponent.Processor;
+
+#endregion
 
 namespace DevBootstrapper.Application {
     /// <summary>
-    /// Application Configurations, also contains the list of roles.
+    ///     Application Configurations, also contains the list of roles.
     /// </summary>
     public static class AppConfig {
-
-        #region Public declares
-
-        public static CookieProcessor Cookies;
-        public static CacheProcessor Caches;
-        public static ErrorCollector ErrorCollection = new ErrorCollector();
-        public static readonly string[] Roles = new string[] {
-            "Admin",
-            "Moderator",
-            "Default",
-            "Guest"
-        };
-
-        #endregion
-        public static ErrorCollector GetNewErrorCollector() {
-            return new ErrorCollector();
-        }
-        private static CoreSetting _setting = null;
-        private static bool _initalized = false;
+        private static CoreSetting _setting;
+        private static bool _initalized;
         private static int _truncateLength = 30;
 
-        public static int ValidationMaxNumber { get { return 10; } }
-
-        public static int TruncateLength {
-            get {
-                return _truncateLength;
-            }
-            set {
-                _truncateLength = value;
-            }
+        public static int ValidationMaxNumber {
+            get { return 10; }
         }
 
-
-        private static void InitalizeDevelopersOrganismComponent(bool force = false) {
-            if (!_initalized || force) {
-                DevMvcComponent.Config.ApplicationName = AppVar.Name;
-                DevMvcComponent.Config.AdminEmail = Setting.AdminEmail;
-                DevMvcComponent.Config.DeveloperEmail = Setting.DeveloperEmail;
-                DevMvcComponent.Config.Assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                Zone.LoadTimeZonesIntoMemory();
-                _initalized = true;
-            }
+        public static int TruncateLength {
+            get { return _truncateLength; }
+            set { _truncateLength = value; }
         }
 
         /// <summary>
-        /// Get few common classes from Developers Organism Component.
+        ///     Get few common classes from Developers Organism Component.
         /// </summary>
-
-
         public static CoreSetting Setting {
             get {
                 if (_setting == null) {
-                    using (DevIdentityDbContext db = new DevIdentityDbContext()) {
+                    using (var db = new DevIdentityDbContext()) {
                         _setting = db.CoreSettings.FirstOrDefault();
                     }
                 }
@@ -73,18 +45,33 @@ namespace DevBootstrapper.Application {
             }
         }
 
+        public static ErrorCollector GetNewErrorCollector() {
+            return new ErrorCollector();
+        }
+
+        private static void InitalizeDevelopersOrganismComponent(bool force = false) {
+            if (!_initalized || force) {
+                Config.ApplicationName = AppVar.Name;
+                Config.AdminEmail = Setting.AdminEmail;
+                Config.DeveloperEmail = Setting.DeveloperEmail;
+                Config.Assembly = Assembly.GetExecutingAssembly();
+                Zone.LoadTimeZonesIntoMemory();
+                _initalized = true;
+            }
+        }
+
         /// <summary>
-        /// Settings will not be null. Default values will be pushed.
+        ///     Settings will not be null. Default values will be pushed.
         /// </summary>
         /// <returns></returns>
         public static bool CreateDefaultCoreSetting() {
             var s = Setting;
             if (s == null) {
                 //no setting exist , need to create a default setting.
-                using (DevIdentityDbContext db = new DevIdentityDbContext()) {
-                    _setting = new CoreSetting() {
+                using (var db = new DevIdentityDbContext()) {
+                    _setting = new CoreSetting {
                         // Set the id to be auto in db.
-                        CoreSettingID = 1,
+                        CoreSettingId = 1,
                         ApplicationName = "Developers Organism Component",
                         ApplicationSubtitle = "Subtitle",
                         ApplicationDescription = "Developers Organism component for website maintenance.",
@@ -114,28 +101,26 @@ namespace DevBootstrapper.Application {
                         SmtpHost = "smtp.gmail.com",
                         SmtpMailPort = 587,
                         GoogleMetaTag = "Meta tag",
-                        FacebookClientID = 123,
+                        FacebookClientId = 123,
                         FacebookSecret = "FB App Secret",
                         IsFacebookAuthentication = true,
                         NotifyDeveloperOnError = true,
                         IsConfirmMailRequired = true,
-                        IsSMTPSSL = true,
+                        IsSmtpssl = true,
                         IsFirstUserFound = false
                     };
                     db.CoreSettings.Add(_setting);
-                    int i = db.SaveChanges();
+                    var i = db.SaveChanges();
                     if (i >= 0) {
                         return true;
-                    } else {
-                        return false;
                     }
+                    return false;
                 }
             }
             return false;
         }
 
         public static void RefreshSetting() {
-
             using (var db = new DevIdentityDbContext()) {
                 CreateDefaultCoreSetting();
 
@@ -146,40 +131,52 @@ namespace DevBootstrapper.Application {
                 InitalizeDevelopersOrganismComponent(true);
                 AppVar.IsInTestEnvironment = Setting.IsInTestingEnvironment;
 
-                AppVar.Name = Setting.ApplicationName.ToString();
-                AppVar.Subtitle = Setting.ApplicationSubtitle.ToString();
+                AppVar.Name = Setting.ApplicationName;
+                AppVar.Subtitle = Setting.ApplicationSubtitle;
                 AppVar.Setting = Setting;
                 AppVar.SetCommonMetaDescriptionToEmpty();
                 //Configure this with add a sender email.
-                DevMvcComponent.Starter.Mailer = new DevMvcComponent.Mailers.CustomMailConfig(Setting.SenderEmail, Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSMTPSSL);
+                Starter.Mailer = new DevMvcComponent.Mailers.CustomMailConfig(Setting.SenderEmail,
+                    Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmtpssl);
                 //if false then no email on error.
-                DevMvcComponent.Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
-
+                Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
             }
         }
 
         /// <summary>
-        /// Get error and set it to null.
+        ///     Get error and set it to null.
         /// </summary>
         /// <returns></returns>
         public static ErrorCollector GetGlobalError() {
             if (HttpContext.Current.Session[SessionNames.Error] != null) {
-                var error = (ErrorCollector)HttpContext.Current.Session[SessionNames.Error];
+                var error = (ErrorCollector) HttpContext.Current.Session[SessionNames.Error];
                 HttpContext.Current.Session[SessionNames.Error] = null;
                 return error;
-            } else {
-                return null;
             }
+            return null;
         }
 
         /// <summary>
-        /// Set Global Error
+        ///     Set Global Error
         /// </summary>
         /// <param name="error"></param>
         public static void SetGlobalError(ErrorCollector error) {
             HttpContext.Current.Session[SessionNames.Error] = error;
         }
 
+        #region Public declares
+
+        public static CookieProcessor Cookies;
+        public static CacheProcessor Caches;
+        public static ErrorCollector ErrorCollection = new ErrorCollector();
+
+        public static readonly string[] Roles = {
+            "Admin",
+            "Moderator",
+            "Default",
+            "Guest"
+        };
+
+        #endregion
     }
-   
 }

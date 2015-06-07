@@ -9,9 +9,9 @@
  * For more Yii related demos visit http://demos.krajee.com
  */
 (function($) {
-    var DEFAULT_MIN = 0;
-    var DEFAULT_MAX = 5;
-    var DEFAULT_STEP = 0.5;
+    var defaultMin = 0;
+    var defaultMax = 5;
+    var defaultStep = 0.5;
 
     var isEmpty = function(value, trim) {
         return typeof value === "undefined" || value === null || value === undefined || value == []
@@ -50,13 +50,13 @@
             var self = this, $input = self.$element;
             if ($input.attr("type") === "range" || $input.attr("type") === "number") {
                 var val = validateAttr($input, vattr, options);
-                var chk = DEFAULT_STEP;
+                var chk = defaultStep;
                 if (vattr === "min") {
-                    chk = DEFAULT_MIN;
+                    chk = defaultMin;
                 } else if (vattr === "max") {
-                    chk = DEFAULT_MAX;
+                    chk = defaultMax;
                 } else if (vattr === "step") {
-                    chk = DEFAULT_STEP;
+                    chk = defaultStep;
                 }
                 var final = isEmpty(val) ? chk : val;
                 return parseFloat(final);
@@ -138,13 +138,13 @@
             self.max = (typeof options.max !== "undefined") ? options.max : self._parseAttr("max", options);
             self.step = (typeof options.step !== "undefined") ? options.step : self._parseAttr("step", options);
             if (isNaN(self.min) || isEmpty(self.min)) {
-                self.min = DEFAULT_MIN;
+                self.min = defaultMin;
             }
             if (isNaN(self.max) || isEmpty(self.max)) {
-                self.max = DEFAULT_MAX;
+                self.max = defaultMax;
             }
             if (isNaN(self.step) || isEmpty(self.step) || self.step == 0) {
-                self.step = DEFAULT_STEP;
+                self.step = defaultStep;
             }
             self.diff = self.max - self.min;
         },

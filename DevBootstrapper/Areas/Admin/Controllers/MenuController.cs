@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class MenuController : Controller {

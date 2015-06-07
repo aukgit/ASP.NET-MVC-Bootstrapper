@@ -1,7 +1,11 @@
-﻿using System.Data.Entity;
+﻿#region using block
+
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Controllers {
     public class HomeController : BasicController {
@@ -15,7 +19,7 @@ namespace DevBootstrapper.Controllers {
 
         //[OutputCache(Duration=84731)]
         public ActionResult ContactUs() {
-            ViewBag.FeedbackCateoryID = new SelectList(db.FeedbackCategories.ToList(), "FeedbackCategoryID", "Category");
+            ViewBag.FeedbackCateoryID = new SelectList(Db.FeedbackCategories.ToList(), "FeedbackCategoryID", "Category");
             AppVar.GetTitlePageMeta(ViewBag, "Contact Us", null, "Contact Us - " + AppVar.Name,
                 "Contact Us, Feedback about " + AppVar.Name);
             return View();
@@ -23,14 +27,14 @@ namespace DevBootstrapper.Controllers {
 
         [HttpPost]
         public ActionResult ContactUs(Feedback feedback) {
-            ViewBag.FeedbackCateoryID = new SelectList(db.FeedbackCategories.ToList(), "FeedbackCategoryID", "Category");
+            ViewBag.FeedbackCateoryID = new SelectList(Db.FeedbackCategories.ToList(), "FeedbackCategoryID", "Category");
             AppVar.GetTitlePageMeta(ViewBag, "Contact Us", null, "Contact Us - " + AppVar.Name,
                 "Contact Us, Feedback about " + AppVar.Name);
 
 
             if (ModelState.IsValid) {
-                db.Entry(feedback).State = EntityState.Added;
-                db.SaveChanges();
+                Db.Entry(feedback).State = EntityState.Added;
+                Db.SaveChanges();
                 AppVar.SetSavedStatus(ViewBag);
                 //send a email.
                 AppVar.Mailer.NotifyAdmin("A feedback has been added by " + feedback.Email,

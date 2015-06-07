@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,32 +18,14 @@ using DevBootstrapper.Modules.UserError;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
+#endregion
+
 namespace DevBootstrapper.Modules.DevUser {
     public class UserManager {
         #region Authentication
 
         public static bool IsAuthenticated() {
             return HttpContext.Current.User.Identity.IsAuthenticated;
-        }
-
-        #endregion
-
-        #region Get Every User
-
-        /// <summary>
-        /// Get all the list of users.
-        /// </summary>
-        /// <returns>Returns all stored users in the database.</returns>
-        public static List<ApplicationUser> GetAllUsers() {
-            return Manager.Users.ToList();
-        }
-
-        /// <summary>
-        /// Get all the list of users.
-        /// </summary>
-        /// <returns>Returns all stored users as IQueryable for pagination.</returns>
-        public static IQueryable<ApplicationUser> GetAllUsersAsIQueryable() {
-            return Manager.Users;
         }
 
         #endregion
@@ -66,7 +50,7 @@ namespace DevBootstrapper.Modules.DevUser {
                 var regCode =
                     db.RegisterCodes.FirstOrDefault(
                         n =>
-                            n.IsUsed == false && n.RoleID == model.Role && n.RegisterCodeID == model.RegistraterCode &&
+                            n.IsUsed == false && n.RoleId == model.Role && n.RegisterCodeId == model.RegistraterCode &&
                             !n.IsExpired);
                 if (regCode != null) {
                     if (regCode.ValidityTill <= DateTime.Now) {
@@ -83,26 +67,26 @@ namespace DevBootstrapper.Modules.DevUser {
             }
 
             //validation for country language
-            var languages = CachedQueriedData.GetLanguages(model.CountryID, 0);
+            var languages = CachedQueriedData.GetLanguages(model.CountryId, 0);
             if (languages == null) {
                 //select english as default.
-                model.CountryLanguageID = CachedQueriedData.GetDefaultLanguage().CountryLanguageID;
+                model.CountryLanguageId = CachedQueriedData.GetDefaultLanguage().CountryLanguageId;
             } else if (languages.Count > 1) {
                 //it should be selected inside the register panel.
-                validOtherConditions = !(model.CountryLanguageID == 0); //if zero then false.
+                validOtherConditions = !(model.CountryLanguageId == 0); //if zero then false.
                 errors.AddMedium("You forgot you set your language.");
             } else if (languages.Count == 1) {
-                model.CountryLanguageID = languages[0].CountryLanguageID;
+                model.CountryLanguageId = languages[0].CountryLanguageId;
             }
 
             //validation for country timzone
-            var timezones = CachedQueriedData.GetTimezones(model.CountryID, 0);
+            var timezones = CachedQueriedData.GetTimezones(model.CountryId, 0);
             if (timezones != null && timezones.Count > 1) {
                 //it should be selected inside the register panel.
-                validOtherConditions = !(model.UserTimeZoneID == 0); //if zero then false.
+                validOtherConditions = !(model.UserTimeZoneId == 0); //if zero then false.
                 errors.AddMedium("You forgot you set your time zone.");
             } else if (timezones.Count == 1) {
-                model.UserTimeZoneID = timezones[0].UserTimeZoneID;
+                model.UserTimeZoneId = timezones[0].UserTimeZoneId;
             } else {
                 validOtherConditions = false;
                 errors.AddMedium(
@@ -123,8 +107,8 @@ namespace DevBootstrapper.Modules.DevUser {
         public void LinkUserWithRegistrationCode(ApplicationUser user, Guid code) {
             if (user != null) {
                 var relation = new RegisterCodeUserRelation {
-                    UserID = user.Id,
-                    RegisterCodeUserRelationID = code
+                    UserId = user.Id,
+                    RegisterCodeUserRelationId = code
                 };
                 using (var db = new ApplicationDbContext()) {
                     db.RegisterCodeUserRelations.Add(relation);
@@ -211,6 +195,26 @@ namespace DevBootstrapper.Modules.DevUser {
 
         #endregion
 
+        #region Get Every User
+
+        /// <summary>
+        ///     Get all the list of users.
+        /// </summary>
+        /// <returns>Returns all stored users in the database.</returns>
+        public static List<ApplicationUser> GetAllUsers() {
+            return Manager.Users.ToList();
+        }
+
+        /// <summary>
+        ///     Get all the list of users.
+        /// </summary>
+        /// <returns>Returns all stored users as IQueryable for pagination.</returns>
+        public static IQueryable<ApplicationUser> GetAllUsersAsIQueryable() {
+            return Manager.Users;
+        }
+
+        #endregion
+
         #region Declaration
 
         private static ApplicationUserManager _userManager;
@@ -293,11 +297,11 @@ namespace DevBootstrapper.Modules.DevUser {
         public static ApplicationUser GetUserFromSession() {
             var userSession = HttpContext.Current.Session[SessionNames.User];
             if (userSession != null) {
-                return (ApplicationUser)userSession;
+                return (ApplicationUser) userSession;
             }
             userSession = HttpContext.Current.Session[SessionNames.LastUser];
             if (userSession != null) {
-                return (ApplicationUser)userSession;
+                return (ApplicationUser) userSession;
             }
             return null;
         }
@@ -320,7 +324,7 @@ namespace DevBootstrapper.Modules.DevUser {
 
         public static ApplicationUser GetUserFromSession(long userId) {
             var user = GetUserFromSession();
-            if (user != null && user.UserID == userId) {
+            if (user != null && user.UserId == userId) {
                 return user;
             }
             return null;
@@ -336,9 +340,9 @@ namespace DevBootstrapper.Modules.DevUser {
                 CreatedDate = DateTime.Now,
                 EmailConfirmed = false,
                 PhoneNumber = model.Phone,
-                CountryID = model.CountryID,
-                CountryLanguageID = model.CountryLanguageID,
-                UserTimeZoneID = model.UserTimeZoneID,
+                CountryId = model.CountryId,
+                CountryLanguageId = model.CountryLanguageId,
+                UserTimeZoneId = model.UserTimeZoneId,
                 IsRegistrationComplete = false,
                 GeneratedGuid = Guid.NewGuid()
             };

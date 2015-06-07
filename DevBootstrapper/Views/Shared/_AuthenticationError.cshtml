@@ -1,18 +1,33 @@
-﻿<h1 class="text-danger h1 gap-from-top-small">@ViewBag.Title</h1>
+﻿<h1 class="gap-from-top-small h1 text-danger">@ViewBag.Title</h1>
+
 
 <div class="container unhappy-page">
+
     <div class="row">
+
         <p class="col-md-2 unhappy">
+
             :(
+
         </p>
+
         <div class="col-md-9 unhappy-detail">
+
             <p>
+
                 @ViewData["ErrorMessage"]
                 Sorry you don't have the permission to visit this page.
+
             </p>
+
             <div class="contactus">
+
                 Please feel free to @Html.ContactFormActionLink("contact us", "Contact Us - " + @AppVar.Name).
+
             </div>
+
         </div>
+
     </div>
+
 </div>

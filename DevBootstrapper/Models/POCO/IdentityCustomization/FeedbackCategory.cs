@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿#region using block
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+#endregion
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class FeedbackCategory {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public byte FeedbackCategoryID { get; set; }
+        public byte FeedbackCategoryId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [Required]

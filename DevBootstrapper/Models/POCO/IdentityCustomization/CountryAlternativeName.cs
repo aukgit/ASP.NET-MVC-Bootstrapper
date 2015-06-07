@@ -1,14 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#region using block
+
+using System.ComponentModel.DataAnnotations;
+
+#endregion
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class CountryAlternativeName {
         [Key]
-        public int CountryAlternativeNameID { get; set; }
+        public int CountryAlternativeNameId { get; set; }
 
         [StringLength(80)]
         [Required]
         public string AlternativeName { get; set; }
 
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
     }
 }

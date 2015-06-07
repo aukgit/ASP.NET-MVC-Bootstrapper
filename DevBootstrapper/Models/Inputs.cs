@@ -1,22 +1,20 @@
+#region using block
+
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
-namespace DevBootstrapper.Models
-{
-    public enum EnumType
-    {
-        [Description("Enum Value 1")]
-        EnumValue1 = 1,
-        [Description("Enum Value 2")]
-        EnumValue2 = 2,
-        [Description("Enum Value 3")]
-        EnumValue3 = 3
+#endregion
+
+namespace DevBootstrapper.Models {
+    public enum EnumType {
+        [Description("Enum Value 1")] EnumValue1 = 1,
+        [Description("Enum Value 2")] EnumValue2 = 2,
+        [Description("Enum Value 3")] EnumValue3 = 3
     }
-    
-    public class Inputs
-    {
+
+    public class Inputs {
         public bool BoolValue { get; set; }
         public DateTime DateValue { get; set; }
 

@@ -1,15 +1,15 @@
 ﻿@model DevBootstrapper.Models.ViewModels.RegisterViewModel
-@using DevBootstrapper.Models.POCO.IdentityCustomization
 @{
     string partialController = ViewBag.dynamicLoadPartialController;
 }
-@Html.EditorFor(model => model.CountryID, "DropDownDynamic", new { @Url = @partialController + "GetCountryID", @IsHtml = "true" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+@Html.EditorFor(model => model.CountryId, "DropDownDynamic", new {@Url = @partialController + "GetCountryID", @IsHtml = "true" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
 <div class="form-group timezone-main">
     <div class="controls">
         <label class="col-md-2 control-label">Timezone<span class="red ">*</span></label>
         <div class="col-md-10 timezone-combo-div">
             <!--select will be added here. -->
-            <a href="#" data-toggle="tooltip" data-original-title="Please select your sepecific timezone." title="Please select your sepecific timezone." class="tooltip-show"><span class="question-mark-for-description"></span></a>
+            <a href="#" data-toggle="tooltip" data-original-title="Please select your sepecific timezone." title="Please select your sepecific timezone." class="tooltip-show">
+                <span class="question-mark-for-description"></span></a>
         </div>
     </div>
 </div>
@@ -18,7 +18,8 @@
         <label class="col-md-2 control-label">Language<span class="red ">*</span></label>
         <div class="col-md-10 language-combo-div">
             <!--select will be added here. -->
-            <a href="#" data-toggle="tooltip" data-original-title="Please select your sepecific language." title="Please select your sepecific language." class="tooltip-show"><span class="question-mark-for-description"></span></a>
+            <a href="#" data-toggle="tooltip" data-original-title="Please select your sepecific language." title="Please select your sepecific language." class="tooltip-show">
+                <span class="question-mark-for-description"></span></a>
         </div>
     </div>
 </div>

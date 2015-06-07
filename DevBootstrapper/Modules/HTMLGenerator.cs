@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿#region using block
+
+using System.Web.Mvc;
+
+#endregion
 
 namespace DevBootstrapper.Modules {
     public static class HtmlGenerator {

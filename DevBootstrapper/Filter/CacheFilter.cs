@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Web;
 using System.Web.Mvc;
+
+#endregion
 
 namespace DevBootstrapper.Filter {
     public class CacheFilterAttribute : ActionFilterAttribute {

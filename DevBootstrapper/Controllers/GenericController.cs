@@ -1,21 +1,23 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Web.Mvc;
-using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.Extensions.Context;
-using DevBootstrapper.Modules.UserError;
+using DevMvcComponent.Error;
+
+#endregion
 
 namespace DevBootstrapper.Controllers {
-
     public abstract class GenericController<TContext> : Controller where TContext : DevDbContext, new() {
         internal ErrorCollector ErrorCollector;
-        internal readonly TContext db;
+        internal readonly TContext Db;
 
         protected GenericController() {
         }
 
         protected GenericController(bool applicationDbContextRequried) {
             if (applicationDbContextRequried) {
-                db = new TContext();
+                Db = new TContext();
             }
         }
 
@@ -24,13 +26,13 @@ namespace DevBootstrapper.Controllers {
                 ErrorCollector = new ErrorCollector();
             }
             if (applicationDbContextRequried) {
-                db = new TContext();
+                Db = new TContext();
             }
         }
 
         protected override void Dispose(bool disposing) {
-            if (db != null) {
-                db.Dispose();
+            if (Db != null) {
+                Db.Dispose();
             }
             if (ErrorCollector != null) {
                 ErrorCollector.Dispose();

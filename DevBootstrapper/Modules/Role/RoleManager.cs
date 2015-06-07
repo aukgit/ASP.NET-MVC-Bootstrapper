@@ -1,15 +1,19 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using DevMvcComponent;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.DevUser;
+using DevMvcComponent;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Role {
     /// <summary>
@@ -80,9 +84,9 @@ namespace DevBootstrapper.Modules.Role {
         /// <returns></returns>
         public static async Task<ApplicationRole> ReturnRoleIdFromTempInfoAndRemoveTemp(long userId) {
             using (var db = new ApplicationDbContext()) {
-                var temp = db.TempUserRoleRelations.FirstOrDefault(n => n.UserID == userId);
+                var temp = db.TempUserRoleRelations.FirstOrDefault(n => n.UserId == userId);
                 if (temp != null) {
-                    var role = GetRole(temp.UserRoleID);
+                    var role = GetRole(temp.UserRoleId);
                     if (role != null) {
                         db.TempUserRoleRelations.Remove(temp);
                         await db.SaveChangesAsync();
@@ -186,7 +190,7 @@ namespace DevBootstrapper.Modules.Role {
         /// <returns></returns>
         public static bool IsInRole(string role) {
             if (UserManager.IsAuthenticated()) {
-                return UserManager.Manager.IsInRole(UserManager.GetCurrentUser().UserID, role);
+                return UserManager.Manager.IsInRole(UserManager.GetCurrentUser().UserId, role);
             }
             return false;
         }
@@ -212,7 +216,7 @@ namespace DevBootstrapper.Modules.Role {
         public static IList<string> GetUserRoles(string username) {
             var user = UserManager.GetUser(username);
             if (user != null) {
-                return UserManager.Manager.GetRoles(user.UserID);
+                return UserManager.Manager.GetRoles(user.UserId);
             }
             return null;
         }
@@ -226,7 +230,7 @@ namespace DevBootstrapper.Modules.Role {
         public static List<ApplicationRole> GetUserRolesAsApplicationRole(string username) {
             var user = UserManager.GetUser(username);
             if (user != null) {
-                return GetUserRolesAsApplicationRole(user.UserID);
+                return GetUserRolesAsApplicationRole(user.UserId);
             }
             return null;
         }
@@ -737,8 +741,8 @@ namespace DevBootstrapper.Modules.Role {
         public static void AddTempRoleInfo(ApplicationUser user, long roleId) {
             using (var db = new ApplicationDbContext()) {
                 var temp = new TempUserRoleRelation();
-                temp.UserID = user.UserID;
-                temp.UserRoleID = roleId;
+                temp.UserId = user.UserId;
+                temp.UserRoleId = roleId;
                 db.TempUserRoleRelations.Add(temp);
                 db.SaveChanges();
             }

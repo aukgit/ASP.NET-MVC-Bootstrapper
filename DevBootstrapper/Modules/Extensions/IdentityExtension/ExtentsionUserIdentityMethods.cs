@@ -1,5 +1,9 @@
-﻿using System.Security.Principal;
+﻿#region using block
+
+using System.Security.Principal;
 using Microsoft.AspNet.Identity;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Extensions.IdentityExtension {
     public static class ExtentsionUserIdentityMethods {

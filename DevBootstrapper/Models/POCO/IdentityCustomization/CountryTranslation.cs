@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#region using block
+
+using System.ComponentModel.DataAnnotations;
+
+#endregion
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class CountryTranslation {
-        public int CountryTranslationID { get; set; }
-        public int CountryLanguageID { get; set; }
+        public int CountryTranslationId { get; set; }
+        public int CountryLanguageId { get; set; }
 
         [StringLength(50)]
         [Required]

@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.IO;
 using System.Web;
 using DevBootstrapper.Models.DesignPattern.Interfaces;
 using DevMvcComponent;
 using ImageResizer;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Uploads {
     public class UploadProcessor {

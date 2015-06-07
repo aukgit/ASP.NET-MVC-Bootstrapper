@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class CountriesController : Controller {
@@ -25,7 +29,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             var timezone = _db.UserTimeZones.Find(id);
             _db.UserTimeZones.Remove(timezone);
             _db.SaveChanges();
-            return RedirectToActionPermanent("Edit", new { id });
+            return RedirectToActionPermanent("Edit", new {id});
         }
 
         [HttpPost]
@@ -35,21 +39,21 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             var foundTimeZone = _db.UserTimeZones.Find(timezone);
             if (foundTimeZone != null) {
                 var addRelation = new CountryTimezoneRelation {
-                    CountryID = country.CountryID,
-                    UserTimeZoneID = foundTimeZone.UserTimeZoneID
+                    CountryId = country.CountryId,
+                    UserTimeZoneId = foundTimeZone.UserTimeZoneId
                 };
                 var anyExist =
                     _db.CountryTimezoneRelations.Any(
-                        n => n.UserTimeZoneID == addRelation.UserTimeZoneID && n.CountryID == addRelation.CountryID);
+                        n => n.UserTimeZoneId == addRelation.UserTimeZoneId && n.CountryId == addRelation.CountryId);
 
                 if (!anyExist) {
                     //not exist then add
                     _db.CountryTimezoneRelations.Add(addRelation);
-                    country.RelatedTimeZoneID = addRelation.UserTimeZoneID;
+                    country.RelatedTimeZoneId = addRelation.UserTimeZoneId;
                 }
 
                 country.IsSingleTimeZone = !hasMultiple;
-                country.RelatedTimeZoneID = addRelation.UserTimeZoneID;
+                country.RelatedTimeZoneId = addRelation.UserTimeZoneId;
                 _db.SaveChanges();
             }
             var zones = CachedQueriedData.GetTimezones(countryId);

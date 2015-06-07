@@ -1,5 +1,9 @@
+#region using block
+
 using System.Data.Entity.Migrations;
 using DevBootstrapper.Models.Context;
+
+#endregion
 
 namespace DevBootstrapper.Models.Migrations.Indentity {
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext> {

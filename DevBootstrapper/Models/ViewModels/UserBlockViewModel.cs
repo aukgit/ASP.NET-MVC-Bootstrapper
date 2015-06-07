@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#region using block
+
+using System.ComponentModel.DataAnnotations;
+
+#endregion
 
 namespace DevBootstrapper.Models.ViewModels {
     public class UserBlockViewModel {

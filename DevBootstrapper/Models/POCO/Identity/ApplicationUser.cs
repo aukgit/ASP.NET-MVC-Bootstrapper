@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +10,8 @@ using DevBootstrapper.Models.DesignPattern.Interfaces;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
+#endregion
 
 namespace DevBootstrapper.Models.POCO.Identity {
     public class ApplicationUser : IdentityUser<long, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>,
@@ -27,7 +31,7 @@ namespace DevBootstrapper.Models.POCO.Identity {
 
         public long BlockedbyUserId { get; set; }
         //returns user Id
-        public long UserID {
+        public long UserId {
             get { return Id; }
         }
 
@@ -74,13 +78,13 @@ namespace DevBootstrapper.Models.POCO.Identity {
         public bool IsRegistrationComplete { get; set; }
 
         [Display(Name = "Country")]
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
 
         [Display(Name = "Country Language")]
-        public int CountryLanguageID { get; set; }
+        public int CountryLanguageId { get; set; }
 
         [Display(Name = "Timezone")]
-        public int UserTimeZoneID { get; set; }
+        public int UserTimeZoneId { get; set; }
 
 
         [ForeignKey("UserID")]

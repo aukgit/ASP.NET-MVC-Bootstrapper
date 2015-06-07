@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#region using block
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+#endregion
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class NavigationItem {
-        public int NavigationItemID { get; set; }
-        public int NavigationID { get; set; }
+        public int NavigationItemId { get; set; }
+        public int NavigationId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(250)]
@@ -21,14 +25,14 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Display(Name = "Element ID",
             Description =
                 "Html ID related to this list-item. Prefer not to use because classes are the mordern practice.")]
-        public string ElementID { get; set; }
+        public string ElementId { get; set; }
 
         [Required]
         [StringLength(600)]
-        public string RelativeURL { get; set; }
+        public string RelativeUrl { get; set; }
 
         public int Ordering { get; set; }
         public bool HasDropDown { get; set; }
-        public int? ParentNavigationID { get; set; }
+        public int? ParentNavigationId { get; set; }
     }
 }

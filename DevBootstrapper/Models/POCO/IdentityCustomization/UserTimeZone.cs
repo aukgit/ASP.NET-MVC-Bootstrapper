@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿#region using block
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevBootstrapper.Models.POCO.Identity;
 
+#endregion
+
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class UserTimeZone {
         [Key]
-        public int UserTimeZoneID { get; set; }
+        public int UserTimeZoneId { get; set; }
 
         /// <summary>
         ///     Windows TimeInfo ID
@@ -14,7 +18,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Column(TypeName = "VARCHAR")]
         [Required]
         [StringLength(50)]
-        public string InfoID { get; set; }
+        public string InfoId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [Required]
@@ -31,12 +35,12 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         /// <summary>
         /// UTC-10:00
         /// </summary>
-        public string UTCName { get; set; }
+        public string UtcName { get; set; }
 
         /// <summary>
         ///     -9
         /// </summary>
-        public float UTCValue { get; set; }
+        public float UtcValue { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(10)]

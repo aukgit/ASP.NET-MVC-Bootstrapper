@@ -1,4 +1,8 @@
-﻿using System;
+﻿#region using block
+
+using System;
+
+#endregion
 
 namespace DevBootstrapper.Models.DesignPattern.Interfaces {
     public interface IUploadableFile : IUploadableImageCategory {
@@ -8,7 +12,6 @@ namespace DevBootstrapper.Models.DesignPattern.Interfaces {
         string Title { get; set; }
         string Subtitle { get; set; }
         string Extension { get; set; }
-
         string GetLocation();
         string GetFileName();
         string GetFileNameWithExtension();

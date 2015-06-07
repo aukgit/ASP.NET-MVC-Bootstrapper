@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#region using block
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using DevBootstrapper.Models.POCO.Identity;
+
+#endregion
 
 namespace DevBootstrapper.Models.ViewModels {
     public class ManageRolesViewModel {

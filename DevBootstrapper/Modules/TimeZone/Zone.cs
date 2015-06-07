@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +10,8 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Cookie;
 using DevBootstrapper.Modules.DevUser;
+
+#endregion
 
 namespace DevBootstrapper.Modules.TimeZone {
     public class Zone {
@@ -130,9 +134,9 @@ namespace DevBootstrapper.Modules.TimeZone {
             //if cache time zone not exist.
             var user = UserManager.GetUser(username);
             if (user != null) {
-                var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.UserTimeZoneID == user.UserTimeZoneID);
+                var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.UserTimeZoneId == user.UserTimeZoneId);
                 if (timezoneDb != null) {
-                    timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
+                    timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoId);
                 }
                 if (timeZoneInfo != null) {
                     // Save the time zone to the cache.
@@ -164,7 +168,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         private static TimeZoneInfo GetSavedTimeZone(string log) {
             //save to cookie 
             if (!String.IsNullOrWhiteSpace(log)) {
-                var cZone = (TimeZoneInfo)AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
+                var cZone = (TimeZoneInfo) AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
                 if (cZone == null) {
                     // try cookie.
                     var id = AppConfig.Cookies.Get(CookiesNames.ZoneInfo);
@@ -220,7 +224,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             var timeZone = Get();
             if (timeZone == null) {
                 return "";
@@ -243,7 +247,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             //time zone found.
             if (format == null) {
                 format = DateFormat;
@@ -263,7 +267,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             var timeZone = Get();
             if (timeZone == null) {
                 return "";
@@ -288,7 +292,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             var timeZone = Get();
             if (timeZone == null) {
                 return dt2.ToString(format);
@@ -318,7 +322,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
 
             //time zone found.
             var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
@@ -339,7 +343,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             //time zone found.
             //var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
@@ -384,7 +388,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
 
             //time zone found.
             var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);

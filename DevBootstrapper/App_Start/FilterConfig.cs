@@ -1,5 +1,9 @@
-﻿using System.Web.Mvc;
+﻿#region using block
+
+using System.Web.Mvc;
 using DevBootstrapper.Filter;
+
+#endregion
 
 namespace DevBootstrapper {
     public class FilterConfig {

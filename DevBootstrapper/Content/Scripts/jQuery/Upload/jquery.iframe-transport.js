@@ -11,17 +11,17 @@
 
 /* global define, window, document */
 
-(function (factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
+(function(factory) {
+    "use strict";
+    if (typeof define === "function" && define.amd) {
         // Register as an anonymous AMD module:
-        define(['jquery'], factory);
+        define(["jquery"], factory);
     } else {
         // Browser globals:
         factory(window.jQuery);
     }
-}(function ($) {
-    'use strict';
+}(function($) {
+    "use strict";
 
     // Helper variable to create unique names for the transport iframes:
     var counter = 0;
@@ -36,46 +36,46 @@
     //  [{name: 'a', value: 1}, {name: 'b', value: 2}]
     // options.initialIframeSrc: the URL of the initial iframe src,
     //  by default set to "javascript:false;"
-    $.ajaxTransport('iframe', function (options) {
+    $.ajaxTransport("iframe", function(options) {
         if (options.async) {
             // javascript:false as initial iframe src
             // prevents warning popups on HTTPS in IE6:
             /*jshint scripturl: true */
-            var initialIframeSrc = options.initialIframeSrc || 'javascript:false;',
-            /*jshint scripturl: false */
+            var initialIframeSrc = options.initialIframeSrc || "javascript:false;",
+                /*jshint scripturl: false */
                 form,
                 iframe,
                 addParamChar;
             return {
-                send: function (_, completeCallback) {
-                    form = $('<form style="display:none;"></form>');
-                    form.attr('accept-charset', options.formAcceptCharset);
-                    addParamChar = /\?/.test(options.url) ? '&' : '?';
+                send: function(_, completeCallback) {
+                    form = $("<form style=\"display:none;\"></form>");
+                    form.attr("accept-charset", options.formAcceptCharset);
+                    addParamChar = /\?/.test(options.url) ? "&" : "?";
                     // XDomainRequest only supports GET and POST:
-                    if (options.type === 'DELETE') {
-                        options.url = options.url + addParamChar + '_method=DELETE';
-                        options.type = 'POST';
-                    } else if (options.type === 'PUT') {
-                        options.url = options.url + addParamChar + '_method=PUT';
-                        options.type = 'POST';
-                    } else if (options.type === 'PATCH') {
-                        options.url = options.url + addParamChar + '_method=PATCH';
-                        options.type = 'POST';
+                    if (options.type === "DELETE") {
+                        options.url = options.url + addParamChar + "_method=DELETE";
+                        options.type = "POST";
+                    } else if (options.type === "PUT") {
+                        options.url = options.url + addParamChar + "_method=PUT";
+                        options.type = "POST";
+                    } else if (options.type === "PATCH") {
+                        options.url = options.url + addParamChar + "_method=PATCH";
+                        options.type = "POST";
                     }
                     // IE versions below IE8 cannot set the name property of
                     // elements that have already been added to the DOM,
                     // so we set the name along with the iframe HTML markup:
                     counter += 1;
                     iframe = $(
-                        '<iframe src="' + initialIframeSrc +
-                            '" name="iframe-transport-' + counter + '"></iframe>'
-                    ).bind('load', function () {
+                        "<iframe src=\"" + initialIframeSrc +
+                        "\" name=\"iframe-transport-" + counter + "\"></iframe>"
+                    ).bind("load", function() {
                         var fileInputClones,
                             paramNames = $.isArray(options.paramName) ?
-                                    options.paramName : [options.paramName];
+                                options.paramName : [options.paramName];
                         iframe
-                            .unbind('load')
-                            .bind('load', function () {
+                            .unbind("load")
+                            .bind("load", function() {
                                 var response;
                                 // Wrap in a try/catch block to catch exceptions thrown
                                 // when trying to access cross-domain iframe contents:
@@ -94,14 +94,14 @@
                                 // iframe content document as response object:
                                 completeCallback(
                                     200,
-                                    'success',
-                                    {'iframe': response}
+                                    "success",
+                                    { 'iframe': response }
                                 );
                                 // Fix for IE endless progress bar activity bug
                                 // (happens on form submits to iframe targets):
-                                $('<iframe src="' + initialIframeSrc + '"></iframe>')
+                                $("<iframe src=\"" + initialIframeSrc + "\"></iframe>")
                                     .appendTo(form);
-                                window.setTimeout(function () {
+                                window.setTimeout(function() {
                                     // Removing the form in a setTimeout call
                                     // allows Chrome's developer tools to display
                                     // the response result
@@ -109,28 +109,28 @@
                                 }, 0);
                             });
                         form
-                            .prop('target', iframe.prop('name'))
-                            .prop('action', options.url)
-                            .prop('method', options.type);
+                            .prop("target", iframe.prop("name"))
+                            .prop("action", options.url)
+                            .prop("method", options.type);
                         if (options.formData) {
-                            $.each(options.formData, function (index, field) {
-                                $('<input type="hidden"/>')
-                                    .prop('name', field.name)
+                            $.each(options.formData, function(index, field) {
+                                $("<input type=\"hidden\"/>")
+                                    .prop("name", field.name)
                                     .val(field.value)
                                     .appendTo(form);
                             });
                         }
                         if (options.fileInput && options.fileInput.length &&
-                                options.type === 'POST') {
+                            options.type === "POST") {
                             fileInputClones = options.fileInput.clone();
                             // Insert a clone for each file input field:
-                            options.fileInput.after(function (index) {
+                            options.fileInput.after(function(index) {
                                 return fileInputClones[index];
                             });
                             if (options.paramName) {
-                                options.fileInput.each(function (index) {
+                                options.fileInput.each(function(index) {
                                     $(this).prop(
-                                        'name',
+                                        "name",
                                         paramNames[index] || options.paramName
                                     );
                                 });
@@ -139,36 +139,36 @@
                             // removes them from their original location:
                             form
                                 .append(options.fileInput)
-                                .prop('enctype', 'multipart/form-data')
+                                .prop("enctype", "multipart/form-data")
                                 // enctype must be set as encoding for IE:
-                                .prop('encoding', 'multipart/form-data');
+                                .prop("encoding", "multipart/form-data");
                             // Remove the HTML5 form attribute from the input(s):
-                            options.fileInput.removeAttr('form');
+                            options.fileInput.removeAttr("form");
                         }
                         form.submit();
                         // Insert the file input fields at their original location
                         // by replacing the clones with the originals:
                         if (fileInputClones && fileInputClones.length) {
-                            options.fileInput.each(function (index, input) {
+                            options.fileInput.each(function(index, input) {
                                 var clone = $(fileInputClones[index]);
                                 // Restore the original name and form properties:
                                 $(input)
-                                    .prop('name', clone.prop('name'))
-                                    .attr('form', clone.attr('form'));
+                                    .prop("name", clone.prop("name"))
+                                    .attr("form", clone.attr("form"));
                                 clone.replaceWith(input);
                             });
                         }
                     });
                     form.append(iframe).appendTo(document.body);
                 },
-                abort: function () {
+                abort: function() {
                     if (iframe) {
                         // javascript:false as iframe src aborts the request
                         // and prevents warning popups on HTTPS in IE6.
                         // concat is used to avoid the "Script URL" JSLint error:
                         iframe
-                            .unbind('load')
-                            .prop('src', initialIframeSrc);
+                            .unbind("load")
+                            .prop("src", initialIframeSrc);
                     }
                     if (form) {
                         form.remove();
@@ -190,22 +190,22 @@
     // https://github.com/blueimp/jQuery-File-Upload/wiki/Setup#content-type-negotiation
     $.ajaxSetup({
         converters: {
-            'iframe text': function (iframe) {
+            'iframe text': function(iframe) {
                 return iframe && $(iframe[0].body).text();
             },
-            'iframe json': function (iframe) {
+            'iframe json': function(iframe) {
                 return iframe && $.parseJSON($(iframe[0].body).text());
             },
-            'iframe html': function (iframe) {
+            'iframe html': function(iframe) {
                 return iframe && $(iframe[0].body).html();
             },
-            'iframe xml': function (iframe) {
+            'iframe xml': function(iframe) {
                 var xmlDoc = iframe && iframe[0];
                 return xmlDoc && $.isXMLDoc(xmlDoc) ? xmlDoc :
-                        $.parseXML((xmlDoc.XMLDocument && xmlDoc.XMLDocument.xml) ||
-                            $(xmlDoc.body).html());
+                    $.parseXML((xmlDoc.XMLDocument && xmlDoc.XMLDocument.xml) ||
+                        $(xmlDoc.body).html());
             },
-            'iframe script': function (iframe) {
+            'iframe script': function(iframe) {
                 return iframe && $.globalEval($(iframe[0].body).text());
             }
         }
