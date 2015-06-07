@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using DevBootstrapper.Application;
 
 namespace DevBootstrapper.Modules.Session {
     public struct SessionNames {

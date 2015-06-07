@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
-using DevBootstrapper.Modules.Cache;
-using DevBootstrapper.Modules.Cookie;
-using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Session;
 using DevBootstrapper.Modules.TimeZone;
 using DevBootstrapper.Modules.UserError;
-using System.Configuration;
+using DevMvcComponent.Processor;
 
-namespace DevBootstrapper {
+namespace DevBootstrapper.Application {
     /// <summary>
     /// Application Configurations, also contains the list of roles.
     /// </summary>
@@ -20,8 +16,8 @@ namespace DevBootstrapper {
 
         #region Public declares
 
-        public static CookieProcessor Cookies = new CookieProcessor();
-        public static CacheProcessor Caches = new CacheProcessor();
+        public static CookieProcessor Cookies;
+        public static CacheProcessor Caches;
         public static ErrorCollector ErrorCollection = new ErrorCollector();
         public static readonly string[] Roles = new string[] {
             "Admin",
@@ -52,10 +48,10 @@ namespace DevBootstrapper {
 
         private static void InitalizeDevelopersOrganismComponent(bool force = false) {
             if (!_initalized || force) {
-                DevMVCComponent.Config.ApplicationName = AppVar.Name;
-                DevMVCComponent.Config.AdminEmail = Setting.AdminEmail;
-                DevMVCComponent.Config.DeveloperEmail = Setting.DeveloperEmail;
-                DevMVCComponent.Config.Assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                DevMvcComponent.Config.ApplicationName = AppVar.Name;
+                DevMvcComponent.Config.AdminEmail = Setting.AdminEmail;
+                DevMvcComponent.Config.DeveloperEmail = Setting.DeveloperEmail;
+                DevMvcComponent.Config.Assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 Zone.LoadTimeZonesIntoMemory();
                 _initalized = true;
             }
@@ -155,9 +151,9 @@ namespace DevBootstrapper {
                 AppVar.Setting = Setting;
                 AppVar.SetCommonMetaDescriptionToEmpty();
                 //Configure this with add a sender email.
-                DevMVCComponent.Starter.Mailer = new DevMVCComponent.Mailers.CustomMailConfig(Setting.SenderEmail, Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSMTPSSL);
+                DevMvcComponent.Starter.Mailer = new DevMvcComponent.Mailers.CustomMailConfig(Setting.SenderEmail, Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSMTPSSL);
                 //if false then no email on error.
-                DevMVCComponent.Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
+                DevMvcComponent.Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 
             }
         }

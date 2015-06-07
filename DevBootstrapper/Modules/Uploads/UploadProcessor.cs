@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web;
 using DevBootstrapper.Models.DesignPattern.Interfaces;
-using DevMVCComponent;
+using DevMvcComponent;
 using ImageResizer;
 
 namespace DevBootstrapper.Modules.Uploads {

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Web.Mvc;
-using DevMVCComponent;
+using DevBootstrapper.Application;
+using DevMvcComponent;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 

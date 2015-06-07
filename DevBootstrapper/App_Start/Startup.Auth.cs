@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Claims;
+using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Modules;

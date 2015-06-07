@@ -1,5 +1,6 @@
 ﻿using System;
-using DevMVCComponent;
+using DevBootstrapper.Application;
+using DevMvcComponent;
 
 namespace DevBootstrapper.Modules.Mail {
     public class MailSender {

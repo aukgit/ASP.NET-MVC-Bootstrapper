@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using DevBootstrapper.Application;
 using DevBootstrapper.Models.DesignPattern.Interfaces;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
@@ -15,7 +16,7 @@ using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Menu;
 using DevBootstrapper.Modules.TimeZone;
 using DevBootstrapper.Modules.Uploads;
-using DevMVCComponent.Enums;
+using DevMvcComponent.Enums;
 
 #endregion
 
