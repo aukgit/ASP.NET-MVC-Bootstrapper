@@ -1,13 +1,9 @@
-﻿#region using block
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using DevBootstrapper.Models.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-
-#endregion
 
 namespace DevBootstrapper.Models.POCO.Identity {
 

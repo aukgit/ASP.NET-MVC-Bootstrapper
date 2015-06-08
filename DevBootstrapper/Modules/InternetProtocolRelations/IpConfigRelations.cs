@@ -1,22 +1,19 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Web;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.Session;
 
-#endregion
-
 namespace DevBootstrapper.Modules.InternetProtocolRelations {
     public class IpConfigRelations {
+
         public static int GetCountryId(string ipAddress) {
             var value = IpToValue(ipAddress);
             using (var db = new ApplicationDbContext()) {
-                var country = db.CountryDetectByIPs.FirstOrDefault(n => n.BeginingIp >= value && value <= n.EndingIp);
+                var country = db.CountryDetectByIPs.FirstOrDefault(n => n.BeginingIP >= value && value <= n.EndingIP);
                 if (country != null) {
-                    return country.CountryId;
+                    return country.CountryID;
                 }
             }
             return -1;
@@ -33,10 +30,11 @@ namespace DevBootstrapper.Modules.InternetProtocolRelations {
                 isX = long.TryParse(ipArrary[1], out x);
                 isY = long.TryParse(ipArrary[2], out y);
                 isZ = long.TryParse(ipArrary[3], out z);
-                if (isW == isX == isY == isZ) {
-                    result = 16777216*w + 65536*x + 256*y + z;
+                if (isW == isX == isY == isZ == true) {
+                    result = 16777216 * w + 65536 * x + 256 * y + z;
                     return result;
                 }
+
             }
 
             return -1;
@@ -49,7 +47,7 @@ namespace DevBootstrapper.Modules.InternetProtocolRelations {
         /// <returns></returns>
         public static string GetVisitorIpAddress(bool getLan = false) {
             if (HttpContext.Current.Session != null && HttpContext.Current.Session[SessionNames.IpAddress] != null) {
-                return (string) HttpContext.Current.Session[SessionNames.IpAddress];
+                return (string)HttpContext.Current.Session[SessionNames.IpAddress];
             }
             var visitorIpAddress = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
@@ -96,7 +94,7 @@ namespace DevBootstrapper.Modules.InternetProtocolRelations {
 
         public static string GetIpAddress() {
             if (HttpContext.Current.Session != null && HttpContext.Current.Session[SessionNames.IpAddress] != null) {
-                return (string) HttpContext.Current.Session[SessionNames.IpAddress];
+                return (string)HttpContext.Current.Session[SessionNames.IpAddress];
             }
             var context = HttpContext.Current;
             var ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];

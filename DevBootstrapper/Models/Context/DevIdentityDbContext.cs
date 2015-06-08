@@ -1,11 +1,7 @@
-﻿#region using block
-
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Extensions.Context;
-
-#endregion
 
 namespace DevBootstrapper.Models.Context {
     public class DevIdentityDbContext : DevDbContext {

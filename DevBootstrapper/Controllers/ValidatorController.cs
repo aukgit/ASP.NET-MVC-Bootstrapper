@@ -1,12 +1,8 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Session;
-
-#endregion
 
 namespace DevBootstrapper.Controllers {
     public class ValidatorController : Controller {

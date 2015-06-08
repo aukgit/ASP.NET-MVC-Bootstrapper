@@ -1,8 +1,4 @@
-﻿#region using block
-
-using System.Web.Optimization;
-
-#endregion
+﻿using System.Web.Optimization;
 
 namespace DevBootstrapper {
     public class BundleConfig {
@@ -49,21 +45,19 @@ namespace DevBootstrapper {
             #endregion
 
             #region Upload
-
             bundles.Add(new ScriptBundle("~/bundles/upload").Include(
-                "~/Content/Scripts/jQuery/Upload/jquery.ui.widget.js",
-                "~/Content/Scripts/jQuery/Upload/load-image.all.min.js",
-                "~/Content/Scripts/jQuery/Upload/canvas-to-blob.min.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.iframe-transport.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.fileupload.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-process.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-image.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-audio.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-video.js",
-                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-validate.js",
-                "~/Content/Scripts/DevOrgCompoents/Upload/devOrgUploadConfig.js"
-                ));
-
+                                "~/Content/Scripts/jQuery/Upload/jquery.ui.widget.js",
+                                "~/Content/Scripts/jQuery/Upload/load-image.all.min.js",
+                                "~/Content/Scripts/jQuery/Upload/canvas-to-blob.min.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.iframe-transport.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-process.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-image.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-audio.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-video.js",
+                                "~/Content/Scripts/jQuery/Upload/jquery.fileupload-validate.js",                
+                                "~/Content/Scripts/DevOrgCompoents/Upload/devOrgUploadConfig.js"
+                           ));
             #endregion
 
             #region Mordernizer
@@ -89,7 +83,7 @@ namespace DevBootstrapper {
             #region CSS Bundles
 
             bundles.Add(new StyleBundle("~/Content/css/styles").Include(
-                "~/Content/css/bootstrap.min.css",
+				"~/Content/css/bootstrap.min.css",
                 "~/Content/css/bootstrap.theme.unitied.css",
                 "~/Content/css/size.css",
                 "~/Content/css/flags32.css",

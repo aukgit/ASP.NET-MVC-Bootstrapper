@@ -1,8 +1,4 @@
-﻿#region using block
-
-using System.Web.Mvc;
-
-#endregion
+﻿using System.Web.Mvc;
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class HomeController : Controller {

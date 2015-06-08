@@ -1,22 +1,20 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
-
-#endregion
+using DevBootstrapper.Modules.UserError;
 
 namespace DevBootstrapper.Controllers {
+
     public abstract class BasicController : Controller {
         internal ErrorCollector ErrorCollector;
-        internal readonly ApplicationDbContext Db;
+        internal readonly ApplicationDbContext db;
 
         protected BasicController() {
         }
 
         protected BasicController(bool applicationDbContextRequried) {
             if (applicationDbContextRequried) {
-                Db = new ApplicationDbContext();
+                db = new ApplicationDbContext();
             }
         }
 
@@ -25,19 +23,20 @@ namespace DevBootstrapper.Controllers {
                 ErrorCollector = new ErrorCollector();
             }
             if (applicationDbContextRequried) {
-                Db = new ApplicationDbContext();
+                db = new ApplicationDbContext();
             }
         }
 
         protected override void Dispose(bool disposing) {
-            if (Db != null) {
-                Db.Dispose();
+            if (db != null) {
+                db.Dispose();
             }
             if (ErrorCollector != null) {
                 ErrorCollector.Dispose();
             }
             base.Dispose(disposing);
             GC.Collect();
+
         }
     }
 }

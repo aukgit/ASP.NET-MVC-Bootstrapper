@@ -1,6 +1,4 @@
-﻿#region using block
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
@@ -9,8 +7,6 @@ using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
-
-#endregion
 
 namespace DevBootstrapper.Modules.Cache {
     public class CachedQueriedData {
@@ -31,7 +27,7 @@ namespace DevBootstrapper.Modules.Cache {
                 AppConfig.Caches.TableStatusSetUnChanged(tableName);
                 return countries;
             }
-            return (List<Country>) cache;
+            return (List<Country>)cache;
         }
 
         #endregion
@@ -167,7 +163,7 @@ namespace DevBootstrapper.Modules.Cache {
                 AppConfig.Caches.TableStatusSetUnChanged(tableName);
                 return languages;
             }
-            return (List<CountryLanguage>) cache;
+            return (List<CountryLanguage>)cache;
         }
 
         /// <summary>
@@ -192,13 +188,13 @@ namespace DevBootstrapper.Modules.Cache {
 
             var searchingColumn = "CountryLanguageID";
             if (cache != null) {
-                return (List<CountryLanguage>) cache; //no updates cache exist.
+                return (List<CountryLanguage>)cache; //no updates cache exist.
             }
-            var relations = GetCountries().FirstOrDefault(n => n.CountryId == countryId);
+            var relations = GetCountries().FirstOrDefault(n => n.CountryID == countryId);
             if (relations.CountryLanguageRelations.Count() > countCheckAbove) {
                 //returns in query
                 using (var db = new ApplicationDbContext()) {
-                    var listOfLanguages = relations.CountryLanguageRelations.Select(n => n.CountryLanguageId).ToArray();
+                    var listOfLanguages = relations.CountryLanguageRelations.Select(n => n.CountryLanguageID).ToArray();
                     var stringListOfLanguageIds = string.Join(",", listOfLanguages);
                     var sqlInQuery = "SELECT * FROM " + tableName + " WHERE " + searchingColumn + " IN (" +
                                      stringListOfLanguageIds + ")";
@@ -228,7 +224,7 @@ namespace DevBootstrapper.Modules.Cache {
         /// </summary>
         /// <returns></returns>
         public static UserTimeZone GetTimezone(int userTimeZoneId) {
-            return GetTimezones().FirstOrDefault(n => n.UserTimeZoneId == userTimeZoneId);
+            return GetTimezones().FirstOrDefault(n => n.UserTimeZoneID == userTimeZoneId);
         }
 
         /// <summary>
@@ -236,7 +232,7 @@ namespace DevBootstrapper.Modules.Cache {
         /// </summary>
         /// <returns></returns>
         public static UserTimeZone GetTimezone(ApplicationUser user) {
-            return GetTimezone(user.UserTimeZoneId);
+            return GetTimezone(user.UserTimeZoneID);
         }
 
         /// <summary>
@@ -244,11 +240,11 @@ namespace DevBootstrapper.Modules.Cache {
         /// </summary>
         /// <returns></returns>
         public static Country GetCountry(int countryId) {
-            return GetCountries().FirstOrDefault(n => n.CountryId == countryId);
+            return GetCountries().FirstOrDefault(n => n.CountryID == countryId);
         }
 
         public static Country GetCountry(ApplicationUser user) {
-            return GetCountry(user.CountryId);
+            return GetCountry(user.CountryID);
         }
 
         /// <summary>
@@ -261,14 +257,14 @@ namespace DevBootstrapper.Modules.Cache {
             var searchingColumn = "UserTimeZoneID";
             var cache = GetTableContentsFromCache(cacheTableName);
             if (cache != null) {
-                return (List<UserTimeZone>) cache; //no updates cache exist.
+                return (List<UserTimeZone>)cache; //no updates cache exist.
             }
 
-            var relations = GetCountries().FirstOrDefault(n => n.CountryId == countryId);
+            var relations = GetCountries().FirstOrDefault(n => n.CountryID == countryId);
             //var relations = db.Countries.Include(n=> n.CountryTimezoneRelations).FirstOrDefault(n => n.CountryID == countryId);
             if (relations.CountryTimezoneRelations.Count() > countCheckAbove) {
                 using (var db = new ApplicationDbContext()) {
-                    var list = relations.CountryTimezoneRelations.Select(n => n.UserTimeZoneId).ToArray();
+                    var list = relations.CountryTimezoneRelations.Select(n => n.UserTimeZoneID).ToArray();
                     var stringList = string.Join(",", list);
                     //returns in query
                     var sqlInQuery = "SELECT * FROM " + tableName + " WHERE " + searchingColumn + " IN (" + stringList +
@@ -290,7 +286,7 @@ namespace DevBootstrapper.Modules.Cache {
         public static List<CountryLanguage> GetLanguages(string countryName) {
             var country = GetCountries().FirstOrDefault(n => n.CountryName == countryName);
             if (country != null) {
-                return GetLanguages(country.CountryId);
+                return GetLanguages(country.CountryID);
             }
             return null;
         }

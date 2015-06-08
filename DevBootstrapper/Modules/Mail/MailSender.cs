@@ -1,17 +1,13 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using DevBootstrapper.Application;
 using DevMvcComponent;
 
-#endregion
-
 namespace DevBootstrapper.Modules.Mail {
     public class MailSender {
-        private readonly bool _isCompanyNameOnEmailSubject = false;
+        private readonly bool isCompanyNameOnEmailSubject = false;
 
         public string GetSubject(string sub, string type = "") {
-            if (_isCompanyNameOnEmailSubject) {
+            if (isCompanyNameOnEmailSubject) {
                 if (string.IsNullOrEmpty(type))
                     return "[" + AppVar.Name + "][" + AppVar.Setting.CompanyName + "] " + sub;
                 return "[" + AppVar.Name + "][" + AppVar.Setting.CompanyName + "][" + type + "] " + sub;
@@ -21,11 +17,11 @@ namespace DevBootstrapper.Modules.Mail {
             return "[" + AppVar.Name + "][" + type + "] " + sub;
         }
 
-        public void NotifyAdmin(string subject, string htmlMessage, string type = "", bool generateDecentSubject = true) {
-            if (generateDecentSubject) {
+        public void NotifyAdmin(string subject, string HTMLMessage, string type = "", bool GenerateDecentSubject = true) {
+            if (GenerateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(AppVar.Setting.AdminEmail, subject, htmlMessage);
+            Starter.Mailer.QuickSend(AppVar.Setting.AdminEmail, subject, HTMLMessage);
         }
 
         /// <summary>
@@ -33,39 +29,39 @@ namespace DevBootstrapper.Modules.Mail {
         /// </summary>
         /// <param name="to"></param>
         /// <param name="subject"></param>
-        /// <param name="htmlMessage"></param>
+        /// <param name="HTMLMessage"></param>
         /// <param name="type"></param>
-        /// <param name="generateDecentSubject"></param>
-        public void Send(string to, string subject, string htmlMessage, string type = "",
-            bool generateDecentSubject = true) {
-            if (generateDecentSubject) {
+        /// <param name="GenerateDecentSubject"></param>
+        public void Send(string to, string subject, string HTMLMessage, string type = "",
+            bool GenerateDecentSubject = true) {
+            if (GenerateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(to, subject, htmlMessage);
+            Starter.Mailer.QuickSend(to, subject, HTMLMessage);
         }
 
-        public void NotifyDeveloper(string subject, string htmlMessage, string type = "",
-            bool generateDecentSubject = true) {
+        public void NotifyDeveloper(string subject, string HTMLMessage, string type = "",
+            bool GenerateDecentSubject = true) {
             if (AppVar.Setting.NotifyDeveloperOnError) {
-                if (generateDecentSubject) {
+                if (GenerateDecentSubject) {
                     subject = GetSubject(subject, type);
                 }
-                Starter.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, subject, htmlMessage);
+                Starter.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, subject, HTMLMessage);
             }
         }
 
-        public void NotifyUserMulti(string subject, string toEmail, string[] userEamil, string htmlMessage,
-            string type = "", bool generateDecentSubject = true) {
-            if (generateDecentSubject) {
+        public void NotifyUserMulti(string subject, string toEmail, string[] UserEamil, string HTMLMessage,
+            string type = "", bool GenerateDecentSubject = true) {
+            if (GenerateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(toEmail, userEamil, subject, htmlMessage);
+            Starter.Mailer.QuickSend(toEmail, UserEamil, subject, HTMLMessage);
         }
 
         public void HandleError(Exception exception, string method, string subject = "", object entity = null,
-            string type = "", bool generateDecentSubject = true) {
+            string type = "", bool GenerateDecentSubject = true) {
                 {
-                    if (generateDecentSubject) {
+                    if (GenerateDecentSubject) {
                         subject = GetSubject(subject, type);
                     }
                     subject += " on method [" + method + "()]";

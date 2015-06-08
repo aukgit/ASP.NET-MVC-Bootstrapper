@@ -1,12 +1,8 @@
-﻿#region using block
-
-using DevBootstrapper;
+﻿using DevBootstrapper;
 using Microsoft.Owin;
 using Owin;
 
-#endregion
-
-[assembly: OwinStartup(typeof (Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace DevBootstrapper {
     public partial class Startup {

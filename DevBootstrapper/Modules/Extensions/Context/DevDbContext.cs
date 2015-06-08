@@ -1,12 +1,8 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
-
-#endregion
 
 namespace DevBootstrapper.Modules.Extensions.Context {
     public abstract class DevDbContext : DbContext {
@@ -33,8 +29,7 @@ namespace DevBootstrapper.Modules.Extensions.Context {
             : base(objectContext, contextOwnsConnection) {
         }
 
-        protected DevDbContext(DbConnection existingConnection, DbCompiledModel compiledModel,
-            bool contextOwnsConnection)
+        protected DevDbContext(DbConnection existingConnection, DbCompiledModel compiledModel, bool contextOwnsConnection)
             : base(existingConnection, compiledModel, contextOwnsConnection) {
         }
 

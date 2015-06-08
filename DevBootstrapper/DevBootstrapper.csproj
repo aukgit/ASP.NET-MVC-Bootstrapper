@@ -308,6 +308,7 @@
     <Compile Include="Modules\Cache\CacheNames.cs" />
     <Compile Include="Modules\Cookie\CookieNames.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Modules\DevHash.cs" />
     <Compile Include="Modules\HtmlGenerator.cs" />
     <Compile Include="Modules\InternetProtocolRelations\IpConfigRelations.cs" />
     <Compile Include="Modules\Mail\MailHtml.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="Models\DesignPattern\Interfaces\IUploadableImageCategory.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IUploadableFile.cs" />
     <Compile Include="Modules\Uploads\UploadProcessor.cs" />
+    <Compile Include="Modules\UserError\ErrorCollector.cs" />
     <Compile Include="Modules\UserError\MessageConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -631,6 +633,7 @@
     <Folder Include="Models\EntityModel\Structs\" />
     <Folder Include="Models\POCO\AdditionalDatabase\" />
     <Folder Include="Models\POCO\Plugable\" />
+    <Folder Include="Modules\Filters\" />
     <Folder Include="Uploads\Files\Private\" />
     <Folder Include="Uploads\Images\Private\" />
     <Folder Include="Views\Basic\" />

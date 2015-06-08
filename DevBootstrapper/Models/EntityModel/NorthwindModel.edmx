@@ -1,14 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012"
-              Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
-              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -324,10 +320,8 @@
         <EntityContainer Name="NorthwindModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerCustomerDemo" EntityType="Self.CustomerCustomerDemo" Schema="dbo"
-                     store:Type="Tables" />
-          <EntitySet Name="CustomerDemographics" EntityType="Self.CustomerDemographics" Schema="dbo"
-                     store:Type="Tables" />
+          <EntitySet Name="CustomerCustomerDemo" EntityType="Self.CustomerCustomerDemo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerDemographics" EntityType="Self.CustomerDemographics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeTerritories" EntityType="Self.EmployeeTerritories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -353,8 +347,7 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="EmployeeTerritories" EntitySet="EmployeeTerritories" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeTerritories_Territories"
-                          Association="Self.FK_EmployeeTerritories_Territories">
+          <AssociationSet Name="FK_EmployeeTerritories_Territories" Association="Self.FK_EmployeeTerritories_Territories">
             <End Role="Territory" EntitySet="Territory" />
             <End Role="EmployeeTerritories" EntitySet="EmployeeTerritories" />
           </AssociationSet>
@@ -395,21 +388,16 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false"
-              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
-              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true"
-                    Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories"
-                              ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -426,20 +414,16 @@
           <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductOrders" Relationship="Self.FK_Orders_Customers" FromRole="Customer"
-                              ToRole="ProductOrder" />
-          <NavigationProperty Name="CustomerDemographics" Relationship="Self.CustomerCustomerDemo" FromRole="Customer"
-                              ToRole="CustomerDemographics" />
+          <NavigationProperty Name="ProductOrders" Relationship="Self.FK_Orders_Customers" FromRole="Customer" ToRole="ProductOrder" />
+          <NavigationProperty Name="CustomerDemographics" Relationship="Self.CustomerCustomerDemo" FromRole="Customer" ToRole="CustomerDemographics" />
         </EntityType>
         <EntityType Name="CustomerDemographic">
           <Key>
             <PropertyRef Name="CustomerTypeID" />
           </Key>
-          <Property Name="CustomerTypeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true"
-                    Nullable="false" />
+          <Property Name="CustomerTypeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CustomerDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customers" Relationship="Self.CustomerCustomerDemo" FromRole="CustomerDemographics"
-                              ToRole="Customer" />
+          <NavigationProperty Name="Customers" Relationship="Self.CustomerCustomerDemo" FromRole="CustomerDemographics" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -463,14 +447,10 @@
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ReportsTo" Type="Int32" />
           <Property Name="PhotoPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Employees" FromRole="Employee"
-                              ToRole="Employee1" />
-          <NavigationProperty Name="Employee2" Relationship="Self.FK_Employees_Employees" FromRole="Employee1"
-                              ToRole="Employee" />
-          <NavigationProperty Name="ProductOrders" Relationship="Self.FK_Orders_Employees" FromRole="Employee"
-                              ToRole="ProductOrder" />
-          <NavigationProperty Name="Territories" Relationship="Self.EmployeeTerritories" FromRole="Employee"
-                              ToRole="Territory" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Employees" FromRole="Employee" ToRole="Employee1" />
+          <NavigationProperty Name="Employee2" Relationship="Self.FK_Employees_Employees" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="ProductOrders" Relationship="Self.FK_Orders_Employees" FromRole="Employee" ToRole="ProductOrder" />
+          <NavigationProperty Name="Territories" Relationship="Self.EmployeeTerritories" FromRole="Employee" ToRole="Territory" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -482,10 +462,8 @@
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Quantity" Type="Int16" Nullable="false" />
           <Property Name="Discount" Type="Single" Nullable="false" />
-          <NavigationProperty Name="ProductOrder" Relationship="Self.FK_Order_Details_Orders" FromRole="OrderDetail"
-                              ToRole="ProductOrder" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Order_Details_Products" FromRole="OrderDetail"
-                              ToRole="Products" />
+          <NavigationProperty Name="ProductOrder" Relationship="Self.FK_Order_Details_Orders" FromRole="OrderDetail" ToRole="ProductOrder" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Order_Details_Products" FromRole="OrderDetail" ToRole="Products" />
         </EntityType>
         <EntityType Name="ProductOrder">
           <Key>
@@ -505,14 +483,10 @@
           <Property Name="ShipRegion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="ShipPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ShipCountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="ProductOrder"
-                              ToRole="Customer" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Orders_Employees" FromRole="ProductOrder"
-                              ToRole="Employee" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_Order_Details_Orders" FromRole="ProductOrder"
-                              ToRole="OrderDetail" />
-          <NavigationProperty Name="Shipper" Relationship="Self.FK_Orders_Shippers" FromRole="ProductOrder"
-                              ToRole="Shippers" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="ProductOrder" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Orders_Employees" FromRole="ProductOrder" ToRole="Employee" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_Order_Details_Orders" FromRole="ProductOrder" ToRole="OrderDetail" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK_Orders_Shippers" FromRole="ProductOrder" ToRole="Shippers" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -528,22 +502,17 @@
           <Property Name="UnitsOnOrder" Type="Int16" />
           <Property Name="ReorderLevel" Type="Int16" />
           <Property Name="Discontinued" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products"
-                              ToRole="Categories" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_Order_Details_Products" FromRole="Products"
-                              ToRole="OrderDetail" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK_Products_Suppliers" FromRole="Products"
-                              ToRole="Supplier" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_Order_Details_Products" FromRole="Products" ToRole="OrderDetail" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Products_Suppliers" FromRole="Products" ToRole="Supplier" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="RegionID" />
           </Key>
           <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <Property Name="RegionDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true"
-                    Nullable="false" />
-          <NavigationProperty Name="Territories" Relationship="Self.FK_Territories_Region" FromRole="Region"
-                              ToRole="Territory" />
+          <Property Name="RegionDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Territories" Relationship="Self.FK_Territories_Region" FromRole="Region" ToRole="Territory" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -552,8 +521,7 @@
           <Property Name="ShipperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductOrders" Relationship="Self.FK_Orders_Shippers" FromRole="Shippers"
-                              ToRole="ProductOrder" />
+          <NavigationProperty Name="ProductOrders" Relationship="Self.FK_Orders_Shippers" FromRole="Shippers" ToRole="ProductOrder" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -571,21 +539,17 @@
           <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
           <Property Name="HomePage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Suppliers" FromRole="Supplier"
-                              ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Suppliers" FromRole="Supplier" ToRole="Products" />
         </EntityType>
         <EntityType Name="Territory">
           <Key>
             <PropertyRef Name="TerritoryID" />
           </Key>
           <Property Name="TerritoryID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TerritoryDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true"
-                    Nullable="false" />
+          <Property Name="TerritoryDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="Self.FK_Territories_Region" FromRole="Territory"
-                              ToRole="Region" />
-          <NavigationProperty Name="Employees" Relationship="Self.EmployeeTerritories" FromRole="Territory"
-                              ToRole="Employee" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Territories_Region" FromRole="Territory" ToRole="Region" />
+          <NavigationProperty Name="Employees" Relationship="Self.EmployeeTerritories" FromRole="Territory" ToRole="Employee" />
         </EntityType>
         <Association Name="FK_Products_Categories">
           <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
@@ -765,8 +729,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer"
-                                CdmEntityContainer="NorthwindEntities">
+        <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindEntities">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="NorthwindModel.Category">
               <MappingFragment StoreEntitySet="Categories">
@@ -917,8 +880,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CustomerCustomerDemo" TypeName="NorthwindModel.CustomerCustomerDemo"
-                                 StoreEntitySet="CustomerCustomerDemo">
+          <AssociationSetMapping Name="CustomerCustomerDemo" TypeName="NorthwindModel.CustomerCustomerDemo" StoreEntitySet="CustomerCustomerDemo">
             <EndProperty Name="CustomerDemographics">
               <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
             </EndProperty>
@@ -926,8 +888,7 @@
               <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="EmployeeTerritories" TypeName="NorthwindModel.EmployeeTerritories"
-                                 StoreEntitySet="EmployeeTerritories">
+          <AssociationSetMapping Name="EmployeeTerritories" TypeName="NorthwindModel.EmployeeTerritories" StoreEntitySet="EmployeeTerritories">
             <EndProperty Name="Employee">
               <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
             </EndProperty>

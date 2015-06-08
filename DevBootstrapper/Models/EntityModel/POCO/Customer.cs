@@ -1,17 +1,17 @@
-#region using block
 
 using System.Collections.Generic;
 
-#endregion
-
-namespace DevBootstrapper.Models.EntityModel.POCO {
-    public class Customer {
-        public Customer() {
-            ProductOrders = new HashSet<ProductOrder>();
-            CustomerDemographics = new HashSet<CustomerDemographic>();
+namespace DevBootstrapper.Models.EntityModel.POCO
+{
+    public partial class Customer
+    {
+        public Customer()
+        {
+            this.ProductOrders = new HashSet<ProductOrder>();
+            this.CustomerDemographics = new HashSet<CustomerDemographic>();
         }
-
-        public string CustomerId { get; set; }
+    
+        public string CustomerID { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
         public string ContactTitle { get; set; }
@@ -22,6 +22,7 @@ namespace DevBootstrapper.Models.EntityModel.POCO {
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
+    
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
         public virtual ICollection<CustomerDemographic> CustomerDemographics { get; set; }
     }

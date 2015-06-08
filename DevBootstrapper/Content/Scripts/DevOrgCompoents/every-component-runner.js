@@ -21,6 +21,7 @@
 /// <reference path="../Bootstrap/star-rating.js" />
 /// <reference path="DevOrgDynamicSelect.js" />
 /// <reference path="DevOrgComponent.js" />
+
 /*
  * Written by Alim Ul Karim
  * Developers Organism
@@ -28,7 +29,7 @@
  * mailto:info@developers-organism.com
 */
 
-$(function() {
+$(function () {
 
 
     $.devOrg.Constants = {
@@ -90,15 +91,15 @@ $(function() {
             "btn-success", //class
             ""
         );
-        $("button.fillit").click(function() {
+        $("button.fillit").click(function () {
             $.devOrg.fillRegisterFieldsOnDemo();
         });
         $.devOrg.bootstrapComboSelectbyFindingValue("select.country-combo", "1");
 
         $.devOrg.countryRelatedToPhone($.devOrg.Constants.countryComboSelector,
-            $.devOrg.Constants.countryDropDownItemsSelector,
-            $.devOrg.Constants.btnSelector,
-            $.devOrg.Constants.phoneNumberSelector);
+          $.devOrg.Constants.countryDropDownItemsSelector,
+          $.devOrg.Constants.btnSelector,
+          $.devOrg.Constants.phoneNumberSelector);
 
     }
 
@@ -116,8 +117,8 @@ $(function() {
     function makeTagLive() {
         var $createdTags = $("div.tag-input-div input[data-provide=tags]").tag();
         if ($createdTags.length > 0) {
-            var placeHolder = $createdTags.attr("placeholder");
-            $createdTags.siblings("input").attr("placeholder", placeHolder);
+            var placeHolder = $createdTags.attr('placeholder');
+            $createdTags.siblings("input").attr('placeholder', placeHolder);
         }
     }
 
@@ -138,7 +139,7 @@ $(function() {
         if (menuPage.length > 0) {
             var div = $("#hasDropdownDiv");
             div.hide();
-            $("#HasDropDown").click(function() {
+            $("#HasDropDown").click(function () {
                 if (this.checked) {
                     div.show("slow");
                 } else {
@@ -151,9 +152,9 @@ $(function() {
     workWithMenuPage();
 
 
-    $("textarea.big-multiline").focus(function() {
+    $("textarea.big-multiline").focus(function () {
         $(this).animate({ 'height': "300px", 'width': "630px", 'max-width': "630px" }, 400);
-    }).blur(function() {
+    }).blur(function () {
         $(this).animate({ 'height': "auto", 'width': "294px", 'max-width': "294px" }, 400);
     });
     //making textarea's elastic

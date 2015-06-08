@@ -1,8 +1,4 @@
-﻿#region using block
-
-using System.Web.Mvc;
-
-#endregion
+﻿using System.Web.Mvc;
 
 namespace DevBootstrapper.Areas.Admin {
     public class AdminAreaRegistration : AreaRegistration {
@@ -14,7 +10,7 @@ namespace DevBootstrapper.Areas.Admin {
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new {action = "Index", Controller = "Home", id = UrlParameter.Optional}
+                new { action = "Index", Controller = "Home", id = UrlParameter.Optional }
                 );
         }
     }

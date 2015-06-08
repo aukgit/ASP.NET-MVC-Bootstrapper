@@ -1,9 +1,5 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-
-#endregion
 
 namespace DevBootstrapper.Models.ViewModels {
     public class ExternalLoginListViewModel {
@@ -116,12 +112,12 @@ namespace DevBootstrapper.Models.ViewModels {
         [Required(ErrorMessage = "Please select your country, it's not valid.")]
         [Display(Name = "Country",
             Description = "Please select your exact country, it's going to verify against your IP.")]
-        public int CountryId { get; set; }
+        public int CountryID { get; set; }
 
         //[Required(ErrorMessage = "Please select your language.")]
         //[Display(Name = "Language", Description = "Please select your language.")]
-        public int CountryLanguageId { get; set; }
-        public int UserTimeZoneId { get; set; }
+        public int CountryLanguageID { get; set; }
+        public int UserTimeZoneID { get; set; }
     }
 
     public class ResetPasswordViewModel {

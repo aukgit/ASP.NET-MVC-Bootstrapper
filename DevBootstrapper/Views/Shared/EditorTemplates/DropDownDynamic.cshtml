@@ -54,7 +54,7 @@
             @ViewData.ModelMetadata.DisplayName
             <span class="red">@isRequiredStar</span>
         </label>
-        <div class="col-md-10 select-dynamic-holding-div select-holding-div">
+        <div class="col-md-10 select-holding-div select-dynamic-holding-div">
             <div class="d-select-ip-@ViewData.ModelMetadata.PropertyName dynamic-select-load"
                  data-prop="@ViewData.ModelMetadata.PropertyName"
                  data-dev-dynamic-select="@ViewBag.DynamicLoad"
@@ -64,13 +64,12 @@
                  data-live-search="@ViewBag.LiveSearch"
                  data-dependable="@ViewBag.IsDependable"
                  data-dependable-prop-name="@ViewBag.DependablePropertyName"
-                 dev-isHtml="@ViewBag.IsHtml"
+                 dev-isHtml ="@ViewBag.IsHtml"
                  @ViewBag.Id>
 
             </div>
             @if (@ViewData.ModelMetadata.Description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show">
-                    <span class="question-mark-for-description"></span></a>
+                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="question-mark-for-description"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
                 <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>

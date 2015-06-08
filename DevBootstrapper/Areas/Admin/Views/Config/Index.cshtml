@@ -1,11 +1,9 @@
 ﻿@model DevBootstrapper.Models.POCO.IdentityCustomization.CoreSetting
 
-
 @{
     ViewBag.Title = "Editing CoreSetting";
     string tab = ViewBag.tab;
 }
-
 
 
 
@@ -14,54 +12,33 @@
 
 
     <div class="form-horizontal">
-
         <h1 class="h2">
-
             <span class="glyphicon glyphicon-pencil"></span> @ViewBag.Title</h1>
-
-        <hr />
-
+        <hr/>
 
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-
-        <ul class="make-it-tab nav nav-pills nav-tabs" role="tablist">
-
+        <ul class="nav nav-tabs nav-pills make-it-tab" role="tablist">
             <li class="active">
-
                 <a href="#basic" role="tab" data-toggle="tab">Basics</a>
-
             </li>
-
             <li>
-
                 <a href="#office" role="tab" data-toggle="tab">Office</a>
-
             </li>
-
             <li>
-
                 <a href="#email-setup" role="tab" data-toggle="tab">Smtp Setup</a>
-
             </li>
-
             <li>
-
                 <a href="#external-logins" role="tab" data-toggle="tab">External Login</a>
-
             </li>
-
         </ul>
 
-
         <div class="tab-content">
-
-            <div class="active fade in tab-pane" id="basic">
-
+            <div class="tab-pane fade in active" id="basic">
                 @Html.Partial("_Back_Save")
                 @Html.Partial("_SuccessMessage")
                 @Html.Hidden("tab", tab)
-                @Html.HiddenFor(model => model.CoreSettingId)
+                @Html.HiddenFor(model => model.CoreSettingID)
                 @Html.EditorFor(model => model.ApplicationName)
                 @Html.EditorFor(model => model.ApplicationSubtitle)
                 @Html.EditorFor(model => model.ApplicationDescription)
@@ -81,9 +58,7 @@
                 @Html.EditorFor(model => model.IsConfirmMailRequired)
                 @Html.Partial("_Back_Save")
             </div>
-
-            <div class="fade tab-pane" id="office">
-
+            <div class="tab-pane fade" id="office">
                 @Html.Partial("_Back_Save")
                 @Html.Partial("_SuccessMessage")
                 @Html.EditorFor(model => model.AdminName)
@@ -97,15 +72,10 @@
                 @Html.EditorFor(model => model.SupportPhone, "Phone")
                 @Html.Partial("_Back_Save")
             </div>
-
-            <div class="fade tab-pane" id="email-setup">
-
-                <div class="col-md-10 col-md-offset-2 small-bottom-gap">
-
-                    <h1 class="bold h5">Email &amp; Other Setup:</h1>
-
+            <div class="tab-pane fade" id="email-setup">
+                <div class="col-md-offset-2 col-md-10 small-bottom-gap">
+                    <h1 class="h5 bold ">Email &amp; Other Setup:</h1>
                 </div>
-
                 @Html.Partial("_Back_Save")
                 @Html.Partial("_SuccessMessage")
                 @Html.EditorFor(model => model.SenderDisplay)
@@ -114,26 +84,21 @@
                 @Html.EditorFor(model => model.SmtpHost)
                 @Html.EditorFor(model => model.SmtpMailPort)
                 @Html.EditorFor(model => model.NotifyDeveloperOnError)
-                @Html.EditorFor(model => model.IsSmtpssl)
+                @Html.EditorFor(model => model.IsSMTPSSL)
                 @Html.Partial("_Back_Save")
             </div>
-
-            <div class="fade tab-pane" id="external-logins">
-
+            <div class="tab-pane fade" id="external-logins">
                 @Html.Partial("_Back_Save")
                 @Html.Partial("_SuccessMessage")
-                @Html.EditorFor(model => model.FacebookClientId, "long")
+                @Html.EditorFor(model => model.FacebookClientID, "long")
                 @Html.EditorFor(model => model.FacebookSecret)
                 @Html.EditorFor(model => model.IsFacebookAuthentication)
                 @Html.Partial("_Back_Save")
             </div>
-
         </div>
-
 
     </div>
 }
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

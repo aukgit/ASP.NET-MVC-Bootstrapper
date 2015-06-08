@@ -1,14 +1,10 @@
-﻿#region using block
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-#endregion
-
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class Navigation {
-        public int NavigationId { get; set; }
+        public int NavigationID { get; set; }
 
         /// <summary>
         ///     Find navigation by.
@@ -27,7 +23,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Display(Name = "Element ID",
             Description =
                 "Html ID related to this unordered-list. Prefer not to use because classes are the mordern practice.")]
-        public string ElementId { get; set; }
+        public string ElementID { get; set; }
 
         [ForeignKey("NavigationID")]
         public virtual ICollection<NavigationItem> NavigationItems { get; set; }

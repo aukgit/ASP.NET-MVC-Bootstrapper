@@ -8,11 +8,14 @@
 /// <reference path="bootstrap.js" />
 /// <reference path="bootstrap-progressbar.js" />
 /// <reference path="I:\DevBootstrapper\WereViewProject\DevBootstrapper\Scripts/underscore.js" />
-$(function() {
-    "use strict";
+
+$(function () {
+    'use strict';
+
 
 
     $.devOrgUP = {
+
         uploadedFilesNotificationLabelSelector: "label.file-uploaded-notify-label-",
         editBtnSpinnerSelector: "[data-edit-btn-spinner=true]",
         progressorSpinnerSelector: "[data-progressor-spinner=true]",
@@ -41,20 +44,20 @@ $(function() {
         formData: $("form input[type='file']").closest("form").serializeArray(),
         //$uploaderDivRow: $("form div[data-uploader-div-row=true].form-row-uploader"),
         $uploaderWorkingDiv: $("form div.uploader"),
-        $allFileInputTypes: $("form div.uploader > span.fileinput-button > input[type='file']"),
+        $allFileInputTypes: $("form div.uploader>span.fileinput-button>input[type='file']"),
         $allSpinners: $("form div.uploader a[data-spinner=spinner].spinner"),
         $allWholeProgressor: $("form div.uploader div[data-progressor-div=true].uploader-progress-info"),
-        $allProgressorValueIdicator: $("form div.uploader div[data-progressor-div=true].uploader-progress-info > a[data-progressor-value=true]"),
-        $allLabelsToIndicateUploadedFilesNumber: $("form div.uploader > label[data-label-file-uploaded=true]"),
-        $allEditButtons: $("form div.uploader > a[data-btn=edit].edit-btn"),
+        $allProgressorValueIdicator: $("form div.uploader div[data-progressor-div=true].uploader-progress-info>a[data-progressor-value=true]"),
+        $allLabelsToIndicateUploadedFilesNumber: $("form div.uploader>label[data-label-file-uploaded=true]"),
+        $allEditButtons: $("form div.uploader>a[data-btn=edit].edit-btn"),
 
-        $allSuccessIcons: $("form div.uploader > a[data-success-icon=true]"),
-        $allFailedIcons: $("form div.uploader > a[data-failed-icon=true]"),
+        $allSuccessIcons: $("form div.uploader>a[data-success-icon=true]"),
+        $allFailedIcons: $("form div.uploader>a[data-failed-icon=true]"),
 
-        $allErrorsRelatedTags: $("form div.uploader > [data-error-related=true]"),
-        $allULErrorsRelatedTags: $("form div.uploader > ul[data-error-related=true]"),
+        $allErrorsRelatedTags: $("form div.uploader>[data-error-related=true]"),
+        $allULErrorsRelatedTags: $("form div.uploader>ul[data-error-related=true]"),
 
-        initializeHide: function() {
+        initializeHide: function () {
             // only hide edit spinner
             $.devOrgUP.$allSpinners.filter(".edit-btn-spinner").hide();
             $.devOrgUP.$allWholeProgressor.hide();
@@ -64,14 +67,14 @@ $(function() {
             $.devOrgUP.$allFailedIcons.hide();
             $.devOrgUP.$allErrorsRelatedTags.hide();
         },
-        getSuccessIcon: function(id) {
+        getSuccessIcon: function (id) {
             /// <summary>
-            ///     returns a tag.
+            /// returns a tag.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             return $.devOrgUP.$allSuccessIcons.filter("[data-id=" + id + "]");
         },
-        showAllErrorDisplay: function(id) {
+        showAllErrorDisplay: function (id) {
             var $errorSpecficDetailBoxes = $.devOrgUP.$allErrorsRelatedTags.filter("[data-id=" + id + "]");
 
             if ($errorSpecficDetailBoxes.is(":hidden")) {
@@ -79,42 +82,45 @@ $(function() {
             }
         },
 
-        getErrorUL: function(id) {
+        getErrorUL: function (id) {
             /// <summary>
-            ///     returns ul.
+            /// returns ul.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             return $.devOrgUP.$allULErrorsRelatedTags.filter("[data-id=" + id + "]");
         },
 
-        addErrorInfoInUL: function($ul, msg, title) {
+        addErrorInfoInUL: function ($ul, msg, title) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="$ul"></param>
             /// <param name="msg"></param>
             /// <param name="title"></param>
-            $ul.append("<li class=\"label label-danger block\" title=\"" + title + "\">" + msg + "</li>");
+            $ul.append('<li class="label label-danger block" title="' + title + '">' + msg + '</li>');
         },
 
 
-        showSuccessIcon: function(id) {
+
+        showSuccessIcon: function (id) {
             return $.devOrgUP.getSuccessIcon(id).show("slow");
         },
-        hideSuccessIcon: function(id) {
+        hideSuccessIcon: function (id) {
             return $.devOrgUP.getSuccessIcon(id).hide();
         },
 
 
-        getFailedIcon: function(id) {
+        getFailedIcon: function (id) {
             /// <summary>
-            ///     returns a tag.
+            /// returns a tag.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             return $.devOrgUP.$allFailedIcons.filter("[data-id=" + id + "]");
         },
 
-        setSuccessIconMsg: function(id, msg) {
+        setSuccessIconMsg: function (id, msg) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id"></param>
             /// <param name="msg"></param>
@@ -123,8 +129,9 @@ $(function() {
             return $icon.attr("title", msg).tooltip();
         },
 
-        setFailedIconMsg: function(id, msg) {
+        setFailedIconMsg: function (id, msg) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id"></param>
             /// <param name="msg"></param>
@@ -133,38 +140,41 @@ $(function() {
             return $icon.attr("title", msg).tooltip();
         },
 
-        showFailedIcon: function(id) {
+        showFailedIcon: function (id) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id"></param>
             return $.devOrgUP.getFailedIcon(id).show("slow");
         },
 
-        hideFailedIcon: function(id) {
+        hideFailedIcon: function (id) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id"></param>
             return $.devOrgUP.getFailedIcon(id).hide();
         },
 
-        getLabelToIndicateUploadedFiles: function(id) {
+        getLabelToIndicateUploadedFiles: function (id) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id"></param>
             /// <returns type=""></returns>
             return $.devOrgUP.$allLabelsToIndicateUploadedFilesNumber.filter("[data-id=" + id + "]");
         },
 
-        getEditButton: function(id) {
+        getEditButton: function (id) {
             /// <summary>
-            ///     returns a tag.
+            /// returns a tag.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             return $.devOrgUP.$allEditButtons.filter("[data-id=" + id + "]");
         },
-        getEditSpinner: function(id) {
+        getEditSpinner: function (id) {
             /// <summary>
-            ///     returns a tag.
+            /// returns a tag.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
@@ -172,35 +182,36 @@ $(function() {
         },
 
 
-        getInputFile: function(id) {
+
+        getInputFile: function (id) {
             /// <summary>
-            ///     returns input tag with file
+            /// returns input tag with file
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
             return $.devOrgUP.$allFileInputTypes.filter("[data-id=" + id + "]");
         },
 
-        getUploaderSpinner: function(id) {
+        getUploaderSpinner: function (id) {
             /// <summary>
-            ///     returns the whole 'A' tag / progressor spinner for upload
+            /// returns the whole 'A' tag / progressor spinner for upload
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
             return $.devOrgUP.$allSpinners.filter($.devOrgUP.editBtnSpinnerSelector + "[data-id=" + id + "]");
         },
 
-        getProgressorValudeIndicator: function(id) {
+        getProgressorValudeIndicator: function (id) {
             /// <summary>
-            ///     returns A tag inside there will be an span for the value show.
+            /// returns A tag inside there will be an span for the value show.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
             return $.devOrgUP.$allProgressorValueIdicator.filter("[data-id=" + id + "]");
         },
-        getWholeProgressorDiv: function(id) {
+        getWholeProgressorDiv: function (id) {
             /// <summary>
-            ///     returns a div
+            /// returns a div
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
@@ -208,9 +219,12 @@ $(function() {
         },
 
 
-        hideUploadProgressor: function(id) {
+
+
+
+        hideUploadProgressor: function (id) {
             /// <summary>
-            ///     hides the whole progressor div.
+            /// hides the whole progressor div.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
@@ -220,9 +234,9 @@ $(function() {
             }
         },
 
-        showUploadProgressor: function(id) {
+        showUploadProgressor: function (id) {
             /// <summary>
-            ///     show the whole progressor div.
+            /// show the whole progressor div.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
@@ -231,9 +245,9 @@ $(function() {
 
         },
 
-        setProgressorValue: function(id, val) {
+        setProgressorValue: function (id, val) {
             /// <summary>
-            ///     sets the value of the progresssor, it doesn't do the visible thing.
+            /// sets the value of the progresssor, it doesn't do the visible thing.
             /// </summary>
             /// <param name="id">data-id</param>
             /// <param name="val">only give the number between 1-100</param>
@@ -246,9 +260,9 @@ $(function() {
             return $indicator;
         },
 
-        setTextInLabel: function($label, val) {
+        setTextInLabel: function ($label, val) {
             /// <summary>
-            ///     set text to the results display labels. It also contains the uploaded files number.
+            /// set text to the results display labels. It also contains the uploaded files number.
             /// </summary>
             /// <param name="id">data-id</param>
             /// <param name="val">Any text. Empty text hides the label.</param>
@@ -267,17 +281,18 @@ $(function() {
             }
             return $label;
         },
-        setTextInLabelWithUploadNumber: function($label, val, increaseTheNumberOfUpload) {
+        setTextInLabelWithUploadNumber: function ($label, val, increaseTheNumberOfUpload) {
             /// <summary>
-            ///     set text to the results display labels. It also contains the uploaded files number.
-            ///     Will not update count more than max.
+            /// set text to the results display labels. It also contains the uploaded files number.
+            /// Will not update count more than max.
             /// </summary>
             /// <param name="id">data-id</param>
             /// <param name="val">Any text. Empty text hides the label.</param>
             /// <param name="increaseTheNumberOfUpload">increases the value of the upload value</param>
             /// <returns type="">
-            ///     return updated count value.
+            /// return updated count value.
             /// </returns>
+
             var currentUploadCount = parseInt($label.attr($.devOrgUP.uploadNumberParameter));
             var maxUploadCount = parseInt($label.attr($.devOrgUP.maxUploadParameter));
             if (_.isNaN(maxUploadCount)) {
@@ -298,9 +313,9 @@ $(function() {
             return updatedValue;
         },
 
-        setTextInLabelWithPreUploadNumber: function($label, val, preuploadedCount) {
+        setTextInLabelWithPreUploadNumber: function ($label, val, preuploadedCount) {
             /// <summary>
-            ///     set text to the results display labels. Sets the pre
+            /// set text to the results display labels. Sets the pre
             /// </summary>
             /// <param name="id">data-id</param>
             /// <param name="val">Any text. Empty text hides the label.</param>
@@ -309,34 +324,36 @@ $(function() {
             $label.text(preuploadedCount + " " + val);
         },
 
-        showEditButton: function(id) {
+        showEditButton: function (id) {
             /// <summary>
-            ///     show the whole progressor div.
+            /// show the whole progressor div.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
             return $.devOrgUP.getEditButton(id).show("slow");
         },
 
-        hideEditButton: function(id) {
+        hideEditButton: function (id) {
             /// <summary>
-            ///     show the whole progressor div.
+            /// show the whole progressor div.
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
             $.devOrgUP.getEditButton(id).hide();
         },
 
-        showEditProgressor: function(id) {
+        showEditProgressor: function (id) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
             return $.devOrgUP.getEditSpinner(id).fadeIn("slow");
         },
 
-        hideEditProgressor: function(id) {
+        hideEditProgressor: function (id) {
             /// <summary>
+            /// 
             /// </summary>
             /// <param name="id">number of the data-id attribute</param>
             /// <returns type=""></returns>
@@ -344,17 +361,18 @@ $(function() {
         },
 
 
-        uploadDeleteBtnClicked: function(e, $deleteBtn, $editBtn, id, sequence, $imageRow, $uploaderLabel, $uploaderInput) {
+
+        uploadDeleteBtnClicked: function (e, $deleteBtn, $editBtn, id, sequence, $imageRow, $uploaderLabel, $uploaderInput) {
             var url = $deleteBtn.attr("href");
             var count = 0;
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: url,
-                success: function(response) {
+                success: function (response) {
                     if (response) {
                         // removed
-                        $imageRow.hide("slow", function() {
+                        $imageRow.hide('slow', function () {
                             $imageRow.remove();
                         });
                         count = $.devOrgUP.setTextInLabelWithUploadNumber($uploaderLabel, $.devOrgUP.uploadedFilesMessage, -1);
@@ -363,7 +381,7 @@ $(function() {
                         }
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
 
                 }
             }); // ajax end
@@ -371,7 +389,7 @@ $(function() {
         },
 
 
-        uploadEditBtnClicked: function(e, $editBtn, id, $uploaderLabel, $uploaderInput) {
+        uploadEditBtnClicked: function (e, $editBtn, id, $uploaderLabel, $uploaderInput) {
             e.preventDefault();
             var url = $editBtn.attr("href");
 
@@ -383,7 +401,7 @@ $(function() {
                 dataType: "html",
                 url: url,
                 data: $.devOrgUP.formData,
-                success: function(response) {
+                success: function (response) {
                     // Remove the processing state     
                     //$editList.html(response);
                     var $response = $(response);
@@ -391,7 +409,7 @@ $(function() {
                     //inside modal find delete btns and bind it with delete event.
 
                     var deleteBtns = $response.find("a[data-btn='delete']");
-                    deleteBtns.on("click", function(ew) {
+                    deleteBtns.on('click', function (ew) {
                         ew.preventDefault();
                         var $deleteButton = $(this);
                         var sequence = $deleteButton.attr("data-sequence");
@@ -403,10 +421,10 @@ $(function() {
 
 
                     //$response.find("[data-btn='close']").on('click', modelCloseClicked)
-                    $response.on("hidden.bs.modal", modelCloseClicked);
+                    $response.on('hidden.bs.modal', modelCloseClicked);
                     $spinner.hide();
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     // Remove the processing state
                     $spinner.hide();
                     //console.error("Error occurred when drafting app. Err Msg:" + error);
@@ -414,18 +432,18 @@ $(function() {
             }); // ajax end
 
             function modelCloseClicked() {
-                $("body").removeClass("modal-open");
-                $(".modal-backdrop").remove();
-                $(".modal").remove();
+                $("body").removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $('.modal').remove();
             }
 
 
         },
 
-        uploaderEditBtnClickEvntBinder: function($editBtn, $label, $uploaderInput, id) {
+        uploaderEditBtnClickEvntBinder: function ($editBtn, $label, $uploaderInput, id) {
             /// <summary>
-            ///     It's not the actual event but it's the method which binds edit button with click event.
-            ///     Hides unnecessary edit buttons
+            /// It's not the actual event but it's the method which binds edit button with click event.
+            /// Hides unnecessary edit buttons
             /// </summary>
             /// <param name="$editBtn">
             /// </param>
@@ -435,15 +453,16 @@ $(function() {
             /// </param>
             /// <param name="id">
             /// </param>
+
             if ($editBtn.length > 0) {
-                $editBtn.on("click", function(e) {
+                $editBtn.on('click', function (e) {
                     e.preventDefault();
                     $.devOrgUP.uploadEditBtnClicked(e, $editBtn, id, $label, $uploaderInput);
                 });
             }
         },
 
-        uploaderFixingDataUrlOnInvalidUrls: function($uploader) {
+        uploaderFixingDataUrlOnInvalidUrls: function ($uploader) {
             var currentUrl = $uploader.attr("data-url");
             if (_.isEmpty(currentUrl)) {
                 var $form = $uploader.closest("form");
@@ -452,33 +471,35 @@ $(function() {
             }
         },
 
-        isPreuploadExist: function($label) {
+        isPreuploadExist: function ($label) {
             var count = parseInt($label.attr($.devOrgUP.uploadPreexistCountParameter));
             if (count > 0) {
                 return true;
             }
             return false;
         },
-        getPreuploadValue: function($label) {
+        getPreuploadValue: function ($label) {
             var count = parseInt($label.attr($.devOrgUP.uploadPreexistCountParameter));
             return count;
         },
 
-        getCountOfHowManyFilesUploaded: function(id) {
+        getCountOfHowManyFilesUploaded: function (id) {
             var $label = $.devOrgUP.getLabelToIndicateUploadedFiles(id);
             var count = parseInt($label.attr($.devOrgUP.uploadNumberParameter));
             return count;
         },
-        showEditButtonBasedOnPreUploadNShowMessageOnLabel: function($label, id) {
+        showEditButtonBasedOnPreUploadNShowMessageOnLabel: function ($label, id) {
             /// <summary>
-            ///     Fix uploaded counts from preexist count.
+            /// Fix uploaded counts from preexist count.
             /// </summary>
             /// <param name="$label">
+            /// 
             /// </param>
             /// <param name="id">
+            /// 
             /// </param>
             /// <returns type="">
-            ///     return preupload count.
+            /// return preupload count.
             /// </returns>
             var count = parseInt($label.attr($.devOrgUP.uploadPreexistCountParameter));
             var hasEditbutton;
@@ -505,10 +526,10 @@ $(function() {
             }
             return 0;
         },
-        getId: function($uploaderItem) {
+        getId: function ($uploaderItem) {
             return $uploaderItem.attr("data-id");
         },
-        initialize: function(acceptedFileSizeInMb, acceptFileTypeRegularExpressionString) {
+        initialize: function (acceptedFileSizeInMb, acceptFileTypeRegularExpressionString) {
             //var urlExist = false;
             //var kRep = 0;
 
@@ -560,57 +581,57 @@ $(function() {
 
 
                 $uploaders.fileupload({
-                        url: $(this).attr("data-url"),
-                        dataType: "json",
-                        autoUpload: $(this).attr("data-is-auto"),
-                        //singleFileUploads: true,
-                        acceptFileTypes: new RegExp(acceptFileTypeRegularExpressionString, "i"),
-                        FileSize: actualSize, // in MB
-                        progressall: function(e, data) {
-                            // when in progress
+                    url: $(this).attr("data-url"),
+                    dataType: 'json',
+                    autoUpload: $(this).attr("data-is-auto"),
+                    //singleFileUploads: true,
+                    acceptFileTypes: new RegExp(acceptFileTypeRegularExpressionString, 'i'),
+                    FileSize: actualSize, // in MB
+                    progressall: function (e, data) {
+                        // when in progress
 
-                            //written here so that doesn't have to go back and fort.
-                            var $this = $(this);
-                            var idAttr = $this.attr("data-id");
-                            var progress = parseInt(data.loaded / data.total * 100, 10);
+                        //written here so that doesn't have to go back and fort.
+                        var $this = $(this);
+                        var idAttr = $this.attr("data-id");
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
 
-                            $.devOrgUP.setProgressorValue(idAttr, progress);
-                        }
-                    })
-                    .on($.devOrgUP.fileUploadAddedEvent, function(e, data) {
-                        // file upload added event.
-                        $.devOrgUP.onFileUploadAddedEvent(e, data, $(this));
-                    })
-                    // when on submit
-                    .on($.devOrgUP.submitEvent, function(e, data) {
-                        $.devOrgUP.onSubmitEvent(e, data, $(this));
-                    })
-                    //.on($.devOrgUP.progressEvent, function (e, data) {                  
+                        $.devOrgUP.setProgressorValue(idAttr, progress);
+                    }
+                })
+                .on($.devOrgUP.fileUploadAddedEvent, function (e, data) {
+                    // file upload added event.
+                    $.devOrgUP.onFileUploadAddedEvent(e, data, $(this));
+                })
+                // when on submit
+                .on($.devOrgUP.submitEvent, function (e, data) {
+                    $.devOrgUP.onSubmitEvent(e, data, $(this));
+                })
+                //.on($.devOrgUP.progressEvent, function (e, data) {                  
 
-                    //    //console.log(progress);
-                    //})
-                    // when done
-                    .on($.devOrgUP.doneEvent, function(e, data) {
-                        $.devOrgUP.onUploadDoneEvent(e, data, $(this));
-                    })
-                    // when failed
-                    .on($.devOrgUP.failedEvent, function(e, data) {
-                        $.devOrgUP.onUploadFailedErrorEvent(e, data, $(this));
-                    }).prop("disabled", !$.support.fileInput)
-                    .parent().addClass($.support.fileInput ? undefined : "disabled");
+                //    //console.log(progress);
+                //})
+                // when done
+                .on($.devOrgUP.doneEvent, function (e, data) {
+                    $.devOrgUP.onUploadDoneEvent(e, data, $(this));
+                })
+                // when failed
+                .on($.devOrgUP.failedEvent, function (e, data) {
+                    $.devOrgUP.onUploadFailedErrorEvent(e, data, $(this));
+                }).prop('disabled', !$.support.fileInput)
+                    .parent().addClass($.support.fileInput ? undefined : 'disabled');
             }
         },
-        onFileUploadAddedEvent: function(e, data, $this) {
+        onFileUploadAddedEvent: function (e, data, $this) {
             var id = $this.attr("data-id");
             var $label = $.devOrgUP.getLabelToIndicateUploadedFiles(id);
             $.devOrgUP.showUploadProgressor(id);
             $.devOrgUP.setTextInLabel($label, "Uploading...");
         },
-        onSubmitEvent: function(e, data, $this) {
+        onSubmitEvent: function (e, data, $this) {
             //var id = $this.attr("data-id");
             data.formData = $.devOrgUP.formData;
         },
-        onUploadDoneEvent: function(e, data, $this) {
+        onUploadDoneEvent: function (e, data, $this) {
             var id = $this.attr("data-id");
             var $label = $.devOrgUP.getLabelToIndicateUploadedFiles(id);
             //console.log("done" + id);
@@ -637,7 +658,7 @@ $(function() {
                 }
             } else {
                 // if multiple then consider edit button to show up.
-
+                
             }
 
             if ($this.attr($.devOrgUP.hasEditButtonParameter)) {
@@ -647,6 +668,8 @@ $(function() {
                     $editBtn.show("slow");
                 }
             }
+
+
 
 
             var length = data.files.length;
@@ -685,7 +708,7 @@ $(function() {
             }
 
         },
-        onUploadFailedErrorEvent: function(e, data, $this) {
+        onUploadFailedErrorEvent: function (e, data, $this) {
             var id = $this.attr("data-id");
             var $label = $.devOrgUP.getLabelToIndicateUploadedFiles(id);
             var length = data.files.length;
@@ -710,7 +733,8 @@ $(function() {
             // hide progressor
             $.devOrgUP.hideUploadProgressor(id);
         }
-    };
+    }
+
     $.devOrgUP.initialize(1, "(\\.|\\/)(gif|jpe?g|png)$");
 
 });

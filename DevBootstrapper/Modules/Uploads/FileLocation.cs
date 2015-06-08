@@ -1,9 +1,5 @@
-﻿#region using block
-
-using System;
+﻿using System;
 using System.IO;
-
-#endregion
 
 namespace DevBootstrapper.Modules.Uploads {
     public enum PictureType {

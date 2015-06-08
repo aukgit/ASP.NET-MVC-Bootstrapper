@@ -1,14 +1,10 @@
-﻿#region using block
-
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Modules.Role;
-
-#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class RolesController : Controller {

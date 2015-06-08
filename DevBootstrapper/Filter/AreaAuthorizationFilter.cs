@@ -1,21 +1,16 @@
-﻿#region using block
-
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using DevBootstrapper.Modules.Session;
 
-#endregion
-
 namespace DevBootstrapper.Filter {
     public class AreaAuthorizeAttribute : ActionFilterAttribute {
-        private readonly string[] _restrictedAreas = {"Admin"}; // area names to protect
+        private readonly string[] _restrictedAreas = { "Admin" }; // area names to protect
         private readonly bool _restrictionEnabled = false;
-
         public override void OnActionExecuting(ActionExecutingContext filterContext) {
             if (_restrictionEnabled) {
                 var routeData = filterContext.RouteData;
                 // check if user is allowed on this page
-                var currentArea = (string) routeData.DataTokens["area"];
+                var currentArea = (string)routeData.DataTokens["area"];
 
 
                 filterContext.HttpContext.Session[SessionNames.AuthError] = null;
@@ -40,8 +35,7 @@ namespace DevBootstrapper.Filter {
                     }
                 } else {
                     // not logged in
-                    filterContext.HttpContext.Session[SessionNames.AuthError] = "You have no right to access " +
-                                                                                currentArea +
+                    filterContext.HttpContext.Session[SessionNames.AuthError] = "You have no right to access " + currentArea +
                                                                                 " . Sorry for inconvenience.";
                     filterContext.Result = new HttpUnauthorizedResult();
                 }

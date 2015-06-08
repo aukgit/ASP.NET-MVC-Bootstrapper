@@ -36,22 +36,22 @@ $.devOrg.dynamicSelect = {
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
     additionalCssAttribute: "data-additional-css",
     liveSearchAttribute: "data-live-search",
-    isHtmlAttribute: "dev-isHtml",
+    isHtmlAttribute : "dev-isHtml",
     $dynamicSelectContainerDiv: $("div.dynamic-select-container[data-dynamic-select-container=true]"),
     $allDynamicImmidiaeSelectDivs: null, // will be defined from initialize function
     $dependancySelectsHasNotProcessed: [], //only populated if a dependency combo can't find parent.
 
-    initialize: function(additionalSelector) {
+    initialize: function (additionalSelector) {
         /// <summary>
-        ///     select div and push info based on html properties
-        ///     class="dynamic-select-load"
-        ///     data-prop="NameOfThePropertyInDatabase"
-        ///     data-dev-dynamic-select="true"
-        ///     data-url="where the json is"
-        ///     data-value="value for the select"
-        ///     data-dependable-prop-name=""
-        ///     data-dependable="true/false"
-        ///     data-load-auto="true/false"
+        /// select div and push info based on html properties
+        /// class="dynamic-select-load"
+        ///      data-prop="NameOfThePropertyInDatabase"
+        ///      data-dev-dynamic-select="true"
+        ///      data-url="where the json is"
+        ///      data-value="value for the select"
+        ///      data-dependable-prop-name=""
+        ///      data-dependable="true/false"
+        ///      data-load-auto="true/false"
         /// </summary>
         "use strict";
         if (additionalSelector === undefined) {
@@ -70,19 +70,20 @@ $.devOrg.dynamicSelect = {
             var isDependable = $div.attr($.devOrg.dynamicSelect.isDependableAttribute);
 
             var url = $div.attr(this.urlAttribute);
-            if (!_.isEmpty(url) && isDependable === "false") {
+            if (!_.isEmpty(url) && isDependable === 'false') {
                 $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions($div, url);
                 // dependency will be handled in side the parent when json is reviced in the parent
             }
         }
     },
-    isHtmlRequest: function($div) {
+    isHtmlRequest: function ($div) {
         return $div.attr($.devOrg.dynamicSelect.isHtmlAttribute);
     },
-    fixUrlWithSlash: function(url) {
+    fixUrlWithSlash: function (url) {
         /// <summary>
-        ///     if url doesn't contain slash at end
-        ///     slash will be added
+        /// if url doesn't contain slash at end
+        /// slash will be added
+        /// 
         /// </summary>
         /// <param name="url">site.com/ or site.com will return site.com/</param>
         if (!_.isEmpty(url)) {
@@ -94,20 +95,20 @@ $.devOrg.dynamicSelect = {
         }
         return url;
     },
-    filterDependableDivByPropName: function(depenablePropName) {
+    filterDependableDivByPropName: function (depenablePropName) {
         var findChildSelector = "[" + $.devOrg.dynamicSelect.dependablePropertyNameAttribute + "=" + depenablePropName + "]";
         return $.devOrg.dynamicSelect.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
     },
-    filterDivByPropName: function(propName) {
+    filterDivByPropName: function (propName) {
         var findChildSelector = "[" + $.devOrg.dynamicSelect.propertyNameAttribute + "=" + propName + "]";
         return $.devOrg.dynamicSelect.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
     },
-    getUrlFromDynamicSelectDiv: function($div) {
+    getUrlFromDynamicSelectDiv: function ($div) {
         var url = $div.attr($.devOrg.dynamicSelect.urlAttribute);
         url = $.devOrg.dynamicSelect.fixUrlWithSlash(url);
         return url;
     },
-    selectFirstItemInSelectAndGetValue: function($currentSelect) {
+    selectFirstItemInSelectAndGetValue: function ($currentSelect) {
         var parentValue = $currentSelect.val();
         if (parentValue === null) {
             $currentSelect.val($currentSelect.find("option:first").val());
@@ -115,8 +116,9 @@ $.devOrg.dynamicSelect = {
         }
         return parentValue;
     },
-    getJsonProcessSelectDynamicOptions: function($div, url) {
+    getJsonProcessSelectDynamicOptions: function ($div, url) {
         /// <summary>
+        /// 
         /// </summary>
         /// <param name="$div"></param>
         /// <param name="url">given url to get the json</param>
@@ -132,7 +134,7 @@ $.devOrg.dynamicSelect = {
         var additionCss = $div.attr($.devOrg.dynamicSelect.additionalCssAttribute);
         var propName = $div.attr($.devOrg.dynamicSelect.propertyNameAttribute);
         var addAttr = "data-style='" + additionCss + "'" +
-            "data-live-search='" + liveSearch + "'";
+                      "data-live-search='" + liveSearch + "'";
         var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='selectpicker form-control' >";
         var selectBoxEnd = "</select>";
         var selectOfParentDiv = "div.form-row-" + propName + ":first";
@@ -168,7 +170,7 @@ $.devOrg.dynamicSelect = {
                     }
 
                     //$div.show("slow");
-                    $containerDiv.show("slow");
+                    $containerDiv.show('slow');
                     // find any of the dependency if exist
                     var $parentSelect = $div.find("select:first");
                     var isItemsExist = $parentSelect.find("option:first").length === 1;
@@ -188,7 +190,7 @@ $.devOrg.dynamicSelect = {
                                 .getJsonProcessSelectDynamicOptions(
                                     $childDiv,
                                     tempUrl);
-                        }).trigger("change");
+                        }).trigger('change');
                     }
 
                 }

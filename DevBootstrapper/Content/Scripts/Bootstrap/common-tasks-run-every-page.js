@@ -6,7 +6,7 @@
  * Dated: 01 Mar 2015
 */
 
-$(function() {
+$(function () {
     "use strict";
     var commonTasksToRun = {
         transactionStatusHide: function transactionStatusHide() {
@@ -15,19 +15,20 @@ $(function() {
                 $transactionStatus.delay(3500).fadeOut(2500);
             }
         },
-        implementTooltips: function() {
+        implementTooltips: function () {
             $(".tooltip-show").tooltip();
 
         },
 
-        runEveryTask: function() {
+        runEveryTask: function () {
 
             commonTasksToRun.transactionStatusHide();
             commonTasksToRun.implementTooltips();
         }
 
 
-    }; //var devBackBtns = $("a.dev-btn-back");
+    }
+    //var devBackBtns = $("a.dev-btn-back");
     //if (devBackBtns.length > 0) {
     //    devBackBtns.click(function (e) {
     //        e.preventDefault();

@@ -19,6 +19,8 @@
 /// <reference path="../Bootstrap/modernizr-2.8.3.js" />
 /// <reference path="../Bootstrap/respond.js" />
 /// <reference path="../Bootstrap/star-rating.js" />
+
+
 /*
 * Version 2.2
 * Written by Alim Ul Karim
@@ -30,7 +32,7 @@
 
 $.fn.extend({
     // jQuery element get all classes
-    getAllClasses: function() {
+    getAllClasses: function () {
         if (this.length === 1) {
             return this.attr("class").split(/\s+/);
         }
@@ -40,16 +42,16 @@ $.fn.extend({
 
 
 $.devOrg = {
-
+    
 
     // get all the classes from an jQuery element
-    getAllClasses: function($jQueryHtmlElement) {
+    getAllClasses: function ($jQueryHtmlElement) {
         "use strict";
         return $jQueryHtmlElement.getAllClasses();
     },
 
     // allClassesArray = ['a','b','c'] , exceptClassesArray=['b','c'], results=['a']
-    getClassesExcept: function(allClassesArray, exceptClassesArray) {
+    getClassesExcept: function (allClassesArray, exceptClassesArray) {
         "use strict";
         if (allClassesArray === null || allClassesArray === undefined) {
             return [];
@@ -70,7 +72,7 @@ $.devOrg = {
     },
     // all Selectors are jQuery Selector Text  only.
     // selectpicker will be called inside function, no need to call outside.
-    countryFlagRefresh: function(countrySelector, dropDownItemsSelector, dropDownBtnSelector) {
+    countryFlagRefresh: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector) {
         "use strict";
         var countryBox = $(countrySelector).selectpicker(); // only select a select element then apply the custom bootstrap selector
         var dropDownItems = $(dropDownItemsSelector); // getting generated dropdown items from the custom bootstrap selector
@@ -79,7 +81,7 @@ $.devOrg = {
         var skippingClassesForBtn = ["btn", "dropdown-toggle", "selectpicker", "btn-success", "flag-combo"];
 
         // console.log(dropDownItems.length);
-        countryBox.change(function(e) {
+        countryBox.change(function (e) {
             var listItem = dropDownItems.find("li.selected");
             var anchorItem = listItem.find("a");
             var listOfAllAnchorClasses = anchorItem.getAllClasses();
@@ -94,7 +96,7 @@ $.devOrg = {
     },
     // countryFlagRefresh must be called first or selectpicker must be called first
     // all Selectors are jQuery Selector Text  only.
-    countryRelatedToPhone: function(countrySelector, dropDownItemsSelector, dropDownBtnSelector, phoneNumberInputSelector) {
+    countryRelatedToPhone: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector, phoneNumberInputSelector) {
         "use strict";
         var countryBox = $(countrySelector);
         var dropDownItems = $(dropDownItemsSelector);
@@ -125,7 +127,7 @@ $.devOrg = {
         // $("#selectID option")[index].selected = true;
     },
 
-    subStringMod: function(givenString, startSequence, endingSequence) {
+    subStringMod: function (givenString, startSequence, endingSequence) {
         "use strict";
         if (_.isString(givenString)) {
             var index1 = givenString.indexOf(startSequence);
@@ -143,7 +145,7 @@ $.devOrg = {
     // it would be better to execute parentjQueryCombo as selectpicker or have a selectpicker class.
     // No combo will appear , even the main div will disappear if no item is received from the link.
     // json sender should sends as id and text only.
-    smartDependableCombo: function(parentjQuerySelector, mainDivContainerSelector, innerDivSelectorForPlacingCombo, urlToGetJson, placeComboName, placedComboId, placedComboClass, placedComboAdditionalClassesWithItems, placedComboAdditionalHtmlWithEachItem) {
+    smartDependableCombo: function (parentjQuerySelector, mainDivContainerSelector, innerDivSelectorForPlacingCombo, urlToGetJson, placeComboName, placedComboId, placedComboClass, placedComboAdditionalClassesWithItems, placedComboAdditionalHtmlWithEachItem) {
         "use strict";
         var $parentjQueryCombo = $(parentjQuerySelector);
         if (_.isEmpty($parentjQueryCombo)) {
@@ -195,7 +197,7 @@ $.devOrg = {
             $combo.selectpicker();
         }
 
-        $parentjQueryCombo.change(function() {
+        $parentjQueryCombo.change(function () {
             "use strict";
             var $parentComboValue = $parentjQueryCombo.val();
             var actualUrl = urlToGetJson + "/" + $parentComboValue;
@@ -203,7 +205,7 @@ $.devOrg = {
                 type: "POST",
                 dataType: "JSON",
                 url: actualUrl,
-                success: function(response) {
+                success: function (response) {
                     if (response.length === 0) {
                         hideDiv();
                         return;
@@ -213,7 +215,7 @@ $.devOrg = {
                     showDiv(); //remove inner options if exist any
                     createCombo(response); // create if necessary and then append options to it.
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     hideDiv();
                 }
             });
@@ -222,8 +224,9 @@ $.devOrg = {
     // listOfItems = expected a json item with id and text property
     // extraHtmlWithEachElement : represents like below
     // <option .. > extraHtmlWithEachElement Item </option>
-    appenedComboElement: function($combo, listOfItems, extraHtmlWithEachElement, itemClasses) {
+    appenedComboElement: function ($combo, listOfItems, extraHtmlWithEachElement, itemClasses) {
         /// <summary>
+        /// 
         /// </summary>
         /// <param name="$combo"></param>
         /// <param name="listOfItems"></param>
@@ -252,11 +255,11 @@ $.devOrg = {
             $combo.append(options);
         }
     },
-    bootstrapComboSelectbyFindingValue: function(comboSelector, searchForvalue) {
+    bootstrapComboSelectbyFindingValue: function (comboSelector, searchForvalue) {
         "use strict";
         $(comboSelector).selectpicker("val", searchForvalue).trigger("change");
     },
-    bootstrapComboSelectIndex: function(comboSelector, index) {
+    bootstrapComboSelectIndex: function (comboSelector, index) {
         "use strict";
         var combo = $(comboSelector + ">option");
         if (combo.length > 0 && index <= (combo.length - 1)) {
@@ -268,7 +271,7 @@ $.devOrg = {
 
     // givenString "Example ( Hello )" 
     // startsWith= "Example" ; returns true.
-    isStartsWith: function(givenString, startsWith) {
+    isStartsWith: function (givenString, startsWith) {
         "use strict";
         if (_.isString(givenString)) {
             var subtringOfGiventext = givenString.substr(0, startsWith.length);
@@ -279,7 +282,7 @@ $.devOrg = {
         return false;
     },
 
-    replaceStartsWith: function(givenString, findStartsWith, replaceString) {
+    replaceStartsWith: function (givenString, findStartsWith, replaceString) {
         "use strict";
         if (_.isString(givenString) && !_.isEmpty(findStartsWith)) {
             var subtringOfGiventext = givenString.substr(0, findStartsWith.length);
@@ -293,7 +296,7 @@ $.devOrg = {
     },
 
     // jquery formSelector, submitAtLast:true/false
-    enterToNextTextBox: function(formSelector, submitAtLast) {
+    enterToNextTextBox: function (formSelector, submitAtLast) {
         "use strict";
         $(formSelector + " input:text:first").focus();
         var binders = formSelector + " input[type='text']:visible," +
@@ -303,7 +306,7 @@ $.devOrg = {
             //formSelector + " textarea:visible," +
             formSelector + " button.selectpicker[type='button']:visible," +
             formSelector + " select:visible";
-        $(document).on("keypress", binders, function(e) {
+        $(document).on("keypress", binders, function (e) {
             // var codeAbove = d.keyCode || d.which;
             // console.log("above code :" + codeAbove);
             var code = e.keyCode || e.which;
@@ -324,7 +327,7 @@ $.devOrg = {
         });
     },
 
-    validateTextInputBasedOnRegEx: function(jQuerySelectorforTextBox, stringRegEx, msgOnInvalidPattern) {
+    validateTextInputBasedOnRegEx: function (jQuerySelectorforTextBox, stringRegEx, msgOnInvalidPattern) {
         "use strict";
         /// <summary>
         ///     Validate text input while typing with ASP.NET jquery validation.
@@ -339,7 +342,7 @@ $.devOrg = {
 
     },
 
-    reSetupjQueryValidate: function(jQueryFormSelector) {
+    reSetupjQueryValidate: function (jQueryFormSelector) {
         "use strict";
         /// <summary>
         ///     call after setting new reg ex via validateTextInputBasedOnRegEx
@@ -352,7 +355,7 @@ $.devOrg = {
         $.validator.unobtrusive.parse($form);
     },
 
-    validateTextInputsBasedOnHiddenSpansGiven: function(formSelector) {
+    validateTextInputsBasedOnHiddenSpansGiven: function (formSelector) {
         "use strict";
         /// <summary>
         ///     inComplete
@@ -393,7 +396,7 @@ $.devOrg = {
         }
     },
 
-    validateInputFromServer: function(jQuerytextBoxSelector, validationUrl, internalValidatorSpanClassName, isAlwaysFocusUntilValid, isDisable, minChars, isSubmitTheWholeForm, onInvalidStringStatementInCrossMark, onValidStringStatementInCheckMark, $formGiven, maxTryLimit) {
+    validateInputFromServer: function (jQuerytextBoxSelector, validationUrl, internalValidatorSpanClassName, isAlwaysFocusUntilValid, isDisable, minChars, isSubmitTheWholeForm, onInvalidStringStatementInCrossMark, onValidStringStatementInCheckMark, $formGiven, maxTryLimit) {
         /// <summary>
         ///     Made validation easy on the fly with a server response.
         /// </summary>
@@ -409,6 +412,7 @@ $.devOrg = {
         ///     valid statement show on the check mark. By default: fieldDisplayname +
         ///     is available and valid
         /// </param>
+
         "use strict";
 
         //if (_.isEmpty(isSubmitTheWholeForm)) {
@@ -429,16 +433,16 @@ $.devOrg = {
             $userTextbox.removeAttr("isDisable");
 
             if (!isSubmitTheWholeForm) {
-                $userTextbox.keyup(function() {
+                $userTextbox.keyup(function () {
                     $("#validation #id").val($userTextbox.val());
                     // console.log(user);
-                }).focus(function() {
+                }).focus(function () {
                     $("#validation #id").val($userTextbox.val());
                     // console.log(user);
                 });
             }
 
-            $userTextbox.blur(function() {
+            $userTextbox.blur(function () {
                 "use strict";
                 if (!isSubmitTheWholeForm) {
                     $("#validation #id").val($userTextbox.val());
@@ -515,7 +519,7 @@ $.devOrg = {
                     dataType: "JSON",
                     url: validationUrl,
                     data: formData,
-                    success: function(response) {
+                    success: function (response) {
                         sentRequestCount = sentRequestCount + 1;
                         // Remove the processing state
                         if ($validatorBox.hasClass(processingState1)) {
@@ -577,7 +581,7 @@ $.devOrg = {
                         $(".tooltip-show").tooltip();
 
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // Remove the processing state
                         if ($validatorBox.hasClass(processingState1)) {
                             $validatorBox.removeClass(processingState1);
@@ -617,48 +621,48 @@ $.devOrg = {
     },
 
 
-    fillRegisterFieldsOnDemo: function() {
+    fillRegisterFieldsOnDemo: function () {
         /// <summary>
-        ///     Test Function
+        /// Test Function
         /// </summary>
         var i = 0;
         var controls = $(".form-group");
         var $fields = controls.find("input[type=text]");
-        $.each($fields, function() {
+        $.each($fields, function () {
             this.value = 1111111111111;
         });
 
         $fields = controls.find("input[type=password]");
-        $.each($fields, function() {
+        $.each($fields, function () {
             this.value = "asdf1234@";
         });
 
 
         $fields = controls.find("input[type=number]");
-        $.each($fields, function() {
+        $.each($fields, function () {
             this.value = i++;
         });
 
         $fields = controls.find("textarea");
-        $.each($fields, function() {
+        $.each($fields, function () {
             this.value = "1111111111111";
         });
 
         $fields = controls.find("input[type=email]");
-        $.each($fields, function() {
+        $.each($fields, function () {
             this.value = "auk.junk@live.com";
         });
 
         $fields = controls.find("input[type=checkbox]");
-        $.each($fields, function() {
+        $.each($fields, function () {
             this.prop("checked", true);
         });
 
     },
     //'.make-it-tab'
-    bootstrapTabsMordernize: function(tabSelector) {
+    bootstrapTabsMordernize: function (tabSelector) {
         /// <summary>
-        ///     give jQuery selector to add tab functionality
+        /// give jQuery selector to add tab functionality
         /// </summary>
         /// <param name="tabSelector"></param>
         "use strict";
@@ -677,14 +681,14 @@ $.devOrg = {
                 }
             }
 
-            bootstrapTabs.click(function(e) {
+            bootstrapTabs.click(function (e) {
                 //e.preventDefault();                    
                 e.preventDefault();
                 $(this).tab("show");
 
             });
 
-            $("ul" + tabSelector + ".nav-tabs > li > a").on("shown.bs.tab", function(e) {
+            $("ul" + tabSelector + ".nav-tabs > li > a").on("shown.bs.tab", function (e) {
                 var valueOfActive = $(e.target).attr("href");
                 // = $(tabSelector + " li.active>a").attr('href');
                 tabHidden.val(valueOfActive);
@@ -692,7 +696,7 @@ $.devOrg = {
             });
         }
     },
-    ratingMordernize: function() {
+    ratingMordernize: function () {
 
         var ratingItems = $(".rating-5");
 
@@ -734,7 +738,7 @@ $.devOrg = {
         }
     },
 
-    uxFriendlySlide: function(jQueryformSelector, keepOthersVisible, dontSubmit) {
+    uxFriendlySlide: function (jQueryformSelector, keepOthersVisible, dontSubmit) {
         /// <summary>
         ///     hides except for the first div with value 0. Add attributes to divs
         ///     [data-dev-slide='number-zero-based'][data-dev-visited='false'] and
@@ -747,7 +751,7 @@ $.devOrg = {
         /// <param name="keepOthersVisible">Should add new hide ones or previous ones hides and load new ones(divs)</param>
         /// <param name="dontSubmit">When none left , do we submit? True: don't submit</param>
         "use strict";
-
+        
         var slideObjects = $(jQueryformSelector + " [data-dev-slide][data-dev-visited='false']");
         var executedOnce = false;
         var binders = "input[type='text']:visible," +
@@ -763,7 +767,7 @@ $.devOrg = {
             slideObjects.hide();
             previousSlideNumber = order;
             slideObjects.filter("[data-dev-slide='" + (order++) + "'][data-dev-visited='false']").show();
-            $(jQueryformSelector).submit(function(e) {
+            $(jQueryformSelector).submit(function (e) {
                 e.preventDefault();
 
                 var nextOne = slideObjects.filter("[data-dev-slide='" + order + "'][data-dev-visited='false']");
@@ -812,7 +816,7 @@ $.devOrg = {
         }
     },
     // Send inputs array, if any of those false , returns false.
-    checkValidInputs: function(jBinders) {
+    checkValidInputs: function (jBinders) {
         "use strict";
 
         var $currentInput = null;

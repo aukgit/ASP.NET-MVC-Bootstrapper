@@ -1,16 +1,12 @@
-﻿#region using block
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DevBootstrapper.Models.POCO.Identity;
 
-#endregion
-
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class CountryLanguage {
         [Key]
-        public int CountryLanguageId { get; set; }
+        public int CountryLanguageID { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(50)]

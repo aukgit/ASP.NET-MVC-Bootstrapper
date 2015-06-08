@@ -1,28 +1,32 @@
-﻿body { font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
-.ubuntu-font { font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
-
-.question-mark-for-description {
-    -moz-box-sizing: border-box;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-    color: #bdbdbd;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-size: 26px;
-    font-size: 1.625em;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    position: relative;
-    top: 5px;
-    top: 0.5rem;
+﻿body {
+  font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
-.question-mark-for-description:hover { color: brown; }
-
-.question-mark-for-description:before { content: "\e085"; }
+.ubuntu-font {
+  font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+.question-mark-for-description {
+  cursor: pointer;
+  font-size: 26px;
+  font-size: 1.625em;
+  position: relative;
+  top: 5px;
+  top: 0.5rem;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #bdbdbd;
+}
+.question-mark-for-description:hover {
+  color: brown;
+}
+.question-mark-for-description:before {
+  content: "\e085";
+}
 /*# sourceMappingURL=core-developer.css.map */

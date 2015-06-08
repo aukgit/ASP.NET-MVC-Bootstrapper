@@ -1,31 +1,37 @@
-﻿#region using block
-
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using DevBootstrapper.Controllers;
+using DevBootstrapper.Models.Context;
+//using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
+using DevTrends.MvcDonutCaching;
 using DevBootstrapper.Filter;
 using DevBootstrapper.Helpers;
-using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Session;
-//using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
 
-#endregion
-
-namespace DevBootstrapper.Controllers {
+namespace DevBootstrapper.Controllers
+{
     [OutputCache(CacheProfile = "YearNoParam")]
-    [CacheFilter]
+    [CacheFilterAttribute]
     //public class PartialsController : GenericController<Inherit it with your db context> {
     public class PartialsController : GenericController<NorthwindEntities> {
-        #region Constructors
+        
+        
+		#region Constructors
 
         public PartialsController()
             : base(true) {
-        }
+	
+		} 
 
-        #endregion
+		#endregion
 
         #region Drop down : Country, timezone, language
-
         [OutputCache(CacheProfile = "YearNoParam")]
         public string GetCountryId() {
             var countries = CachedQueriedData.GetCountries();
@@ -39,7 +45,7 @@ namespace DevBootstrapper.Controllers {
             }
             var getZones = CachedQueriedData.GetTimezones(id);
             if (getZones != null) {
-                var represent = getZones.Select(n => new {display = n.Display, id = n.UserTimeZoneId});
+                var represent = getZones.Select(n => new { display = n.Display, id = n.UserTimeZoneID });
                 return Json(represent.ToList(), JsonRequestBehavior.AllowGet);
             }
             return Json(null, JsonRequestBehavior.AllowGet);
@@ -53,12 +59,11 @@ namespace DevBootstrapper.Controllers {
             var languges = CachedQueriedData.GetLanguages(id);
             if (languges != null) {
                 var represent =
-                    languges.Select(n => new {display = n.Language + " - " + n.NativeName, id = n.CountryLanguageId});
+                    languges.Select(n => new { display = n.Language + " - " + n.NativeName, id = n.CountryLanguageID });
                 return Json(represent.ToList(), JsonRequestBehavior.AllowGet);
             }
             return Json(null, JsonRequestBehavior.AllowGet);
         }
-
         #endregion
 
         #region Nortwind test
@@ -67,33 +72,28 @@ namespace DevBootstrapper.Controllers {
 
         // [DonutOutputCache(CacheProfile = "YearNoParam")]
         public JsonResult GetReportsTo() {
-            var data = Db.Employees.Select(n => new {id = n.EmployeeID, display = n.LastName}).ToList();
+            var data = db.Employees.Select(n => new { id = n.EmployeeID, display = n.LastName }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
 
         #region ProductOrdersController : DropDowns to paste into the partial
-
-        public JsonResult GetEmployeeId() {
-            var data =
-                Db.Employees.Select(n => new {id = n.EmployeeID, display = n.LastName + " (" + n.EmployeeID + ")"})
-                    .ToList();
+        public JsonResult GetEmployeeID() {
+            var data = db.Employees.Select(n => new { id = n.EmployeeID, display = n.LastName + " (" + n.EmployeeID + ")" }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
-
+        
 
         [OutputCache(CacheProfile = "Year")]
         public JsonResult GetShipVia(int id) {
-            var data =
-                Db.Shippers.Where(n => n.ShipperID == id)
-                    .Select(n => new {id = n.ShipperID, display = n.CompanyName})
-                    .ToList();
+            var data = db.Shippers.Where(n => n.ShipperID == id).Select(n => new { id = n.ShipperID, display = n.CompanyName }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        #endregion 
         #endregion
-
-        #endregion
+ 
     }
+	
 }

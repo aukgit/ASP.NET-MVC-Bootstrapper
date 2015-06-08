@@ -1,16 +1,12 @@
-﻿#region using block
-
-using System.ComponentModel.DataAnnotations;
-
-#endregion
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
-    public class CountryDetectByIp {
+    public class CountryDetectByIP {
         [Key]
-        public int CountryDetectByIpid { get; set; }
+        public int CountryDetectByIPID { get; set; }
 
-        public int BeginingIp { get; set; }
-        public int EndingIp { get; set; }
-        public int CountryId { get; set; }
+        public int BeginingIP { get; set; }
+        public int EndingIP { get; set; }
+        public int CountryID { get; set; }
     }
 }

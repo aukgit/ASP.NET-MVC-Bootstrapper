@@ -1,12 +1,8 @@
-﻿#region using block
-
-using DevBootstrapper.Models.Context;
+﻿using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-
-#endregion
 
 namespace DevBootstrapper {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.

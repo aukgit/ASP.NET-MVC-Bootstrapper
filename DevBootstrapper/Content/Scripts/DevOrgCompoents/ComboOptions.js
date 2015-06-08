@@ -4,14 +4,14 @@
  * https://www.facebook.com/DevelopersOrganism
  * mailto:info@developers-organism.com
 */
-function FillComboDepenedOnOther(dependingSelectBoxId, fillSelectBoxId, locationToRetrive, optionalSelectedIdorName) {
-    $(dependingSelectBoxId).bind("change", function() {
+function FillComboDepenedOnOther(dependingSelectBoxID, fillSelectBoxID, locationToRetrive, optionalSelectedIdorName) {
+    $(dependingSelectBoxID).bind("change", function() {
         // every time the value of the dropdown 1 is changed, do this:
         // console.log('ase' + dependingSelectBoxID);
-        var paramId = $(dependingSelectBoxId).val();
+        var paramId = $(dependingSelectBoxID).val();
 
         $.getJSON(locationToRetrive + "/" + paramId, function(data) {
-            $(fillSelectBoxId).empty(); // clear old values if exist
+            $(fillSelectBoxID).empty(); // clear old values if exist
 
             var options = "";
             for (i = 0; i < data.length; i++) { // build options
@@ -21,15 +21,15 @@ function FillComboDepenedOnOther(dependingSelectBoxId, fillSelectBoxId, location
                     options += ("<option value='" + data[i].id + "'>" + data[i].text + "</option>");
                 }
             }
-            $(fillSelectBoxId).append(options);
+            $(fillSelectBoxID).append(options);
         });
     });
 }
 
 
-function FillComboAjaxBased(selectBoxId, locationToRetrive, optionalSelectedIdorName) {
+function FillComboAjaxBased(SelectBoxID, locationToRetrive, optionalSelectedIdorName) {
     $.getJSON(locationToRetrive + "/", function(data) {
-        $(selectBoxId).empty(); // clear old values if exist
+        $(SelectBoxID).empty(); // clear old values if exist
         var options = "";
         for (i = 0; i < data.length; i++) { // build options
             if ((optionalSelectedIdorName == data[i].id || data[i].text == optionalSelectedIdorName) && (optionalSelectedIdorName != null || optionalSelectedIdorName != "")) {
@@ -38,7 +38,7 @@ function FillComboAjaxBased(selectBoxId, locationToRetrive, optionalSelectedIdor
                 options += ("<option value='" + data[i].id + "'>" + data[i].text + "</option>");
             }
         }
-        $(selectBoxId).append(options);
+        $(SelectBoxID).append(options);
     });
 }
 
@@ -62,111 +62,111 @@ $('#theBtn').attr('disabled')    // to return the initial value of this attribut
 $('#theBtn').prop('disabled')    // to return the current state of this property (true or false)
 $('#theBtn').prop('disabled',true)    // to change the property - using a correct data-type
 */
-function AddPropertyValue(selectBoxId, locationToRetrive, propertyName) {
-    $.getJSON(locationToRetrive + "/" + selectBoxId.value, function(data) {
-        $(selectBoxId).prop(propertyName, data);
+function AddPropertyValue(SelectBoxID, locationToRetrive, propertyName) {
+    $.getJSON(locationToRetrive + "/" + SelectBoxID.value, function(data) {
+        $(SelectBoxID).prop(propertyName, data);
     });
 }
 
-function ShowInformationBaseOnComboInAnotherBoxBind(selectBoxId, locationToRetrive, boxId) {
-    $(selectBoxId).change(function() {
+function ShowInformationBaseOnComboInAnotherBoxBind(SelectBoxID, locationToRetrive, BoxID) {
+    $(SelectBoxID).change(function() {
         $.getJSON(locationToRetrive + "/" + this.value, function(data) {
-            $(boxId).text(data);
+            $(BoxID).text(data);
         });
     }).triggerHandler("change");
 }
 
-function ShowInformationBaseOnComboInAnotherBox(selectBoxId, locationToRetrive, boxId) {
-    $.getJSON(locationToRetrive + "/" + selectBoxId.value, function(data) {
-        $(boxId).text(data);
+function ShowInformationBaseOnComboInAnotherBox(SelectBoxID, locationToRetrive, BoxID) {
+    $.getJSON(locationToRetrive + "/" + SelectBoxID.value, function(data) {
+        $(BoxID).text(data);
     }).triggerHandler("change");
 
 }
 
 ///OptionalInSameLayer means in the same block displayed.
-function FillHtmlBasedOnDependableCombo(dependableCombo, locationToRetriveJsonAsValue, defComboValueAtFirst, boxToPutData, addClassToElements, addBeginingHtml, addClosingTagHtml, optionalInSameLayer, optionalItemsSeperator, noRecordsFoundMsg, htmlRowAttr) {
-    $(dependableCombo).change(function() {
+function FillHtmlBasedOnDependableCombo(DependableCombo, locationToRetriveJsonAsValue, DefComboValueAtFirst, BoxToPutData, AddClassToElements, AddBeginingHTML, AddClosingTagHTML, OptionalInSameLayer, OptionalItemsSeperator, NoRecordsFoundMsg, HTMLRowAttr) {
+    $(DependableCombo).change(function() {
         var valueToLoad = -1;
         if (this.value == null || this.value == undefined || this.value == "" || this.value == " ") {
-            valueToLoad = defComboValueAtFirst;
+            valueToLoad = DefComboValueAtFirst;
         } else {
             valueToLoad = this.value;
         }
         //console.log(valueToLoad);
 
         $.getJSON(locationToRetriveJsonAsValue + "/" + valueToLoad, function(data) {
-            $(boxToPutData).empty(); // clear old values if exist
-            var sameLayer = false;
+            $(BoxToPutData).empty(); // clear old values if exist
+            var SameLayer = false;
 
-            if (optionalInSameLayer != null && optionalInSameLayer != undefined && optionalInSameLayer == true) {
-                sameLayer = true;
+            if (OptionalInSameLayer != null && OptionalInSameLayer != undefined && OptionalInSameLayer == true) {
+                SameLayer = true;
             }
 
             if (data == null || data == undefined || data.length == null) {
-                if (htmlRowAttr != null && htmlRowAttr != undefined) {
-                    generated += "<" + htmlRowAttr + ">";
+                if (HTMLRowAttr != null && HTMLRowAttr != undefined) {
+                    generated += "<" + HTMLRowAttr + ">";
                 }
-                if (noRecordsFoundMsg == null || noRecordsFoundMsg == undefined) {
-                    noRecordsFoundMsg = "Sorry , records can't be display because of network problem or no records found.";
+                if (NoRecordsFoundMsg == null || NoRecordsFoundMsg == undefined) {
+                    NoRecordsFoundMsg = "Sorry , records can't be display because of network problem or no records found.";
                 }
-                generated += addBeginingHtml;
-                generated += "<span class = '" + addClassToElements + " bold red' >" + noRecordsFoundMsg + "</span>";
-                generated += addClosingTagHtml;
-                if (htmlRowAttr != null && htmlRowAttr != undefined) {
-                    generated += "</" + htmlRowAttr + ">";
+                generated += AddBeginingHTML;
+                generated += "<span class = '" + AddClassToElements + " bold red' >" + NoRecordsFoundMsg + "</span>";
+                generated += AddClosingTagHTML;
+                if (HTMLRowAttr != null && HTMLRowAttr != undefined) {
+                    generated += "</" + HTMLRowAttr + ">";
                 }
-                $(boxToPutData).html(generated);
+                $(BoxToPutData).html(generated);
                 return;
             }
 
-            if (addClassToElements == null || addClassToElements == undefined) {
-                addClassToElements = "Dependable-Generation";
+            if (AddClassToElements == null || AddClassToElements == undefined) {
+                AddClassToElements = "Dependable-Generation";
             }
             var generated = "";
             for (i = 0; i < data.length; i++) { // build options
-                if (htmlRowAttr != null && htmlRowAttr != undefined) {
-                    generated += "<" + htmlRowAttr + ">";
+                if (HTMLRowAttr != null && HTMLRowAttr != undefined) {
+                    generated += "<" + HTMLRowAttr + ">";
                 }
-                if (addBeginingHtml != null && addBeginingHtml != undefined && addClosingTagHtml != null && addClosingTagHtml != undefined) {
-                    generated += addBeginingHtml;
-                    generated += "<span class = '" + addClassToElements + "' >" + data[i].textue + "</span>";
-                    if (sameLayer) {
-                        generated += optionalItemsSeperator;
-                        generated += "<span class = '" + addClassToElements + "-Optional Optional-Case' >" + data[i].optional + "</span>";
+                if (AddBeginingHTML != null && AddBeginingHTML != undefined && AddClosingTagHTML != null && AddClosingTagHTML != undefined) {
+                    generated += AddBeginingHTML;
+                    generated += "<span class = '" + AddClassToElements + "' >" + data[i].textue + "</span>";
+                    if (SameLayer) {
+                        generated += OptionalItemsSeperator;
+                        generated += "<span class = '" + AddClassToElements + "-Optional Optional-Case' >" + data[i].optional + "</span>";
                     }
-                    generated += addClosingTagHtml;
+                    generated += AddClosingTagHTML;
 
-                    if ((data[i].optional != null && data[i].optional != undefined) && sameLayer == false) {
-                        if (optionalItemsSeperator != null && optionalItemsSeperator != undefined) {
-                            generated += addBeginingHtml;
-                            generated += optionalItemsSeperator;
-                            generated += addClosingTagHtml;
+                    if ((data[i].optional != null && data[i].optional != undefined) && SameLayer == false) {
+                        if (OptionalItemsSeperator != null && OptionalItemsSeperator != undefined) {
+                            generated += AddBeginingHTML;
+                            generated += OptionalItemsSeperator;
+                            generated += AddClosingTagHTML;
                         }
-                        generated += addBeginingHtml;
-                        generated += "<span class = '" + addClassToElements + "-Optional' >" + data[i].optional + "</span>";
-                        generated += addClosingTagHtml;
+                        generated += AddBeginingHTML;
+                        generated += "<span class = '" + AddClassToElements + "-Optional' >" + data[i].optional + "</span>";
+                        generated += AddClosingTagHTML;
                     }
                 } else {
-                    generated += "<span class = '" + addClassToElements + "' >" + data[i].textue + "</span>";
-                    if (sameLayer) {
-                        generated += optionalItemsSeperator;
-                        generated += "<span class = '" + addClassToElements + "-Optional Optional-Case' >" + data[i].optional + "</span>";
+                    generated += "<span class = '" + AddClassToElements + "' >" + data[i].textue + "</span>";
+                    if (SameLayer) {
+                        generated += OptionalItemsSeperator;
+                        generated += "<span class = '" + AddClassToElements + "-Optional Optional-Case' >" + data[i].optional + "</span>";
                     }
-                    if ((data[i].optional != null && data[i].optional != undefined) && sameLayer == false) {
-                        if (optionalItemsSeperator != null && optionalItemsSeperator != undefined) {
-                            generated += addBeginingHtml;
-                            generated += optionalItemsSeperator;
-                            generated += addClosingTagHtml;
+                    if ((data[i].optional != null && data[i].optional != undefined) && SameLayer == false) {
+                        if (OptionalItemsSeperator != null && OptionalItemsSeperator != undefined) {
+                            generated += AddBeginingHTML;
+                            generated += OptionalItemsSeperator;
+                            generated += AddClosingTagHTML;
                         }
-                        generated += "<span class = '" + addClassToElements + "-Optional' >" + data[i].optional + "</span>";
+                        generated += "<span class = '" + AddClassToElements + "-Optional' >" + data[i].optional + "</span>";
                     }
                 }
 
-                if (htmlRowAttr != null && htmlRowAttr != undefined) {
-                    generated += "</" + htmlRowAttr + ">";
+                if (HTMLRowAttr != null && HTMLRowAttr != undefined) {
+                    generated += "</" + HTMLRowAttr + ">";
                 }
             }
-            $(boxToPutData).html(generated);
+            $(BoxToPutData).html(generated);
 
         });
     }).triggerHandler("change");
@@ -174,20 +174,20 @@ function FillHtmlBasedOnDependableCombo(dependableCombo, locationToRetriveJsonAs
 
 
 //example
-function LoadCountryAndDistrict(defCountry, defDistrict) {
+function LoadCountryAndDistrict(DefCountry, DefDistrict) {
     var countryId = "#CountryID";
     var districtId = "#CountryDivisionID";
     var getCountries = "/Country/GetCountries/0";
     var getDistrics = "/Country/GetDistricts";
 
     if ($(countryId).length > 0) {
-        FillComboAjaxBased(countryId, getCountries, defCountry);
+        FillComboAjaxBased(countryId, getCountries, DefCountry);
     }
 
     if ($(districtId).length > 0) {
         //get the default country districts
-        FillComboAjaxBased(districtId, getDistrics + "/" + defCountry, defDistrict);
+        FillComboAjaxBased(districtId, getDistrics + "/" + DefCountry, DefDistrict);
         //bind it to the change event.
-        FillComboDepenedOnOther(countryId, districtId, getDistrics, defDistrict);
+        FillComboDepenedOnOther(countryId, districtId, getDistrics, DefDistrict);
     }
 }

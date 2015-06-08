@@ -1,45 +1,47 @@
 ﻿@model DevBootstrapper.Models.EntityModel.POCO.Employee
 
 @{
-    ViewBag.Title = "Creating Employee";
-    string title = ViewBag.Title;
-    string subtitle = ViewBag.Title;
-    var token = @Html.AntiForgeryToken();
-    var controller = (string) ViewBag.controller;
-    const string viewName = "Create";
-    var dropDownDynamic = (bool) ViewBag.dropDownDynamic;
-    string partialController = ViewBag.dynamicLoadPartialController;
+    ViewBag.Title               = "Creating Employee";
+	string title                = ViewBag.Title;
+    string subtitle             = ViewBag.Title;
+	var token                   = (MvcHtmlString)@Html.AntiForgeryToken();
+	string controller           = (string)ViewBag.controller;
+	const string viewName       = "Create";
+    bool dropDownDynamic        = (bool)ViewBag.dropDownDynamic;
+    string partialController    = ViewBag.dynamicLoadPartialController;
+
 }
 
 
-<h1 class="gap-from-top-small h2">
-    <span class="glyphicon glyphicon-plus-sign"></span>  
-    @Html.SamePageLink(title, subtitle, false)
+<h1 class="h2 gap-from-top-small">
+	<span class="glyphicon glyphicon-plus-sign"></span>  
+	@Html.SamePageLink(title, subtitle, false)
 </h1>
 <hr />
-@using (Html.BeginForm(viewName, controller, FormMethod.Post, new {@class = "form-horizontal Create-@ViewBag.Title", role = "form"})) {
-    <div class="form-horizontal">
-        @token
-        <div class="form-group">
-            <div class="col-md-10 col-md-offset-2">
+@using (Html.BeginForm(viewName, controller, FormMethod.Post, new { @class = "form-horizontal Create-@ViewBag.Title", role = "form" })) 
+{
+   <div class="form-horizontal">
+		@token
+		<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
                 <div class="btn-group">
                     <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-                    <div class="inline input-group-btn">
+                    <div class="input-group-btn inline">
                         <button class="btn btn-success" title="Save and create a new one."><i class="glyphicon glyphicon-plus"></i> Create</button>
-                    </div>
-                </div>
+                    </div>                    
+                </div>               
             </div>
         </div>
-        @Html.Partial("_SuccessMessage")
+		@Html.Partial("_SuccessMessage")
 
-
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+		
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @Html.EditorFor(model => model.LastName)
         @Html.EditorFor(model => model.FirstName)
         @Html.EditorFor(model => model.Title)
         @Html.EditorFor(model => model.TitleOfCourtesy)
-        @Html.EditorFor(model => model.BirthDate, "datetime")
+        @Html.EditorFor(model => model.BirthDate , "datetime")
         @Html.EditorFor(model => model.HireDate, "date")
         @Html.EditorFor(model => model.Address)
         @Html.EditorFor(model => model.City)
@@ -51,28 +53,29 @@
         @Html.EditorFor(model => model.Photo)
         @Html.EditorFor(model => model.Notes, "Tag")
         <!-- DropDown -->
-        @if (dropDownDynamic) {
+		@if(dropDownDynamic){
             @Html.EditorFor(model => model.ReportsTo, "DropDownDynamic", new {@Url = @partialController + "GetReportsTo" /* ,@IsDependable = "false", @DependablePropertyName = "YourPropertyName",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
         } else {
-            @Html.EditorFor(model => model.ReportsTo, "DropDown", new {@SelectData = ViewBag.ReportsTo})
+            @Html.EditorFor(model => model.ReportsTo, "DropDown", new {@SelectData = ViewBag.ReportsTo})            
         }
         @Html.EditorFor(model => model.PhotoPath)
 
         <div class="form-group">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-md-offset-2 col-md-10">
                 <div class="btn-group">
                     <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-                    <div class="inline input-group-btn">
+                    <div class="input-group-btn inline">
                         <button class="btn btn-success" title="Save and create a new one."><i class="glyphicon glyphicon-plus"></i> Create</button>
-                    </div>
-                </div>
+                    </div>                    
+                </div>               
             </div>
         </div>
     </div>
 }
-@Html.Partial("_ValidatorCommonForm", new ViewDataDictionary {
-    {"token", token}
+@Html.Partial("_ValidatorCommonForm", new ViewDataDictionary { 
+    {"token",token}
 })
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
