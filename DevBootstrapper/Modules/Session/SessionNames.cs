@@ -1,5 +1,9 @@
-﻿using System.Web;
+﻿#region using block
+
+using System.Web;
 using DevBootstrapper.Application;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Session {
     public struct SessionNames {
@@ -22,7 +26,7 @@ namespace DevBootstrapper.Modules.Session {
             var nameOfSession = Validator + methodName;
             var value = HttpContext.Current.Session[nameOfSession];
             if (isSessionExist && value != null) {
-                var count = (int)value;
+                var count = (int) value;
                 if (count <= maxTry) {
                     HttpContext.Current.Session[nameOfSession] = ++count;
                     return false;

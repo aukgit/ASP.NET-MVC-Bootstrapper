@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+
+#endregion
 
 namespace DevBootstrapper.Modules.UserError {
     public class ErrorCollector : IDisposable {
@@ -13,12 +17,12 @@ namespace DevBootstrapper.Modules.UserError {
 
         public const string SolutionStateLinkClass = "rounded-3 label label-info error-solution-link-color";
         public const string SolutionStateClass = "rounded-3 label label-success";
-        private int _defaultCapacity = 60;
-        private List<BasicError> _errors;
-        private short _orderIncrementer;
         private const string HighRisk = "rounded-3 label label-danger";
         private const string LowRisk = "rounded-3 label label-warning low-error-color";
         private const string MidRisk = "rounded-3 label label-danger mid-error-color";
+        private int _defaultCapacity = 60;
+        private List<BasicError> _errors;
+        private short _orderIncrementer;
 
         public ErrorCollector(int def = 60) {
             _errors = new List<BasicError>(def);

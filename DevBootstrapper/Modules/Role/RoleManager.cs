@@ -1,15 +1,19 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using DevMvcComponent;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.DevUser;
+using DevMvcComponent;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Role {
     /// <summary>
@@ -22,8 +26,10 @@ namespace DevBootstrapper.Modules.Role {
         private static ApplicationRoleManager _roleManager;
         public int MyProperty { get; set; }
 
-        public static ApplicationRoleManager Manager {
-            get {
+        public static ApplicationRoleManager Manager
+        {
+            get
+            {
                 if (_roleManager == null) {
                     _roleManager = new ApplicationRoleManager(_roleStore);
                 }
@@ -114,7 +120,7 @@ namespace DevBootstrapper.Modules.Role {
                 try {
                     Manager.Create(role);
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
         }
@@ -129,7 +135,7 @@ namespace DevBootstrapper.Modules.Role {
                 try {
                     Manager.Create(role);
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
         }
@@ -505,7 +511,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.AddToRole(user.Id, role);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;
@@ -522,7 +528,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.AddToRole(user.Id, role);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;
@@ -561,7 +567,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.AddToRole(user.Id, role);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;
@@ -614,7 +620,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.RemoveFromRole(user.Id, role);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;
@@ -633,7 +639,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.RemoveFromRole(userId, role.Name);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;
@@ -648,7 +654,7 @@ namespace DevBootstrapper.Modules.Role {
             try {
                 UserManager.Manager.RemoveFromRole(userId, roleName);
             } catch (Exception ex) {
-                Starter.HanldeError.HandleBy(ex);
+                Starter.Error.HandleBy(ex);
             }
         }
 
@@ -662,7 +668,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.RemoveFromRole(user.Id, role);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;
@@ -679,7 +685,7 @@ namespace DevBootstrapper.Modules.Role {
                     UserManager.Manager.RemoveFromRole(user.Id, role);
                     return true;
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             }
             return false;

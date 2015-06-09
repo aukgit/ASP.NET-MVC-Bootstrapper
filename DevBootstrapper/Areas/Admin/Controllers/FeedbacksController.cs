@@ -1,10 +1,15 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using DevBootstrapper.Application;
 using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class FeedbacksController : BasicController {
@@ -73,7 +78,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                 return RedirectToAction("Index");
             }
 
-            AppVar.SetErrorStatus(ViewBag);
+            ViewCommon.SetErrorStatus(ViewBag);
             return View(feedback);
         }
 

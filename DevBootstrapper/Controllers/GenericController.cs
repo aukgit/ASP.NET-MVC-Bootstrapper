@@ -1,14 +1,16 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Web.Mvc;
-using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.Extensions.Context;
 using DevBootstrapper.Modules.UserError;
 
-namespace DevBootstrapper.Controllers {
+#endregion
 
+namespace DevBootstrapper.Controllers {
     public abstract class GenericController<TContext> : Controller where TContext : DevDbContext, new() {
-        internal ErrorCollector ErrorCollector;
         internal readonly TContext db;
+        internal ErrorCollector ErrorCollector;
 
         protected GenericController() {
         }

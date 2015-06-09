@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class CountriesController : Controller {
@@ -25,7 +29,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             var timezone = _db.UserTimeZones.Find(id);
             _db.UserTimeZones.Remove(timezone);
             _db.SaveChanges();
-            return RedirectToActionPermanent("Edit", new { id });
+            return RedirectToActionPermanent("Edit", new {id});
         }
 
         [HttpPost]

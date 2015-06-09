@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +10,8 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Cookie;
 using DevBootstrapper.Modules.DevUser;
+
+#endregion
 
 namespace DevBootstrapper.Modules.TimeZone {
     public class Zone {
@@ -55,7 +59,8 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <summary>
         ///     hh:mm:ss tt
         /// </summary>
-        public static string TimeFormat {
+        public static string TimeFormat
+        {
             get { return _defaultTimeFormat; }
             set { _defaultTimeFormat = value; }
         }
@@ -63,7 +68,8 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <summary>
         ///     dd-MMM-yy
         /// </summary>
-        public static string DateFormat {
+        public static string DateFormat
+        {
             get { return _defaultDateFormat; }
             set { _defaultDateFormat = value; }
         }
@@ -71,7 +77,8 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <summary>
         ///     dd-MMM-yy
         /// </summary>
-        public static string DateTimeFormat {
+        public static string DateTimeFormat
+        {
             get { return _defaultDateTimeFormat; }
             set { _defaultDateTimeFormat = value; }
         }
@@ -164,7 +171,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         private static TimeZoneInfo GetSavedTimeZone(string log) {
             //save to cookie 
             if (!String.IsNullOrWhiteSpace(log)) {
-                var cZone = (TimeZoneInfo)AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
+                var cZone = (TimeZoneInfo) AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
                 if (cZone == null) {
                     // try cookie.
                     var id = AppConfig.Cookies.Get(CookiesNames.ZoneInfo);
@@ -220,7 +227,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             var timeZone = Get();
             if (timeZone == null) {
                 return "";
@@ -243,7 +250,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             //time zone found.
             if (format == null) {
                 format = DateFormat;
@@ -263,7 +270,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             var timeZone = Get();
             if (timeZone == null) {
                 return "";
@@ -288,7 +295,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             var timeZone = Get();
             if (timeZone == null) {
                 return dt2.ToString(format);
@@ -318,7 +325,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
 
             //time zone found.
             var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
@@ -339,7 +346,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
             //time zone found.
             //var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
@@ -384,7 +391,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime)dt;
+            var dt2 = (DateTime) dt;
 
             //time zone found.
             var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);

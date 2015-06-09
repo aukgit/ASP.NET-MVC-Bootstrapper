@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Administration</title>
     @Styles.Render("~/Content/css/styles")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<div class="navbar navbar-default navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,7 +18,7 @@
             </button>
 
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="@AppVar.Url/Admin" class="navbar-brand" title="@AppVar.Name - @AppVar.Subtitle"><span class="glyphicon glyphicon-wrench"></span>Admin</a>
@@ -34,7 +34,7 @@
         </div>
     </div>
 </div>
-<div class="container body-content">
+<div class="body-content container">
     @RenderBody()
     @Html.Partial("_Footer")
 </div>

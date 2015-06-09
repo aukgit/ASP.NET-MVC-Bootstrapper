@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using DevBootstrapper.Application;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using Microsoft.AspNet.Identity.EntityFramework;

@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿#region using block
+
+using System.Text;
+
+#endregion
 
 namespace DevBootstrapper.Modules {
     public static class DevHash {

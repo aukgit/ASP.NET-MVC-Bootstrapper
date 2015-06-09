@@ -1,11 +1,13 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.ViewModels;
-using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Extensions.IdentityExtension;
 using DevBootstrapper.Modules.Mail;
@@ -14,15 +16,11 @@ using DevBootstrapper.Modules.UserError;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
+#endregion
+
 namespace DevBootstrapper.Controllers {
     [Authorize]
     public class AccountController : Controller {
-        #region Constants and Variable
-        const string ControllerName = "Account";
-        ///Constant value for where the controller is actually visible.
-        const string DynamicLoadPartialController = "/Partials/";
-        #endregion
-
         #region Constructors
 
         public AccountController() {
@@ -51,7 +49,7 @@ namespace DevBootstrapper.Controllers {
             var result = await Manager.ConfirmEmailAsync(userId, code);
             var user = UserManager.GetUser(userId);
             if (user != null) {
-                foundInUser = (Guid)user.GeneratedGuid;
+                foundInUser = (Guid) user.GeneratedGuid;
             }
             if (result.Succeeded && foundInUser.Equals(codeHashed)) {
                 CallCompleteRegistration(userId);
@@ -69,7 +67,8 @@ namespace DevBootstrapper.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider) {
             // Request a redirect to the external login provider to link a login for the current user
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), IdentityExtensions.GetUserId(User.Identity));
+            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"),
+                IdentityExtensions.GetUserId(User.Identity));
         }
 
         #endregion
@@ -77,15 +76,18 @@ namespace DevBootstrapper.Controllers {
         #region LinkLoginCallBack
 
         public async Task<ActionResult> LinkLoginCallback() {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, IdentityExtensions.GetUserId(User.Identity));
+            var loginInfo =
+                await
+                    AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, IdentityExtensions.GetUserId(User.Identity));
             if (loginInfo == null) {
-                return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+                return RedirectToAction("Manage", new {Message = ManageMessageId.Error});
             }
-            var result = await Manager.AddLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), loginInfo.Login);
+            var result =
+                await Manager.AddLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), loginInfo.Login);
             if (result.Succeeded) {
                 return RedirectToAction("Manage");
             }
-            return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+            return RedirectToAction("Manage", new {Message = ManageMessageId.Error});
         }
 
         #endregion
@@ -106,7 +108,7 @@ namespace DevBootstrapper.Controllers {
                 if (info == null) {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
                 var result = await Manager.CreateAsync(user);
                 if (result.Succeeded) {
                     result = await Manager.AddLoginAsync(user.Id, info.Login);
@@ -138,7 +140,9 @@ namespace DevBootstrapper.Controllers {
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey) {
             ManageMessageId? message = null;
             var result =
-                await Manager.RemoveLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), new UserLoginInfo(loginProvider, providerKey));
+                await
+                    Manager.RemoveLoginAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity),
+                        new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded) {
                 var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
                 await SignInAsync(user, false);
@@ -146,7 +150,7 @@ namespace DevBootstrapper.Controllers {
             } else {
                 message = ManageMessageId.Error;
             }
-            return RedirectToAction("Manage", new { Message = message });
+            return RedirectToAction("Manage", new {Message = message});
         }
 
         #endregion
@@ -181,6 +185,15 @@ namespace DevBootstrapper.Controllers {
             base.Dispose(disposing);
         }
 
+        #region Constants and Variable
+
+        private const string ControllerName = "Account";
+
+        /// Constant value for where the controller is actually visible.
+        private const string DynamicLoadPartialController = "/Partials/";
+
+        #endregion
+
         #region Declaration
 
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
@@ -210,14 +223,14 @@ namespace DevBootstrapper.Controllers {
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent },
+            AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent},
                 await user.GenerateUserIdentityAsync(Manager));
         }
 
         private void SignInProgrammatically(ApplicationUser user, bool isPersistent) {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = UserManager.Manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
+            AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = isPersistent}, identity);
         }
 
 
@@ -241,7 +254,7 @@ namespace DevBootstrapper.Controllers {
                     await SignInAsync(user, model.RememberMe);
                     if (user.IsBlocked || !user.IsRegistrationComplete) {
                         SignOutProgrammatically();
-                        return AppVar.GetAuthenticationError("You don't have the permission.",
+                        return ViewCommon.GetAuthenticationError("You don't have the permission.",
                             "Sorry you don't have the permission to authenticate right now. Please check your email inbox/spam folder for details.");
                     }
                     return RedirectToLocal(returnUrl);
@@ -289,7 +302,7 @@ namespace DevBootstrapper.Controllers {
         [AllowAnonymous]
         public ActionResult Register() {
             if (UserManager.IsAuthenticated()) {
-                return AppVar.GetAuthenticationError("Authentication Failed", "");
+                return ViewCommon.GetAuthenticationError("Authentication Failed", "");
             }
             return View();
         }
@@ -318,7 +331,7 @@ namespace DevBootstrapper.Controllers {
 
                         var code = Manager.GenerateEmailConfirmationToken(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account",
-                            new { userId = user.Id, code, codeHashed = user.GeneratedGuid }, Request.Url.Scheme);
+                            new {userId = user.Id, code, codeHashed = user.GeneratedGuid}, Request.Url.Scheme);
                         var mailString = MailHtml.EmailConfirmHtml(user, callbackUrl);
                         AppVar.Mailer.Send(user.Email, "Email Confirmation", mailString);
 
@@ -335,7 +348,7 @@ namespace DevBootstrapper.Controllers {
 
                         var code = Manager.GenerateEmailConfirmationToken(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account",
-                            new { userId = user.Id, code, codeHashed = user.GeneratedGuid }, Request.Url.Scheme);
+                            new {userId = user.Id, code, codeHashed = user.GeneratedGuid}, Request.Url.Scheme);
                         var mailString = MailHtml.EmailConfirmHtml(user, callbackUrl);
                         AppVar.Mailer.Send(user.Email, "Email Confirmation", mailString);
 
@@ -362,7 +375,7 @@ namespace DevBootstrapper.Controllers {
         public ActionResult ExternalLogin(string provider, string returnUrl) {
             // Request a redirect to the external login provider
             return new ChallengeResult(provider,
-                Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+                Url.Action("ExternalLoginCallback", "Account", new {ReturnUrl = returnUrl}));
         }
 
         //
@@ -382,7 +395,7 @@ namespace DevBootstrapper.Controllers {
             // If the user does not have an account, then prompt the user to create an account
             ViewBag.ReturnUrl = returnUrl;
             ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-            return View("ExternalLoginConfirmation", new RegisterViewModel { Email = loginInfo.Email });
+            return View("ExternalLoginConfirmation", new RegisterViewModel {Email = loginInfo.Email});
         }
 
         #endregion
@@ -500,11 +513,12 @@ namespace DevBootstrapper.Controllers {
                 if (ModelState.IsValid) {
                     var result =
                         await
-                            Manager.ChangePasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.OldPassword, model.NewPassword);
+                            Manager.ChangePasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity),
+                                model.OldPassword, model.NewPassword);
                     if (result.Succeeded) {
                         var user = await Manager.FindByIdAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity));
                         await SignInAsync(user, false);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("Manage", new {Message = ManageMessageId.ChangePasswordSuccess});
                     }
                     AddErrors(result);
                 }
@@ -516,9 +530,12 @@ namespace DevBootstrapper.Controllers {
                 }
 
                 if (ModelState.IsValid) {
-                    var result = await Manager.AddPasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity), model.NewPassword);
+                    var result =
+                        await
+                            Manager.AddPasswordAsync(ExtentsionUserIdentityMethods.GetUserId(User.Identity),
+                                model.NewPassword);
                     if (result.Succeeded) {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("Manage", new {Message = ManageMessageId.SetPasswordSuccess});
                     }
                     AddErrors(result);
                 }
@@ -535,7 +552,8 @@ namespace DevBootstrapper.Controllers {
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
-        private IAuthenticationManager AuthenticationManager {
+        private IAuthenticationManager AuthenticationManager
+        {
             get { return HttpContext.GetOwinContext().Authentication; }
         }
 
@@ -588,7 +606,7 @@ namespace DevBootstrapper.Controllers {
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context) {
-                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
+                var properties = new AuthenticationProperties {RedirectUri = RedirectUri};
                 if (UserId != null) {
                     properties.Dictionary[XsrfKey] = UserId;
                 }

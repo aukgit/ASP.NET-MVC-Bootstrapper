@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,6 +9,8 @@ using System.Web.Mvc;
 using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class NavItemsController : Controller {
@@ -48,12 +52,12 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (ModelState.IsValid) {
                 HasDropDownAttr(navigationItem);
                 _db.NavigationItems.Add(navigationItem);
-                AppVar.SetSavedStatus(ViewBag);
+                ViewCommon.SetSavedStatus(ViewBag);
                 _db.SaveChanges();
                 AppConfig.Caches.RemoveAllFromCache();
                 return View(navigationItem);
             }
-            AppVar.SetErrorStatus(ViewBag);
+            ViewCommon.SetErrorStatus(ViewBag);
             return View(navigationItem);
         }
 
@@ -78,7 +82,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (ModelState.IsValid) {
                 _db.Entry(navigationItem).State = EntityState.Modified;
                 _db.SaveChanges();
-                return RedirectToAction("List", new { id = navigationItem.NavigationID });
+                return RedirectToAction("List", new {id = navigationItem.NavigationID});
             }
             AddMenuName(navigationItem.NavigationID);
             AppConfig.Caches.RemoveAllFromCache();
@@ -91,7 +95,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             _db.SaveChanges();
             AddMenuName(navigationId);
             AppConfig.Caches.RemoveAllFromCache();
-            return RedirectToAction("List", new { id = navigationId });
+            return RedirectToAction("List", new {id = navigationId});
         }
 
         protected override void Dispose(bool disposing) {

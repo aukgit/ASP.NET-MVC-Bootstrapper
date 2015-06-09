@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Web.Mvc;
 using DevBootstrapper.Application;
-using DevMvcComponent;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+using DevMvcComponent;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class ConfigController : Controller {

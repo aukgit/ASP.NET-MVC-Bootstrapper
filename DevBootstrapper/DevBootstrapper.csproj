@@ -215,7 +215,7 @@
     <Compile Include="Application\ConnectionStrings.cs" />
     <Compile Include="Application\Enums.cs" />
     <Compile Include="Application\Constants.cs" />
-    <Compile Include="Application\ViewExtension.cs" />
+    <Compile Include="Application\ViewCommon.cs" />
     <Compile Include="Application\AppConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

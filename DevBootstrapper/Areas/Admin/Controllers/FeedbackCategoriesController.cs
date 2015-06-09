@@ -1,10 +1,15 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using DevBootstrapper.Application;
 using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class FeedbackCategoriesController : BasicController {
@@ -47,11 +52,11 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                 db.FeedbackCategories.Add(feedbackCategory);
                 db.SaveChanges();
 
-                AppVar.SetSavedStatus(ViewBag);
+                ViewCommon.SetSavedStatus(ViewBag);
                 return View(feedbackCategory);
             }
 
-            AppVar.SetErrorStatus(ViewBag);
+            ViewCommon.SetErrorStatus(ViewBag);
             return View(feedbackCategory);
         }
 
@@ -77,7 +82,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                 return RedirectToAction("Index");
             }
 
-            AppVar.SetErrorStatus(ViewBag);
+            ViewCommon.SetErrorStatus(ViewBag);
             return View(feedbackCategory);
         }
 

@@ -6,11 +6,11 @@
     var controller = (string) ViewBag.controller;
     var viewName = "UserBlock";
 }
-<h1 class="h2 gap-from-top-small">
+<h1 class="gap-from-top-small h2">
     <span class="glyphicon glyphicon-edit"></span>
     @Html.SamePageLink(title, subtitle, false)
 </h1>
-<hr/>
+<hr />
 <h4 class="h4">Do you confirm blocking this user?</h4>
 @using (Html.BeginForm(viewName, controller, FormMethod.Post, new {@class = "form-horizontal Create-@ViewBag.Title", role = "form"})) {
     <div class="form-horizontal">
@@ -39,10 +39,10 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-10 col-md-offset-2">
                 <div class="btn-group">
                     <a href="@Url.Action("Index")" title="Back" class="btn btn-info dev-btn-back"><span class="glyphicon glyphicon-chevron-left"></span> No, back</a>
-                    <div class="input-group-btn inline">
+                    <div class="inline input-group-btn">
                         <button title="Block" class="btn btn-danger"><i class="fa fa-square"></i> Yes, Block</button>
                     </div>
                 </div>

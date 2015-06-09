@@ -1,8 +1,13 @@
-﻿using System.Web.Mvc;
+﻿#region using block
+
+using System.Web.Mvc;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin {
     public class AdminAreaRegistration : AreaRegistration {
-        public override string AreaName {
+        public override string AreaName
+        {
             get { return "Admin"; }
         }
 
@@ -10,7 +15,7 @@ namespace DevBootstrapper.Areas.Admin {
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", Controller = "Home", id = UrlParameter.Optional }
+                new {action = "Index", Controller = "Home", id = UrlParameter.Optional}
                 );
         }
     }

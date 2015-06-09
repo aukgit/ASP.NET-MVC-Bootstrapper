@@ -1,10 +1,15 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Menu {
     public class GenerateMenu : IDisposable {
@@ -30,8 +35,8 @@ namespace DevBootstrapper.Modules.Menu {
         /// </summary>
         private const string HtmlListItem = @"<li title='{1}'><a href='{0}' title='{1}'>{2}</a></li>";
 
-        private readonly StringBuilder _sb = new StringBuilder(150);
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly StringBuilder _sb = new StringBuilder(150);
         public List<NavigationItem> Items { get; set; }
 
         public void Dispose() {

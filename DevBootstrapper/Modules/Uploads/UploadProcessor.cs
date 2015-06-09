@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.IO;
 using System.Web;
 using DevBootstrapper.Models.DesignPattern.Interfaces;
 using DevMvcComponent;
 using ImageResizer;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Uploads {
     public class UploadProcessor {
@@ -153,7 +157,7 @@ namespace DevBootstrapper.Modules.Uploads {
             try {
                 submittedFile.SaveAs(absLocation);
             } catch (Exception ex) {
-                Starter.HanldeError.HandleBy(ex);
+                Starter.Error.HandleBy(ex);
                 return false;
             }
             return true;
@@ -221,7 +225,7 @@ namespace DevBootstrapper.Modules.Uploads {
                 try {
                     ImageBuilder.Current.Build(source, target, new ResizeSettings(setting));
                 } catch (Exception ex) {
-                    Starter.HanldeError.HandleBy(ex);
+                    Starter.Error.HandleBy(ex);
                 }
             } else {
                 throw new Exception("Data missing while upload.");
@@ -261,7 +265,7 @@ namespace DevBootstrapper.Modules.Uploads {
             try {
                 File.Delete(source);
             } catch (Exception ex) {
-                Starter.HanldeError.HandleBy(ex);
+                Starter.Error.HandleBy(ex);
             }
         }
 

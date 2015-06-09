@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region using block
+
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
@@ -7,6 +9,8 @@ using DevBootstrapper.Application;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
+
+#endregion
 
 namespace DevBootstrapper.Modules.Cache {
     public class CachedQueriedData {
@@ -27,7 +31,7 @@ namespace DevBootstrapper.Modules.Cache {
                 AppConfig.Caches.TableStatusSetUnChanged(tableName);
                 return countries;
             }
-            return (List<Country>)cache;
+            return (List<Country>) cache;
         }
 
         #endregion
@@ -71,9 +75,9 @@ namespace DevBootstrapper.Modules.Cache {
         /// <param name="columns"></param>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static DataTable GetTable(string tableName, AppVar.ConnectionStringType type, string[] columns = null,
+        public static DataTable GetTable(string tableName, ConnectionStrings.ConnectionStringType type, string[] columns = null,
             string sql = null) {
-            var connectionString = AppVar.GetConnectionString(type);
+            var connectionString = ConnectionStrings.Get(type);
             return GetTable(tableName, connectionString, columns, sql);
         }
 
@@ -163,7 +167,7 @@ namespace DevBootstrapper.Modules.Cache {
                 AppConfig.Caches.TableStatusSetUnChanged(tableName);
                 return languages;
             }
-            return (List<CountryLanguage>)cache;
+            return (List<CountryLanguage>) cache;
         }
 
         /// <summary>
@@ -188,7 +192,7 @@ namespace DevBootstrapper.Modules.Cache {
 
             var searchingColumn = "CountryLanguageID";
             if (cache != null) {
-                return (List<CountryLanguage>)cache; //no updates cache exist.
+                return (List<CountryLanguage>) cache; //no updates cache exist.
             }
             var relations = GetCountries().FirstOrDefault(n => n.CountryID == countryId);
             if (relations.CountryLanguageRelations.Count() > countCheckAbove) {
@@ -257,7 +261,7 @@ namespace DevBootstrapper.Modules.Cache {
             var searchingColumn = "UserTimeZoneID";
             var cache = GetTableContentsFromCache(cacheTableName);
             if (cache != null) {
-                return (List<UserTimeZone>)cache; //no updates cache exist.
+                return (List<UserTimeZone>) cache; //no updates cache exist.
             }
 
             var relations = GetCountries().FirstOrDefault(n => n.CountryID == countryId);

@@ -159,7 +159,7 @@ namespace DevBootstrapper.Helpers {
         public static HtmlString DropDowns(this HtmlHelper helper, string valueField, string textField,
             string htmlName = null, string displayName = null, string modelValue = null, string isRequried = "*",
             string classes = null, string toolTipValue = null, string otherAttributes = "", string tableName = null,
-            AppVar.ConnectionStringType connectionType = AppVar.ConnectionStringType.DefaultConnection) {
+            ConnectionStrings.ConnectionStringType connectionType = ConnectionStrings.ConnectionStringType.DefaultConnection) {
             var divElement = @"<div class='form-group {0}-main'>
                              <div class='controls'>
                                 <label class='col-md-2 control-label' for='{0}'>{1}<span class='red '>{2}</span></label>
@@ -268,7 +268,7 @@ namespace DevBootstrapper.Helpers {
 
         public static HtmlString ContactFormActionLink(this HtmlHelper helper, string linkName, string title,
             string addClass = "") {
-            var markup = string.Format(MailHtml.CONTACT_US_LINK, title, linkName, addClass, AppVar.Url);
+            var markup = string.Format(MailHtml.ContactUsLink, title, linkName, addClass, AppVar.Url);
             return new HtmlString(markup);
         }
 

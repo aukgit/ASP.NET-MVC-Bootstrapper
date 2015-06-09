@@ -1,14 +1,19 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DevBootstrapper.Application;
 using DevBootstrapper.Controllers;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.ViewModels;
 using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Role;
+
+#endregion
 
 namespace DevBootstrapper.Areas.Admin.Controllers {
     public class UsersController : BasicController {
@@ -211,7 +216,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult AddRole(long userId, long roleId) {
             RoleManager.AddRoleToUser(userId, roleId);
-            return RedirectToAction("ManageRoles", new { id = userId });
+            return RedirectToAction("ManageRoles", new {id = userId});
         }
 
         #endregion
@@ -220,7 +225,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult RemoveRole(long userId, long roleId) {
             RoleManager.RemoveUserRole(userId, roleId);
-            return RedirectToAction("ManageRoles", new { id = userId });
+            return RedirectToAction("ManageRoles", new {id = userId});
         }
 
         #endregion
@@ -259,10 +264,10 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
                     return RedirectToAction("Index");
                 }
-                AppVar.SetErrorStatus(ViewBag, EditedError);
+                ViewCommon.SetErrorStatus(ViewBag, EditedError);
                 return View(user);
             }
-            AppVar.SetErrorStatus(ViewBag, EditedError);
+            ViewCommon.SetErrorStatus(ViewBag, EditedError);
             return View(user);
         }
 
@@ -291,18 +296,13 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                 db.Entry(user).State = EntityState.Modified;
                 if (SaveDatabase(ViewStates.EditPost, user)) {
                     var currentUserName = UserManager.GetCurrentUser().DisplayName;
-
                     var mailBody = MailHtml.ReleasedFromBlockEmailHtml(user, currentUserName, true);
-
                     AppVar.Mailer.Send(user.Email, "You have been re-enabled.", mailBody, "Enabled");
-
                     return RedirectToAction("Index");
                 }
-                AppVar.SetErrorStatus(ViewBag, EditedError);
-                return View(user);
+
             }
-            AppVar.SetErrorStatus(ViewBag, EditedError);
-            return View(user);
+            return RedirectToAction("EnableUserBlock", new {id = model.UserId});
         }
 
         #endregion

@@ -1,13 +1,16 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.UserError;
 
-namespace DevBootstrapper.Controllers {
+#endregion
 
+namespace DevBootstrapper.Controllers {
     public abstract class BasicController : Controller {
-        internal ErrorCollector ErrorCollector;
         internal readonly ApplicationDbContext db;
+        internal ErrorCollector ErrorCollector;
 
         protected BasicController() {
         }
@@ -36,7 +39,6 @@ namespace DevBootstrapper.Controllers {
             }
             base.Dispose(disposing);
             GC.Collect();
-
         }
     }
 }

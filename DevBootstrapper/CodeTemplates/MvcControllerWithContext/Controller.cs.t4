@@ -359,14 +359,14 @@ namespace <#= Namespace #>
 				if (state) {			
 					AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
 				} else {					
-					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
+					ViewCommon.SetErrorStatus(ViewBag, CreatedError); // Failed to save
 				}
 <# } #>				
                 viewOf = ViewTapping(ViewStates.CreatePostAfter, <#= ModelVariable #>,state);
                 return View(<#= ModelVariable #>);
             }
             viewOf = ViewTapping(ViewStates.CreatePostAfter, <#= ModelVariable #>, false);			
-			AppVar.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
+			ViewCommon.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
             return View(<#= ModelVariable #>);
         }
 		#endregion
@@ -418,7 +418,7 @@ namespace <#= Namespace #>
 				if (state) {
                     AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
 				} else {					
-					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
+					ViewCommon.SetErrorStatus(ViewBag, EditedError); // Failed to Save
 				}
 <# } #>				
                 viewOf = ViewTapping(ViewStates.EditPostAfter, <#= ModelVariable #> , state);
@@ -428,7 +428,7 @@ namespace <#= Namespace #>
         	if(DropDownDynamic == false){
                 GetDropDowns(<#= ModelVariable #>); // Generating drop downs
             }
-            AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
+            ViewCommon.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(<#= ModelVariable #>);
         }
 		#endregion
@@ -469,7 +469,7 @@ namespace <#= Namespace #>
 <# } else { #>
             bool state = SaveDatabase(ViewStates.Delete, <#= ModelVariable #>);
 			if (!state) {			
-				AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save				
+				ViewCommon.SetErrorStatus(ViewBag, DeletedError); // Failed to Save				
                 return View(<#= ModelVariable #>);
 			}
 <# } #>			

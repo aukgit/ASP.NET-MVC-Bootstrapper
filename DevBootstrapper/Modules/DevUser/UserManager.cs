@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region using block
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,32 +18,14 @@ using DevBootstrapper.Modules.UserError;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
+#endregion
+
 namespace DevBootstrapper.Modules.DevUser {
     public class UserManager {
         #region Authentication
 
         public static bool IsAuthenticated() {
             return HttpContext.Current.User.Identity.IsAuthenticated;
-        }
-
-        #endregion
-
-        #region Get Every User
-
-        /// <summary>
-        /// Get all the list of users.
-        /// </summary>
-        /// <returns>Returns all stored users in the database.</returns>
-        public static List<ApplicationUser> GetAllUsers() {
-            return Manager.Users.ToList();
-        }
-
-        /// <summary>
-        /// Get all the list of users.
-        /// </summary>
-        /// <returns>Returns all stored users as IQueryable for pagination.</returns>
-        public static IQueryable<ApplicationUser> GetAllUsersAsIQueryable() {
-            return Manager.Users;
         }
 
         #endregion
@@ -211,12 +195,34 @@ namespace DevBootstrapper.Modules.DevUser {
 
         #endregion
 
+        #region Get Every User
+
+        /// <summary>
+        ///     Get all the list of users.
+        /// </summary>
+        /// <returns>Returns all stored users in the database.</returns>
+        public static List<ApplicationUser> GetAllUsers() {
+            return Manager.Users.ToList();
+        }
+
+        /// <summary>
+        ///     Get all the list of users.
+        /// </summary>
+        /// <returns>Returns all stored users as IQueryable for pagination.</returns>
+        public static IQueryable<ApplicationUser> GetAllUsersAsIQueryable() {
+            return Manager.Users;
+        }
+
+        #endregion
+
         #region Declaration
 
         private static ApplicationUserManager _userManager;
 
-        public static ApplicationUserManager Manager {
-            get {
+        public static ApplicationUserManager Manager
+        {
+            get
+            {
                 return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set { _userManager = value; }
@@ -293,11 +299,11 @@ namespace DevBootstrapper.Modules.DevUser {
         public static ApplicationUser GetUserFromSession() {
             var userSession = HttpContext.Current.Session[SessionNames.User];
             if (userSession != null) {
-                return (ApplicationUser)userSession;
+                return (ApplicationUser) userSession;
             }
             userSession = HttpContext.Current.Session[SessionNames.LastUser];
             if (userSession != null) {
-                return (ApplicationUser)userSession;
+                return (ApplicationUser) userSession;
             }
             return null;
         }
