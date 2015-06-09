@@ -300,7 +300,6 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                     AppVar.Mailer.Send(user.Email, "You have been re-enabled.", mailBody, "Enabled");
                     return RedirectToAction("Index");
                 }
-
             }
             return RedirectToAction("EnableUserBlock", new {id = model.UserId});
         }

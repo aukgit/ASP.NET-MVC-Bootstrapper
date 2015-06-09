@@ -12,7 +12,7 @@ namespace DevBootstrapper.Application {
 
         private static readonly string DefaultConnection =
             ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+   
         public enum ConnectionStringType {
             DefaultConnection,
             Secondary
@@ -26,6 +26,7 @@ namespace DevBootstrapper.Application {
                 case ConnectionStringType.DefaultConnection:
                     return DefaultConnection;
                 case ConnectionStringType.Secondary:
+                    // TODO: Write you code here.
                     break;
                 default:
                     break;
@@ -34,9 +35,9 @@ namespace DevBootstrapper.Application {
         }
 
         /// <summary>
-        /// Get config value by configName
+        /// Get any connection string by it's name
         /// </summary>
-        /// <param name="configName">Give a config name</param>
+        /// <param name="configName">Give a connectionstring name</param>
         /// <returns>Returns value as string, if not found returns empty string. No execption.</returns>
        
         public static string Get(string configName) {
