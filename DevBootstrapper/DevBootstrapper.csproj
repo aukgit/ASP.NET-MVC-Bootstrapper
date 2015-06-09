@@ -214,7 +214,7 @@
     <Compile Include="Application\AppVar.cs" />
     <Compile Include="Application\ConnectionStrings.cs" />
     <Compile Include="Application\Enums.cs" />
-    <Compile Include="Application\Constants.cs" />
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Application\ViewCommon.cs" />
     <Compile Include="Application\AppConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -222,6 +222,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\CountriesController.cs" />
@@ -234,15 +235,45 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\PartialsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\BasicController.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\ValidatorController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filter\AreaAuthorizationFilter.cs" />
     <Compile Include="Filter\CacheFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -308,7 +339,6 @@
     <Compile Include="Modules\Cache\CacheNames.cs" />
     <Compile Include="Modules\Cookie\CookieNames.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
-    <Compile Include="Modules\DevHash.cs" />
     <Compile Include="Modules\HtmlGenerator.cs" />
     <Compile Include="Modules\InternetProtocolRelations\IpConfigRelations.cs" />
     <Compile Include="Modules\Mail\MailHtml.cs" />
@@ -338,6 +368,7 @@
     <Content Include="App_Data\StoredProceduresCreate\ResetRoles.sql" />
     <Content Include="App_Data\StoredProceduresCreate\ResetCoreSettings.sql" />
     <Content Include="App_Data\StoredProceduresCreate\ResetASPNetUser.sql" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Delete.cs - Copy.t4" />
@@ -395,6 +426,26 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\DevOrgDynamicSelect.js" />
@@ -419,7 +470,6 @@
     <Content Include="Content\Scripts\Bootstrap\respond.js" />
     <Content Include="Content\Scripts\Bootstrap\respond.min.js" />
     <Content Include="Content\Scripts\Bootstrap\star-rating.js" />
-    <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ExternalDll\ImageResizer.dll" />
     <Content Include="ExternalDll\ImageResizer.XML" />
     <Content Include="ExternalDll\LinqKit.dll" />
@@ -633,10 +683,10 @@
     <Folder Include="Models\EntityModel\Structs\" />
     <Folder Include="Models\POCO\AdditionalDatabase\" />
     <Folder Include="Models\POCO\Plugable\" />
-    <Folder Include="Modules\Filters\" />
     <Folder Include="Uploads\Files\Private\" />
     <Folder Include="Uploads\Images\Private\" />
     <Folder Include="Views\Basic\" />
+    <Folder Include="Views\Uploader\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
