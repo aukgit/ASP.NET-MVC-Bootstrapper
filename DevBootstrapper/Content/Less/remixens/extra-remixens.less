@@ -1,6 +1,7 @@
 ﻿//@import "Global.less";
-
-
+//@import "lesshat.less";
+//@import "variables.less";
+@import "fonts-rimixens.less";
 // ===== FONT MIXINS =====
 .font-size(@value) {
     font-size: @value;
@@ -10,6 +11,7 @@
     @em-value: ~`pxtoem('@{value}')`;
     font-size: @em-value;
 }
+
 .font-size-em(@value) when (ispixel(@value)) {
     @rem-value: ~`pxtorem('@{value}')`;
     font-size: @rem-value;
@@ -51,6 +53,7 @@
 .margin(@vertical, @horizontal) when (ispixel(@vertical)) and (ispixel(@horizontal)) {
     @rem-vvalue: ~`pxtorem('@{vertical}')`;
     @rem-hvalue: ~`pxtorem('@{horizontal}')`;
+    margin: @vertical @horizontal;
     margin: @rem-vvalue @rem-hvalue;
 }
 
@@ -69,9 +72,8 @@
     @right-rem: ~`pxtorem('@{right}')`;
     @bottom-rem: ~`pxtorem('@{bottom}')`;
     @left-rem: ~`pxtorem('@{left}')`;
-    margin : @top @right @bottom @left;
-    margin : @top-rem @right-rem @bottom-rem @left-rem;
-
+    margin: @top @right @bottom @left;
+    margin: @top-rem @right-rem @bottom-rem @left-rem;
 }
 
 
@@ -114,43 +116,29 @@
 
 
 // ===== PADDING MIXINS =====
-.padding(@value) {
-    padding: @value;
-}
-
-.padding(@vvalue, @hvalue) {
-    padding: @arguments;
-}
 
 .padding(@value) when (ispixel(@value)) {
     @rem-value: ~`pxtorem('@{value}')`;
+    padding: @value;
     padding: @rem-value;
 }
 
 .padding(@vertical, @horizontal) when (ispixel(@vertical)) and (ispixel(@horizontal)) {
     @rem-vvalue: ~`pxtorem('@{vertical}')`;
     @rem-hvalue: ~`pxtorem('@{horizontal}')`;
+    padding: @vertical @horizontal;
     padding: @rem-vvalue @rem-hvalue;
 }
 
-.padding(@vertical, @horizontal) when (ispixel(@vertical)) {
-    @rem-value: ~`pxtorem('@{vertical}')`;
-    .padding(@rem-value, @horizontal);
-}
 
-.padding(@vertical, @horizontal) when (ispixel(@horizontal)) {
-    @rem-value: ~`pxtorem('@{horizontal}')`;
-    .padding(@vertical, @rem-value);
-}
 
 .padding(@top, @right, @bottom, @left) when (ispixel(@top)) and (ispixel(@right)) and (ispixel(@bottom)) and (ispixel(@left)) {
     @top-rem: ~`pxtorem('@{top}')`;
     @right-rem: ~`pxtorem('@{right}')`;
     @bottom-rem: ~`pxtorem('@{bottom}')`;
     @left-rem: ~`pxtorem('@{left}')`;
-    padding : @top @right @bottom @left;
-    padding : @top-rem @right-rem @bottom-rem @left-rem;
-
+    padding: @top @right @bottom @left;
+    padding: @top-rem @right-rem @bottom-rem @left-rem;
 }
 
 .padding-top(@value) {
@@ -159,6 +147,7 @@
 
 .padding-top(@value) when (ispixel(@value)) {
     @rem-value: ~`pxtorem('@{value}')`;
+    padding-top: @value;
     padding-top: @rem-value;
 }
 
@@ -168,6 +157,7 @@
 
 .padding-right(@value) when (ispixel(@value)) {
     @rem-value: ~`pxtorem('@{value}')`;
+    padding-right: @value;
     padding-right: @rem-value;
 }
 
@@ -177,6 +167,7 @@
 
 .padding-bottom(@value) when (ispixel(@value)) {
     @rem-value: ~`pxtorem('@{value}')`;
+    padding-bottom: @value;
     padding-bottom: @rem-value;
 }
 
@@ -186,6 +177,7 @@
 
 .padding-left(@value) when (ispixel(@value)) {
     @rem-value: ~`pxtorem('@{value}')`;
+    padding-left: @value;
     padding-left: @rem-value;
 }
 

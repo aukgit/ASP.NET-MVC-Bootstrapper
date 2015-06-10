@@ -523,11 +523,10 @@
     <Content Include="Areas\Admin\Views\Users\UserBlock.cshtml" />
     <Content Include="Areas\Admin\Views\Users\EnableUserBlock.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ManageRoles.cshtml" />
-    <Content Include="Content\Less\hats\elements.less" />
+    <Content Include="Content\Less\remixens\elements.less" />
     <Content Include="Content\Less\front-developer.less" />
-    <Content Include="Content\Less\hats\global.less" />
-    <Content Include="Content\Less\hats\lesshat.less" />
-    <Content Include="Content\Less\hats\lessRemixens.less" />
+    <Content Include="Content\Less\remixens\global.less" />
+    <Content Include="Content\Less\remixens\lesshat.less" />
     <Content Include="Content\Less\owl-custom-finalize.less" />
     <Content Include="Content\Less\core-developer.less" />
     <Content Include="Content\Less\core-developer-additions.less" />
@@ -542,6 +541,10 @@
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\initialize.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\components.js" />
+    <Content Include="Content\Less\remixens\less-imports.less" />
+    <Content Include="Content\Less\remixens\fonts-rimixens.less" />
+    <Content Include="Content\Less\remixens\extra-remixens.less" />
+    <Content Include="Content\Less\remixens\variables.less" />
     <None Include="Content\Scripts\jQuery\jquery-2.1.3.intellisense.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.js" />
