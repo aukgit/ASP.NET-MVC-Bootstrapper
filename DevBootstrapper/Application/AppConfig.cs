@@ -9,6 +9,7 @@ using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.TimeZone;
 using DevMvcComponent;
+using DevMvcComponent.Error;
 using DevMvcComponent.Processor;
 
 #endregion

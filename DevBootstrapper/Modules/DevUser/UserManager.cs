@@ -14,6 +14,7 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Models.ViewModels;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Role;
+using DevMvcComponent.Error;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 

@@ -446,11 +446,11 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\DevOrgDynamicSelect.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\dynamic-select.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
     <Content Include="Content\Scripts\jQuery\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\jQuery\Upload\canvas-to-blob.min.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\Upload\devOrgUploadConfig.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\upload.js" />
     <Content Include="Content\Scripts\jQuery\Upload\jquery.fileupload-audio.js" />
     <Content Include="Content\Scripts\jQuery\Upload\jquery.fileupload-image.js" />
     <Content Include="Content\Scripts\jQuery\Upload\jquery.fileupload-process.js" />
@@ -539,12 +539,9 @@
     </Content>
     <Content Include="Content\Less\bootstrap-tag.less" />
     <Content Include="App_Data\SQLScriptsforCountryInformation.7z" />
-    <None Include="Content\Scripts\Miscellaneous\_references.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\ComboOptions.js" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\every-component-runner.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\DevOrgComponent.js" />
-    <Content Include="Content\Scripts\Bootstrap\html5shiv.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\initialize.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\components.js" />
     <None Include="Content\Scripts\jQuery\jquery-2.1.3.intellisense.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.js" />
@@ -555,16 +552,6 @@
     <Content Include="Content\Scripts\jQuery\jquery.validate.min.js" />
     <Content Include="Content\Scripts\jQuery\jquery.validate.unobtrusive.js" />
     <Content Include="Content\Scripts\jQuery\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\Scripts\Markdown\markdown.js" />
-    <Content Include="Content\Scripts\Markdown\MarkdownDeep License.txt" />
-    <Content Include="Content\Scripts\Markdown\MarkdownDeep Quick Reference.txt" />
-    <Content Include="Content\Scripts\Markdown\MarkdownDeepLib.min.js" />
-    <Content Include="Content\Scripts\Markdown\mdd_ajax_loader.gif" />
-    <Content Include="Content\Scripts\Markdown\mdd_gripper.png" />
-    <Content Include="Content\Scripts\Markdown\mdd_help.htm" />
-    <Content Include="Content\Scripts\Markdown\mdd_modal_background.png" />
-    <Content Include="Content\Scripts\Markdown\mdd_styles.css" />
-    <Content Include="Content\Scripts\Markdown\mdd_toolbar.png" />
     <Content Include="Content\Scripts\Bootstrap\modernizr-2.8.3.js" />
     <Content Include="Content\Scripts\jQuery\moment.js" />
     <Content Include="Content\Scripts\jQuery\underscore.js" />

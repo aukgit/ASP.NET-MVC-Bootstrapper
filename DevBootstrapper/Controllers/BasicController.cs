@@ -3,6 +3,7 @@
 using System;
 using System.Web.Mvc;
 using DevBootstrapper.Models.Context;
+using DevMvcComponent.Error;
 
 #endregion
 

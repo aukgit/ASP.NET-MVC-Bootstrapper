@@ -298,7 +298,7 @@ $.devOrg = {
     // jquery formSelector, submitAtLast:true/false
     enterToNextTextBox: function (formSelector, submitAtLast) {
         "use strict";
-        $(formSelector + " input:text:first").focus();
+        $(formSelector).find("input:text:first").focus();
         var binders = formSelector + " input[type='text']:visible," +
             formSelector + " input[type='password']:visible," +
             formSelector + " input[type='numeric']:visible," +
