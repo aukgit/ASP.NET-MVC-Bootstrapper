@@ -1,14 +1,15 @@
 ﻿@import "remixens/lesshat.less";
 @import "remixens/variables.less";
+@import "fonts-rimixens";
 
 @question-mark-for-description-color: rgb(189, 189, 189);
 
 body {
-    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    .body-font();
 }
 
 .ubuntu-font {
-    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    .ubuntu-font();
 }
 
 
@@ -30,7 +31,7 @@ body {
     color: @question-mark-for-description-color;
 
     &:hover {
-        color:brown;
+        color: brown;
     }
 
     &:before {

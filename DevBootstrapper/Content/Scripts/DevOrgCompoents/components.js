@@ -44,14 +44,21 @@ $.fn.extend({
 $.devOrg = {
     
 
-    // get all the classes from an jQuery element
     getAllClasses: function ($jQueryHtmlElement) {
+        /// <summary>
+        /// get all the classes from an jQuery element
+        /// </summary>
+        /// <param name="$jQueryHtmlElement"></param>
         "use strict";
         return $jQueryHtmlElement.getAllClasses();
     },
 
-    // allClassesArray = ['a','b','c'] , exceptClassesArray=['b','c'], results=['a']
     getClassesExcept: function (allClassesArray, exceptClassesArray) {
+        /// <summary>
+        /// allClassesArray = ['a','b','c'] , exceptClassesArray=['b','c'], results=['a']
+        /// </summary>
+        /// <param name="allClassesArray"></param>
+        /// <param name="exceptClassesArray"></param>
         "use strict";
         if (allClassesArray === null || allClassesArray === undefined) {
             return [];
@@ -70,9 +77,14 @@ $.devOrg = {
         }
         return results;
     },
-    // all Selectors are jQuery Selector Text  only.
-    // selectpicker will be called inside function, no need to call outside.
     countryFlagRefresh: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector) {
+        /// <summary>
+        /// all Selectors are jQuery Selector Text  only.
+        /// selectpicker will be called inside function, no need to call outside.
+        /// </summary>
+        /// <param name="countrySelector"></param>
+        /// <param name="dropDownItemsSelector"></param>
+        /// <param name="dropDownBtnSelector"></param>
         "use strict";
         var countryBox = $(countrySelector).selectpicker(); // only select a select element then apply the custom bootstrap selector
         var dropDownItems = $(dropDownItemsSelector); // getting generated dropdown items from the custom bootstrap selector
@@ -94,9 +106,15 @@ $.devOrg = {
             dropDownBtn.addClass("fc-" + flagClass[0]);
         });
     },
-    // countryFlagRefresh must be called first or selectpicker must be called first
-    // all Selectors are jQuery Selector Text  only.
     countryRelatedToPhone: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector, phoneNumberInputSelector) {
+        /// <summary>
+        /// countryFlagRefresh must be called first or selectpicker must be called first
+        /// all Selectors are jQuery Selector Text  only.
+        /// </summary>
+        /// <param name="countrySelector"></param>
+        /// <param name="dropDownItemsSelector"></param>
+        /// <param name="dropDownBtnSelector"></param>
+        /// <param name="phoneNumberInputSelector"></param>
         "use strict";
         var countryBox = $(countrySelector);
         var dropDownItems = $(dropDownItemsSelector);

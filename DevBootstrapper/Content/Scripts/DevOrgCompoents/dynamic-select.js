@@ -20,7 +20,7 @@
 /// <reference path="../Bootstrap/respond.js" />
 /// <reference path="../Bootstrap/star-rating.js" />
 /*
-* Version 1.0
+* !Version 1.0
 * Written by Alim Ul Karim
 * Developers Organism
 * https://www.facebook.com/DevelopersOrganism

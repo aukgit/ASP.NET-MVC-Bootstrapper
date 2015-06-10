@@ -12,8 +12,6 @@
 $(function () {
     'use strict';
 
-
-
     $.devOrgUP = {
 
         uploadedFilesNotificationLabelSelector: "label.file-uploaded-notify-label-",

@@ -1,7 +1,7 @@
 ﻿@model DevBootstrapper.Models.ViewModels.RegisterViewModel
 @using DevBootstrapper.Models.POCO.IdentityCustomization
 @{
-    string partialController = ViewBag.dynamicLoadPartialController;
+    string partialController = ViewBag.servicesUrl;
 }
 @Html.EditorFor(model => model.CountryID, "DropDownDynamic", new { @Url = @partialController + "GetCountryID", @IsHtml = "true" /* ,@IsDependable = "false",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
 <div class="form-group timezone-main">

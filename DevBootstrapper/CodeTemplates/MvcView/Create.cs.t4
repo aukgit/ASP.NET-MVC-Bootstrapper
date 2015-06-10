@@ -23,7 +23,7 @@ if(IsPartialView) {
 	string controller           = (string)ViewBag.controller;
 	const string viewName       = "<#= ViewName#>";
     bool dropDownDynamic        = (bool)ViewBag.dropDownDynamic;
-    string partialController    = ViewBag.dynamicLoadPartialController;
+    string partialController    = ViewBag.servicesUrl;
 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {

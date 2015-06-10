@@ -23,13 +23,11 @@ namespace DevBootstrapper.Application {
         private static bool _initalized;
         private static int _truncateLength = 30;
 
-        public static int ValidationMaxNumber
-        {
+        public static int ValidationMaxNumber {
             get { return 10; }
         }
 
-        public static int TruncateLength
-        {
+        public static int TruncateLength {
             get { return _truncateLength; }
             set { _truncateLength = value; }
         }
@@ -37,10 +35,8 @@ namespace DevBootstrapper.Application {
         /// <summary>
         ///     Get few common classes from Developers Organism Component.
         /// </summary>
-        public static CoreSetting Setting
-        {
-            get
-            {
+        public static CoreSetting Setting {
+            get {
                 if (_setting == null) {
                     using (var db = new DevIdentityDbContext()) {
                         _setting = db.CoreSettings.FirstOrDefault();
@@ -53,7 +49,10 @@ namespace DevBootstrapper.Application {
         public static ErrorCollector GetNewErrorCollector() {
             return new ErrorCollector();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="force">Forcefully initialize.</param>
         private static void InitalizeDevelopersOrganismComponent(bool force = false) {
             if (!_initalized || force) {
                 Config.ApplicationName = AppVar.Name;
@@ -61,6 +60,9 @@ namespace DevBootstrapper.Application {
                 Config.Assembly = Assembly.GetExecutingAssembly();
                 Zone.LoadTimeZonesIntoMemory();
                 _initalized = true;
+
+                Cookies = Starter.Cookies;
+                Caches = Starter.Caches;
             }
         }
 
@@ -83,7 +85,9 @@ namespace DevBootstrapper.Application {
                         Language = "English",
                         LiveUrl = "http://www.developers-organism.com",
                         AdminLocation = "Admin",
-                        TestingUrl = "http://localhost:port/",
+                        TestingUrl = "http://localhost:port",
+                        ServicesControllerUrl  = "/Services/",
+                        ApiControllerUrl = "/Api/",
                         AdminEmail = "devorg.bd@gmail.com",
                         DeveloperEmail = "devorg.bd@gmail.com",
                         OfficePhone = 018,
@@ -138,6 +142,10 @@ namespace DevBootstrapper.Application {
                 AppVar.Name = Setting.ApplicationName;
                 AppVar.Subtitle = Setting.ApplicationSubtitle;
                 AppVar.Setting = Setting;
+
+                AppVar.ApiControllerUrl = Setting.ApiControllerUrl;
+                AppVar.ServicesControllerUrl = Setting.ServicesControllerUrl;
+
                 ViewCommon.SetCommonMetaDescriptionToEmpty();
                 //Configure this with add a sender email.
                 Starter.Mailer = new DevMvcComponent.Mailer.CustomMailConfig(Setting.SenderEmail,
@@ -145,18 +153,16 @@ namespace DevBootstrapper.Application {
                 //if false then no email on error.
                 Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 
-                Cookies = Starter.Cookies;
-                Caches = Starter.Caches;
             }
         }
 
         /// <summary>
-        ///     Get error and set it to null.
+        ///     Get error object from session variable and set it to null.
         /// </summary>
         /// <returns></returns>
         public static ErrorCollector GetGlobalError() {
             if (HttpContext.Current.Session[SessionNames.Error] != null) {
-                var error = (ErrorCollector) HttpContext.Current.Session[SessionNames.Error];
+                var error = (ErrorCollector)HttpContext.Current.Session[SessionNames.Error];
                 HttpContext.Current.Session[SessionNames.Error] = null;
                 return error;
             }
@@ -164,7 +170,7 @@ namespace DevBootstrapper.Application {
         }
 
         /// <summary>
-        ///     Set Global Error
+        ///     Set Global Error to session variable.
         /// </summary>
         /// <param name="error"></param>
         public static void SetGlobalError(ErrorCollector error) {

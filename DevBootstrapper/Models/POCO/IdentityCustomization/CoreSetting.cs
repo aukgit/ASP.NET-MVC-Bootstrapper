@@ -86,6 +86,14 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Required]
         [DisplayName("Testing URL")]
         public string TestingUrl { get; set; }
+        [StringLength(500)]
+        [Required]
+        [Display(Name="Service Url", Description="Common Service Controller Url")]
+        public string ServicesControllerUrl { get; set; }
+        [StringLength(500)]
+        [Required]
+        [Display(Name = "Api Url", Description = "Common Api Controller Url")]
+        public string ApiControllerUrl { get; set; }
 
         [StringLength(256)]
         [Required]

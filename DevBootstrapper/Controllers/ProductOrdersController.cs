@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DevBootstrapper.Application;
 using DevBootstrapper.Controllers;
 using DevTrends.MvcDonutCaching;
 using DevBootstrapper.Models.Context;
@@ -38,7 +39,7 @@ namespace DevBootstrapper.Controllers
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/ProductOrders/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/GetProductOrderID";
-        const string DynamicLoadPartialController = "/Partials/";
+        string ServicesControllerUrl = AppVar.ServicesControllerUrl;
         bool DropDownDynamic = true;
 		#endregion
 
@@ -65,7 +66,7 @@ namespace DevBootstrapper.Controllers
 			ViewBag.controller = ControllerName;
             ViewBag.visibleUrl = ControllerVisibleUrl;
             ViewBag.dropDownDynamic = DropDownDynamic;
-            ViewBag.dynamicLoadPartialController = DynamicLoadPartialController;
+            ViewBag.servicesUrl = ServicesControllerUrl;
 		} 
 
 		#endregion
@@ -226,16 +227,16 @@ namespace DevBootstrapper.Controllers
                 db.ProductOrders.Add(productOrder);
                 bool state = SaveDatabase(ViewStates.Create, productOrder);
 				if (state) {			
-					AppVar.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
-				} else {					
-					AppVar.SetErrorStatus(ViewBag, CreatedError); // Failed to save
+					ViewCommon.SetSavedStatus(ViewBag, CreatedSaved); // Saved Successfully.
+				} else {
+                    ViewCommon.SetErrorStatus(ViewBag, CreatedError); // Failed to save
 				}
 				
                 viewOf = ViewTapping(ViewStates.CreatePostAfter, productOrder,state);
                 return View(productOrder);
             }
-            viewOf = ViewTapping(ViewStates.CreatePostAfter, productOrder, false);			
-			AppVar.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
+            viewOf = ViewTapping(ViewStates.CreatePostAfter, productOrder, false);
+            ViewCommon.SetErrorStatus(ViewBag, CreatedError); // record is not valid for creation
             return View(productOrder);
         }
 		#endregion
@@ -269,9 +270,9 @@ namespace DevBootstrapper.Controllers
                 db.Entry(productOrder).State = EntityState.Modified;
                 bool state = SaveDatabase(ViewStates.Edit, productOrder);
 				if (state) {
-                    AppVar.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
-				} else {					
-					AppVar.SetErrorStatus(ViewBag, EditedError); // Failed to Save
+                    ViewCommon.SetSavedStatus(ViewBag, EditedSaved); // Saved Successfully.
+				} else {
+                    ViewCommon.SetErrorStatus(ViewBag, EditedError); // Failed to Save
 				}
 				
                 viewOf = ViewTapping(ViewStates.EditPostAfter, productOrder , state);
@@ -281,7 +282,7 @@ namespace DevBootstrapper.Controllers
         	if(DropDownDynamic == false){
                 GetDropDowns(productOrder); // Generating drop downs
             }
-            AppVar.SetErrorStatus(ViewBag, EditedError); // record not valid for save
+            ViewCommon.SetErrorStatus(ViewBag, EditedError); // record not valid for save
             return View(productOrder);
         }
 		#endregion
@@ -303,8 +304,8 @@ namespace DevBootstrapper.Controllers
 			bool viewOf = ViewTapping(ViewStates.DeletePost, productOrder);
             db.ProductOrders.Remove(productOrder);
             bool state = SaveDatabase(ViewStates.Delete, productOrder);
-			if (!state) {			
-				AppVar.SetErrorStatus(ViewBag, DeletedError); // Failed to Save				
+			if (!state) {
+                ViewCommon.SetErrorStatus(ViewBag, DeletedError); // Failed to Save				
                 return View(productOrder);
 			}
 			

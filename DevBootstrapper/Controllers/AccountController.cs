@@ -190,7 +190,7 @@ namespace DevBootstrapper.Controllers {
         private const string ControllerName = "Account";
 
         /// Constant value for where the controller is actually visible.
-        private const string DynamicLoadPartialController = "/Partials/";
+        private string ServicesControllerUrl = AppVar.ServicesControllerUrl;
 
         #endregion
 

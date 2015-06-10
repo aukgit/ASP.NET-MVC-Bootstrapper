@@ -54,6 +54,8 @@ namespace DevBootstrapper.Application {
             }
         }
 
+        public static string ServicesControllerUrl { get; set; }
+        public static string ApiControllerUrl { get; set; }
 
         #endregion
 
