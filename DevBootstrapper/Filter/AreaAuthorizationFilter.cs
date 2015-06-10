@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using DevBootstrapper.Modules.Session;
+using DevBootstrapper.Constants;
 
 namespace DevBootstrapper.Filter {
     public class AreaAuthorizeAttribute : ActionFilterAttribute {

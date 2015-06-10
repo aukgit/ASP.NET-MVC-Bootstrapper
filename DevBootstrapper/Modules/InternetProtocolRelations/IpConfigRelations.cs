@@ -4,8 +4,8 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Web;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Models.Context;
-using DevBootstrapper.Modules.Session;
 
 #endregion
 

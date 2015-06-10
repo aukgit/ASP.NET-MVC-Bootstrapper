@@ -4,8 +4,8 @@ using System;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using DevBootstrapper.Application;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Modules.DevUser;
-using DevBootstrapper.Modules.Session;
 
 #endregion
 

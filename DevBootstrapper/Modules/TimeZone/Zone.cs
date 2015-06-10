@@ -6,9 +6,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using DevBootstrapper.Application;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.Cache;
-using DevBootstrapper.Modules.Cookie;
 using DevBootstrapper.Modules.DevUser;
 
 #endregion

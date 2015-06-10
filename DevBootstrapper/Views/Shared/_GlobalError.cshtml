@@ -1,11 +1,12 @@
 ﻿@using DevBootstrapper.Application
+@using DevBootstrapper.Constants
 @{
     var errors = AppConfig.GetGlobalError();
-    var auth  = Session[DevBootstrapper.Modules.Session.SessionNames.AuthError];
+    var auth  = Session[SessionNames.AuthError];
 }
 @if (auth != null) {
     <h1 class="h3"><label class="label label-danger"></label>auth</h1>
-    Session[DevBootstrapper.Modules.Session.SessionNames.AuthError] = null;
+    Session[SessionNames.AuthError] = null;
 }
 
 @if (errors != null) {

@@ -2,11 +2,11 @@
 
 using System.Linq;
 using System.Web.Mvc;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Filter;
 using DevBootstrapper.Helpers;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.Cache;
-using DevBootstrapper.Modules.Session;
 
 //using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
 

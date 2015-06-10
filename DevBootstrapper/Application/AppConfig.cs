@@ -4,11 +4,10 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
-using DevBootstrapper.Modules.Session;
 using DevBootstrapper.Modules.TimeZone;
-using DevBootstrapper.Modules.UserError;
 using DevMvcComponent;
 using DevMvcComponent.Processor;
 

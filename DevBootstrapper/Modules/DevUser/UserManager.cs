@@ -7,14 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using DevBootstrapper.Application;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Models.ViewModels;
 using DevBootstrapper.Modules.Cache;
 using DevBootstrapper.Modules.Role;
-using DevBootstrapper.Modules.Session;
-using DevBootstrapper.Modules.UserError;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 

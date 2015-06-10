@@ -12,7 +12,6 @@ using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Extensions.IdentityExtension;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Role;
-using DevBootstrapper.Modules.UserError;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 

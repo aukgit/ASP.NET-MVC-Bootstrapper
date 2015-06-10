@@ -3,10 +3,10 @@
 using System;
 using System.Security.Claims;
 using DevBootstrapper.Application;
+using DevBootstrapper.Constants;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Models.POCO.Identity;
 using DevBootstrapper.Modules;
-using DevBootstrapper.Modules.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
