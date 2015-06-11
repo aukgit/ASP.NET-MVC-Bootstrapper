@@ -42,15 +42,12 @@ $.fn.extend({
 
 
 $.devOrg = {
-    
 
-    getAllClasses: function ($jQueryHtmlElement) {
-        /// <summary>
-        /// get all the classes from an jQuery element
-        /// </summary>
-        /// <param name="$jQueryHtmlElement"></param>
-        "use strict";
-        return $jQueryHtmlElement.getAllClasses();
+    genericComboClass: "devCombo",
+
+    // get all the classes from an jQuery element
+    getAllClasses: function (jQueryHtmlElement) {
+        return jQueryHtmlElement.getAllClasses();
     },
 
     getClassesExcept: function (allClassesArray, exceptClassesArray) {
@@ -82,7 +79,7 @@ $.devOrg = {
         /// all Selectors are jQuery Selector Text  only.
         /// selectpicker will be called inside function, no need to call outside.
         /// </summary>
-        /// <param name="countrySelector"></param>
+        /// <param name="countrySelector">Select country and make it selectpicker()</param>
         /// <param name="dropDownItemsSelector"></param>
         /// <param name="dropDownBtnSelector"></param>
         "use strict";
@@ -91,7 +88,6 @@ $.devOrg = {
         var dropDownBtn = $(dropDownBtnSelector); // generated new button from the selectpicker option
         var skippingClassesAnchor = ["flag-country-combo", "flag"];
         var skippingClassesForBtn = ["btn", "dropdown-toggle", "selectpicker", "btn-success", "flag-combo"];
-
         // console.log(dropDownItems.length);
         countryBox.change(function (e) {
             var listItem = dropDownItems.find("li.selected");
@@ -126,7 +122,7 @@ $.devOrg = {
             // console.log("executed");
             var listItem = dropDownItems.find("li.selected");
             var spanText = listItem.find("a > span").text().toString();
-            var newCallingCode = $.devOrg.subStringMod(spanText, "(", ")");
+            var newCallingCode = $.devOrg.subString(spanText, "(", ")");
             var getWrittenPhoneNumber = phoneNumberBox.val();
             // console.log(listItem);
             newCallingCode = $.devOrg.replaceStartsWith(newCallingCode, "+", "");
@@ -145,7 +141,14 @@ $.devOrg = {
         // $("#selectID option")[index].selected = true;
     },
 
-    subStringMod: function (givenString, startSequence, endingSequence) {
+    subString: function (givenString, startSequence, endingSequence) {
+        /// <summary>
+        /// Give the sub string by searching the start and end sequence.
+        /// subString("Hello (World)", "(", ")") returns "World"
+        /// </summary>
+        /// <param name="givenString">Given string</param>
+        /// <param name="startSequence">What find first.</param>
+        /// <param name="endingSequence">What is the ending string.</param>
         "use strict";
         if (_.isString(givenString)) {
             var index1 = givenString.indexOf(startSequence);
@@ -159,18 +162,129 @@ $.devOrg = {
         }
         return null;
     },
-    // parentjQueryCombo = passJqueryElement , mainDivContainerSelector = ".something-main", innerDivSelectorForPlacingCombo= ".somthing-combo-div"
-    // it would be better to execute parentjQueryCombo as selectpicker or have a selectpicker class.
-    // No combo will appear , even the main div will disappear if no item is received from the link.
-    // json sender should sends as id and text only.
-    smartDependableCombo: function (parentjQuerySelector, mainDivContainerSelector, innerDivSelectorForPlacingCombo, urlToGetJson, placeComboName, placedComboId, placedComboClass, placedComboAdditionalClassesWithItems, placedComboAdditionalHtmlWithEachItem) {
-        "use strict";
-        var $parentjQueryCombo = $(parentjQuerySelector);
-        if (_.isEmpty($parentjQueryCombo)) {
+    
+    getComboString: function (comboName, comboClass, comboId, stringOptionItems, additionalAttributes) {
+        /// <summary>
+        /// returns a select/combo making string
+        /// </summary>
+        /// <param name="comboName">Name of the combo/select</param>
+        /// <param name="comboClass">Class for the combo/select</param>
+        /// <param name="comboId">Just pass the id or give null, it will automatically formatted</param>
+        /// <param name="stringOptionItems">Option items passed as an string</param>
+        /// <param name="additionalAttributes">Add additional attributes with the select, however user have to format it. Eg. id='hello' </param>
+        if (!_.isEmpty(comboId)) {
+            comboId = " id='" + comboId + "' ";
+        } else {
+            comboId = "";
+        }
+        if (_.isEmpty(comboClass)) {
+            comboClass = "";
+        }
+        if (_.isEmpty(stringOptionItems)) {
+            stringOptionItems = "";
+        }
+        if (_.isEmpty(comboName)) {
+            comboName = "";
+        } else {
+            comboName = " name='" + comboName + "' ";
+        }
+        var comboString = "<select " + comboName +
+                              " class='" + $.devOrg.genericComboClass +
+                              " form-control " + comboClass +
+                              " selectpicker'" + comboId +
+                              " data-style='" + comboClass + "' " +
+                              additionalAttributes +
+                              " data-live-search='true'>" +
+                              stringOptionItems +
+                              " </select>";
+
+        return comboString;
+    },
+    getComboOptionsStringFromJson: function (jsonItems, extraHtmlWithEachElement, itemClasses) {
+        /// <summary>
+        /// Generates and append "option" items to the given $select. 
+        /// </summary>
+        /// <param name="jsonItems">must contain display and id value for every 'option' item.</param>
+        /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
+        /// <param name="itemClasses">add classes with each option.</param>
+        if (_.isEmpty(itemClasses)) {
+            itemClasses = "";
+        }
+        if (_.isEmpty(extraHtmlWithEachElement)) {
+            extraHtmlWithEachElement = "";
+        }
+        if (jsonItems.length > 0) {
+            var length = jsonItems.length;
+            var options = new Array(length + 5);
+            var selected = " selected='selected' ";
+            var optionStarting = "<option class='" + itemClasses + "'";
+            var optionEnding = "</option>";
+            for (var i = 0; i < length; i++) {
+                if (i !== 0 && selected !== "") {
+                    selected = ""; //only first one will be selected
+                }
+                options[i] = optionStarting +
+                             selected +
+                             " value='" +
+                             jsonItems[i].id +
+                             "'>" +
+                             extraHtmlWithEachElement +
+                             jsonItems[i].display +
+                             optionEnding;
+            }
+            return options.join("");
+        }
+        return "";
+    },
+    getWholeComboStringWithJsonItems: function (jsonItems, comboName, comboClass, comboId, additionalAttributesWithCombo, extraHtmlWithEachElement, eachOptionItemClasses) {
+        /// <summary>
+        /// Returns a full combo/select based on json items
+        /// Developer should inject this into document
+        /// </summary>
+        /// <param name="comboName">Name of the combo/select</param>
+        /// <param name="comboClass">Class for the combo/select</param>
+        /// <param name="comboId">Just pass the id or give null, it will automatically formatted</param>
+        /// <param name="stringOptionItems">Option items passed as an string</param>
+        /// <param name="additionalAttributes">Add additional attributes with the select, however user have to format it. Eg. id='hello' </param>
+        /// <param name="jsonItems">must contain display and id value for every 'option' item.</param>
+        /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
+        /// <param name="itemClasses">add classes with each option.</param>
+        var optionsString = $.devOrg.getComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
+        var comboString = $.devOrg.getComboString(comboName, comboClass, comboId, optionsString, additionalAttributesWithCombo);
+        return comboString;
+    },
+    smartDependableCombo: function (parentSelectsjQuerySelector,
+                                    mainDivContainerSelector,
+                                    innerDivSelectorForPlacingCombo,
+                                    receivingJsonUrl,
+                                    placingComboName,
+                                    placedComboId,
+                                    placedComboClass,
+                                    placedComboAdditionalAttributes,
+                                    placedComboAdditionalClassesWithEachItem,
+                                    placedComboAdditionalHtmlWithEachItem) {
+        /// <summary>
+        /// Create dependable combo based on parent and given url to get json list.
+        /// Warning: No combo/select will appear , even the main div will disappear if no item is received from the receivingJsonUrl.
+        /// </summary>
+        /// <param name="parentSelectsjQuerySelector">Write jQuery selector for only the parent combo/select</param>
+        /// <param name="mainDivContainerSelector">Main container div of that select/combo. Reason is to hide all including labels when no items found from url.</param>
+        /// <param name="innerDivSelectorForPlacingCombo">Where to place the combo/slect</param>
+        /// <param name="receivingJsonUrl">Url to get json list, data must contain at least {display= value to display, id = value to put}</param>
+        /// <param name="placingComboName">Name of the select/combo</param>
+        /// <param name="placedComboId">Id of the select/combo</param>
+        /// <param name="placedComboClass">classes of the select/combo</param>
+        /// <param name="placedComboAdditionalAttributes">Add additional attributes with the select, however user have to format it. Eg. id='hello'</param>
+        /// <param name="placedComboAdditionalClassesWithEachItem">Add extra classes with every option, only write the class names with space.</param>
+        /// <param name="placedComboAdditionalHtmlWithEachItem">Add extra html content with each option item</param>
+        var $parentCombo = $(parentSelectsjQuerySelector);
+        if (_.isEmpty($parentCombo)) {
             console.error.log("error raised from developers organism component's smartDependableCombo that no parent is detected.");
             return; // nothing exist in parent.
         }
+        // row container
         var $mainDiv = $(mainDivContainerSelector);
+        // container for  the select
         var $innerDiv = $mainDiv.find(innerDivSelectorForPlacingCombo);
 
         function hideDiv() {
@@ -183,42 +297,31 @@ $.devOrg = {
 
         hideDiv();
 
-        function showDiv() {
-            // remove select if exist.
+        function removeSelectIfExist() {
             var options = $innerDiv.find("select, div.bootstrap-select");
             if (options.length > 0) {
                 options.remove();
             }
-            $mainDiv.show("slow");
         }
 
-        function createCombo(response) {
-            if (!_.isEmpty(placedComboId)) {
-                placedComboId = " id='" + placedComboId + "' ";
-            } else {
-                placedComboId = "";
-            }
-            if (_.isEmpty(placedComboClass)) {
-                placedComboClass = "";
-            }
+        function createCombo(responseJson) {
+            //(comboName, comboClass, comboId, additionalAttributes, jsonItems, extraHtmlWithEachElement, itemClasses)
+            var comboString = $.devOrg.getWholeComboStringWithJsonItems(responseJson, placingComboName, placedComboClass, placedComboId, placedComboAdditionalAttributes, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithEachItem);
+            //var insideDivHtml = $innerDiv.html();
+            //var wholeCombo = comboString + insideDivHtml;
+            $innerDiv.prepend(comboString);
 
-            if (_.isEmpty(placeComboName)) {
-                placeComboName = "";
-            } else {
-                placeComboName = " name='" + placeComboName + "' ";
-            }
-
-
-            $innerDiv.prepend("<select " + placeComboName + " class='devOrgSmartCombo form-control " + placedComboClass + " selectpicker'" + placedComboId + "data-style='" + placedComboClass + "' data-live-search='true'></select>");
             var $combo = $innerDiv.find("select");
-            $.devOrg.appenedComboElement($combo, response, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithItems);
             $combo.selectpicker();
         }
-
-        $parentjQueryCombo.change(function () {
-            "use strict";
-            var $parentComboValue = $parentjQueryCombo.val();
-            var actualUrl = urlToGetJson + "/" + $parentComboValue;
+        //when parent combo/select is changed
+        $parentCombo.change(function () {
+            /// <summary>
+            /// What will happen when 
+            /// parent combo/select changes item.
+            /// </summary>
+            var parentComboValue = $parentCombo.val();
+            var actualUrl = receivingJsonUrl + "/" + parentComboValue;
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
@@ -230,7 +333,9 @@ $.devOrg = {
                     }
                     $innerDiv = $(mainDivContainerSelector + " " + innerDivSelectorForPlacingCombo);
                     // items exist.
-                    showDiv(); //remove inner options if exist any
+                    // $innerDiv is used to check if select exist or not.
+                    removeSelectIfExist(); //remove inner options if exist any
+                    $mainDiv.show("slow");
                     createCombo(response); // create if necessary and then append options to it.
                 },
                 error: function (xhr, status, error) {
@@ -239,49 +344,27 @@ $.devOrg = {
             });
         });
     },
-    // listOfItems = expected a json item with id and text property
-    // extraHtmlWithEachElement : represents like below
-    // <option .. > extraHtmlWithEachElement Item </option>
-    appenedComboElement: function ($combo, listOfItems, extraHtmlWithEachElement, itemClasses) {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="$combo"></param>
-        /// <param name="listOfItems"></param>
-        /// <param name="extraHtmlWithEachElement"></param>
-        /// <param name="itemClasses"></param>
-        "use strict";
-        // followed by the best practice : http:// allthingscraig.com/blog/2012/09/28/best-practice-appending-items-to-the-dom-using-jquery/
-        if (_.isEmpty(itemClasses)) {
-            itemClasses = "";
-        }
-        if (_.isEmpty(extraHtmlWithEachElement)) {
-            extraHtmlWithEachElement = "";
-        }
-        if (listOfItems.length > 0) {
-            var length = listOfItems.length;
-            var options = "";
-            var selected = " Selected='selected' ";
-            var optionStarting = "<option class='devorgCombo-item " + itemClasses + "'";
-            var optionEnding = "</option>";
-            for (var i = 0; i < length; i++) {
-                if (i === 0) {
-                    selected = "";
-                }
-                options += optionStarting + selected + "value='" + listOfItems[i].id + "'>" + extraHtmlWithEachElement + listOfItems[i].text + optionEnding;
-            }
-            $combo.append(options);
-        }
-    },
+
+    
     bootstrapComboSelectbyFindingValue: function (comboSelector, searchForvalue) {
-        "use strict";
+        /// <summary>
+        /// Select bootstrap selectpicker index by searching the item.
+        /// </summary>
+        /// <param name="comboSelector"></param>
+        /// <param name="searchForvalue"></param>
         $(comboSelector).selectpicker("val", searchForvalue).trigger("change");
     },
     bootstrapComboSelectIndex: function (comboSelector, index) {
-        "use strict";
-        var combo = $(comboSelector + ">option");
-        if (combo.length > 0 && index <= (combo.length - 1)) {
-            var itemFound = $(combo[index]);
+        /// <summary>
+        /// Select bootstrap selectpicker index.
+        /// Under the hood search the value for the index and then selects it.
+        /// </summary>
+        /// <param name="comboSelector">Combo jQuery selector.</param>
+        /// <param name="index">Index to select.</param>
+        var $combo = $(comboSelector + ">option");
+        if ($combo.length > 0 && index <= ($combo.length - 1)) {
+
+            var itemFound = $($combo[index]);
             var value = itemFound.val();
             $.devOrg.bootstrapComboSelectbyFindingValue(comboSelector, value);
         }
@@ -290,7 +373,6 @@ $.devOrg = {
     // givenString "Example ( Hello )" 
     // startsWith= "Example" ; returns true.
     isStartsWith: function (givenString, startsWith) {
-        "use strict";
         if (_.isString(givenString)) {
             var subtringOfGiventext = givenString.substr(0, startsWith.length);
             if (subtringOfGiventext === startsWith) {
@@ -301,7 +383,6 @@ $.devOrg = {
     },
 
     replaceStartsWith: function (givenString, findStartsWith, replaceString) {
-        "use strict";
         if (_.isString(givenString) && !_.isEmpty(findStartsWith)) {
             var subtringOfGiventext = givenString.substr(0, findStartsWith.length);
             if (subtringOfGiventext === findStartsWith) {
@@ -313,18 +394,32 @@ $.devOrg = {
         return givenString;
     },
 
-    // jquery formSelector, submitAtLast:true/false
     enterToNextTextBox: function (formSelector, submitAtLast) {
-        "use strict";
-        $(formSelector).find("input:text:first").focus();
-        var binders = formSelector + " input[type='text']:visible," +
-            formSelector + " input[type='password']:visible," +
-            formSelector + " input[type='numeric']:visible," +
-            formSelector + " input[type='email']:visible," +
-            //formSelector + " textarea:visible," +
-            formSelector + " button.selectpicker[type='button']:visible," +
-            formSelector + " select:visible";
-        $(document).on("keypress", binders, function (e) {
+        /// <summary>
+        /// Any kind of input(text, password, email, date) and select 
+        /// will be focused to the next one.
+        /// </summary>
+        /// <param name="formSelector">Form jQuery select. (Giving an id is better)</param>
+        /// <param name="submitAtLast">True: means submit when reach the last textbox. Usually false would be better choice so that programmer can handle things in other places.</param>
+        var $form = $(formSelector);
+
+        $form.find("input:text:first-child").focus();
+
+        //var binders = formSelector + " input[type='text']:visible," +
+        //    formSelector + " input[type='password']:visible," +
+        //    formSelector + " input[type='numeric']:visible," +
+        //    formSelector + " input[type='email']:visible," +
+        //    //formSelector + " textarea:visible," +
+        //    formSelector + " button.selectpicker[type='button']:visible," +
+        //    formSelector + " select:visible";
+        var binders = "input[type='text']:visible," +
+                     "input[type='password']:visible," +
+                     "input[type='numeric']:visible," +
+                     "input[type='email']:visible," +
+                    //formSelector + " textarea:visible," +
+                     "button.selectpicker[type='button']:visible," +
+                     "select:visible";
+        $form.on("keypress", binders, function (e) {
             // var codeAbove = d.keyCode || d.which;
             // console.log("above code :" + codeAbove);
             var code = e.keyCode || e.which;
@@ -484,7 +579,7 @@ $.devOrg = {
                 var formData;
                 if ($formGiven === null || $formGiven === undefined || $formGiven.length == 0) {
                     if (!isSubmitTheWholeForm) {
-                        formData = $("#validation").serialize();
+                        formData = $.byId("validation").serialize();
                     } else {
                         formData = $userTextbox.closest("form").serializeArray();
                     }
@@ -497,7 +592,7 @@ $.devOrg = {
                 var validatorName = "span.CustomValidation." + internalValidatorSpanClassName;
                 var token = $("input[name=__RequestVerificationToken]").val();
                 var processingState1 = "glyphicon-refresh";
-                var processingState2 = "glyphicon-refresh-animate";
+                var processingState2 = "glyphicon-spin";
                 var isHideClass = "hide";
                 var colorGreen = "green";
                 var colorRed = "red";
