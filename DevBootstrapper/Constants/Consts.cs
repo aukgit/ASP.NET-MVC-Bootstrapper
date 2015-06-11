@@ -1,4 +1,4 @@
 ﻿namespace DevBootstrapper.Constants {
-    public class Constants {
+    public class Consts {
     }
 }

@@ -6,7 +6,7 @@
 }
 <h1 class="h2" title="@title">
     <i class="fa fa-weixin"></i>
-    @Html.SamePageLink(@title, @title, false, "")
+    @Html.GetCurrentPageUrlAnchorTag(@title, @title, false, "")
 </h1>
 <hr/>
 <!--ViewContext.RouteData.Values["Controller"].ToString()-->

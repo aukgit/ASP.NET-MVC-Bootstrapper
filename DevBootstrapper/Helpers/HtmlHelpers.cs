@@ -23,7 +23,7 @@ using DevMvcComponent.Enums;
 namespace DevBootstrapper.Helpers {
     public static class HtmlHelpers {
         private const string Selected = "selected='selected'";
-        private static readonly int TruncateLength = AppConfig.TruncateLength;
+        public static int TruncateLength = AppConfig.TruncateLength;
 
         #region Icons generate : badge
 
@@ -80,8 +80,14 @@ namespace DevBootstrapper.Helpers {
         #endregion
 
         #region Confirming Buttons
-
-        public static HtmlString SubmitButton(this HtmlHelper helper, string buttonName = "Save",
+        /// <summary>
+        /// Confirms before submit.
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="buttonName"></param>
+        /// <param name="alertMessage"></param>
+        /// <returns></returns>
+        public static HtmlString ConfirmingSubmitButton(this HtmlHelper helper, string buttonName = "Save",
             string alertMessage = "Are you sure about this action?") {
             var sendbtn = String.Format(
                 "<input type=\"submit\" value=\"{0}\" onClick=\"return confirm('{1}');\" />",
@@ -112,12 +118,11 @@ namespace DevBootstrapper.Helpers {
 
         #endregion
 
-        #region Drop Downs
+        #region Drop Downs:  General, Country
 
         #region Country
         /// <summary>
         /// </summary>
-        /// <param name="helper"></param>
         /// <param name="countries"></param>
         /// <param name="classes">use  spaces to describe the classes</param>
         /// <param name="otherAttributes"></param>
@@ -272,7 +277,7 @@ namespace DevBootstrapper.Helpers {
             return new HtmlString(markup);
         }
 
-        public static HtmlString SamePageLink(this HtmlHelper helper, string linkName, string title, bool h1 = true,
+        public static HtmlString GetCurrentPageUrlAnchorTag(this HtmlHelper helper, string linkName, string title, bool h1 = true,
             string addClass = "") {
             //var area = HttpContext.Current.Request.RequestContext.RouteData.DataTokens["area"];
             //var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"];
@@ -295,8 +300,22 @@ namespace DevBootstrapper.Helpers {
             return new HtmlString(markup);
         }
 
-        public static string GetCurrentUrlString(this HtmlHelper helper) {
+        /// <summary>
+        /// Returns url without the host name. 
+        /// Slash is included
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <returns>Returns url without the host name.</returns>
+        public static string GetCurrentPageUrl(this HtmlHelper helper) {
             return HttpContext.Current.Request.RawUrl;
+        }
+        /// <summary>
+        /// Returns url whole page url with the host name. 
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <returns>Returns url whole page url with the host name. </returns>
+        public static string GetCurrentUrlWithHostName(this HtmlHelper helper) {
+            return AppVar.Url + HttpContext.Current.Request.RawUrl;
         }
 
         /// <summary>
@@ -496,6 +515,13 @@ namespace DevBootstrapper.Helpers {
                 return new HtmlString("");
             }
             return new HtmlString(Zone.GetDate(dt));
+        }
+
+        public static HtmlString DisplayDate(this HtmlHelper helper, string format, DateTime? dt = null) {
+            if (dt == null) {
+                return new HtmlString("");
+            }
+            return new HtmlString(Zone.GetDate(dt, format));
         }
 
         public static HtmlString DisplayTime(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null) {
