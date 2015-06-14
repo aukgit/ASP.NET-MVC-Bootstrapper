@@ -477,17 +477,18 @@
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\byId.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\selectors.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\urls.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\constants.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\developers-organism.country-phone.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\dynamic-select.js" />
+    <Content Include="Content\Scripts\devOrg\byId.js" />
+    <Content Include="Content\Scripts\devOrg\jQueryExtend.js" />
+    <Content Include="Content\Scripts\devOrg\selectors.js" />
+    <Content Include="Content\Scripts\devOrg\urls.js" />
+    <Content Include="Content\Scripts\devOrg\constants.js" />
+    <Content Include="Content\Scripts\devOrg\country-phone.js" />
+    <Content Include="Content\Scripts\devOrg\dynamic-select.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\jsonCombo.js" />
+    <Content Include="Content\Scripts\devOrg\jsonCombo.js" />
     <Content Include="Content\Scripts\jQuery\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\jQuery\Upload\canvas-to-blob.min.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\upload.js" />
+    <Content Include="Content\Scripts\devOrg\upload.js" />
     <Content Include="Content\Scripts\jQuery\Upload\jquery.fileupload-audio.js" />
     <Content Include="Content\Scripts\jQuery\Upload\jquery.fileupload-image.js" />
     <Content Include="Content\Scripts\jQuery\Upload\jquery.fileupload-process.js" />
@@ -576,8 +577,8 @@
     <Content Include="Content\Less\bootstrap-tag.less" />
     <Content Include="App_Data\SQLScriptsforCountryInformation.7z" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\initialize.js" />
-    <Content Include="Content\Scripts\DevOrgCompoents\components.js" />
+    <Content Include="Content\Scripts\devOrg\initialize.js" />
+    <Content Include="Content\Scripts\devOrg\devOrg.js" />
     <Content Include="Content\Less\less-imports.less" />
     <Content Include="Content\Less\remixens\fonts-rimixens.less" />
     <Content Include="Content\Less\remixens\extra-remixens.less" />
@@ -601,7 +602,6 @@
     <Content Include="Content\Less\footer.variables.less" />
     <None Include="Content\Scripts\jQuery\jquery-2.1.3.intellisense.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.3.js" />
-    <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.js" />
     <None Include="Content\Scripts\jQuery\jquery.validate-vsdoc.js" />
     <Content Include="Content\Scripts\jQuery\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\Scripts\jQuery\jquery.unobtrusive-ajax.min.js" />
@@ -680,7 +680,6 @@
     <Content Include="Views\Shared\_SuccessMessage.cshtml" />
     <Content Include="Content\Scripts\jQuery\version.json" />
     <Content Include="Content\Scripts\Angular\angular.min.js.map" />
-    <Content Include="Content\Scripts\jQuery\jquery-2.1.3.min.map" />
     <Content Include="Views\Shared\_BrowserUpdate.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\FileMulti.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Rating-10-b.cshtml" />
@@ -715,6 +714,13 @@
     <Content Include="Views\Shared\_500.cshtml" />
     <Content Include="Views\Shared\_502.cshtml" />
     <Content Include="Views\Shared\_Header-1.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password-v.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RememberMe-v.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RememberMe.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Username-v.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email-v.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\JsonCombo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />

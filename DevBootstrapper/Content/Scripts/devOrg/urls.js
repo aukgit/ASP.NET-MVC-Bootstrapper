@@ -8,5 +8,5 @@ $.devOrg.urls = {
     //"/Validator/Email"        
     emailAddressValidationUrl: "/Validator/Email",
     timeZoneJsonUrl: "/Services/GetTimeZone", // look like this /Partials/GetTimeZone/CountryID
-    languageJsonUrl: "/Services/GetLanguage", // look like this /Partials/GetTimeZone/CountryID
+    languageJsonUrl: "/Services/GetLanguage" // look like this /Partials/GetTimeZone/CountryID
 };

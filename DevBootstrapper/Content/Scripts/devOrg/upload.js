@@ -1,14 +1,12 @@
-﻿/// <reference path="jquery-1.10.2.js" />
-/// <reference path="jquery-1.10.2.intellisense.js" />
-/// <reference path="jquery.fileupload.js" />
-/// <reference path="jquery.iframe-transport.js" />
-/// <reference path="jquery.validate-vsdoc.js" />
-/// <reference path="jquery.ui.widget.js" />
-/// <reference path="modernizr-2.6.2.js" />
-/// <reference path="bootstrap.js" />
-/// <reference path="bootstrap-progressbar.js" />
-/// <reference path="I:\DevBootstrapper\WereViewProject\DevBootstrapper\Scripts/underscore.js" />
+﻿/// <reference path="../jQuery/jquery-2.1.3.intellisense.js" />
+/// <reference path="../jQuery/jquery-2.1.3.js" />
 
+/// <reference path="byId.js" />
+/// <reference path="constants.js" />
+/// <reference path="devOrg.js" />
+/// <reference path="initialize.js" />
+/// <reference path="urls.js" />
+/// <reference path="selectors.js" />
 ; $.devOrg = $.devOrg || {};
 
 $.devOrg.upload = {
@@ -16,7 +14,7 @@ $.devOrg.upload = {
     uploadedFilesNotificationLabelSelector: "label.file-uploaded-notify-label-",
     editBtnSpinnerSelector: "[data-edit-btn-spinner=true]",
     progressorSpinnerSelector: "[data-progressor-spinner=true]",
-    wholeProgressorSelector: "[data-progressor-div=true].uploader-progress-info",
+    wholeProgressorSelector: ".uploader-progress-info", // old: [data-progressor-div=true].uploader-progress-info
 
     preUploadedFilesMessage: "files exist.",
     uploadedFilesMessage: "uploaded successfully.",
@@ -37,7 +35,7 @@ $.devOrg.upload = {
     uploadPreexistCountParameter: "data-upload-pre-exist-count",
     hasEditButtonParameter: "data-has-edit-btn",
 
-    //ToDo : Fix those nulls at initalize.
+    //Fix those nulls at initialize (done)
     WholeUploadingContainer: null, // which will contain all the uploading elements.
     $form : null,
     formData: null,//$("form input[type='file']").closest("form").serializeArray()
@@ -54,9 +52,48 @@ $.devOrg.upload = {
 
     $allErrorsRelatedTags: null, //$("form div.uploader>[data-error-related=true]")
     $allULErrorsRelatedTags: null, // $("form div.uploader>ul[data-error-related=true]")
+
+
     isInitialized: false, // when fields are initialized it is going to be true.
 
-   
+    initializeFields: function ($container, formSelector) {
+        /// <summary>
+        /// Going to initialized all the null fields to it's necessary jQuery object.
+        /// Only run if not initialized and container is an object.
+        /// </summary>
+        /// <param name="$container">Uploader containing container.</param>
+        /// <param name="formSelector"></param>
+        var self = $.devOrg.upload;
+        var $form = null,
+            $uploaderDivs;
+        if (self.isInitialized === false && $container.length > 0) {
+            if (!_.isEmpty(formSelector)) {
+                $form = $(formSelector);
+            } else {
+                $form = $container.closest("form");
+            }
+            self.formData = $form.serializeArray;
+            self.$uploaderWorkingDiv = $container.find("div.uploader");
+            $uploaderDivs = self.$uploaderWorkingDiv;
+
+            self.$allFileInputTypes = $uploaderDivs.find("input[type='file']");
+            self.$allSpinners = $uploaderDivs.find("a.spinner");
+            self.$allWholeProgressor = $uploaderDivs.find(self.wholeProgressorSelector);
+            self.$allProgressorValueIdicator = self.$allWholeProgressor.find("a[data-progressor-value=true]");
+            self.$allLabelsToIndicateUploadedFilesNumber = $uploaderDivs.find("label[data-label-file-uploaded=true]");
+            self.$allEditButtons = $uploaderDivs.find("a.edit-btn");
+
+            self.$allSuccessIcons = $uploaderDivs.find("a[data-success-icon=true]");
+            self.$allFailedIcons = $uploaderDivs.find("a[data-failed-icon=true]");
+
+            self.$allErrorsRelatedTags = $uploaderDivs.find("[data-error-related=true]");
+            self.$allULErrorsRelatedTags = $uploaderDivs.find("ul[data-error-related=true]");
+
+            self.$form = $form;
+
+            self.isInitialized = true;
+        }
+    },
 
     initializeHide: function () {
         // only hide edit spinner
@@ -69,34 +106,37 @@ $.devOrg.upload = {
         self.$allFailedIcons.hide();
         self.$allErrorsRelatedTags.hide();
     },
-    initializeFields: function ($container, formSelector) {
-        var self = $.devOrg.upload;
-
-        if (self.isInitialized === false && $container.length > 0) {
-
-            self.$form = $container.closest("form");
-        }
-
-    },
+    
 
     initialize: function ($container, formSelector, acceptedFileSizeInMb, acceptFileTypeRegularExpressionString) {
         /// <summary>
         /// Initialize the upload plugin
         /// </summary>
-        /// <param name="container">Which will whole container for all the uploading plugins. Developer can have more than one container in one page if necessary or else put all in one container.</param>
+        /// <param name="container">(only initialized if exist)Which will whole container for all the uploading plugins. Developer can have more than one container in one page if necessary or else put all in one container.</param>
         /// <param name="formSelector">Form selector to find and cache, null can be a choice. If null then it will pull the closet form from the container</param>
         /// <param name="acceptedFileSizeInMb"></param>
         /// <param name="acceptFileTypeRegularExpressionString"></param>
         //var urlExist = false;
         //var kRep = 0;
+        var self = $.devOrg.upload;
+     
+        if (_.isEmpty($container)) {
+            // if nothing exist on contain then don't execute anything.
+            return;
+        } else {
+            // initialize all the null fields.
+            self.initializeFields($container, formSelector);
+        }
+
         var uploadersLength = 0,
             actualSize = acceptedFileSizeInMb * 1024000,
             id = 0,
             $label = null,
             $editBtn = null,
             $singleUploader = null,
-            self = $.devOrg.upload,
             $uploaderDiv = self.$uploaderWorkingDiv;
+
+
 
         if ($uploaderDiv.length === 0) {
             return;
@@ -420,8 +460,8 @@ $.devOrg.upload = {
         if (updatedValue < 0) {
             updatedValue = 0;
         }
-        $label.attr(self.uploadNumberParameter, updatedValue);
-        $label.text(updatedValue + " " + val);
+        $label.attr(self.uploadNumberParameter, updatedValue)
+              .text(updatedValue + " " + val);
         return updatedValue;
     },
 
@@ -433,8 +473,8 @@ $.devOrg.upload = {
         /// <param name="val">Any text. Empty text hides the label.</param>
         /// <param name="preuploadedCount">increases the value of the upload value</param>
         var self = $.devOrg.upload;
-        $label.attr(self.preuploadedCount, preuploadedCount);
-        $label.text(preuploadedCount + " " + val);
+        $label.attr(self.preuploadedCount, preuploadedCount)
+              .text(preuploadedCount + " " + val);
     },
 
     showEditButton: function (id) {

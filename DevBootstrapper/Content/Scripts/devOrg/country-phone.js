@@ -95,27 +95,27 @@ $.devOrg.countryTimezonePhoneComponent = {
         /// <param name="timeZoneUrl"></param>
         /// <param name="languageUrl"></param>
         /// <param name="retriveAsHtml">boolean : should retrieve only html or process the json. True means no processing.</param>
+        var self = $.devOrg.countryTimezonePhoneComponent;
 
-        $.devOrg.countryTimezonePhoneComponent.countryUrl = countryUrl;
-        $.devOrg.countryTimezonePhoneComponent.timezoneUrl = timeZoneUrl;
-        $.devOrg.countryTimezonePhoneComponent.languageUrl = languageUrl;
-        $.devOrg.countryTimezonePhoneComponent.isCountryRetriveAsHtml = retriveAsHtml;
-        var comboName = $.devOrg.countryTimezonePhoneComponent.countryFieldName;
+        self.countryUrl = countryUrl;
+        self.timezoneUrl = timeZoneUrl;
+        self.languageUrl = languageUrl;
+        self.isCountryRetriveAsHtml = retriveAsHtml;
+        var comboName = self.countryFieldName;
 
-        var $countryInnerDiv = $($.devOrg.countryTimezonePhoneComponent.countryComboDivInnerSelector);
+        var $countryInnerDiv = $(self.countryComboDivInnerSelector);
         //console.log($countryInnerDiv);
         // first generate country
         if ($countryInnerDiv.length > 0) {
             $.ajax({
                 method: "Get", // by default "GET"
-                url: $.devOrg.countryTimezonePhoneComponent.countryUrl,
+                url: self.countryUrl,
                 dataType: "text" //, // "Text" , "HTML", "xml", "script" 
             }).done(function (response) {
                 //console.log(response);
                 var comboString;
                 if (retriveAsHtml === false) {
-                    comboString = $.devOrg
-                        .countryTimezonePhoneComponent
+                    comboString = self
                         .getCountryWholeComboStringWithJsonItems(response, comboName, "", "", ""); //var innerHtmlDiv = $countryInnerDiv.html();
                     //var wholeComboHtmlString = comboString + innerHtmlDiv;
                 } else {
@@ -126,9 +126,9 @@ $.devOrg.countryTimezonePhoneComponent = {
                 $countryInnerDiv.find("select:first-child").selectpicker();
 
                 // also make the country combo to select picker
-                $.devOrg.countryTimezonePhoneComponent.setupRefreshingCountryFlag();
+                self.setupRefreshingCountryFlag();
                 //setup other dependables
-                $.devOrg.countryTimezonePhoneComponent.setupDependableCombos();
+                self.setupDependableCombos();
 
                 //console.log(comboString);
 

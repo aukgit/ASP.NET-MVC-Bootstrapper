@@ -1,6 +1,16 @@
-﻿/// <reference path="../jquery-2.1.3.js" />
-/// <reference path="find-byId.js" />
-/// <reference path="../jquery-2.1.3.intellisense.js" />
+﻿/// <reference path="../jQuery/jquery-2.1.3.js" />
+/// <reference path="../jQuery/jquery-2.1.3.intellisense.js" />
+/// <reference path="../jQuery/jquery.unobtrusive-ajax.js" />
+/// <reference path="../jQuery/jquery.unobtrusive-ajax.min.js" />
+/// <reference path="../jQuery/jquery.validate.js" />
+/// <reference path="../jQuery/jquery.validate.min.js" />
+/// <reference path="byId.js" />
+/// <reference path="constants.js" />
+/// <reference path="devOrg.js" />
+/// <reference path="initialize.js" />
+/// <reference path="urls.js" />
+/// <reference path="selectors.js" />
+
 ; $.devOrg = $.devOrg || {};
 
 
