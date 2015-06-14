@@ -1,4 +1,17 @@
-﻿div.checkbox > label {
+﻿body {
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+div.checkbox > label {
   padding-left: 0;
 }
 div.checkbox {
@@ -57,32 +70,6 @@ textarea.form-control {
   top: 5px;
 }
 /* enable absolute positioning */
-.inner-addon {
-  position: relative;
-}
-.inner-addon .glyphicon,
-.inner-addon .fa {
-  position: absolute;
-  /*padding: 10px;*/
-  padding: 10px 11px 2px 9px;
-  pointer-events: none;
-}
-/* align icon */
-.left-addon .glyphicon,
-.left-addon .fa {
-  left: 0;
-}
-.right-addon .glyphicon,
-.right-addon .fa {
-  right: 0;
-}
-/* add padding  */
-.left-addon input {
-  padding-left: 30px;
-}
-.right-addon input {
-  padding-right: 30px;
-}
 .global-error h2 {
   display: block;
   color: red;
@@ -148,6 +135,7 @@ div.bs-searchbox input.input-block-level.form-control {
   -webkit-background-origin: padding-box;
   -webkit-background-size: auto;
   background-attachment: scroll;
+  -ms-background-clip: border-box;
   background-clip: border-box;
   background-color: rgba(0, 0, 0, 0);
   background-image: none;
@@ -314,18 +302,23 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
 .btn-success {
     background-color: #19c234;
 }*/
-.input-group-addon:not(:first-child):not(:last-child),
-.input-group-btn:not(:first-child):not(:last-child),
-.input-group .form-control:not(:first-child):not(:last-child) {
-  border-radius: 5px;
-}
 .form-control {
   height: 34.4px;
   height: 3.4rem;
 }
+.form-control.datetime-input,
+.form-control.date-input {
+  width: 256px;
+  width: 25.6rem;
+}
 .input-group input {
   height: 34.4px;
   height: 3.4rem;
+}
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child),
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-radius: 5px;
 }
 .input-group-btn:last-child > .btn,
 .input-group-btn:last-child > .btn-group {
@@ -346,5 +339,43 @@ input.form-control {
 label.control-label,
 input.form-control {
   font-family: Tahoma, Open sans, Helvetica, Arial, sans-serif !important;
+}
+.datepicker-start span.input-group-addon,
+.datetimepicker-start span.input-group-addon {
+  margin-bottom: 2px;
+  background-color: inherit;
+  color: inherit;
+}
+.datepicker-start span.input-group-addon:hover,
+.datetimepicker-start span.input-group-addon:hover {
+  background-color: brown;
+  cursor: pointer;
+  color: white;
+}
+.inner-addon {
+  position: relative;
+}
+.inner-addon .glyphicon,
+.inner-addon .fa {
+  position: absolute;
+  /*padding: 10px;*/
+  padding: 10px 11px 2px 9px;
+  pointer-events: none;
+}
+/* align icon */
+.left-addon .glyphicon,
+.left-addon .fa {
+  left: 0;
+}
+.right-addon .glyphicon,
+.right-addon .fa {
+  right: 0;
+}
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
 }
 /*# sourceMappingURL=override-mvc.css.map */

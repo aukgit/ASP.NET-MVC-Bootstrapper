@@ -380,6 +380,7 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="Content\css\addons.css" />
     <Content Include="Content\css\animate-refresh.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.css" />
     <Content Include="Content\css\bootstrap-select.css" />
@@ -475,6 +476,9 @@
     <Content Include="Content\css\utilities.css.map">
       <DependentUpon>utilities.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\addons.css.map">
+      <DependentUpon>addons.css</DependentUpon>
+    </Content>
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
@@ -569,7 +573,6 @@
     <Content Include="Content\Less\remixens\lesshat.less" />
     <Content Include="Content\Less\owl-custom-finalize.less" />
     <Content Include="Content\Less\core-developer.less" />
-    <Content Include="Content\Less\fixing-css.less" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\css\fixing-css.css.map">

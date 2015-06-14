@@ -2,17 +2,18 @@
 @import "remixens/variables.less";
 
 
-@call-out-color                     : @primary-header-color;
-@form-control-height                : 34.4px;
-@input-control-height               : 34.4px;
-@label-font-size                    : 14px;
-@input-font-size                    : 16px;
-@inputs-max-width                   : 294px;
-@inputs-max-width-at-mobile         : 218px;
-@label-max-width-at-mobile          : 100px;
-@inputs-max-width-at-l-mobile       : 190px;
-@label-max-width-at-l-mobile        : 80px;
-@less-than-mobile-screen            : 400px;
+@call-out-color: @primary-header-color;
+@form-control-height: 34.4px;
+@input-control-height: 34.4px;
+@label-font-size: 14px;
+@input-font-size: 16px;
+@inputs-max-width: 294px;
+@inputs-max-width-at-mobile: 218px;
+@label-max-width-at-mobile: 100px;
+@inputs-max-width-at-l-mobile: 190px;
+@label-max-width-at-l-mobile: 80px;
+@less-than-mobile-screen: 400px;
+
 div.checkbox > label {
     padding-left: 0;
 }
@@ -76,33 +77,7 @@ textarea.form-control {
     top: 5px;
 }
 /* enable absolute positioning */
-.inner-addon {
-    position: relative;
 
-    .glyphicon, .fa {
-        position: absolute;
-        /*padding: 10px;*/
-        padding: 10px 11px 2px 9px;
-        pointer-events: none;
-    }
-}
-
-/* align icon */
-.left-addon .glyphicon, .left-addon .fa {
-    left: 0;
-}
-
-.right-addon .glyphicon, .right-addon .fa {
-    right: 0;
-}
-/* add padding  */
-.left-addon input {
-    padding-left: 30px;
-}
-
-.right-addon input {
-    padding-right: 30px;
-}
 
 .global-error h2 {
     display: block;
@@ -180,6 +155,7 @@ div.bs-searchbox input.input-block-level.form-control {
     -webkit-background-origin: padding-box;
     -webkit-background-size: auto;
     background-attachment: scroll;
+    -ms-background-clip: border-box;
     background-clip: border-box;
     background-color: rgba(0, 0, 0, 0);
     background-image: none;
@@ -213,6 +189,8 @@ p.create-btn-p,
     margin: 0 0 -51px;
 }
 
+
+// bootstrap table colors.
 .bootstrap-table-do,
 .bootstrap-table-do tr,
 .bootstrap-table-do tr td {
@@ -278,6 +256,7 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
 .third-list-home-page {
     margin-top: 39px;
 }
+
 .small-font-size {
     font-size: .4em !important;
 }
@@ -368,18 +347,24 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
     background-color: #19c234;
 }*/
 
-.input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child), .input-group .form-control:not(:first-child):not(:last-child) {
-    border-radius: 5px;
-}
+
 
 .form-control {
     .height(@form-control-height);
+    // date time
+    &.datetime-input, &.date-input {
+        .width(256px);
+    }
 }
 
 .input-group {
     input {
-        .height(@input-control-height); 
+        .height(@input-control-height);
     }
+}
+
+.input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child), .input-group .form-control:not(:first-child):not(:last-child) {
+    border-radius: 5px;
 }
 
 .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
@@ -406,6 +391,52 @@ label.control-label, input.form-control {
     .form-input-font();
 }
 
-.controls-vertical{ 
+.controls-vertical {
 }
+
+
+// date time fix
+.datepicker-start, .datetimepicker-start {
+    span.input-group-addon {
+        margin-bottom: 2px;
+        background-color: inherit;
+        color: inherit;
+
+        &:hover {
+            background-color: brown;
+            cursor: pointer;
+            color: white;
+        }
+    }
+}
+
+// addons started
+.inner-addon {
+    position: relative;
+
+    .glyphicon, .fa {
+        position: absolute;
+        /*padding: 10px;*/
+        padding: 10px 11px 2px 9px;
+        pointer-events: none;
+    }
+}
+
+/* align icon */
+.left-addon .glyphicon, .left-addon .fa {
+    left: 0;
+}
+
+.right-addon .glyphicon, .right-addon .fa {
+    right: 0;
+}
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+} 
+
 /*# sourceMappingURL=override-mvc-css.css.map */
