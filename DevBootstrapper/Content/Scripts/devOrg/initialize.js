@@ -1,4 +1,15 @@
-﻿/* !Written by Alim Ul Karim
+﻿/// <reference path="../jQuery/jquery-2.1.4.js" />
+/// <reference path="../jQuery/jquery-2.1.4-vsdoc.js" />
+/// <reference path="byId.js" />
+/// <reference path="devOrg.js" />
+/// <reference path="jQueryExtend.js" />
+/// <reference path="selectors.js" />
+/// <reference path="upload.js" />
+/// <reference path="constants.js" />
+/// <reference path="dynamic-select.js" />
+/// <reference path="urls.js" />
+
+/* !Written by Alim Ul Karim
  * Developers Organism
  * Dated : 14 June 2015
  * Version : 1.2
@@ -9,8 +20,14 @@
 ; $.devOrg = $.devOrg || {};
 
 $.devOrg.initialize = function () {
+    /// <summary>
+    /// Initialize everything.
+    /// </summary>
     var self = this;
-    var constants = $.devOrg.constants;
+    var dev = $.devOrg;
+    var constants = dev.constants;
+    var selectors = dev.selectors;
+    var urls = dev.urls;
     $.devOrg.upload.initialize(1, "(\\.|\\/)(gif|jpe?g|png)$");
 
 
@@ -89,8 +106,8 @@ $.devOrg.initialize = function () {
     makeTagLive();
 
     // make all selects to bootstrap select 
-    $("select.selectpicker").selectpicker();
-    $.devOrg.bootstrapComboSelectIndex("select.selectpicker", 0);
+    $("select.select-picker").selectpicker();
+    $.devOrg.bootstrapComboSelectIndex("select.select-picker", 0);
 
 
     ///Implement .rating-5,.rating-10
@@ -116,13 +133,8 @@ $.devOrg.initialize = function () {
     workWithMenuPage();
 
 
-    $("textarea.big-multiline").focus(function () {
-        $(this).animate({ 'height': "300px", 'width': "630px", 'max-width': "630px" }, 400);
-    }).blur(function () {
-        $(this).animate({ 'height': "auto", 'width': "294px", 'max-width': "294px" }, 400);
-    });
     //making textarea's elastic
-    $("textarea").elastic().trigger("update");
+    $("textarea.elastic").elastic().trigger("update");
 
     $("div.datetimepicker-start").datetimepicker({
         pickDate: true, //en/disables the date picker
@@ -155,8 +167,5 @@ $.devOrg.initialize = function () {
 }
 
 $(function () {
-
-
-
-
+    $.devOrg.initialize();
 });

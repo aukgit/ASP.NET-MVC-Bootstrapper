@@ -55,12 +55,12 @@ namespace DevBootstrapper {
 
             #region Default Route
 
-            routes.MapRoute("Direct", "{action}", new {
-                controller = "Home",
-                action = "Index",
-                id = UrlParameter.Optional
-            }, new[] {parentControllerNameSpace}
-                );
+            //routes.MapRoute("Direct", "{action}", new {
+            //    controller = "Home",
+            //    action = "Index",
+            //    id = UrlParameter.Optional
+            //}, new[] {parentControllerNameSpace}
+            //    );
             routes.MapRoute("Default", "{controller}/{action}/{id}", new {
                 controller = "Home",
                 action = "Index",

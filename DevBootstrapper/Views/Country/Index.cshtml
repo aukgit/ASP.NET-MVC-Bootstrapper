@@ -13,6 +13,10 @@
     @Html.GetCurrentPageUrlAnchorTag(title, subtitle, false)
 </h1>
 <hr />
+@using (Html.BeginForm("Index", "Country", FormMethod.Post, new { @class = "form-horizontal register-form", role = "form" })) {
+    <input class="form-control" value="@ViewBag.id" type="text" name="id" placeholder="Your desired public ip address..." />
+    <input class="btn btn-primary" type="submit" value="Get Country" />
+}
 <div class="form-horizontal">
     @if (Model != null) {
         <table class="table table-hover gap-from-top-small">
@@ -207,9 +211,6 @@
 
             </tbody>
         </table>
-    } else {
-        using (Html.BeginForm("Index", "Country", FormMethod.Post, new { @class = "form-horizontal register-form", role = "form"})) {
-            <input class="form-control" name="id" placeholder="Your desired public ip address..." />
-        }
     }
+  
 </div>

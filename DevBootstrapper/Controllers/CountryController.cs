@@ -21,6 +21,7 @@ namespace DevBootstrapper.Controllers {
         /// <returns></returns>
         [HttpPost]
         public ActionResult Index(string id) {
+            ViewBag.id = id;
             // TODO : follow the code and implement in your application.
             //var countries = CachedQueriedData.GetCountries();
             //var countryId = IpConfigRelations.GetCountryId(id);
