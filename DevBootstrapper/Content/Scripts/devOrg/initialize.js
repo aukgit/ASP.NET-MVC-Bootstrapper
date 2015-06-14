@@ -9,6 +9,8 @@
 ; $.devOrg = $.devOrg || {};
 
 $.devOrg.initialize = function () {
+    var self = this;
+    var constants = $.devOrg.constants;
     $.devOrg.upload.initialize(1, "(\\.|\\/)(gif|jpe?g|png)$");
 
 

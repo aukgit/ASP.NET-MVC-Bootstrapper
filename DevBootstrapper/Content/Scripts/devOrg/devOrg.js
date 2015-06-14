@@ -171,6 +171,8 @@ $.devOrg = {
         /// <param name="comboId">Just pass the id or give null, it will automatically formatted</param>
         /// <param name="stringOptionItems">Option items passed as an string</param>
         /// <param name="additionalAttributes">Add additional attributes with the select, however user have to format it. Eg. id='hello' </param>
+        var self = $.devOrg;
+        var selectors = self.selectors;
         if (!_.isEmpty(comboId)) {
             comboId = " id='" + comboId + "' ";
         } else {
@@ -188,9 +190,9 @@ $.devOrg = {
             comboName = " name='" + comboName + "' ";
         }
         var comboString = "<select " + comboName +
-                              " class='" + $.devOrg.genericComboClass +
+                              " class='" + selectors.genericComboClass +
                               " form-control " + comboClass +
-                              " selectpicker'" + comboId +
+                              " '" + comboId +
                               " data-style='" + comboClass + "' " +
                               additionalAttributes +
                               " data-live-search='true'>" +

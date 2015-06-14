@@ -213,6 +213,7 @@
   <ItemGroup>
     <Compile Include="Application\AppVar.cs" />
     <Compile Include="Application\ConnectionStrings.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\ProductOrdersController.cs" />
     <Compile Include="Enums\CommonEnums.cs" />
     <Compile Include="Constants\Consts.cs" />
@@ -721,6 +722,7 @@
     <Content Include="Views\Shared\EditorTemplates\Email-v.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\JsonCombo.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />

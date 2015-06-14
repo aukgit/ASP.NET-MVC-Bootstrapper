@@ -1,0 +1,215 @@
+﻿@using DevBootstrapper.Models.POCO.IdentityCustomization
+@model Country
+@{
+    ViewBag.Title = "Country Detect";
+    string title = ViewBag.Title;
+    string subtitle = ViewBag.Title;
+    string controller = (string)ViewBag.controller;
+    string viewName = "Index";
+
+}
+<h1 class="h2 gap-from-top-small">
+    <span class="glyphicon glyphicon-print"></span>
+    @Html.GetCurrentPageUrlAnchorTag(title, subtitle, false)
+</h1>
+<hr />
+<div class="form-horizontal">
+    @if (Model != null) {
+        <table class="table table-hover gap-from-top-small">
+            <thead>
+                <tr>
+                    <th>Properties</th>
+                    <th></th>
+                    <th>Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.CountryName)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.CountryName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Capital)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Capital)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Alpha2Code)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Alpha2Code)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Alpha3Code)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Alpha3Code)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.CallingCode)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.CallingCode)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.NationalityName)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.NationalityName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Region)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Region)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.SubRegion)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.SubRegion)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Population)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Population)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Area)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Area)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Culture)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Culture)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.GiniCoefficient)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.GiniCoefficient)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.Relevance)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.Relevance)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.LatitudeStartingPoint)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.LatitudeStartingPoint)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.LatitudeEndingPoint)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.LatitudeEndingPoint)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.RelatedTimeZoneID)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.RelatedTimeZoneID)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.IsSingleTimeZone)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.IsSingleTimeZone)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="dev-label-property">
+                        @Html.DisplayNameFor(model => model.DisplayCountryName)
+                    </td>
+                    <td>:</td>
+                    <td class="dev-label-value">
+                        @Html.DisplayFor(model => model.DisplayCountryName)
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    } else {
+        using (Html.BeginForm("Index", "Country", FormMethod.Post, new { @class = "form-horizontal register-form", role = "form"})) {
+            <input class="form-control" name="id" placeholder="Your desired public ip address..." />
+        }
+    }
+</div>

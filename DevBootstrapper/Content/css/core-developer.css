@@ -4,7 +4,7 @@
 .ubuntu-font {
   font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
-.question-mark-for-description {
+.description-icon {
   cursor: pointer;
   font-size: 26px;
   font-size: 1.625em;
@@ -23,10 +23,10 @@
   box-sizing: border-box;
   color: #bdbdbd;
 }
-.question-mark-for-description:hover {
+.description-icon:hover {
   color: brown;
 }
-.question-mark-for-description:before {
+.description-icon:before {
   content: "\e085";
 }
 /*# sourceMappingURL=core-developer.css.map */
