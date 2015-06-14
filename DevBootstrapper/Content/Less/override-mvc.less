@@ -371,4 +371,39 @@ label.control-label, input.form-control {
     padding-right: 30px;
 }
 
+
+
+@description-icon-color: rgb(189, 189, 189);
+
+.description-icon {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: @description-icon-color;
+
+    &:hover {
+        color: brown;
+    }
+
+    &:before {
+        content: "\f059";
+    }
+
+    .font-size(26px);
+    .top(5px);
+    .width(22px);
+}
+
 /*# sourceMappingURL=override-mvc-css.css.map */
