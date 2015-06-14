@@ -1,17 +1,4 @@
-﻿body {
-    padding-bottom: 20px;
-    padding-top: 50px;
-}
-
-/* Set padding to keep content from hitting the edges */
-
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-
-div.checkbox > label {
+﻿div.checkbox > label {
   padding-left: 0;
 }
 div.checkbox {

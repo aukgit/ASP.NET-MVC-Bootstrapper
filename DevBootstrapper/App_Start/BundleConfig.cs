@@ -15,8 +15,6 @@ namespace DevBootstrapper {
 
             #region CDN Constants
             const string jQueryCdn = @"//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js";
-            //const string jQueryCDN = "http://code.jquery.com/jquery-latest.min.js";
-            const string mordernizerCdn = "http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js";
             //const string respondJsCDN = "http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"
             #endregion
 
@@ -88,37 +86,37 @@ namespace DevBootstrapper {
 
                     bundles.Add(new StyleBundle("~/Content/css/styles").Include(
                                         "~/Content/css/bootstrap.css",
+                                        "~/Content/css/bootstrap.theme.unitied.css",
+
                                         "~/Content/css/less-imports.css",
                                         "~/Content/css/animate.css",
                                         "~/Content/css/font-awesome.css",
                                         "~/Content/css/animate-refresh.css",
-                                        "~/Content/css/site.css",
                                         "~/Content/css/flags32.css",
                                         "~/Content/css/flags32-combo.css",
                                         "~/Content/css/Upload/jquery.fileupload.css",
 
                                         "~/Content/css/bootstrap-datetimepicker.css",
                                         "~/Content/css/bootstrap-table.css",
+                                        "~/Content/css/bootstrap-tag.css",
                                         "~/Content/css/bootstrap-select.css",
 
                                         "~/Content/css/color-fonts.css",
                                         "~/Content/css/star-rating.css",
                                         "~/Content/css/override-mvc.css",
 
-                                        "~/Content/css/base-theme-styles.css",
-                                        "~/Content/css/style.css",
-
-                                        "~/Content/css/responsive.css",
-                                        "~/Content/revolution-slider/css/settings.css",
-
-                                        "~/Content/css/owl.carousel.css",
-                                        "~/Content/css/owl.theme.css",
-                                        "~/Content/css/owl.custom.finalize.css",
-
+                                       
                                         "~/Content/css/seo-optimize.css",
+                                        "~/Content/css/core-developer.css",
+                                        "~/Content/css/menu.css",
+                                        "~/Content/css/menu-modify.css",
+                                        "~/Content/css/header.css",
                                         "~/Content/css/front-developer.css",
-                                        "~/Content/css/footer-fixing.css",
-                                        "~/Content/css/utilities.css"
+                                        "~/Content/css/footer.css",
+
+                                        "~/Content/css/utilities.css",
+                                        "~/Content/css/responsive.css"
+
 
                     ));
 
