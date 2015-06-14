@@ -477,8 +477,14 @@
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\byId.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\selectors.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\urls.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\constants.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\developers-organism.country-phone.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\dynamic-select.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
+    <Content Include="Content\Scripts\DevOrgCompoents\jsonCombo.js" />
     <Content Include="Content\Scripts\jQuery\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\jQuery\Upload\canvas-to-blob.min.js" />
     <Content Include="Content\Scripts\DevOrgCompoents\upload.js" />
@@ -504,6 +510,7 @@
     <Content Include="ExternalDll\LinqKit.dll" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="JSVersioningComments.txt" />
     <Content Include="oldgarbages.txt" />
     <Content Include="Readme.txt" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -711,8 +718,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />
-    <Folder Include="Application\DesignPatterns\PatternName\" />
-    <Folder Include="Application\Interfaces\" />
+    <Folder Include="Application\DesignPatterns\PatternName\Interfaces\" />
     <Folder Include="App_Data\DatabaseTables\" />
     <Folder Include="App_Data\elmah\" />
     <Folder Include="Areas\Admin\Models\" />

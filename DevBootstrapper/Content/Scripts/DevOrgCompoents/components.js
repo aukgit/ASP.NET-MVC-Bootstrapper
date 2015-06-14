@@ -21,14 +21,15 @@
 /// <reference path="../Bootstrap/star-rating.js" />
 
 
-/*
-* Version 2.2
-* Written by Alim Ul Karim
-* Developers Organism
-* https://www.facebook.com/DevelopersOrganism
-* mailto:info@developers-organism.com
-*/
-
+/**!
+ * Written by Alim Ul Karim
+ * Email: devorg.bd{at}gmail.com
+ * Dated : 14 Jun 2015
+ * Version : 2.2
+ * Performance : http://jsperf.com/jquery-vs-fasterjquery
+ * https://www.facebook.com/DevelopersOrganism
+ * mailto:info{at}developers-organism.com
+ */
 
 $.fn.extend({
     // jQuery element get all classes
@@ -43,7 +44,6 @@ $.fn.extend({
 
 $.devOrg = {
 
-    genericComboClass: "devCombo",
 
     // get all the classes from an jQuery element
     getAllClasses: function (jQueryHtmlElement) {

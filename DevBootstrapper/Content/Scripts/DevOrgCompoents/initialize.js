@@ -1,54 +1,18 @@
-﻿/// <reference path="../jQuery/jquery-2.1.3.js" />
-/// <reference path="../jQuery/jquery-2.1.3.intellisense.js" />
-/// <reference path="../jQuery/jquery.number.js" />
-/// <reference path="../jQuery/jquery.unobtrusive-ajax.js" />
-/// <reference path="../jQuery/jquery.validate-vsdoc.js" />
-/// <reference path="../jQuery/jquery.validate.js" />
-/// <reference path="../jQuery/jquery.validate.unobtrusive.js" />
-/// <reference path="../jQuery/moment.js" />
-/// <reference path="../jQuery/underscore.js" />
-/// <reference path="../jQuery/validation.js" />
-/// <reference path="../jQuery/Upload/jquery.fileupload.js" />
-/// <reference path="../Bootstrap/bootstrap.js" />
-/// <reference path="../Bootstrap/bootstrap-select.js" />
-/// <reference path="../Bootstrap/bootstrap-table-export.js" />
-/// <reference path="../Bootstrap/bootstrap-table-filter.js" />
-/// <reference path="../Bootstrap/bootstrap-datetimepicker.js" />
-/// <reference path="../Bootstrap/bootstrap-datepicker.js" />
-/// <reference path="../Bootstrap/common-tasks-run-every-page.js" />
-/// <reference path="../Bootstrap/modernizr-2.8.3.js" />
-/// <reference path="../Bootstrap/respond.js" />
-/// <reference path="../Bootstrap/star-rating.js" />
-/// <reference path="DevOrgDynamicSelect.js" />
-/// <reference path="DevOrgComponent.js" />
-
-/*
- * Written by Alim Ul Karim
+﻿/* !Written by Alim Ul Karim
  * Developers Organism
+ * Dated : 14 June 2015
+ * Version : 1.2
  * https://www.facebook.com/DevelopersOrganism
  * mailto:info@developers-organism.com
 */
 
-$(function () {
+$.devOrg = $.devOrg || {};
 
 
-    $.devOrg.Constants = {
-        registerForm: $("form.register-form"),
-        countryComboSelector: ".form-control.selectpicker.country-combo",
-        countryDropDownItemsSelector: "div.country-combo ul",
-        btnSelector: "button.btn.dropdown-toggle.selectpicker.btn-success.flag-combo",
-        userName: "UserName",
-        email: "Email",
-        phoneNumberSelector: "#Phone",
-        // "/Validator/"
-        validatorCommonUrl: "/Validator/",
-        //"/Validator/Username"
-        usernameValidationUrl: "/Validator/Username",
-        //"/Validator/Email"        
-        emailAddressValidationUrl: "/Validator/Email",
-        timeZoneJsonUrl: "/Partials/GetTimeZone", // look like this /Partials/GetTimeZone/CountryID
-        languageJsonUrl: "/Partials/GetLanguage" // look like this /Partials/GetTimeZone/CountryID
-    };
+
+$.devOrg.initialize = function () {
+    $.devOrg.upload.initialize(1, "(\\.|\\/)(gif|jpe?g|png)$");
+
 
     if ($.devOrg.Constants.registerForm.length > 0) {
 
@@ -188,6 +152,11 @@ $(function () {
         sideBySide: true //show the date and time picker side by side
 
     });
+}
+
+$(function () {
+
+
 
 
 });

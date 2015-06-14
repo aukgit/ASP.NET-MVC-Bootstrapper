@@ -1,8 +1,10 @@
 ﻿/**!
  * Written by Alim Ul Karim
- * devorg.bd@gmail.com
+ * Email: devorg.bd{at}gmail.com
+ * Dated : 10 Jun 2015
+ * Version : 1.0
  * Performance test against jQuery http://jsperf.com/jquery-vs-fasterjquery
- * @param {} findElementById 
+ * @param {} elementIdString 
  * @returns {} 
  */
 ;$.byId = function (elementIdString) {
