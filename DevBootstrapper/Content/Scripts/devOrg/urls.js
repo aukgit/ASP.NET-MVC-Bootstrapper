@@ -1,4 +1,4 @@
-﻿$.devOrg = $.devOrg || {};
+﻿;$.devOrg = $.devOrg || {};
 
 $.devOrg.urls = {
     // "/Validator/"

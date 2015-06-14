@@ -29,6 +29,8 @@
  * https://www.facebook.com/DevelopersOrganism
  * mailto:info{at}developers-organism.com
  */
+; $.devOrg = $.devOrg || {};
+
 $.devOrg.dynamicSelect = {
     isDependableAttribute: "data-dependable",
     dependablePropertyNameAttribute: "data-dependable-prop-name",
@@ -39,7 +41,7 @@ $.devOrg.dynamicSelect = {
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
     additionalCssAttribute: "data-additional-css",
     liveSearchAttribute: "data-live-search",
-    isHtmlAttribute : "dev-isHtml",
+    isHtmlAttribute: "dev-isHtml",
     $dynamicSelectContainerDiv: $("div.dynamic-select-container[data-dynamic-select-container=true]"),
     $allDynamicImmidiaeSelectDivs: null, // will be defined from initialize function
     $dependancySelectsHasNotProcessed: [], //only populated if a dependency combo can't find parent.
@@ -147,7 +149,7 @@ $.devOrg.dynamicSelect = {
             type: "GET",
             dataType: requestType, //json or html
             url: url,
-            success: function(response) {
+            success: function (response) {
                 //console.log(url + " . Data:");
                 //console.log(jsonData);
                 $containerDiv.hide();
@@ -183,7 +185,7 @@ $.devOrg.dynamicSelect = {
                     var childUrl = $.devOrg.dynamicSelect.getUrlFromDynamicSelectDiv($childDiv);
 
                     if ($parentSelect.length === 1 && isItemsExist && $childDiv.length === 1) {
-                        $parentSelect.change(function() {
+                        $parentSelect.change(function () {
                             var $currentSelect = $(this);
                             var parentValue = $currentSelect.val();
                             var tempUrl = childUrl + parentValue;
@@ -198,7 +200,7 @@ $.devOrg.dynamicSelect = {
 
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Error: Can't retrieved the data from given url : " + url + ". Error : " + error);
 
             }

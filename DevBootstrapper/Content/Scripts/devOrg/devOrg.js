@@ -31,7 +31,7 @@
  * mailto:info{at}developers-organism.com
  */
 
-$.fn.extend({
+;$.fn.extend({
     // jQuery element get all classes
     getAllClasses: function () {
         if (this.length === 1) {
@@ -40,7 +40,6 @@ $.fn.extend({
         return null;
     }
 });
-
 
 $.devOrg = {
 

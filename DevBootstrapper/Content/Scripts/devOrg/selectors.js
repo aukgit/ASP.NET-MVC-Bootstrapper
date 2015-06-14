@@ -1,4 +1,4 @@
-﻿$.devOrg = $.devOrg || {};
+﻿;$.devOrg = $.devOrg || {};
 
 $.devOrg.selectors = {
     registerFormId: "register-form",

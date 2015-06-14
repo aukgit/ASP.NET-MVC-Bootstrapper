@@ -1,6 +1,6 @@
-﻿$.devOrg = $.devOrg || {};
+﻿;$.devOrg = $.devOrg || {};
 
-$.devOrg.Constants = {
+;$.devOrg.Constants = {
     registerForm: $("form.register-form"),
     countryComboSelector: ".form-control.selectpicker.country-combo",
     countryDropDownItemsSelector: "div.country-combo ul",

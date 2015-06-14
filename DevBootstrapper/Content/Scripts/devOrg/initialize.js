@@ -6,9 +6,7 @@
  * mailto:info@developers-organism.com
 */
 
-$.devOrg = $.devOrg || {};
-
-
+; $.devOrg = $.devOrg || {};
 
 $.devOrg.initialize = function () {
     $.devOrg.upload.initialize(1, "(\\.|\\/)(gif|jpe?g|png)$");

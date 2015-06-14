@@ -7,6 +7,7 @@
 /// <reference path="../validation.js" />
 /// <reference path="../underscore.js" />
 
+; $.devOrg = $.devOrg || {};
 
 $.devOrg.countryTimezonePhoneComponent = {
     countryUrl: "",

@@ -9,6 +9,7 @@
 /// <reference path="bootstrap-progressbar.js" />
 /// <reference path="I:\DevBootstrapper\WereViewProject\DevBootstrapper\Scripts/underscore.js" />
 
+; $.devOrg = $.devOrg || {};
 
 $.devOrg.upload = {
 
