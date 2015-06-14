@@ -14,15 +14,17 @@ namespace DevBootstrapper {
         public static void RegisterBundles(BundleCollection bundles) {
 
             #region CDN Constants
-            const string jQueryCdn = @"//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js";
-            //const string respondJsCDN = "http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"
+
+            const string jQueryVersion = "2.1.4";
+
+            const string jQueryCdn = @"//code.jquery.com/jquery-" + jQueryVersion + ".min.js";
             #endregion
 
             const BundleSelector bundleSelector = BundleSelector.ShowEveryScript;
 
             #region jQuery
             bundles.Add(new ScriptBundle("~/bundles/jquery", jQueryCdn)
-                        .Include("~/Content/Scripts/jquery-2.1.3.min.js") //if no CDN
+                        .Include("~/Content/Scripts/jQuery/jquery-" + jQueryVersion + ".js") //if no CDN
             );
             #endregion
 
@@ -105,7 +107,7 @@ namespace DevBootstrapper {
                                         "~/Content/css/star-rating.css",
                                         "~/Content/css/override-mvc.css",
 
-                                       
+
                                         "~/Content/css/seo-optimize.css",
                                         "~/Content/css/core-developer.css",
                                         "~/Content/css/menu.css",

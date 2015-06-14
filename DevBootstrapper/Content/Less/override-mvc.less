@@ -1,27 +1,12 @@
-﻿@import "remixens/lesshat.less";
-@import "remixens/variables.less";
-
-
-@call-out-color: @primary-header-color;
-@form-control-height: 34.4px;
-@input-control-height: 34.4px;
-@label-font-size: 14px;
-@input-font-size: 16px;
-@inputs-max-width: 294px;
-@inputs-max-width-at-mobile: 218px;
-@label-max-width-at-mobile: 100px;
-@inputs-max-width-at-l-mobile: 190px;
-@label-max-width-at-l-mobile: 80px;
-@less-than-mobile-screen: 400px;
-
-div.checkbox > label {
-    padding-left: 0;
-}
-
+﻿@import "override-mvc.variables.less";
+ 
 div.checkbox {
-    padding-left: 20px;
-}
+    .padding-left(20px);
 
+    >label {
+        padding-left: 0;
+    }
+}
 input,
 select,
 textarea,
@@ -76,7 +61,6 @@ textarea.form-control {
 .glyphicon-top-fix {
     top: 5px;
 }
-/* enable absolute positioning */
 
 
 .global-error h2 {
@@ -106,39 +90,13 @@ textarea.form-control {
     padding-top: 6px;
 }
 
-span.input-group-addon {
-    .width(38px);
-    .height(38px);
-    display: inline-block;
-}
-
-input.form-control.datetime-input,
-input.form-control.date-input {
-    .width(256px);
-}
+// select control width
 
 .btn-group.bootstrap-select.form-control {
     .width(294px);
 }
 
-button.btn.flag-combo.selectpicker {
-    font-size: 12px;
-}
 
-.dropdown-menu > .active > a.flag-country-combo,
-.dropdown-menu > .active > a.flag-country-combo:hover,
-.dropdown-menu > .active > a.flag-country-combo:focus {
-    background-color: #28971A;
-}
-
-.dropdown-menu > li > a.flag-country-combo:hover,
-.dropdown-menu > li > a.flag-country-combo:focus {
-    background-color: #2AB817;
-}
-
-.dropdown-menu > li > a.flag-country-combo {
-    font-size: 13px;
-}
 
 div.bs-searchbox input.input-block-level.form-control {
     height: 30px;
@@ -191,6 +149,14 @@ p.create-btn-p,
 
 
 // bootstrap table colors.
+
+table caption {
+    background-color: #D0DEC2;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+}
+
 .bootstrap-table-do,
 .bootstrap-table-do tr,
 .bootstrap-table-do tr td {
@@ -221,7 +187,7 @@ p.create-btn-p,
     padding-top: 5px;
     padding-bottom: 5px;
 }
- 
+
 /*.modal-body [class|='col-md']:nth-child(2) {
     padding-left: 64px;
     padding-top: 7px;
@@ -231,56 +197,12 @@ p.create-btn-p,
     display: inline;
 }
 
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-    background-color: #cae1fc;
-}
-
-body div.container.body-content h1.gap-from-top-small > .glyphicon {
-    top: 5px;
-    font-size: 1em;
-}
 
 #myCarousel img.home-page-gallery-image {
     width: 1900px;
     height: 450px;
 }
 
-.home-page-image-icon {
-    border: 1px solid #000000;
-    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.72);
-    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.72);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.72);
-}
-
-.third-list-home-page {
-    margin-top: 39px;
-}
-
-.small-font-size {
-    font-size: .4em !important;
-}
-/* modify bootstrap */
-/*.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    color: rgb(202, 225, 252);
-
-}
-.navbar-default .navbar-nav > li > a {
-    color: white;
-}*/
-/*.navbar-default .navbar-nav > li > a:focus,.navbar-default .navbar-nav > li a:hover, .navbar-default .navbar-nav > li:focus, .navbar-default .navbar-nav > li:hover {
-    color: rgb(202, 225, 252);
-
-}*/
-/*.navbar-inverse {
-    background-color: #4B4B4B;
-    border-color: #0F0F0F;
-}*/
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #333;
-    background-color: #9dd1ec;
-}
 
 .description-icon {
     top: 5px;
@@ -347,6 +269,12 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
     background-color: #19c234;
 }*/
 
+// addon button
+span.input-group-addon {
+    .width(38px);
+    .height(@form-control-height);
+    display: inline-block;
+}
 
 
 .form-control {
@@ -354,6 +282,25 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
     // date time
     &.datetime-input, &.date-input {
         .width(256px);
+    }
+}
+
+
+// date time fix
+.datepicker-start, .datetimepicker-start {
+    .input-group-addon {
+        .height(@form-control-height); 
+        //.margin(-3px ,-1px, 2px, 0px);
+        background-color: inherit;
+        color: inherit;
+        
+        &:hover {
+            //.height(@datepicker-btn-hover-height); 
+            background-color: @datepicker-btn-hover-bg-color;
+            border-color:@datepicker-btn-hover-bg-color;
+            cursor: pointer;
+            color: white;
+        }
     }
 }
 
@@ -379,36 +326,21 @@ body div.container.body-content h1.gap-from-top-small > .glyphicon {
 
 // labels and inputs
 label.control-label {
-    .font-size(@label-font-size);
     font-weight: normal;
 }
 
-input.form-control {
+.controls {
     .font-size(@input-font-size);
 }
 //font over-ride
 label.control-label, input.form-control {
     .form-input-font();
 }
-
+   
 .controls-vertical {
 }
 
 
-// date time fix
-.datepicker-start, .datetimepicker-start {
-    span.input-group-addon {
-        margin-bottom: 2px;
-        background-color: inherit;
-        color: inherit;
-
-        &:hover {
-            background-color: brown;
-            cursor: pointer;
-            color: white;
-        }
-    }
-}
 
 // addons started
 .inner-addon {
@@ -437,6 +369,6 @@ label.control-label, input.form-control {
 
 .right-addon input {
     padding-right: 30px;
-} 
+}
 
 /*# sourceMappingURL=override-mvc-css.css.map */

@@ -1,28 +1,10 @@
 ﻿@import "remixens/lesshat.less";
 @import "remixens/variables.less";
-  
+
 // fonts modules, not styles
 
 
-// without important attribute
-.form-input-font() {
-    font-family: Tahoma, Open sans, Helvetica, Arial, sans-serif;
-}
 
-.body-font() {
-    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.listitem-font() {
-    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.btn-font() {
-    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.header-font() {
-    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 
 
 // fonts modules, not styles
@@ -30,6 +12,7 @@
     margin: 0 auto;
     display: block;
 }
+
 .default-hyperlink-hover-color() {
     color: @default-hyperlink-hover-color;
 }
@@ -37,29 +20,68 @@
 .default-hyperlink-color() {
     color: @regular-hyperlink-color;
 }
+
 .color-inherit() {
     color: inherit;
 }
 
 .ubuntu-font() {
+    font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.open-sans-font() {
+    font-family: 'Open Sans';
+}
+
+.ubuntu-light-font() {
+    font-family: UbuntuLight, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.helvetica-font() {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+//important
+.tahoma-font-imp() {
+    font-family: Tahoma, Open sans, Helvetica, Arial, sans-serif !important;
+}
+
+.ubuntu-font-imp() {
     font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 
-.open-sans-font() {
+.open-sans-font-imp() {
     font-family: 'Open Sans' !important;
 }
 
-.ubuntu-light-font() {
+.ubuntu-light-font-imp() {
     font-family: UbuntuLight, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-
-
-.helvetica-font() {
+.helvetica-font-imp() {
     font-family: Helvetica, Arial, sans-serif !important;
 }
 
-.tahoma-font() {
+.tahoma-font-imp() {
     font-family: Tahoma, Open sans, Helvetica, Arial, sans-serif !important;
+}
+
+// without important attribute
+.body-font() {
+    .ubuntu-font;
+}
+
+.form-input-font() {
+    .ubuntu-font;
+}
+
+
+.listitem-font() {
+}
+
+.btn-font() {
+}
+
+.header-font() {
 }

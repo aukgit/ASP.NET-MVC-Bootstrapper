@@ -1,6 +1,6 @@
 ﻿@import "core-developer.varibales.less";
 @import "fonts-rimixens";
- 
+
 @description-icon-color: rgb(189, 189, 189);
 
 body {
@@ -14,18 +14,19 @@ body {
 
 .description-icon {
     cursor: pointer;
-    .font-size(26px);
     position: relative;
-    .top(5px);
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-box-sizing: border-box;
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
     -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: @description-icon-color;
 
@@ -34,6 +35,10 @@ body {
     }
 
     &:before {
-        content: "\e085";
+        content: "\f059";
     }
+
+    .font-size(26px);
+    .top(5px);
+    .width(22px);
 }
