@@ -37,20 +37,25 @@ $.devOrg.upload = {
     hasEditButtonParameter: "data-has-edit-btn",
 
     //ToDo : Fix those nulls at initalize.
+    WholeUploadingContainer: null, // which will contain all the uploading elements.
+    $form : null,
     formData: null,//$("form input[type='file']").closest("form").serializeArray()
     $uploaderWorkingDiv : null ,//$("form div.uploader")
     $allFileInputTypes: null,//$("form div.uploader>span.fileinput-button>input[type='file']")
     $allSpinners: null, // $("form div.uploader a[data-spinner=spinner].spinner")
     $allWholeProgressor: null, // $("form div.uploader div[data-progressor-div=true].uploader-progress-info")
-    $allProgressorValueIdicator: $("form div.uploader div[data-progressor-div=true].uploader-progress-info>a[data-progressor-value=true]"),
-    $allLabelsToIndicateUploadedFilesNumber: $("form div.uploader>label[data-label-file-uploaded=true]"),
-    $allEditButtons: $("form div.uploader>a[data-btn=edit].edit-btn"),
+    $allProgressorValueIdicator: null, // $("form div.uploader div[data-progressor-div=true].uploader-progress-info>a[data-progressor-value=true]")
+    $allLabelsToIndicateUploadedFilesNumber: null, // $("form div.uploader>label[data-label-file-uploaded=true]")
+    $allEditButtons: null,//$("form div.uploader>a[data-btn=edit].edit-btn")
 
-    $allSuccessIcons: $("form div.uploader>a[data-success-icon=true]"),
-    $allFailedIcons: $("form div.uploader>a[data-failed-icon=true]"),
+    $allSuccessIcons: null, // $("form div.uploader>a[data-success-icon=true]")
+    $allFailedIcons: null, // $("form div.uploader>a[data-failed-icon=true]")
 
-    $allErrorsRelatedTags: $("form div.uploader>[data-error-related=true]"),
-    $allULErrorsRelatedTags: $("form div.uploader>ul[data-error-related=true]"),
+    $allErrorsRelatedTags: null, //$("form div.uploader>[data-error-related=true]")
+    $allULErrorsRelatedTags: null, // $("form div.uploader>ul[data-error-related=true]")
+    isInitialized: false, // when fields are initialized it is going to be true.
+
+   
 
     initializeHide: function () {
         // only hide edit spinner
@@ -63,6 +68,114 @@ $.devOrg.upload = {
         self.$allFailedIcons.hide();
         self.$allErrorsRelatedTags.hide();
     },
+    initializeFields: function ($container, formSelector) {
+        var self = $.devOrg.upload;
+
+        if (self.isInitialized === false && $container.length > 0) {
+
+            self.$form = $container.closest("form");
+        }
+
+    },
+
+    initialize: function ($container, formSelector, acceptedFileSizeInMb, acceptFileTypeRegularExpressionString) {
+        /// <summary>
+        /// Initialize the upload plugin
+        /// </summary>
+        /// <param name="container">Which will whole container for all the uploading plugins. Developer can have more than one container in one page if necessary or else put all in one container.</param>
+        /// <param name="formSelector">Form selector to find and cache, null can be a choice. If null then it will pull the closet form from the container</param>
+        /// <param name="acceptedFileSizeInMb"></param>
+        /// <param name="acceptFileTypeRegularExpressionString"></param>
+        //var urlExist = false;
+        //var kRep = 0;
+        var uploadersLength = 0,
+            actualSize = acceptedFileSizeInMb * 1024000,
+            id = 0,
+            $label = null,
+            $editBtn = null,
+            $singleUploader = null,
+            self = $.devOrg.upload,
+            $uploaderDiv = self.$uploaderWorkingDiv;
+
+        if ($uploaderDiv.length === 0) {
+            return;
+        }
+        var $uploaders = self.$allFileInputTypes.filter($.devOrg.upload.uploaderInputClass);
+
+        uploadersLength = $uploaders.length;
+        if (uploadersLength > 0) {
+
+            // hide all necessary objects
+            self.initializeHide();
+
+            //$.devOrg.upload.uploaderFixingDataUrlOnInvalidUrls();
+
+            //$.devOrg.upload.editBtnClickEvntBindingNHide();
+
+            for (var i = 0; i < uploadersLength; i++) {
+                $singleUploader = $($uploaders[i]);
+
+
+                /// fix urls if not exist. put from form.
+                self.uploaderFixingDataUrlOnInvalidUrls($singleUploader);
+
+                id = $singleUploader.attr("data-id");
+
+                // edit button and preload, show edit button if edit btn is true
+                $label = self.getLabelToIndicateUploadedFiles(id);
+                self.showEditButtonBasedOnPreUploadNShowMessageOnLabel($label, id);
+
+
+                // binding with edit button clicked.
+                $editBtn = self.getEditButton(id);
+                self.uploaderEditBtnClickEvntBinder($editBtn, $label, $singleUploader, id);
+
+
+            }
+
+
+            $uploaders.fileupload({
+                url: $(this).attr("data-url"),
+                dataType: 'json',
+                autoUpload: $(this).attr("data-is-auto"),
+                //singleFileUploads: true,
+                acceptFileTypes: new RegExp(acceptFileTypeRegularExpressionString, 'i'),
+                FileSize: actualSize, // in MB
+                progressall: function (e, data) {
+                    // when in progress
+
+                    //written here so that doesn't have to go back and fort.
+                    var $this = $(this);
+                    var idAttr = $this.attr("data-id");
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                    self.setProgressorValue(idAttr, progress);
+                }
+            })
+            .on(self.fileUploadAddedEvent, function (e, data) {
+                // file upload added event.
+                self.onFileUploadAddedEvent(e, data, $(this));
+            })
+            // when on submit
+            .on(self.submitEvent, function (e, data) {
+                self.onSubmitEvent(e, data, $(this));
+            })
+            //.on($.devOrg.upload.progressEvent, function (e, data) {                  
+
+            //    //console.log(progress);
+            //})
+            // when done
+            .on(self.doneEvent, function (e, data) {
+                self.onUploadDoneEvent(e, data, $(this));
+            })
+            // when failed
+            .on(self.failedEvent, function (e, data) {
+                self.onUploadFailedErrorEvent(e, data, $(this));
+            }).prop('disabled', !$.support.fileInput)
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        }
+    },
+
     getSuccessIcon: function (id) {
         /// <summary>
         /// returns a tag.
@@ -122,6 +235,7 @@ $.devOrg.upload = {
         /// </summary>
         /// <param name="id"></param>
         /// <param name="msg"></param>
+
         var $icon = $.devOrg.upload.getSuccessIcon(id);
         $icon.attr("data-original-title", msg);
         return $icon.attr("title", msg).tooltip();
@@ -289,9 +403,9 @@ $.devOrg.upload = {
         /// <returns type="">
         /// return updated count value.
         /// </returns>
-
-        var currentUploadCount = parseInt($label.attr($.devOrg.upload.uploadNumberParameter));
-        var maxUploadCount = parseInt($label.attr($.devOrg.upload.maxUploadParameter));
+        var self = $.devOrg.upload;
+        var currentUploadCount = parseInt($label.attr(self.uploadNumberParameter));
+        var maxUploadCount = parseInt($label.attr(self.maxUploadParameter));
         if (_.isNaN(maxUploadCount)) {
             maxUploadCount = 1;
         }
@@ -305,7 +419,7 @@ $.devOrg.upload = {
         if (updatedValue < 0) {
             updatedValue = 0;
         }
-        $label.attr($.devOrg.upload.uploadNumberParameter, updatedValue);
+        $label.attr(self.uploadNumberParameter, updatedValue);
         $label.text(updatedValue + " " + val);
         return updatedValue;
     },
@@ -317,7 +431,8 @@ $.devOrg.upload = {
         /// <param name="id">data-id</param>
         /// <param name="val">Any text. Empty text hides the label.</param>
         /// <param name="preuploadedCount">increases the value of the upload value</param>
-        $label.attr($.devOrg.upload.preuploadedCount, preuploadedCount);
+        var self = $.devOrg.upload;
+        $label.attr(self.preuploadedCount, preuploadedCount);
         $label.text(preuploadedCount + " " + val);
     },
 
@@ -362,6 +477,7 @@ $.devOrg.upload = {
     uploadDeleteBtnClicked: function (e, $deleteBtn, $editBtn, id, sequence, $imageRow, $uploaderLabel, $uploaderInput) {
         var url = $deleteBtn.attr("href");
         var count = 0;
+        var self = $.devOrg.upload;
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -372,7 +488,7 @@ $.devOrg.upload = {
                     $imageRow.hide('slow', function () {
                         $imageRow.remove();
                     });
-                    count = $.devOrg.upload.setTextInLabelWithUploadNumber($uploaderLabel, $.devOrg.upload.uploadedFilesMessage, -1);
+                    count = self.setTextInLabelWithUploadNumber($uploaderLabel, $.devOrg.upload.uploadedFilesMessage, -1);
                     if (count <= 0) {
                         $editBtn.hide();
                     }
@@ -389,8 +505,9 @@ $.devOrg.upload = {
     uploadEditBtnClicked: function (e, $editBtn, id, $uploaderLabel, $uploaderInput) {
         e.preventDefault();
         var url = $editBtn.attr("href");
+        var self = $.devOrg.upload;
 
-        var $spinner = $.devOrg.upload.showEditProgressor(id);
+        var $spinner = self.showEditProgressor(id);
 
 
         $.ajax({
@@ -413,7 +530,7 @@ $.devOrg.upload = {
 
                     var $imageRow = $response.find("div.row[data-id='" + id + "'][data-sequence='" + sequence + "']");
 
-                    $.devOrg.upload.uploadDeleteBtnClicked(e, $deleteButton, $editBtn, id, sequence, $imageRow, $uploaderLabel, $uploaderInput);
+                    self.uploadDeleteBtnClicked(e, $deleteButton, $editBtn, id, sequence, $imageRow, $uploaderLabel, $uploaderInput);
                 });
 
 
@@ -525,97 +642,6 @@ $.devOrg.upload = {
     },
     getId: function ($uploaderItem) {
         return $uploaderItem.attr("data-id");
-    },
-    initialize: function (acceptedFileSizeInMb, acceptFileTypeRegularExpressionString) {
-        //var urlExist = false;
-        //var kRep = 0;
-
-        var uploadersLength = 0,
-            actualSize = acceptedFileSizeInMb * 1024000,
-            id = 0,
-            $label = null,
-            $editBtn = null,
-            $singleUploader = null,
-            self = $.devOrg.upload,
-            $uploaderDiv = self.$uploaderWorkingDiv;
-
-        if ($uploaderDiv.length === 0) {
-            return;
-        }
-        var $uploaders = self.$allFileInputTypes.filter($.devOrg.upload.uploaderInputClass);
-
-        uploadersLength = $uploaders.length;
-        if (uploadersLength > 0) {
-
-            // hide all necessary objects
-            self.initializeHide();
-
-            //$.devOrg.upload.uploaderFixingDataUrlOnInvalidUrls();
-
-            //$.devOrg.upload.editBtnClickEvntBindingNHide();
-
-            for (var i = 0; i < uploadersLength; i++) {
-                $singleUploader = $($uploaders[i]);
-
-
-                /// fix urls if not exist. put from form.
-                self.uploaderFixingDataUrlOnInvalidUrls($singleUploader);
-
-                id = $singleUploader.attr("data-id");
-
-                // edit button and preload, show edit button if edit btn is true
-                $label = self.getLabelToIndicateUploadedFiles(id);
-                self.showEditButtonBasedOnPreUploadNShowMessageOnLabel($label, id);
-
-
-                // binding with edit button clicked.
-                $editBtn = self.getEditButton(id);
-                self.uploaderEditBtnClickEvntBinder($editBtn, $label, $singleUploader, id);
-
-
-            }
-
-
-            $uploaders.fileupload({
-                url: $(this).attr("data-url"),
-                dataType: 'json',
-                autoUpload: $(this).attr("data-is-auto"),
-                //singleFileUploads: true,
-                acceptFileTypes: new RegExp(acceptFileTypeRegularExpressionString, 'i'),
-                FileSize: actualSize, // in MB
-                progressall: function (e, data) {
-                    // when in progress
-
-                    //written here so that doesn't have to go back and fort.
-                    var $this = $(this);
-                    var idAttr = $this.attr("data-id");
-                    var progress = parseInt(data.loaded / data.total * 100, 10);
-
-                    $.devOrg.upload.setProgressorValue(idAttr, progress);
-                }
-            })
-            .on($.devOrg.upload.fileUploadAddedEvent, function (e, data) {
-                // file upload added event.
-                $.devOrg.upload.onFileUploadAddedEvent(e, data, $(this));
-            })
-            // when on submit
-            .on($.devOrg.upload.submitEvent, function (e, data) {
-                $.devOrg.upload.onSubmitEvent(e, data, $(this));
-            })
-            //.on($.devOrg.upload.progressEvent, function (e, data) {                  
-
-            //    //console.log(progress);
-            //})
-            // when done
-            .on($.devOrg.upload.doneEvent, function (e, data) {
-                $.devOrg.upload.onUploadDoneEvent(e, data, $(this));
-            })
-            // when failed
-            .on($.devOrg.upload.failedEvent, function (e, data) {
-                $.devOrg.upload.onUploadFailedErrorEvent(e, data, $(this));
-            }).prop('disabled', !$.support.fileInput)
-                .parent().addClass($.support.fileInput ? undefined : 'disabled');
-        }
     },
     onFileUploadAddedEvent: function (e, data, $this) {
         var id = $this.attr("data-id");
