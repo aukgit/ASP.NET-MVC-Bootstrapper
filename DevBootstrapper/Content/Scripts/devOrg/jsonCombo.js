@@ -1,15 +1,24 @@
 ﻿/// <reference path="../jQuery/jquery-2.1.3.js" />
 /// <reference path="../jQuery/jquery-2.1.3.intellisense.js" />
+/// <reference path="../jQuery/jquery.number.js" />
 /// <reference path="../jQuery/jquery.unobtrusive-ajax.js" />
-/// <reference path="../jQuery/jquery.unobtrusive-ajax.min.js" />
+/// <reference path="../jQuery/jquery.validate-vsdoc.js" />
 /// <reference path="../jQuery/jquery.validate.js" />
-/// <reference path="../jQuery/jquery.validate.min.js" />
-/// <reference path="byId.js" />
-/// <reference path="constants.js" />
-/// <reference path="devOrg.js" />
-/// <reference path="initialize.js" />
-/// <reference path="urls.js" />
-/// <reference path="selectors.js" />
+/// <reference path="../jQuery/jquery.validate.unobtrusive.js" />
+/// <reference path="../jQuery/moment.js" />
+/// <reference path="../jQuery/underscore.js" />
+/// <reference path="../jQuery/validation.js" />
+/// <reference path="../jQuery/Upload/jquery.fileupload.js" />
+/// <reference path="../Bootstrap/bootstrap.js" />
+/// <reference path="../Bootstrap/bootstrap-select.js" />
+/// <reference path="../Bootstrap/bootstrap-table-export.js" />
+/// <reference path="../Bootstrap/bootstrap-table-filter.js" />
+/// <reference path="../Bootstrap/bootstrap-datetimepicker.js" />
+/// <reference path="../Bootstrap/bootstrap-datepicker.js" />
+/// <reference path="../Bootstrap/common-tasks-run-every-page.js" />
+/// <reference path="../Bootstrap/modernizr-2.8.3.js" />
+/// <reference path="../Bootstrap/respond.js" />
+/// <reference path="../Bootstrap/star-rating.js" />
 
 /**!
  * Written by Alim Ul Karim
@@ -22,8 +31,7 @@
  */
 ; $.devOrg = $.devOrg || {};
 
-
-$.jsonCombo = {
+$.devOrg.jsonCombo = {
     isDependableAttribute: "data-dependable",
     dependablePropertyNameAttribute: "data-dependable-prop-name",
     propertyNameAttribute: "data-prop",
@@ -52,10 +60,10 @@ $.jsonCombo = {
         /// returns data-id='attribute value'
         /// </summary>
         /// <param name="$div"></param>
-        return $div.attr($.jsonCombo.idAttribute);
+        return $div.attr($.devOrg.jsonCombo.idAttribute);
     },
     getSpinner: function (propName) {
-        return $.jsonCombo.$spinners.filter("[" + $.jsonCombo.propertyNameAttribute + "='" + propName + "']");
+        return $.devOrg.jsonCombo.$spinners.filter("[" + $.devOrg.jsonCombo.propertyNameAttribute + "='" + propName + "']");
     },
     getIdAsAttribute: function ($div) {
         /// <summary>
@@ -65,8 +73,8 @@ $.jsonCombo = {
         /// else returns ''
         /// </summary>
         /// <param name="$div"></param>
-        var id = $.jsonCombo.getDataId($div);
-        if ($.jsonCombo.isEmpty(id) === false) {
+        var id = $.devOrg.jsonCombo.getDataId($div);
+        if ($.devOrg.jsonCombo.isEmpty(id) === false) {
             id = " id='" + id + "' ";
         } else {
             id = "";
@@ -87,39 +95,40 @@ $.jsonCombo = {
         ///      data-load-auto="true/false"
         /// </summary>
         "use strict";
+        var self = $.devOrg.jsonCombo;
+
         if (additionalSelector === undefined) {
             additionalSelector = "";
         }
 
-        var selector = "div." + $.jsonCombo.dynamicSelectClass + "[" + $.jsonCombo.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
+        var selector = "div." + self.dynamicSelectClass + "[" + self.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
         var $dynamicDiv = $(selector);
-        // don't use $.jsonCombo type of caching because it is not updated when items are appended ** alim ul karim
-        $.jsonCombo.$allDynamicImmidiaeSelectDivs = $dynamicDiv;
-        $.jsonCombo.$spinners = $($.jsonCombo.spineerSelectors);
-        $.jsonCombo.$hideableContents = $($.jsonCombo.hidableContentSelector);
-        //console.log($.jsonCombo.$spinners);
+        // don't use $.devOrg.jsonCombo type of caching because it is not updated when items are appended ** alim ul karim
+        self.$allDynamicImmidiaeSelectDivs = $dynamicDiv;
+        self.$spinners = $(self.spineerSelectors);
+        self.$hideableContents = $(self.hidableContentSelector);
+        //console.log($.devOrg.jsonCombo.$spinners);
         //spinner hides first
-        if ($.jsonCombo.$spinners.length) {
-            $.jsonCombo.$spinners.hide();
+        if (self.$spinners.length) {
+            self.$spinners.hide();
         }
         var length = $dynamicDiv.length;
 
 
         for (var i = 0; i < length; i++) {
             var $div = $($dynamicDiv[i]);
-            var isDependable = $div.attr($.jsonCombo.isDependableAttribute);
+            var isDependable = $div.attr(self.isDependableAttribute);
 
             var url = $div.attr(this.urlAttribute);
-            if ($.jsonCombo.isEmpty(url) === false && isDependable === 'false') {
+            if (self.isEmpty(url) === false && isDependable === 'false') {
                 // url exist and needs to be processed
-
-                $.jsonCombo.getJsonProcessSelectDynamicOptions($div, url);
+                self.getJsonProcessSelectDynamicOptions($div, url);
                 // dependency will be handled in side the parent when json is reviced in the parent
             }
         }
     },
     isHtmlRequest: function ($div) {
-        return $div.attr($.jsonCombo.isHtmlAttribute);
+        return $div.attr($.devOrg.jsonCombo.isHtmlAttribute);
     },
     fixUrlWithSlash: function (url) {
         /// <summary>
@@ -128,7 +137,7 @@ $.jsonCombo = {
         /// 
         /// </summary>
         /// <param name="url">site.com/ or site.com will return site.com/</param>
-        if ($.jsonCombo.isEmpty(url) === false) {
+        if ($.devOrg.jsonCombo.isEmpty(url) === false) {
             var len = url.length;
             var lastChar = url[len - 1];
             if (lastChar !== "/") {
@@ -138,16 +147,16 @@ $.jsonCombo = {
         return url;
     },
     filterDependableDivByPropName: function (depenablePropName) {
-        var findChildSelector = "[" + $.jsonCombo.dependablePropertyNameAttribute + "=" + depenablePropName + "]";
-        return $.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
+        var findChildSelector = "[" + $.devOrg.jsonCombo.dependablePropertyNameAttribute + "=" + depenablePropName + "]";
+        return $.devOrg.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
     },
     filterDivByPropName: function (propName) {
-        var findChildSelector = "[" + $.jsonCombo.propertyNameAttribute + "=" + propName + "]";
-        return $.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
+        var findChildSelector = "[" + $.devOrg.jsonCombo.propertyNameAttribute + "=" + propName + "]";
+        return $.devOrg.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
     },
     getUrlFromDynamicSelectDiv: function ($div) {
-        var url = $div.attr($.jsonCombo.urlAttribute);
-        url = $.jsonCombo.fixUrlWithSlash(url);
+        var url = $div.attr($.devOrg.jsonCombo.urlAttribute);
+        url = $.devOrg.jsonCombo.fixUrlWithSlash(url);
         return url;
     },
     selectFirstItemInSelectAndGetValue: function ($currentSelect) {
@@ -165,41 +174,38 @@ $.jsonCombo = {
         /// <param name="$div"></param>
         /// <param name="url">given url to get the json</param>
         "use strict";
-        var isHtml = $.jsonCombo.isHtmlRequest($div);
+        var self = $.devOrg.jsonCombo;
+
+        var isHtml = self.isHtmlRequest($div);
         var requestType = "JSON";
         if (isHtml) {
             requestType = "HTML";
         }
 
-        var value = $div.attr($.jsonCombo.dataValueAttribute);
-        var liveSearch = $div.attr($.jsonCombo.liveSearchAttribute);
-        var additionCss = $div.attr($.jsonCombo.additionalCssAttribute);
-        var propName = $div.attr($.jsonCombo.propertyNameAttribute);
-
+        var value = $div.attr(self.dataValueAttribute);
+        var liveSearch = $div.attr(self.liveSearchAttribute);
+        var additionCss = $div.attr(self.additionalCssAttribute);
+        var propName = $div.attr(self.propertyNameAttribute);
         //container and spinners 
         var selectOfParentDiv = "div.form-row-" + propName +":first";
         //console.log(propName);
         //console.log(selectOfParentDiv);
-
         var $containerDiv = $(selectOfParentDiv);
         //console.log($containerDiv);
-
-        var $hideableContents = $containerDiv.find($.jsonCombo.hidableContentSelector);
+        var $hideableContents = $containerDiv.find(self.hidableContentSelector);
         //console.log($hideableContents);
         var $spinner = null;
-        if ($.jsonCombo.$spinners.length > 0) {
-            $spinner = $.jsonCombo.getSpinner(propName);
+        if (self.$spinners.length > 0) {
+            $spinner = self.getSpinner(propName);
             if ($spinner.length > 0) {
                 $spinner.show('slow');
                 $hideableContents.hide();
             }
         }
-
-        var elementIdInAttributeFormat = $.jsonCombo.getIdAsAttribute($div); // returns id in attribute format
-        var elementId = $.jsonCombo.getDataId($div); // get data-id attribute value
-        var isSelectPickerRequired = $div.attr($.jsonCombo.isStyledAttribute);
+        var elementIdInAttributeFormat = self.getIdAsAttribute($div); // returns id in attribute format
+        var elementId = self.getDataId($div); // get data-id attribute value
+        var isSelectPickerRequired = $div.attr(self.isStyledAttribute);
         var selectPickerClass = isSelectPickerRequired === 'true' ? 'selectpicker' : '';
-
         var addAttr = "data-style='" + additionCss + "'" +
                       "data-live-search='" + liveSearch + "'" +
                       elementIdInAttributeFormat;
@@ -217,7 +223,6 @@ $.jsonCombo = {
                     $spinner.hide();
                     $hideableContents.show('slow');
                 }
-
                 //console.log(url + " . Data:");
                 //console.log(jsonData);
                 //
@@ -229,7 +234,7 @@ $.jsonCombo = {
                         //json type
                         var options = new Array(response.length + 5);
                         for (var i = 0; i < response.length; i++) { // build options
-                            if ($.jsonCombo.isEmpty(value) === false && (value === response[i].id || response[i].display === value)) {
+                            if (self.isEmpty(value) === false && (value === response[i].id || response[i].display === value)) {
                                 options[i] = ("<option value='" + response[i].id + "' Selected='selected'>" + response[i].display + "</option>");
                             } else {
                                 options[i] = ("<option value='" + response[i].id + "'>" + response[i].display + "</option>");
@@ -241,10 +246,11 @@ $.jsonCombo = {
                         // html
                         $div.html(response);
                     }
+
                     //$div.show("slow");
                     $containerDiv.show('slow');
                     // find any of the dependency if exist
-                    if ($.jsonCombo.isEmpty(elementId)) {
+                    if (self.isEmpty(elementId)) {
                         // id doesn't exist
                         $originalHtmlSelectbox = $div.find("select:first");
                     } else {
@@ -253,34 +259,27 @@ $.jsonCombo = {
                         //console.log(elementId);
                         //console.log($parentSelect);
                     }
-
                     var isItemsExist = $originalHtmlSelectbox.find("option:first").length === 1;
-
                     //select first item
-                    $.jsonCombo.selectFirstItemInSelectAndGetValue($originalHtmlSelectbox);
+                    self.selectFirstItemInSelectAndGetValue($originalHtmlSelectbox);
                     $originalHtmlSelectbox.trigger('change');
                     //console.log(isSelectPickerRequired);
                     //if (isSelectPickerRequired === 'true') {
                     //    // make it styled
                     //$parentSelect.selectpicker();
-
                     //}
-
-                    var $childDiv = $.jsonCombo.filterDependableDivByPropName(propName);
-                    var childUrl = $.jsonCombo.getUrlFromDynamicSelectDiv($childDiv);
+                    var $childDiv = self.filterDependableDivByPropName(propName);
+                    var childUrl = self.getUrlFromDynamicSelectDiv($childDiv);
 
                     if ($originalHtmlSelectbox.length === 1 && isItemsExist && $childDiv.length === 1) {
                         //console.log("ase");
                         $originalHtmlSelectbox.change(function () {
                             console.log($originalHtmlSelectbox);
-
                             var $currentSelect = $(this);
                             var parentValue = $currentSelect.val();
                             var tempUrl = childUrl + parentValue;
                             $childDiv.html("");
-                            $.devOrg
-                                .dynamicSelect
-                                .getJsonProcessSelectDynamicOptions(
+                            self.getJsonProcessSelectDynamicOptions(
                                     $childDiv,
                                     tempUrl);
                         }).trigger('change');
@@ -292,7 +291,9 @@ $.jsonCombo = {
             },
             error: function (xhr, status, error) {
                 console.log("Error: Can't retrieved the data from given url : " + url + ". Error : " + error);
+
             }
         });
     }
+
 }
