@@ -6,6 +6,6 @@
     @ViewBag.backBtn
     @ViewBag.stateMessage
     @Html.Hidden("tab", tab)
-    @Html.EditorFor(model => model.PageItems)
+    @Html.EditorFor(model => model.PageItems, "long")
     @ViewBag.backBtn
 </div>
