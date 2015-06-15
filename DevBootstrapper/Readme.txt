@@ -1,4 +1,4 @@
-﻿Beta 0.2
+﻿ 1.0.20
 DevBootstraper is a project template and at the same time framework to build enterprise apps rapidly.
 Developed By 
 Developers Organism

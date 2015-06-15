@@ -66,6 +66,10 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Required]
         [DisplayName("Company Name")]
         public string CompanyName { get; set; }
+        [StringLength(120)]
+        [Required]
+        [Display(Name = "Developer's Name", Description = "Developer or company name.")]
+        public string DeveloperName { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [Required]
@@ -90,11 +94,11 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         public string TestingUrl { get; set; }
         [StringLength(500)]
         [Required]
-        [Display(Name="Service Url", Description="Common Service Controller Url")]
+        [Display(Name="Service Url", Description="Common Service Controller url after host url.")]
         public string ServicesControllerUrl { get; set; }
         [StringLength(500)]
         [Required]
-        [Display(Name = "Api Url", Description = "Common Api Controller Url")]
+        [Display(Name = "Api Url", Description = "Common Api Controller url after host url.")]
         public string ApiControllerUrl { get; set; }
 
         [StringLength(256)]
@@ -159,8 +163,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Display(Name = "Gallery Max", Description = "App details page , max gallery image number to upload.")]
 
         public byte GalleryMaxPictures { get; set; }
-        [Display(Name = "Max Draft", Description = "Apps max draft number.")]
-        public byte MaxDraftPostByUsers { get; set; }
+    
         //[DefaultValue(1)]
         //[Required]
         //[DisplayName("Steps in Registration")]
@@ -184,7 +187,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         public bool IsRegisterCodeRequiredToRegister { get; set; }
 
         [DisplayName("Is SSL Enabled for SMTP configuration.")]
-        public bool IsSMTPSSL { get; set; }
+        public bool IsSmptSsl { get; set; }
 
         [DisplayName("Is Confirmation mail required.")]
         public bool IsConfirmMailRequired { get; set; }

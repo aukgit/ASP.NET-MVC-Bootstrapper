@@ -6,13 +6,8 @@
     @ViewBag.backBtn
     @ViewBag.stateMessage
     @Html.Hidden("tab", tab)
-    @Html.EditorFor(model => model.LiveUrl)
-    @Html.EditorFor(model => model.TestingUrl)
-    @Html.EditorFor(model => model.ServicesControllerUrl)
-    @Html.EditorFor(model => model.ApiControllerUrl)
-
-    @Html.EditorFor(model => model.IsInTestingEnvironment)
-
-
+    @Html.EditorFor(model => model.DeveloperName)
+    @Html.EditorFor(model => model.DeveloperEmail, "Email")
+    @Html.EditorFor(model => model.NotifyDeveloperOnError)
     @ViewBag.backBtn
 </div>

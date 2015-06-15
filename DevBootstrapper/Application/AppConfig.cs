@@ -114,7 +114,7 @@ namespace DevBootstrapper.Application {
                         IsFacebookAuthentication = true,
                         NotifyDeveloperOnError = true,
                         IsConfirmMailRequired = true,
-                        IsSMTPSSL = true,
+                        IsSmptSsl = true,
                         IsFirstUserFound = false
                     };
                     db.CoreSettings.Add(_setting);
@@ -149,7 +149,7 @@ namespace DevBootstrapper.Application {
                 ViewCommon.SetCommonMetaDescriptionToEmpty();
                 //Configure this with add a sender email.
                 Starter.Mailer = new DevMvcComponent.Mailer.CustomMailConfig(Setting.SenderEmail,
-                    Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSMTPSSL);
+                    Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
                 //if false then no email on error.
                 Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 

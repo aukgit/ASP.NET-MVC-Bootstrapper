@@ -301,7 +301,6 @@
     <Compile Include="Models\EntityModel\POCO\Shipper.cs" />
     <Compile Include="Models\EntityModel\POCO\Supplier.cs" />
     <Compile Include="Models\EntityModel\POCO\Territory.cs" />
-    <Compile Include="Models\Inputs.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\Country.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\CountryAlternativeName.cs" />
     <Compile Include="Models\POCO\IdentityCustomization\CountryCurrency.cs" />
@@ -502,6 +501,7 @@
     <Content Include="Content\Scripts\devOrg\country-phone.js" />
     <Content Include="Content\Scripts\devOrg\jsonCombo.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
+    <Content Include="Content\Scripts\every-page.js" />
     <Content Include="Content\Scripts\jQuery\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\jQuery\Upload\canvas-to-blob.min.js" />
     <Content Include="Content\Scripts\devOrg\upload.js" />
