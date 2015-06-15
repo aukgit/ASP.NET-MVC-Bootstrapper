@@ -30,7 +30,6 @@
  * mailto:info{at}developers-organism.com
  */
 ; $.devOrg = $.devOrg || {};
-
 $.devOrg.jsonCombo = {
     isDependableAttribute: "data-dependable",
     dependablePropertyNameAttribute: "data-dependable-prop-name",
@@ -74,7 +73,7 @@ $.devOrg.jsonCombo = {
         /// </summary>
         /// <param name="$div"></param>
         var id = $.devOrg.jsonCombo.getDataId($div);
-        if ($.devOrg.jsonCombo.isEmpty(id) === false) {
+        if ($.isEmpty(id) === false) {
             id = " id='" + id + "' ";
         } else {
             id = "";
@@ -100,7 +99,6 @@ $.devOrg.jsonCombo = {
         if (additionalSelector === undefined) {
             additionalSelector = "";
         }
-
         var selector = "div." + self.dynamicSelectClass + "[" + self.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
         var $dynamicDiv = $(selector);
         // don't use $.devOrg.jsonCombo type of caching because it is not updated when items are appended ** alim ul karim
@@ -120,7 +118,7 @@ $.devOrg.jsonCombo = {
             var isDependable = $div.attr(self.isDependableAttribute);
 
             var url = $div.attr(this.urlAttribute);
-            if (self.isEmpty(url) === false && isDependable === 'false') {
+            if ($.isEmpty(url) === false && isDependable === 'false') {
                 // url exist and needs to be processed
                 self.getJsonProcessSelectDynamicOptions($div, url);
                 // dependency will be handled in side the parent when json is reviced in the parent
@@ -137,7 +135,7 @@ $.devOrg.jsonCombo = {
         /// 
         /// </summary>
         /// <param name="url">site.com/ or site.com will return site.com/</param>
-        if ($.devOrg.jsonCombo.isEmpty(url) === false) {
+        if ($.isEmpty(url) === false) {
             var len = url.length;
             var lastChar = url[len - 1];
             if (lastChar !== "/") {
@@ -234,7 +232,7 @@ $.devOrg.jsonCombo = {
                         //json type
                         var options = new Array(response.length + 5);
                         for (var i = 0; i < response.length; i++) { // build options
-                            if (self.isEmpty(value) === false && (value === response[i].id || response[i].display === value)) {
+                            if ($.isEmpty(value) === false && (value === response[i].id || response[i].display === value)) {
                                 options[i] = ("<option value='" + response[i].id + "' Selected='selected'>" + response[i].display + "</option>");
                             } else {
                                 options[i] = ("<option value='" + response[i].id + "'>" + response[i].display + "</option>");
@@ -250,7 +248,7 @@ $.devOrg.jsonCombo = {
                     //$div.show("slow");
                     $containerDiv.show('slow');
                     // find any of the dependency if exist
-                    if (self.isEmpty(elementId)) {
+                    if ($.isEmpty(elementId)) {
                         // id doesn't exist
                         $originalHtmlSelectbox = $div.find("select:first");
                     } else {
@@ -291,7 +289,6 @@ $.devOrg.jsonCombo = {
             },
             error: function (xhr, status, error) {
                 console.log("Error: Can't retrieved the data from given url : " + url + ". Error : " + error);
-
             }
         });
     }
