@@ -35,9 +35,10 @@ $.devOrg.urls = {
         /// Return host url with a slash at the bottom.
         /// </summary>
         /// <returns type="">Returns the host url.</returns>
-        var self = this;
+        var self = $.devOrg.urls;
+        var hostUrl = self.hostUrl;
 
-        if (self.hostUrl === null) {
+        if ($.isEmpty(hostUrl)) {
             var dev = $.devOrg,
                 selectors = dev.selectors;
             var id = selectors.hostFieldId;
@@ -56,12 +57,13 @@ $.devOrg.urls = {
         /// </summary>
         /// <param name="givenUrl">url shouldn't have any slash at the begining.</param>
         /// <returns type="">Return absolute url containing host name and url.</returns>
-        var self = this;
-        if (self.hostUrl !== null) {
-            return self.hostUrl + givenUrl;
+        var self = $.devOrg.urls;
+        var hostUrl = self.hostUrl;
+        if (!$.isEmpty(hostUrl)) {
+            return hostUrl + givenUrl;
         }
-        var host = self.getHostUrl();
-        return host + givenUrl;
+        hostUrl = self.getHostUrl();
+        return hostUrl + givenUrl;
     }
 
 

@@ -87,8 +87,9 @@ $.returnUrlWithSlash = function (url) {
     /// <returns type="string">Url with slash at the bottom or empty string if type doesn't match or null or undefined.</returns>
     if ($.isEmpty(url) === false && $.isString(url)) {
         var len = url.length;
-        if (url.charAt(len - 1) !== '/') {
+        if (url[len - 1] !== '/') {
             url += "/";
+            return url;
         }
     }
     return "";
