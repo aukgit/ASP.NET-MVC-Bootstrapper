@@ -365,9 +365,6 @@
     <Content Include="App_Data\Northwind_log.ldf">
       <DependentUpon>Northwind.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\StoredProceduresCreate\ResetRoles.sql" />
-    <Content Include="App_Data\StoredProceduresCreate\ResetCoreSettings.sql" />
-    <Content Include="App_Data\StoredProceduresCreate\ResetASPNetUser.sql" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
@@ -575,7 +572,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\Less\bootstrap-tag.less" />
-    <Content Include="App_Data\SQLScriptsforCountryInformation.7z" />
     <Content Include="Content\Scripts\Bootstrap\common-tasks-run-every-page.js" />
     <Content Include="Content\Scripts\devOrg\initialize.js" />
     <Content Include="Content\Scripts\devOrg\devOrg.js" />

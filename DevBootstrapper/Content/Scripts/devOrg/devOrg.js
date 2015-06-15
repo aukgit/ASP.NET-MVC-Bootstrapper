@@ -31,15 +31,6 @@
  * mailto:info{at}developers-organism.com
  */
 
-;$.fn.extend({
-    // jQuery element get all classes
-    getAllClasses: function () {
-        if (this.length === 1) {
-            return this.attr("class").split(/\s+/);
-        }
-        return null;
-    }
-});
 
 $.devOrg = {
 
