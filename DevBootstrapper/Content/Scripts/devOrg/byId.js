@@ -4,8 +4,8 @@
  * Dated : 10 Jun 2015
  * Version : 1.0
  * Performance test against jQuery http://jsperf.com/jquery-vs-fasterjquery
- * @param {} elementIdString 
- * @returns {} 
+ * @param {string} elementIdString 
+ * @returns a jQuery object. 
  */
 ;$.byId = function (elementIdString) {
     /// <summary>
