@@ -11,6 +11,15 @@
 /// <reference path="urls.js" />
 /// <reference path="selectors.js" />
 
+/**!
+ * Written by Alim Ul Karim
+ * Email: devorg.bd{at}gmail.com
+ * Dated : 10 Jun 2015
+ * Version : 1.0
+ * Performance : http://jsperf.com/jquery-vs-fasterjquery
+ * https://www.facebook.com/DevelopersOrganism
+ * mailto:info{at}developers-organism.com
+ */
 ; $.devOrg = $.devOrg || {};
 
 
