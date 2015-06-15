@@ -56,6 +56,70 @@ $.getArrayExcept = function (givenArray, excludingArray) {
     return results;
 }
 
+
+//validation modification
+$.checkValidInputs = function ($inputsCollection, starRatingLabel, invalidStarRatingCss) {
+    /// <summary>
+    /// Check all the inputs jQuery validations.
+    /// Also mark to red when invalid by the default valid method. 
+    /// Bootstrap star rating is also validated in custom way.
+    /// </summary>
+    /// <param name="$inputsCollection" type="jQuery element">All input collection. </param>
+    /// <param name="starRatingLabel">Can be null or full html for the label to be injected when star rating is not selected or rated.</param>
+    /// <param name="invalidStarRatingCss" type="json with css properties">When null: {'text-shadow': "2px 2px red"}</param>
+    /// <returns type="boolean">true/false</returns>
+    "use strict";
+
+    var $currentInput = null;
+    var length = $inputsCollection.length;
+    var labelHtml = starRatingLabel;
+    if ($.isEmpty(labelHtml)) {
+        labelHtml = "<label class='label label-danger small-font-size'>Please rate first.</label>";
+    }
+
+    if ($.isEmpty(invalidStarRatingCss)) {
+        invalidStarRatingCss = {
+            'text-shadow': "2px 2px red"
+        };
+    }
+    if (length > 0) {
+        for (var i = 0; i < length; i++) {
+            $currentInput = $($inputsCollection[i]);
+
+            if ($currentInput.hasClass("common-rating")) {
+                var $ratingContainer = $currentInput.closest("div.rating-container");
+                var $wholeContainer = $ratingContainer.closest("div.star-rating");
+
+                if ($currentInput.val() === "0") {
+                    $ratingContainer.css(invalidStarRatingCss);
+                    if (!$wholeContainer.attr("data-warned")) {
+                        $wholeContainer.append(labelHtml);
+                        $wholeContainer.attr("data-warned", "true");
+                    }
+                    return false;
+                } else {
+                    // when star rating is valid then 
+                    // remove the injected label and make it normal
+                    $ratingContainer.css({
+                        'text-shadow': "none"
+                    });
+
+                    if ($wholeContainer.attr("data-warned")) {
+                        // removing injected label.
+                        $wholeContainer.find("label").remove();
+                        $wholeContainer.attr("data-warned", "false");
+                    }
+                }
+            }
+            if (!$currentInput.valid()) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
 $.fn.extend({
     getClassesList: function () {
         /// <summary>

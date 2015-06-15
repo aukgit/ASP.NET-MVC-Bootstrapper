@@ -54,8 +54,8 @@ $.devOrg = {
             var anchorItem = listItem.find("a");
             var listOfAllAnchorClasses = anchorItem.getClassesList();
             var listOfAllClassesdropDownBtn = dropDownBtn.getClassesList();
-            var flagClass = $.devOrg.getArrayExcept(listOfAllAnchorClasses, skippingClassesAnchor);
-            var btnFlagClass = $.devOrg.getArrayExcept(listOfAllClassesdropDownBtn, skippingClassesForBtn);
+            var flagClass = $.getArrayExcept(listOfAllAnchorClasses, skippingClassesAnchor);
+            var btnFlagClass = $.getArrayExcept(listOfAllClassesdropDownBtn, skippingClassesForBtn);
             for (var i = 0; i < btnFlagClass.length; i++) {
                 dropDownBtn.removeClass(btnFlagClass[i]);
             }
@@ -122,7 +122,7 @@ $.devOrg = {
         }
         return null;
     },
-    
+
     getComboString: function (comboName, comboClass, comboId, stringOptionItems, additionalAttributes) {
         /// <summary>
         /// returns a select/combo making string
@@ -211,8 +211,9 @@ $.devOrg = {
         /// <param name="jsonItems">must contain display and id value for every 'option' item.</param>
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
-        var optionsString = $.devOrg.getComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
-        var comboString = $.devOrg.getComboString(comboName, comboClass, comboId, optionsString, additionalAttributesWithCombo);
+        var self = $.devOrg;
+        var optionsString = self.getComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
+        var comboString = self.getComboString(comboName, comboClass, comboId, optionsString, additionalAttributesWithCombo);
         return comboString;
     },
     smartDependableCombo: function (parentSelectsjQuerySelector,
@@ -240,6 +241,8 @@ $.devOrg = {
         /// <param name="placedComboAdditionalClassesWithEachItem">Add extra classes with every option, only write the class names with space.</param>
         /// <param name="placedComboAdditionalHtmlWithEachItem">Add extra html content with each option item</param>
         var $parentCombo = $(parentSelectsjQuerySelector);
+        var self = $.devOrg;
+
         if ($.isEmpty($parentCombo)) {
             console.error.log("error raised from developers organism component's smartDependableCombo that no parent is detected.");
             return; // nothing exist in parent.
@@ -268,7 +271,7 @@ $.devOrg = {
 
         function createCombo(responseJson) {
             //(comboName, comboClass, comboId, additionalAttributes, jsonItems, extraHtmlWithEachElement, itemClasses)
-            var comboString = $.devOrg.getWholeComboStringWithJsonItems(responseJson, placingComboName, placedComboClass, placedComboId, placedComboAdditionalAttributes, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithEachItem);
+            var comboString = self.getWholeComboStringWithJsonItems(responseJson, placingComboName, placedComboClass, placedComboId, placedComboAdditionalAttributes, placedComboAdditionalHtmlWithEachItem, placedComboAdditionalClassesWithEachItem);
             //var insideDivHtml = $innerDiv.html();
             //var wholeCombo = comboString + insideDivHtml;
             $innerDiv.prepend(comboString);
@@ -307,7 +310,7 @@ $.devOrg = {
         });
     },
 
-    
+
     bootstrapComboSelectbyFindingValue: function (comboSelector, searchForvalue) {
         /// <summary>
         /// Select bootstrap selectpicker index by searching the item.
@@ -826,58 +829,58 @@ $.devOrg = {
         /// <param name="keepOthersVisible">Should add new hide ones or previous ones hides and load new ones(divs)</param>
         /// <param name="dontSubmit">When none left , do we submit? True: don't submit</param>
         "use strict";
-        
-        var slideObjects = $(jQueryformSelector + " [data-dev-slide][data-dev-visited='false']");
-        var executedOnce = false;
-        var binders = "input[type='text']:visible," +
-            "input[type='password']:visible," +
-            "input[type='email']:visible," +
-            "input[type='numeric']:visible," +
-            "select:visible";
-        var order = 0;
-        var totalSliderLength = slideObjects.length;
-        var previousSlideNumber = 0;
+        var $form = $(jQueryformSelector),
+            $slides = $form.find("[data-dev-slide][data-dev-visited='false']"),
+            //executedOnce = false,
+            //binders = "input[type='text']:visible," +
+            //    "input[type='password']:visible," +
+            //    "input[type='email']:visible," +
+            //    "input[type='numeric']:visible," +
+            //    "select:visible",
+            order = 0,
+            totalSliderLength = $slides.length;
+             //previousSlideNumber = 0,
+             //self = $.devOrg;
+
         if (totalSliderLength > 0) {
             // exist slides.
-            slideObjects.hide();
-            previousSlideNumber = order;
-            slideObjects.filter("[data-dev-slide='" + (order++) + "'][data-dev-visited='false']").show();
-            $(jQueryformSelector).submit(function (e) {
+            $slides.hide();
+            //previousSlideNumber = order;
+            $slides.filter("[data-dev-slide='" + (order++) + "'][data-dev-visited='false']").show();
+            $form.submit(function (e) {
                 e.preventDefault();
-
-                var nextOne = slideObjects.filter("[data-dev-slide='" + order + "'][data-dev-visited='false']");
+                var $nextOne = $slides.filter("[data-dev-slide='" + order + "'][data-dev-visited='false']");
                 // if (nextOne.length == 0) {
                 //    for (order += 1; nextOne.length == 0 && totalSliderLength >= order; order++) {
                 //        nextOne = slideObjects.filter("[data-dev-slide='" + order + "'][data-dev-visited='false']");
                 //    }
                 // }
-                var previousOne;
-                var inputBoxes;
-                if (nextOne.length > 0) {
-                    previousOne = slideObjects.filter("[data-dev-slide='" + (order - 1) + "']"); // console.log(previousOne);
-                    inputBoxes = previousOne.find("input, textarea"); // still exist , prevent submission
-                    if (inputBoxes.length > 0 && $.devOrg.checkValidInputs(inputBoxes)) {
+                var $previousSlide;
+                var $inputBoxes;
+                if ($nextOne.length > 0) {
+                    $previousSlide = $slides.filter("[data-dev-slide='" + (order - 1) + "']"); // console.log(previousOne);
+                    $inputBoxes = $previousSlide.find("input, textarea"); // still exist , prevent submission
+                    if ($inputBoxes.length > 0 && $.checkValidInputs($inputBoxes)) {
                         if (!keepOthersVisible) {
-                            previousOne.hide("slow");
+                            $previousSlide.hide("slow");
                         }
                         //console.log(inputBoxes);
                         //console.log(binders);
-                        if (!nextOne.prop("data-dev-visited")) {
-                            nextOne.attr("data-dev-visited", "true");
-                            nextOne.show("slow");
+                        if (!$nextOne.prop("data-dev-visited")) {
+                            $nextOne.attr("data-dev-visited", "true");
+                            $nextOne.show("slow");
                             //console.log(nextOne);
                             order++;
                         }
                     } else {
                         //console.log("no inboxes");
                     }
-
                 } else {
                     // nothing left.
                     // sttil check the validation.
-                    previousOne = slideObjects.filter("[data-dev-slide='" + (order - 1) + "']"); // console.log(previousOne);
-                    inputBoxes = previousOne.find("input");
-                    if (inputBoxes.length > 0 && $.devOrg.checkValidInputs(inputBoxes)) {
+                    $previousSlide = $slides.filter("[data-dev-slide='" + (order - 1) + "']"); // console.log(previousOne);
+                    $inputBoxes = $previousSlide.find("input");
+                    if ($inputBoxes.length > 0 && $.checkValidInputs($inputBoxes)) {
                         if (!dontSubmit) {
                             this.submit();
                         }
@@ -890,46 +893,6 @@ $.devOrg = {
             // var notVisited = slideObjects.filter("[data-dev-visited='false']");
         }
     },
-    // Send inputs array, if any of those false , returns false.
-    checkValidInputs: function (jBinders) {
-        "use strict";
 
-        var $currentInput = null;
-        var length = jBinders.length;
-        var label = "<label class='label label-danger small-font-size'>Please rate first.</label>";
-        if (length > 0) {
-            for (var i = 0; i < length; i++) {
-                $currentInput = $(jBinders[i]);
-
-                if ($currentInput.hasClass("common-rating")) {
-                    var $ratingContainer = $currentInput.closest("div.rating-container");
-                    var $wholeContainer = $ratingContainer.closest("div.star-rating");
-
-                    if ($currentInput.val() === "0") {
-                        $ratingContainer.css({
-                            'text-shadow': "2px 2px red"
-                        });
-                        if (!$wholeContainer.attr("data-warned")) {
-                            $wholeContainer.append(label);
-                            $wholeContainer.attr("data-warned", "true");
-                        }
-                        return false;
-                    } else {
-                        $ratingContainer.css({
-                            'text-shadow': "none"
-                        });
-
-                        if ($wholeContainer.attr("data-warned")) {
-                            $wholeContainer.find("label").remove();
-                            $wholeContainer.attr("data-warned", "false");
-                        }
-                    }
-                }
-                if (!$currentInput.valid()) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+    
 };
