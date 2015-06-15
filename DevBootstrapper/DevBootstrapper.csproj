@@ -378,6 +378,7 @@
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="Content\css\animate-refresh.css" />
+    <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.css" />
     <Content Include="Content\css\bootstrap-select.css" />
     <Content Include="Content\css\bootstrap-slate-theme.css" />
@@ -475,8 +476,13 @@
     <Content Include="Content\css\menu-modify.css.map">
       <DependentUpon>menu-modify.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\bootstrap-select.css.map">
+      <DependentUpon>bootstrap-select.css</DependentUpon>
+    </Content>
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />
+    <Content Include="Content\Less\bootstrap-select.less" />
+    <Content Include="Content\Less\bootstrap-select.variables.less" />
     <None Include="Content\Less\color-fonts.less" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
     <Content Include="Content\Scripts\devOrg\byId.js" />
@@ -485,9 +491,8 @@
     <Content Include="Content\Scripts\devOrg\urls.js" />
     <Content Include="Content\Scripts\devOrg\constants.js" />
     <Content Include="Content\Scripts\devOrg\country-phone.js" />
-    <Content Include="Content\Scripts\devOrg\dynamic-select.js" />
-    <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
     <Content Include="Content\Scripts\devOrg\jsonCombo.js" />
+    <Content Include="Content\Scripts\Bootstrap\bootstrap3-typeahead.js" />
     <Content Include="Content\Scripts\jQuery\Upload\bootstrap-progressbar.js" />
     <Content Include="Content\Scripts\jQuery\Upload\canvas-to-blob.min.js" />
     <Content Include="Content\Scripts\devOrg\upload.js" />
@@ -596,6 +601,8 @@
     <Content Include="Content\Less\header.variables.less" />
     <Content Include="Content\Less\footer.variables.less" />
     <Content Include="Content\Less\override-mvc.variables.less" />
+    <Content Include="Content\Scripts\Data\country-info-select-ready.json" />
+    <Content Include="Content\Scripts\Data\country-info.json" />
     <None Include="Content\Scripts\jQuery\jquery.validate-vsdoc.js" />
     <Content Include="Content\Scripts\jQuery\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\Scripts\jQuery\jquery.unobtrusive-ajax.min.js" />
@@ -605,7 +612,6 @@
     <Content Include="Content\Scripts\jQuery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\Bootstrap\modernizr-2.8.3.js" />
     <Content Include="Content\Scripts\jQuery\moment.js" />
-    <Content Include="Content\Scripts\jQuery\underscore.js" />
     <Content Include="Content\Scripts\jQuery\validation.js" />
     <None Include="Content\Scripts\jQuery\jquery-2.1.4-vsdoc.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.4.js" />

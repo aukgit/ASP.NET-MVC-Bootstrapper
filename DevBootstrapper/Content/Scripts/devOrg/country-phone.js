@@ -59,7 +59,7 @@ $.devOrg.ctyTimePhone = {
         }
         return "";
     },
-    getCountryWholeComboStringWithJsonItems: function (jsonItems, comboName, comboClass, additionalAttributesWithCombo, extraHtmlWithEachElement, eachOptionItemClasses) {
+    getProcessedCountryJsonItems: function (jsonItems, comboName, comboClass, additionalAttributesWithCombo, extraHtmlWithEachElement, eachOptionItemClasses) {
         /// <summary>
         /// Returns a full country combo/select based on json items
         /// Developer should inject this into document
@@ -114,8 +114,9 @@ $.devOrg.ctyTimePhone = {
                 //console.log(response);
                 var comboString;
                 if (retriveAsHtml === false) {
-                    comboString = self
-                        .getCountryWholeComboStringWithJsonItems(response, comboName, "", "", ""); //var innerHtmlDiv = $countryInnerDiv.html();
+                    // needs processing 
+                    // Todo : developer can write their own process.
+                    comboString = self.getProcessedCountryJsonItems(response, comboName, "", "", ""); //var innerHtmlDiv = $countryInnerDiv.html();
                     //var wholeComboHtmlString = comboString + innerHtmlDiv;
                 } else {
                     comboString = response; // html
