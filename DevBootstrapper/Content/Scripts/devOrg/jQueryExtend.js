@@ -30,6 +30,32 @@ $.getClassesList = function ($jQueryObject) {
     return null;
 };
 
+$.getArrayExcept = function (givenArray, excludingArray) {
+    /// <summary>
+    /// givenArray = ['a','b','c'] , excludingArray=['b','c'], results=['a']
+    /// </summary>
+    /// <param name="givenArray" type="array">Full list of items (in array format).</param>
+    /// <param name="excludingArray" type="array">List of items which needs to be excluded from the list (in array format).</param>
+    /// <returns type="array">an array after excluding the items from the given list.</returns>
+    "use strict";
+    if ($.isEmpty(givenArray)) {
+        return [];
+    }
+    if ($.isEmpty(excludingArray)) {
+        return givenArray;
+    }
+
+    var len = givenArray.length;
+    var results = [];
+    for (var i = 0; i < len; i++) {
+        if (excludingArray.indexOf(givenArray[i]) === -1) {
+            // not found
+            results.push(givenArray[i]);
+        }
+    }
+    return results;
+}
+
 $.fn.extend({
     getClassesList: function () {
         /// <summary>

@@ -77,8 +77,7 @@ namespace DevBootstrapper {
                     bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                                   "~/Content/Scripts/devOrg/byId.js",
                                   "~/Content/Scripts/Bootstrap/bootstrap.js", // 3.1.2
-                                  "~/Content/Scripts/Bootstrap/star-rating.js",
-                                  "~/Content/Scripts/jQuery/underscore.js"
+                                  "~/Content/Scripts/Bootstrap/star-rating.js"
                                   ));
                     #endregion
 

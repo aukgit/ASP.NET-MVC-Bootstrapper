@@ -67,7 +67,7 @@ $.devOrg.upload = {
         var $form = null,
             $uploaderDivs;
         if (self.isInitialized === false && $container.length > 0) {
-            if (!_.isEmpty(formSelector)) {
+            if (!$.isEmpty(formSelector)) {
                 $form = $(formSelector);
             } else {
                 $form = $container.closest("form");
@@ -120,7 +120,7 @@ $.devOrg.upload = {
         //var kRep = 0;
         var self = $.devOrg.upload;
      
-        if (_.isEmpty($container)) {
+        if ($.isEmpty($container)) {
             // if nothing exist on contain then don't execute anything.
             return;
         } else {
@@ -619,7 +619,7 @@ $.devOrg.upload = {
 
     uploaderFixingDataUrlOnInvalidUrls: function ($uploader) {
         var currentUrl = $uploader.attr("data-url");
-        if (_.isEmpty(currentUrl)) {
+        if ($.isEmpty(currentUrl)) {
             var $form = $uploader.closest("form");
             formUrl = $form.attr("action");
             $uploader.attr("data-url", formUrl);
@@ -743,7 +743,7 @@ $.devOrg.upload = {
         var filesNamesString = fileNames.join();
 
         var labelTitle = $label.attr("title");
-        if (!_.isEmpty(labelTitle)) {
+        if (!$.isEmpty(labelTitle)) {
             labelTitle += ",";
         } else {
             labelTitle = "";

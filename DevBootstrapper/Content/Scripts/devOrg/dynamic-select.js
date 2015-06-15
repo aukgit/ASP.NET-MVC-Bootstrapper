@@ -75,7 +75,7 @@ $.devOrg.dynamicSelect = {
             var isDependable = $div.attr($.devOrg.dynamicSelect.isDependableAttribute);
 
             var url = $div.attr(this.urlAttribute);
-            if (!_.isEmpty(url) && isDependable === 'false') {
+            if (!$.isEmpty(url) && isDependable === 'false') {
                 $.devOrg.dynamicSelect.getJsonProcessSelectDynamicOptions($div, url);
                 // dependency will be handled in side the parent when json is reviced in the parent
             }
@@ -91,7 +91,7 @@ $.devOrg.dynamicSelect = {
         /// 
         /// </summary>
         /// <param name="url">site.com/ or site.com will return site.com/</param>
-        if (!_.isEmpty(url)) {
+        if (!$.isEmpty(url)) {
             var len = url.length;
             var lastChar = url[len - 1];
             if (lastChar !== "/") {
@@ -164,7 +164,7 @@ $.devOrg.dynamicSelect = {
                         //json type
                         var options = new Array(response.length + 5);
                         for (var i = 0; i < response.length; i++) { // build options
-                            if (!_.isEmpty(value) && (value === response[i].id || response[i].display === value)) {
+                            if (!$.isEmpty(value) && (value === response[i].id || response[i].display === value)) {
                                 options[i] = ("<option value='" + response[i].id + "' Selected='selected'>" + response[i].display + "</option>");
                             } else {
                                 options[i] = ("<option value='" + response[i].id + "'>" + response[i].display + "</option>");

@@ -27,10 +27,10 @@ $.devOrg.countryTimezonePhoneComponent = {
         /// <param name="jsonItems">must contain display and id value for every 'option' item.</param>
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
-        if (_.isEmpty(itemClasses)) {
+        if ($.isEmpty(itemClasses)) {
             itemClasses = "";
         }
-        if (_.isEmpty(extraHtmlWithEachElement)) {
+        if ($.isEmpty(extraHtmlWithEachElement)) {
             extraHtmlWithEachElement = "";
         }
         if (jsonItems.length > 0) {
@@ -73,12 +73,12 @@ $.devOrg.countryTimezonePhoneComponent = {
         /// <param name="jsonItems">must contain display,id,countryCode value for every 'option' item.</param>
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
-        if (_.isEmpty(eachOptionItemClasses)) {
+        if ($.isEmpty(eachOptionItemClasses)) {
             eachOptionItemClasses = "flag-country-combo flag ";
         } else {
             eachOptionItemClasses += " flag-country-combo flag ";
         }
-        if (_.isEmpty(comboClass)) {
+        if ($.isEmpty(comboClass)) {
             comboClass = "btn-success country-combo flag-combo fc-af";
         } else {
             comboClass += " country-combo flag-combo fc-af";

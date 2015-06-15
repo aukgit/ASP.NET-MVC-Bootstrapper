@@ -26,44 +26,14 @@
  * Email: devorg.bd{at}gmail.com
  * Dated : 14 Jun 2015
  * Version : 2.2
- * Performance : http://jsperf.com/jquery-vs-fasterjquery
  * https://www.facebook.com/DevelopersOrganism
  * mailto:info{at}developers-organism.com
  */
 
-
 $.devOrg = {
 
 
-    // get all the classes from an jQuery element
-    getAllClasses: function (jQueryHtmlElement) {
-        return jQueryHtmlElement.getAllClasses();
-    },
 
-    getClassesExcept: function (allClassesArray, exceptClassesArray) {
-        /// <summary>
-        /// allClassesArray = ['a','b','c'] , exceptClassesArray=['b','c'], results=['a']
-        /// </summary>
-        /// <param name="allClassesArray"></param>
-        /// <param name="exceptClassesArray"></param>
-        "use strict";
-        if (allClassesArray === null || allClassesArray === undefined) {
-            return [];
-        }
-
-        if (exceptClassesArray === null || exceptClassesArray === undefined) {
-            return allClassesArray;
-        }
-        var len = allClassesArray.length;
-        var results = [];
-        for (var i = 0; i < len; i++) {
-            if (exceptClassesArray.indexOf(allClassesArray[i]) === -1) {
-                // not found
-                results.push(allClassesArray[i]);
-            }
-        }
-        return results;
-    },
     countryFlagRefresh: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector) {
         /// <summary>
         /// all Selectors are jQuery Selector Text  only.
@@ -82,10 +52,10 @@ $.devOrg = {
         countryBox.change(function (e) {
             var listItem = dropDownItems.find("li.selected");
             var anchorItem = listItem.find("a");
-            var listOfAllAnchorClasses = anchorItem.getAllClasses();
-            var listOfAllClassesdropDownBtn = dropDownBtn.getAllClasses();
-            var flagClass = $.devOrg.getClassesExcept(listOfAllAnchorClasses, skippingClassesAnchor);
-            var btnFlagClass = $.devOrg.getClassesExcept(listOfAllClassesdropDownBtn, skippingClassesForBtn);
+            var listOfAllAnchorClasses = anchorItem.getClassesList();
+            var listOfAllClassesdropDownBtn = dropDownBtn.getClassesList();
+            var flagClass = $.devOrg.getArrayExcept(listOfAllAnchorClasses, skippingClassesAnchor);
+            var btnFlagClass = $.devOrg.getArrayExcept(listOfAllClassesdropDownBtn, skippingClassesForBtn);
             for (var i = 0; i < btnFlagClass.length; i++) {
                 dropDownBtn.removeClass(btnFlagClass[i]);
             }
@@ -116,7 +86,7 @@ $.devOrg = {
             var getWrittenPhoneNumber = phoneNumberBox.val();
             // console.log(listItem);
             newCallingCode = $.devOrg.replaceStartsWith(newCallingCode, "+", "");
-            if ((!_.isEmpty(getWrittenPhoneNumber) && !_.isEmpty(previousCallingCode))
+            if ((!$.isEmpty(getWrittenPhoneNumber) && !$.isEmpty(previousCallingCode))
                 && $.devOrg.isStartsWith(getWrittenPhoneNumber, previousCallingCode)) {
                 getWrittenPhoneNumber = $.devOrg.replaceStartsWith(getWrittenPhoneNumber, previousCallingCode, newCallingCode);
             } else {
@@ -164,18 +134,18 @@ $.devOrg = {
         /// <param name="additionalAttributes">Add additional attributes with the select, however user have to format it. Eg. id='hello' </param>
         var self = $.devOrg;
         var selectors = self.selectors;
-        if (!_.isEmpty(comboId)) {
+        if (!$.isEmpty(comboId)) {
             comboId = " id='" + comboId + "' ";
         } else {
             comboId = "";
         }
-        if (_.isEmpty(comboClass)) {
+        if ($.isEmpty(comboClass)) {
             comboClass = "";
         }
-        if (_.isEmpty(stringOptionItems)) {
+        if ($.isEmpty(stringOptionItems)) {
             stringOptionItems = "";
         }
-        if (_.isEmpty(comboName)) {
+        if ($.isEmpty(comboName)) {
             comboName = "";
         } else {
             comboName = " name='" + comboName + "' ";
@@ -199,10 +169,10 @@ $.devOrg = {
         /// <param name="jsonItems">must contain display and id value for every 'option' item.</param>
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
-        if (_.isEmpty(itemClasses)) {
+        if ($.isEmpty(itemClasses)) {
             itemClasses = "";
         }
-        if (_.isEmpty(extraHtmlWithEachElement)) {
+        if ($.isEmpty(extraHtmlWithEachElement)) {
             extraHtmlWithEachElement = "";
         }
         if (jsonItems.length > 0) {
@@ -270,7 +240,7 @@ $.devOrg = {
         /// <param name="placedComboAdditionalClassesWithEachItem">Add extra classes with every option, only write the class names with space.</param>
         /// <param name="placedComboAdditionalHtmlWithEachItem">Add extra html content with each option item</param>
         var $parentCombo = $(parentSelectsjQuerySelector);
-        if (_.isEmpty($parentCombo)) {
+        if ($.isEmpty($parentCombo)) {
             console.error.log("error raised from developers organism component's smartDependableCombo that no parent is detected.");
             return; // nothing exist in parent.
         }
@@ -375,7 +345,7 @@ $.devOrg = {
     },
 
     replaceStartsWith: function (givenString, findStartsWith, replaceString) {
-        if (_.isString(givenString) && !_.isEmpty(findStartsWith)) {
+        if (_.isString(givenString) && !$.isEmpty(findStartsWith)) {
             var subtringOfGiventext = givenString.substr(0, findStartsWith.length);
             if (subtringOfGiventext === findStartsWith) {
                 var nextStringIndex = findStartsWith.length;
@@ -441,7 +411,7 @@ $.devOrg = {
         /// <param name="jQuerySelectorforTextBox">string:jQuery Selector</param>
         /// <param name="stringRegEx">string: Regular expression to validate the textinput</param>
         $(jQuerySelectorforTextBox).attr("data-val-regex-pattern", stringRegEx);
-        if (!_.isEmpty(msgOnInvalidPattern)) {
+        if (!$.isEmpty(msgOnInvalidPattern)) {
             $(jQuerySelectorforTextBox).attr("data-val-regex", msgOnInvalidPattern);
         }
 
@@ -520,15 +490,15 @@ $.devOrg = {
 
         "use strict";
 
-        //if (_.isEmpty(isSubmitTheWholeForm)) {
+        //if ($.isEmpty(isSubmitTheWholeForm)) {
         //    isSubmitTheWholeForm = false;
         //}
 
-        //if (_.isEmpty(isAlwaysFocusUntilValid)) {
+        //if ($.isEmpty(isAlwaysFocusUntilValid)) {
         //    isAlwaysFocusUntilValid = false;
         //}
 
-        //if (_.isEmpty(isDisable)) {
+        //if ($.isEmpty(isDisable)) {
         //    isDisable = false;
         //}
 
@@ -553,14 +523,14 @@ $.devOrg = {
                     $("#validation #id").val($userTextbox.val());
                 }
                 var $passingText = $userTextbox.val();
-                if (_.isEmpty($passingText) || $passingText.length < minChars) {
+                if ($.isEmpty($passingText) || $passingText.length < minChars) {
                     // if empty text then don't send.
                     return;
                 }
-                if (_.isEmpty(onValidStringStatementInCheckMark)) {
+                if ($.isEmpty(onValidStringStatementInCheckMark)) {
                     onValidStringStatementInCheckMark = "is available and valid.";
                 }
-                if (_.isEmpty(onInvalidStringStatementInCrossMark)) {
+                if ($.isEmpty(onInvalidStringStatementInCrossMark)) {
                     onInvalidStringStatementInCrossMark = "is not valid or already exist. Your input can't contain ( [ ] ' , * & ? \" ) or space or any other special character for this data-type.";
                 }
 
@@ -777,7 +747,7 @@ $.devOrg = {
 
             if (tabHidden.length > 0) {
                 var tabHiddenValue = tabHidden.val();
-                if (!_.isEmpty(tabHiddenValue)) {
+                if (!$.isEmpty(tabHiddenValue)) {
                     //tab name exist
                     bootstrapTabs.find("li>a[href='" + tabHiddenValue + "']").tab("show");
                 } else {
