@@ -10,7 +10,6 @@
 ; $.devOrg = $.devOrg || {};
 
 $.devOrg.upload = {
-
     uploadedFilesNotificationLabelSelector: "label.file-uploaded-notify-label-",
     editBtnSpinnerSelector: "[data-edit-btn-spinner=true]",
     progressorSpinnerSelector: "[data-progressor-spinner=true]",

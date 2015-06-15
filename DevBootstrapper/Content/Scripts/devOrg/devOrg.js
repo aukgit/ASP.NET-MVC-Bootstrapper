@@ -32,8 +32,6 @@
 
 $.devOrg = {
 
-
-
     countryFlagRefresh: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector) {
         /// <summary>
         /// all Selectors are jQuery Selector Text  only.
@@ -359,17 +357,18 @@ $.devOrg = {
         return givenString;
     },
 
-    enterToNextTextBox: function (formSelector, submitAtLast) {
+    enterToNextInput: function ($form, submitAtLast) {
         /// <summary>
         /// Any kind of input(text, password, email, date) and select 
         /// will be focused to the next one.
         /// </summary>
-        /// <param name="formSelector">Form jQuery select. (Giving an id is better)</param>
+        /// <param name="$form">jQuery form element.</param>
         /// <param name="submitAtLast">True: means submit when reach the last textbox. Usually false would be better choice so that programmer can handle things in other places.</param>
-        var $form = $(formSelector);
-
+        if ($form.length === 0) {
+            return;
+        }
         $form.find("input:text:first-child").focus();
-
+        
         //var binders = formSelector + " input[type='text']:visible," +
         //    formSelector + " input[type='password']:visible," +
         //    formSelector + " input[type='numeric']:visible," +
@@ -391,14 +390,15 @@ $.devOrg = {
             // console.log("inside code :" + code);
             if (code === 13) { // Enter key
                 e.preventDefault(); // Skip default behavior of the enter key
-                var n = $(binders).length;
-                var nextIndex = $(binders).index(this) + 1;
+                var $binders = $form.find(binders);
+                var n = $binders.length;
+                var nextIndex = $binders.index(this) + 1;
                 if (nextIndex < n) {
                     $(binders)[nextIndex].focus();
                 } else {
                     $(binders)[nextIndex - 1].blur();
                     if (submitAtLast === true) {
-                        $(formSelector).submit();
+                        $form.submit();
                     }
                 }
             }
@@ -413,11 +413,12 @@ $.devOrg = {
         /// </summary>
         /// <param name="jQuerySelectorforTextBox">string:jQuery Selector</param>
         /// <param name="stringRegEx">string: Regular expression to validate the textinput</param>
-        $(jQuerySelectorforTextBox).attr("data-val-regex-pattern", stringRegEx);
-        if (!$.isEmpty(msgOnInvalidPattern)) {
-            $(jQuerySelectorforTextBox).attr("data-val-regex", msgOnInvalidPattern);
-        }
+        var $elementFound = $(jQuerySelectorforTextBox);
 
+        $elementFound.attr("data-val-regex-pattern", stringRegEx);
+        if (!$.isEmpty(msgOnInvalidPattern)) {
+            $elementFound.attr("data-val-regex", msgOnInvalidPattern);
+        }
     },
 
     reSetupjQueryValidate: function (jQueryFormSelector) {

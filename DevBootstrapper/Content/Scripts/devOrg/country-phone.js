@@ -72,6 +72,10 @@ $.devOrg.ctyTimePhone = {
         /// <param name="jsonItems">must contain display,id,countryCode value for every 'option' item.</param>
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
+        
+        var dev = $.devOrg;
+        var self = dev.ctyTimePhone,
+            regularExpressions = dev.regularExp;
         if ($.isEmpty(eachOptionItemClasses)) {
             eachOptionItemClasses = "flag-country-combo flag ";
         } else {
@@ -82,8 +86,8 @@ $.devOrg.ctyTimePhone = {
         } else {
             comboClass += " country-combo flag-combo fc-af";
         }
-        var optionsString = $.devOrg.ctyTimePhone.getCountryComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
-        var comboString = $.devOrg.getComboString(comboName, comboClass, comboName, optionsString, additionalAttributesWithCombo);
+        var optionsString = self.getCountryComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
+        var comboString = dev.getComboString(comboName, comboClass, comboName, optionsString, additionalAttributesWithCombo);
         return comboString;
     },
     initialize: function (countryUrl, timeZoneUrl, languageUrl, retriveAsHtml) {

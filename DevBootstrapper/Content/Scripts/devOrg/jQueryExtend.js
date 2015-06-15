@@ -1,4 +1,18 @@
-﻿;
+﻿/// <reference path="devOrg.js" />
+/// <reference path="initialize.js" />
+/// <reference path="jQueryExtend.js" />
+/// <reference path="jsonCombo.js" />
+/// <reference path="regularExp.js" />
+/// <reference path="selectors.js" />
+/// <reference path="upload.js" />
+/// <reference path="urls.js" />
+/// <reference path="country-phone.js" />
+/// <reference path="constants.js" />
+/// <reference path="byId.js" />
+/// <reference path="../jQuery/jquery-2.1.4.js" />
+/// <reference path="../jQuery/jquery-2.1.4-vsdoc.js" />
+;
+
 /**!
  * Written by Alim Ul Karim
  * Email: devorg.bd{at}gmail.com
@@ -7,7 +21,7 @@
  * https://www.facebook.com/DevelopersOrganism
  * mailto:info{at}developers-organism.com
  */
-$.isEmpty = function(variable) {
+$.isEmpty = function (variable) {
     /// <summary>
     /// Compare any object to null , unidentified or empty then returns true/false.
     /// </summary>
@@ -56,7 +70,84 @@ $.getArrayExcept = function (givenArray, excludingArray) {
     return results;
 }
 
+$.isString = function (variable) {
+    /// <summary>
+    /// Checks wheater it is a string type or not.
+    /// </summary>
+    /// <param name="variable"></param>
+    /// <returns type="boolean">true/false</returns>
+    return typeof variable === 'string';
+};
 
+$.returnUrlWithSlash = function (url) {
+    /// <summary>
+    /// First checks if slash exist at the bottom or not.
+    /// </summary>
+    /// <param name="url" type="string">Give an url.</param>
+    /// <returns type="string">Url with slash at the bottom or empty string if type doesn't match or null or undefined.</returns>
+    if ($.isEmpty(url) === false && $.isString(url)) {
+        var len = url.length;
+        if (url.charAt(len - 1) !== '/') {
+            url += "/";
+        }
+    }
+    return "";
+};
+$.getFriendlyUrlSlug = function (str) {
+    /// <summary>
+    /// Returns friendly url slug from given string
+    /// Hello & World -> hello-world
+    /// </summary>
+    /// <param name="str">Give an string "Hello & World"</param>
+
+    var regularExpressions = $.devOrg.regularExp;
+    if ($.isEmpty(str) === false) {
+        //"[^A-Za-z0-9_\.~]+"
+        var regexString = regularExpressions.friendlyUrl;
+        str = str.trim();
+        var regExp = new RegExp(regexString, 'gi');
+        return str.replace(regExp, "-");
+    } 
+    return "";
+
+};
+/**
+ * single input IFRAME code HTML  to Square
+ */
+$.htmlToSquareTag = function ($jQueryInputText) {
+    /// <summary>
+    /// Any HTML tag to square tag inside the input text.
+    /// <iframe width="560" height="315" src="//www.youtube.com/embed/ob-P2a6Mrjs" frameborder="0" allowfullscreen> to Square
+    /// </summary>
+    /// <param name="$jQueryInput">jQuery element.</param>
+    var currentText = $jQueryInputText.val();
+    //currentText = currentText.toLowerCase();
+    var reg = new RegExp("<" + tag, 'gi');
+    currentText = currentText.replace(reg, "[" + tag);
+    reg = new RegExp("</" + tag + ">", 'gi');
+    currentText = currentText.replace(reg, "[/" + tag + "]");
+    currentText = currentText.replace(">", "]");
+    $jQueryInputText.val(currentText);
+};
+
+/**
+ * single input IFRAME code Square  to HTML
+ */
+$.squareToHtmlTag = function ($jQueryInput, tag) {
+    /// <summary>
+    /// Any square tag to html tag inside the input text.
+    /// [iframe width="560" height="315" src="//www.youtube.com/embed/ob-P2a6Mrjs" frameborder="0" allowfullscreen] to html
+    /// </summary>
+    /// <param name="$jQueryInput">jQuery element.</param>
+    var currentText = $jQueryInput.val();
+    //currentText = currentText.toLowerCase();
+    var reg = new RegExp("\\[" + tag, 'gi');
+    currentText = currentText.replace(reg, "<" + tag);
+    reg = new RegExp("\\[/" + tag + "\\]", 'gi');
+    currentText = currentText.replace(reg, "</" + tag + ">");
+    currentText = currentText.replace("]", ">");
+    $jQueryInput.val(currentText);
+};
 //validation modification
 $.checkValidInputs = function ($inputsCollection, starRatingLabel, invalidStarRatingCss) {
     /// <summary>
@@ -128,7 +219,7 @@ $.fn.extend({
         /// <returns type="array">array list of classes.</returns>
         return $.getClassesList(this);
     },
-    isEmpty : function() {
+    isEmpty: function () {
         /// <summary>
         /// Compare any object to null , unidentified or empty then returns true/false.
         /// </summary>

@@ -486,6 +486,7 @@
     <None Include="Content\Less\color-fonts.less" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tag.js" />
     <Content Include="Content\Scripts\devOrg\byId.js" />
+    <Content Include="Content\Scripts\devOrg\regularExp.js" />
     <Content Include="Content\Scripts\devOrg\jQueryExtend.js" />
     <Content Include="Content\Scripts\devOrg\selectors.js" />
     <Content Include="Content\Scripts\devOrg\urls.js" />
@@ -725,6 +726,7 @@
     <Content Include="Views\Shared\EditorTemplates\JsonCombo.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.4.min.map" />
+    <Content Include="Views\Shared\_AdditionalFields.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />

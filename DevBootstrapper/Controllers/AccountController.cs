@@ -21,10 +21,22 @@ using Microsoft.Owin.Security;
 namespace DevBootstrapper.Controllers {
     [Authorize]
     public class AccountController : Controller {
+        #region Constants and Variable
+
+        private readonly string _controllerName = "Account";
+
+        /// Constant value for where the controller is actually visible.
+        private readonly string _servicesControllerUrl = AppVar.ServicesControllerUrl;
+
+        #endregion
+
+
         #region Constructors
+
 
         public AccountController() {
             Manager = UserManager.Manager;
+            ViewBag.servicesUrl = _servicesControllerUrl;
         }
 
         #endregion
@@ -185,14 +197,7 @@ namespace DevBootstrapper.Controllers {
             base.Dispose(disposing);
         }
 
-        #region Constants and Variable
-
-        private const string ControllerName = "Account";
-
-        /// Constant value for where the controller is actually visible.
-        private string ServicesControllerUrl = AppVar.ServicesControllerUrl;
-
-        #endregion
+    
 
         #region Declaration
 

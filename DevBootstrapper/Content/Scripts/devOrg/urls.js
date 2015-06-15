@@ -1,12 +1,68 @@
-﻿;$.devOrg = $.devOrg || {};
+﻿/// <reference path="../jQuery/jquery-2.1.4.js" />
+/// <reference path="../jQuery/jquery-2.1.4-vsdoc.js" />
+/// <reference path="urls.js" />
+/// <reference path="byId.js" />
+/// <reference path="constants.js" />
+/// <reference path="country-phone.js" />
+/// <reference path="devOrg.js" />
+/// <reference path="initialize.js" />
+/// <reference path="jQueryExtend.js" />
+/// <reference path="jsonCombo.js" />
+/// <reference path="regularExp.js" />
+/// <reference path="selectors.js" />
+/// <reference path="upload.js" />
+
+
+;
+
+$.devOrg = $.devOrg || {};
 
 $.devOrg.urls = {
-    // "/Validator/"
-    validatorCommonUrl: "/Validator/",
-    //"/Validator/Username"
-    usernameValidationUrl: "/Validator/Username",
-    //"/Validator/Email"        
-    emailAddressValidationUrl: "/Validator/Email",
-    timeZoneJsonUrl: "/Services/GetTimeZone", // look like this /Partials/GetTimeZone/CountryID
-    languageJsonUrl: "/Services/GetLanguage" // look like this /Partials/GetTimeZone/CountryID
+    /*
+     * hostUrl will be retrieved from hidden field "#host-url"
+     * Contains a slash at the end.
+     */
+    hostUrl: null,
+
+    validator: "Validator/",
+    usernameValidation: "Validator/Username",
+    emailValidation: "Validator/Email",
+    timeZoneJson: "Services/GetTimeZone", // look like this /Partials/GetTimeZone/CountryID
+    languageJson: "Services/GetLanguage", // look like this /Partials/GetTimeZone/CountryID
+    getHostUrl: function () {
+        /// <summary>
+        /// Retrieve host url from host-url id hidden field
+        /// Return host url with a slash at the bottom.
+        /// </summary>
+        /// <returns type="">Returns the host url.</returns>
+        var self = this;
+
+        if (self.hostUrl === null) {
+            var dev = $.devOrg,
+                selectors = dev.selectors;
+            var id = selectors.hostFieldId;
+            var $hostUrlHidden = $.byId(id);
+            if ($hostUrlHidden.length > 0) {
+                var url = $hostUrlHidden.val();
+                self.hostUrl = $.returnUrlWithSlash(url);
+            }
+        }
+        return self.hostUrl;
+    },
+
+    getAbsUrl: function (givenUrl) {
+        /// <summary>
+        /// Given url shouldn't have any slash at the begining.
+        /// </summary>
+        /// <param name="givenUrl">url shouldn't have any slash at the begining.</param>
+        /// <returns type="">Return absolute url containing host name and url.</returns>
+        var self = this;
+        if (self.hostUrl !== null) {
+            return self.hostUrl + givenUrl;
+        }
+        var host = self.getHostUrl();
+        return host + givenUrl;
+    }
+
+
 };

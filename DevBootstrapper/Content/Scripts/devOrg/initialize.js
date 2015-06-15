@@ -23,64 +23,49 @@ $.devOrg.initialize = function () {
     /// <summary>
     /// Initialize everything.
     /// </summary>
-    var self = this;
-    var dev = $.devOrg;
-    var constants = dev.constants;
-    var selectors = dev.selectors;
-    var urls = dev.urls;
-    $.devOrg.upload.initialize(1, "(\\.|\\/)(gif|jpe?g|png)$");
+    var //self = this,
+        dev = $.devOrg,
+        uploader = dev.upload,
+        constants = dev.constants,
+        selectors = dev.selectors,
+        urls = dev.urls,
+        //regularExpressions = dev.regularExp,
+        getUrl = urls.getAbsUrl;
+
+    var $uploadingContainer = $.byId(selectors.UploadingContainerId);
+    if ($uploadingContainer.length > 0) {
+        uploader.initialize($uploadingContainer,selectors.UploadingFormId, 1, "(\\.|\\/)(gif|jpe?g|png)$");
+    }
+
+    var $registerForm = $.byId(selectors.registerFormId);
 
 
-    if ($.devOrg.Constants.registerForm.length > 0) {
+    if ($registerForm.length > 0) {
+        var userName = constants.userName,
+            email = constants.email;
 
-        $.devOrg.validateInputFromServer("#" + $.devOrg.Constants.userName,
-            $.devOrg.Constants.usernameValidationUrl,
-            $.devOrg.Constants.userName,
+
+
+        dev.validateInputFromServer(
+            "#" + userName,
+            getUrl(urls.usernameValidation),
+            userName,
             true,
             false,
             3);
-        $.devOrg.validateInputFromServer("#" + $.devOrg.Constants.email,
-            $.devOrg.Constants.emailAddressValidationUrl,
-            $.devOrg.Constants.email,
+        dev.validateInputFromServer(
+            "#" + email,
+            getUrl(urls.emailValidation),
+            email,
             false,
             false,
             4);
 
-        $.devOrg.enterToNextTextBox(".register-form", false);
+        dev.enterToNextInput($registerForm, false);
         //$.devOrg.uxFriendlySlide("form.register-form", true);
-        $.devOrg.countryFlagRefresh($.devOrg.Constants.countryComboSelector,
-            $.devOrg.Constants.countryDropDownItemsSelector,
-            $.devOrg.Constants.btnSelector);
 
+        //dev.bootstrapComboSelectbyFindingValue("select.country-combo", "1");
 
-        //country dependable load
-        $.devOrg.smartDependableCombo("select.country-combo",
-            ".timezone-main",
-            ".timezone-combo-div",
-            $.devOrg.Constants.timeZoneJsonUrl,
-            "UserTimeZoneID", //name
-            "", //id
-            "btn-success", //class
-            ""
-        );
-        $.devOrg.smartDependableCombo("select.country-combo",
-            ".language-main",
-            ".language-combo-div",
-            $.devOrg.Constants.languageJsonUrl,
-            "CountryLanguageID", //name
-            "", //id
-            "btn-success", //class
-            ""
-        );
-        $("button.fillit").click(function () {
-            $.devOrg.fillRegisterFieldsOnDemo();
-        });
-        $.devOrg.bootstrapComboSelectbyFindingValue("select.country-combo", "1");
-
-        $.devOrg.countryRelatedToPhone($.devOrg.Constants.countryComboSelector,
-          $.devOrg.Constants.countryDropDownItemsSelector,
-          $.devOrg.Constants.btnSelector,
-          $.devOrg.Constants.phoneNumberSelector);
 
     }
 
@@ -91,7 +76,7 @@ $.devOrg.initialize = function () {
     }
 
     // load dynamic and depended select or combo
-    $.devOrg.dynamicSelect.initialize();
+    dev.jsonCombo.initialize();
 
 
     // make tag component live
