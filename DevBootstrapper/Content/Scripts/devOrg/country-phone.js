@@ -8,8 +8,7 @@
 /// <reference path="../underscore.js" />
 
 ; $.devOrg = $.devOrg || {};
-
-$.devOrg.countryTimezonePhoneComponent = {
+$.devOrg.ctyTimePhone = {
     countryUrl: "",
     timezoneUrl: "",
     languageUrl: "",
@@ -83,7 +82,7 @@ $.devOrg.countryTimezonePhoneComponent = {
         } else {
             comboClass += " country-combo flag-combo fc-af";
         }
-        var optionsString = $.devOrg.countryTimezonePhoneComponent.getCountryComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
+        var optionsString = $.devOrg.ctyTimePhone.getCountryComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
         var comboString = $.devOrg.getComboString(comboName, comboClass, comboName, optionsString, additionalAttributesWithCombo);
         return comboString;
     },
@@ -95,7 +94,7 @@ $.devOrg.countryTimezonePhoneComponent = {
         /// <param name="timeZoneUrl"></param>
         /// <param name="languageUrl"></param>
         /// <param name="retriveAsHtml">boolean : should retrieve only html or process the json. True means no processing.</param>
-        var self = $.devOrg.countryTimezonePhoneComponent;
+        var self = $.devOrg.ctyTimePhone;
 
         self.countryUrl = countryUrl;
         self.timezoneUrl = timeZoneUrl;
@@ -140,9 +139,12 @@ $.devOrg.countryTimezonePhoneComponent = {
         }
     },
     setupRefreshingCountryFlag: function () {
-        $.devOrg.countryFlagRefresh($.devOrg.countryTimezonePhoneComponent.countryComboSelector,
-                                    $.devOrg.countryTimezonePhoneComponent.countryDropDownItemsSelector,
-                                    $.devOrg.countryTimezonePhoneComponent.btnSelector);
+        var self = $.devOrg.ctyTimePhone;
+        var dev = $.devOrg;
+
+        dev.countryFlagRefresh(self.countryComboSelector,
+                                self.countryDropDownItemsSelector,
+                                self.btnSelector);
 
 
     },
@@ -151,27 +153,31 @@ $.devOrg.countryTimezonePhoneComponent = {
         /// Phone, Timezone and language
         /// </summary>
         // fix phone code and make country select to slectpicker()
-        $.devOrg.countryRelatedToPhone($.devOrg.countryTimezonePhoneComponent.countryComboSelector,
-                                        $.devOrg.countryTimezonePhoneComponent.countryDropDownItemsSelector,
-                                        $.devOrg.countryTimezonePhoneComponent.btnSelector,
-                                        $.devOrg.countryTimezonePhoneComponent.phoneNumberSelector);
+        var dev = $.devOrg;
+        var self = $.devOrg.ctyTimePhone;
+
+
+        dev.countryRelatedToPhone(self.countryComboSelector,
+                                    self.countryDropDownItemsSelector,
+                                    self.btnSelector,
+                                    self.phoneNumberSelector);
 
         //country dependable load
         // set json { display = "display text", id= "value }
-        $.devOrg.smartDependableCombo("select.country-combo", //selecting parent combo
+        dev.smartDependableCombo("select.country-combo", //selecting parent combo
                                       ".timezone-main", // must given : container for the time-zone
                                       ".timezone-combo-div", // must given : where to place the combo inside the container
-                                      $.devOrg.countryTimezonePhoneComponent.timezoneUrl, // url
+                                      self.timezoneUrl, // url
                                       "UserTimeZoneID", //combo-name
                                       "", //id
                                       "btn-success", //class
                                       ""
                                       );
         // set json { display = "display text", id= "value }
-        $.devOrg.smartDependableCombo("select.country-combo",   //selecting parent combo
+        dev.smartDependableCombo("select.country-combo",   //selecting parent combo
                                       ".language-main",         // must given : container
                                       ".language-combo-div",    // must given : where to place the combo inside the container
-                                      $.devOrg.countryTimezonePhoneComponent.languageUrl, // url
+                                      self.languageUrl, // url
                                       "CountryLanguageID", //combo-name
                                       "",//id
                                       "btn-success",//class
