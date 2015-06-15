@@ -6,8 +6,8 @@
     if (@ViewData.ModelMetadata.DisplayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
-    if (ViewBag.class != null) {
-        htmlAttributes.Add("class", "form-control " + ViewBag.class);
+    if (ViewBag.@class != null) {
+        htmlAttributes.Add("class", "form-control " + ViewBag.@class);
     } else {
         htmlAttributes.Add("class", "form-control");
     }

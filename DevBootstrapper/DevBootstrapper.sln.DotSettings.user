@@ -4,4 +4,5 @@
   &lt;Assembly Path="E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\packages\DevMVCComponent.1.0.5\lib\DevMVCComponent.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\packages\DevMVCComponent.1.0.10\lib\DevMvcComponent.dll" /&gt;&#xD;
   &lt;Assembly Path="E:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll" /&gt;&#xD;
+  &lt;Assembly Path="D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\Bin\System.Web.Mvc.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

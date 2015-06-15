@@ -37,10 +37,8 @@
         ViewBag.isPicker = "true"; // true , false to make it selectpicker or not
     }
 
-    if (ViewBag.Id != null) {
-        ViewBag.id = " id='" + ViewBag.Id + "' ";
-    } else {
-        ViewBag.id = @ViewData.ModelMetadata.PropertyName;
+    if (ViewBag.Id == null) {      
+        ViewBag.id = ViewData.ModelMetadata.PropertyName;
     }
 
     if (ViewBag.DynamicLoad == null) {
@@ -59,6 +57,9 @@
     }
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "col-md-10";
+    }
+    if (ViewBag.IsHtmlRequest == null) {
+        ViewBag.IsHtmlRequest = "false";
     }
 }
 <div data-json-combo-plugin="true" class="form-group form-row-@ViewData.ModelMetadata.PropertyName dynamic-select-container" data-dynamic-select-container="true">
@@ -92,7 +93,7 @@
                 <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="description-icon"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>
+                <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-spin hide" title="Validating"></span>
             </a>
         </div>
     </div>

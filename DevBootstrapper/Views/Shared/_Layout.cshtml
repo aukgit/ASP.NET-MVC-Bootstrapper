@@ -32,8 +32,10 @@
     @RenderSection("featured", false)
     <div class="container body-content">
         @RenderBody()
+        @RenderSection("featuredBody", false)
         @Html.Partial("_Footer")
     </div>
+    @RenderSection("featuredFooter", false)
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)

@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevBootstrapper.Models.POCO.IdentityCustomization {
     public class Navigation {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int NavigationID { get; set; }
 
         /// <summary>
@@ -20,9 +22,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(200)]
-        [Display(Name = "Element ID",
-            Description =
-                "Html ID related to this unordered-list. Prefer not to use because classes are the mordern practice.")]
+        [Display(Name = "Element ID", Description = "Html ID related to this unordered-list. Prefer not to use because classes are the mordern practice.")]
         public string ElementID { get; set; }
 
         [ForeignKey("NavigationID")]

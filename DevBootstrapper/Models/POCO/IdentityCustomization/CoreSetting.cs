@@ -16,12 +16,12 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [StringLength(200)]
         [Required]
-        [DisplayName("Subtitle")]
+        [Display(Name = "Subtitle", Description = "Website's subtitle.")]
         public string ApplicationSubtitle { get; set; }
 
         [StringLength(300)]
         [Required]
-        [DisplayName("Description")]
+        [Display(Name = "Description", Description = "Website's description.")]
         public string ApplicationDescription { get; set; }
 
         [StringLength(400)]
@@ -72,10 +72,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [StringLength(35)]
         public string Language { get; set; }
 
-        [StringLength(500)]
-        [Required]
-        [DisplayName("Live URL")]
-        public string LiveUrl { get; set; }
+     
 
         [StringLength(20)]
         [Required]
@@ -84,7 +81,12 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [StringLength(500)]
         [Required]
-        [DisplayName("Testing URL")]
+        [Display(Name = "Live Url", Description = "Your live site url (without slash).")]
+        public string LiveUrl { get; set; }
+
+        [StringLength(500)]
+        [Required]
+        [Display(Name = "Testing Url", Description = "Your testing environment url (without slash).")]
         public string TestingUrl { get; set; }
         [StringLength(500)]
         [Required]
@@ -108,7 +110,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [StringLength(256)]
         [Required]
-        [DisplayName("Developer Email")]
+        [Display(Name = "Developer's Email", Description = "Developer's Email.")]
         [EmailAddress]
         public string DeveloperEmail { get; set; }
 
@@ -118,7 +120,8 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [StringLength(256)]
         [Required]
-        [DisplayName("Sender Email")]
+        [Display(Name = "Email", Description = "Email address where all the emails will be sent.")]
+
         [EmailAddress]
         public string SenderEmail { get; set; }
 
@@ -126,11 +129,12 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Required]
         [StringLength(30)]
         [DataType(DataType.Password)]
+        [Display(Name = "Password", Description = "Email password.")]
         public string SenderEmailPassword { get; set; }
 
         [StringLength(256)]
         [Required]
-        [DisplayName("Sender Display")]
+        [Display(Name="Sender Display", Description="Email sender display name.")]
         public string SenderDisplay { get; set; }
 
         [StringLength(45)]
@@ -152,7 +156,11 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Column(TypeName = "VARCHAR")]
         [StringLength(40)]
         public string FacebookSecret { get; set; }
+        [Display(Name = "Gallery Max", Description = "App details page , max gallery image number to upload.")]
 
+        public byte GalleryMaxPictures { get; set; }
+        [Display(Name = "Max Draft", Description = "Apps max draft number.")]
+        public byte MaxDraftPostByUsers { get; set; }
         //[DefaultValue(1)]
         //[Required]
         //[DisplayName("Steps in Registration")]

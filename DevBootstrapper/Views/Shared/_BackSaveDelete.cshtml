@@ -1,7 +1,7 @@
 ﻿@{
     string controller = ViewBag.controllerName;
     string areaName = ViewBag.areaName;
-    string link = @Url.Action("Index", controller, new { area = areaName });
+    string link = Url.Action("Index", controller, new { area = areaName });
 }
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

@@ -1,0 +1,16 @@
+﻿tab@model CoreSetting
+
+<div class="fade tab-pane" id="office-tab">
+    @ViewBag.backBtn
+    @ViewBag.stateMessage
+    @Html.EditorFor(model => model.AdminName, "Username")
+    @Html.EditorFor(model => model.AdminEmail, "EmailAddress")
+    @Html.EditorFor(model => model.OfficeEmail, "EmailAddress")
+    @Html.EditorFor(model => model.OfficePhone, "Phone", new { icon = "fa fa-phone-square" })
+    @Html.EditorFor(model => model.Fax, "Phone", new { icon = "fa fa-fax" })
+    @Html.EditorFor(model => model.MarketingEmail, "EmailAddress")
+    @Html.EditorFor(model => model.MarketingPhone, "Phone", new { icon = "fa fa-phone-square" })
+    @Html.EditorFor(model => model.SupportEmail, "EmailAddress")
+    @Html.EditorFor(model => model.SupportPhone, "Phone", new { icon = "fa fa-phone-square" })
+    @ViewBag.backBtn
+</div>

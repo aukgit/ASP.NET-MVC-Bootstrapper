@@ -479,6 +479,14 @@
     <Content Include="Content\css\bootstrap-select.css.map">
       <DependentUpon>bootstrap-select.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Shared\_NavBar.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_Basic-tab.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_Office-tab.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_Email-setup-tab.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_External-logins-tab.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_Urls-tab.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_Developers-tab.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\_Others-tab.cshtml" />
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />
     <Content Include="Content\Less\bootstrap-select.less" />
@@ -536,11 +544,6 @@
     <Content Include="Content\Scripts\Bootstrap\bootstrap-table-export.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-table.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-timepicker.js" />
-    <Content Include="Areas\Admin\Views\ImageResizeSettings\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ImageResizeSettings\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ImageResizeSettings\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\ImageResizeSettings\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ImageResizeSettings\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />

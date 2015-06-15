@@ -53,8 +53,7 @@
   color: #459EC9;
 }
 .regular-font {
-  font-size: 16px;
-  font-size: 1em;
+    .font-size(16px);
 }
 .medium-font {
   font-size: 122%;
@@ -114,22 +113,22 @@
   font-weight: normal;
 }
 .almost-white {
-  color: #bdbdbd;
+    color: @almost-white-color;
 }
 .mid-error-color {
-  background-color: #df3b69;
+    background-color: @bg-mid-error-color;
 }
 .low-error-color {
-  background-color: #ef3ecc;
+    background-color: @bg-low-error-color;
 }
 .error-solution-link-color {
-  background-color: #2382cc;
+    background-color: @bg-error-solution-color;
 }
 a.error-solution-link:hover {
   text-decoration: none;
-  background-color: #3196e4;
+    background-color: @bg-error-solution-color-hover;
 }
 a.error-solution-link span:hover {
   text-decoration: none;
-  background-color: #3196e4;
+    background-color: @bg-error-solution-color-hover;
 }
