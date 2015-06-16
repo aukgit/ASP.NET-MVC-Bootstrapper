@@ -63,8 +63,8 @@
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
                 <span class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
             </a>
-            @if (@ViewData.ModelMetadata.Description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show">
+            @if (description != null) {
+                <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span></a>
             }
             @Html.ValidationMessageFor(m => m, null, new {@class = "rounded-3 label label-danger fixed-width-294 validation-box"})

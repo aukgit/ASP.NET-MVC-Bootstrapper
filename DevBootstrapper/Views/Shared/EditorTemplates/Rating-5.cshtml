@@ -38,8 +38,8 @@
     <div class="controls dev-plugin plugin-container rating-5 dev-plugin plugin-container rating">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
             @ViewData.ModelMetadata.DisplayName
-            @if (@ViewData.ModelMetadata.Description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show">
+            @if (description != null) {
+                <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span></a>
             }
             <span class="red">@isRequiredStar</span>

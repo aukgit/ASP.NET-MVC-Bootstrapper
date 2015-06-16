@@ -43,7 +43,7 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            @if (@ViewData.ModelMetadata.Description != null) {
+            @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show inline">
                     <span class="description-icon"></span>
                 </a>

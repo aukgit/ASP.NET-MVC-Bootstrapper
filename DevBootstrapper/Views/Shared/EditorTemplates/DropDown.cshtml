@@ -55,8 +55,8 @@
                 data_live_search = @ViewBag.liveSearch,
                 id = ViewBag.id
             })
-            @if (@ViewData.ModelMetadata.Description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="description-icon"></span></a>
+            @if (description != null) {
+                <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
                 <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-spin hide" title="Validating"></span>

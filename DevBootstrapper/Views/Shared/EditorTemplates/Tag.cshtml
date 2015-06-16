@@ -60,15 +60,15 @@
     <div class="controls dev-plugin plugin-container tag">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @ViewData.ModelMetadata.DisplayName
-            @if (@ViewData.ModelMetadata.Description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show"><span class="fa fa-question font-size-22 glyphicon-top-fix almost-white"></span></a>
+            @if (description != null) {
+                <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="fa fa-question font-size-22 glyphicon-top-fix almost-white"></span></a>
             }
             <span class="red">@isRequiredStar</span>
         </label>
         <div class="@ViewBag.textColumn form-input-@ViewData.ModelMetadata.PropertyName tag-input-div">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
-            @if (@ViewData.ModelMetadata.Description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show">
+            @if (description != null) {
+                <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
