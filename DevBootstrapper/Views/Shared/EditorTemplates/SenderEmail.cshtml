@@ -44,7 +44,7 @@
 
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls controls-vertical">
-        <label class="displayNameColumn form-label-@ViewData.ModelMetadata.PropertyName control-label" for="@ViewData.ModelMetadata.PropertyName">
+        <label class="@ViewBag.textColumn form-label-@ViewData.ModelMetadata.PropertyName control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName<span class="red">@isRequiredStar</span>
         </label>
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">

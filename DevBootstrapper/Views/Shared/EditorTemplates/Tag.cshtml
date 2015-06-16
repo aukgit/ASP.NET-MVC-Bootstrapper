@@ -58,7 +58,7 @@
 
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container tag">
-        <label class="displayNameColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+        <label class="@ViewBag.textColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="fa fa-question font-size-22 glyphicon-top-fix almost-white"></span></a>

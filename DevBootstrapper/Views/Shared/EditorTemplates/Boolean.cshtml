@@ -10,7 +10,7 @@
 
 
     var htmlAttributes = new RouteValueDictionary();
-    
+
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", ViewBag.@class);
     }
@@ -36,9 +36,9 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", ViewBag.label + isRequiredStar);
+            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + ViewBag.label + "]");
+            htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
     
@@ -46,7 +46,7 @@
 }
 <div class="form-row @styleProperty" data-prop="@styleProperty">
     <div class="dev-plugin plugin-container checkbox-type">
-        <div class="displayNameColumn @ViewBag.textColumn">
+        <div class="@ViewBag.textColumn @ViewBag.labelColumn">
             <div class="checkbox">
                 <label class="form-input" for="@styleProperty">
                     @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)

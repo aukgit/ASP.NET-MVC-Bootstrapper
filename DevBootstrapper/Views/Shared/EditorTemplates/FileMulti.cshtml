@@ -71,7 +71,7 @@
 }
 <div data-id="@ViewBag.data_id_val" data-uploader-div-row="true" class="form-group form-row @styleProperty form-row-uploader" data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container uploader-multiple">
-        <label class="displayNameColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+        <label class="@ViewBag.textColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span>
