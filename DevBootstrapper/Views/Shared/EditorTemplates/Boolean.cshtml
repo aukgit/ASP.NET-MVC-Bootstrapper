@@ -17,16 +17,6 @@
     if (ViewBag.type != null) {
         htmlAttributes.Add("type", ViewBag.type);
     }
-
-    if (ViewBag.placeholder != null) {
-        htmlAttributes.Add("placeholder", ViewBag.placeholder);
-    } else {
-        if (isRequired) {
-            htmlAttributes.Add("placeholder", @ViewData.ModelMetadata.DisplayName + isRequiredStar);
-        } else {
-            htmlAttributes.Add("placeholder", "[" + @ViewData.ModelMetadata.DisplayName + "]");
-        }
-    }
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
@@ -41,6 +31,17 @@
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "col-md-10";
     }
+    
+    if (ViewBag.placeholder != null) {
+        htmlAttributes.Add("placeholder", ViewBag.placeholder);
+    } else {
+        if (isRequired) {
+            htmlAttributes.Add("placeholder", ViewBag.label + isRequiredStar);
+        } else {
+            htmlAttributes.Add("placeholder", "[" + ViewBag.label + "]");
+        }
+    }
+    
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 <div class="form-row @styleProperty" data-prop="@styleProperty">

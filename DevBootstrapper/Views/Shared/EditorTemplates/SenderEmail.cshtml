@@ -3,7 +3,7 @@
     var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "";
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewData.ModelMetadata.DisplayName == null) {
+    if (@ViewBag.label == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
@@ -20,9 +20,9 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", @ViewData.ModelMetadata.DisplayName + isRequiredStar);
+            htmlAttributes.Add("placeholder", @ViewBag.label + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + @ViewData.ModelMetadata.DisplayName + "]");
+            htmlAttributes.Add("placeholder", "[" + @ViewBag.label + "]");
         }
     }
     if (ViewBag.Value != null) {
@@ -60,7 +60,7 @@
             <div class="validator-container">
                 <div class="validator">
                     <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @ViewData.ModelMetadata.PropertyName no-hover">
-                        <span data-display="@ViewData.ModelMetadata.DisplayName" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
+                        <span data-display="@ViewBag.label" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
                     </a>
                 </div>
             </div>

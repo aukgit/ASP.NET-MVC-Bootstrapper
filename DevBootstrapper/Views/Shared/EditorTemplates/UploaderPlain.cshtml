@@ -3,7 +3,7 @@
 @{
     var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "";
-    if (@ViewData.ModelMetadata.DisplayName == null) {
+    if (@ViewBag.label == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.data_id != null) {
@@ -25,12 +25,12 @@
 }
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container uploader plain">
-        <label class="col-md-2 upload-label control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">@ViewData.ModelMetadata.DisplayName<span class="red">@isRequiredStar</span></label>
+        <label class="col-md-2 upload-label control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">@ViewBag.label<span class="red">@isRequiredStar</span></label>
         <div class="col-md-10 form-input-@ViewData.ModelMetadata.PropertyName">
             <div class="simple-uploader">
                 <span class="btn btn-success fileinput-button">
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span title="@ViewData.ModelMetadata.DisplayName Upload files">Upload Files...</span>
+                    <span title="@ViewBag.label Upload files">Upload Files...</span>
                     <!-- The file input field used as target for the file upload widget -->
                     <input class="dev-fileupload" @ViewBag.data_id type="file" @ViewBag.data_url name="@ViewData.ModelMetadata.PropertyName" title="@ViewData.ModelMetadata.Description" @ViewBag.autoupload @ViewBag.single>
                     <label class="label label-success file-uploaded-notify-label-@ViewBag.data_id_val" data-loaded="0"></label>
@@ -39,7 +39,7 @@
                     <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>
                 }
                 <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                    <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>
+                    <span data-display="@ViewBag.label" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>
                 </a>
             </div>
             @Html.ValidationMessageFor(m => m, null, new { @class = "rounded-3 label label-danger fixed-width-294 validation-box" })
