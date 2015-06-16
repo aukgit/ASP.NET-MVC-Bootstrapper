@@ -1,6 +1,6 @@
 @model object
 @{
-    bool isRequired = ViewData.ModelMetadata.IsRequired;
+    var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "",
         prop = ViewData.ModelMetadata.PropertyName.ToString(),
         propLower = prop.ToLower(),
@@ -8,9 +8,8 @@
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description;
 
-
     var htmlAttributes = new RouteValueDictionary();
-    
+
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control " + ViewBag.@class);
     } else {
@@ -19,19 +18,21 @@
 
     if (ViewBag.type != null) {
         htmlAttributes.Add("type", ViewBag.type);
-    } else {
-        htmlAttributes.Add("type", "email");
     }
 
     if (ViewBag.placeholder != null) {
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
+            htmlAttributes.Add("placeholder", ViewData.ModelMetadata.DisplayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + displayName + "]");
+            htmlAttributes.Add("placeholder", "[" + ViewData.ModelMetadata.DisplayName + "]");
         }
-    }   
+    }
+    if (ViewBag.Value != null) {
+        htmlAttributes.Add("Value", ViewBag.Value);
+    }
+
     if (ViewBag.label != null) {
         displayName = ViewBag.label;
     }
@@ -42,31 +43,37 @@
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "col-md-10";
     }
-    if (ViewBag.Value != null) {
-        htmlAttributes.Add("Value", ViewBag.Value);
+    if (ViewBag.url != null) {
+        htmlAttributes.Add("data-url", ViewBag.url);
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-
-<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
-    <div class="controls dev-plugin plugin-container email-type">
+<div class="form-group form-row @styleProperty" data-prop="@styleProperty">
+    <div class="controls dev-plugin plugin-container text-type">
         <label class="@ViewBag.textColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
-            @displayName<span class="red">@isRequiredStar</span>
+            @displayName
+            <span class="red">@isRequiredStar</span>
         </label>
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
-            <span class="inner-addon left-addon">
-                <i class="fa fa-envelope-o"></i>
-                @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
-            </span>
+            <div class="input-validator-container">
+                <span class="inner-addon left-addon">
+                    <i class="@ViewBag.icon"></i>
+                    @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
+                </span>
+                <div class="validator-container">
+                    <div class="validator">
+                        <a>
+                            <i class=""></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span>
                 </a>
             }
-            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@displayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
-            </a>
-            @Html.ValidationMessageFor(m => m, null, new {@class = "rounded-3 label label-danger fixed-width-294 validation-box"})
+            @Html.ValidationMessageFor(m => m, null, new { @class = "rounded-3 label label-danger fixed-width-294 validation-box" })
         </div>
     </div>
 </div>

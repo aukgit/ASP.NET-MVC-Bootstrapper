@@ -2,7 +2,12 @@
 
 @{
     var isRequired = ViewData.ModelMetadata.IsRequired;
-    string isRequiredStar = isRequired ? "*" : "";
+    string isRequiredStar = isRequired ? "*" : "",
+        prop = ViewData.ModelMetadata.PropertyName.ToString(),
+        propLower = prop.ToLower(),
+        styleProperty = propLower,
+        displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
+        description = ViewData.ModelMetadata.Description;
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -29,8 +34,8 @@
         <div class="col-md-12 search-url-div-col">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
             <button class="btn btn-success" title="Search your app."><i class="glyphicon glyphicon-search"></i> Search</button>
-            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@displayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
+            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @styleProperty no-hover">
+                <span data-display="@displayName" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
             </a>
         </div>
     </div>

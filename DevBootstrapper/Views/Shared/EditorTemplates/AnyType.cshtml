@@ -7,6 +7,7 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description;
+
     var htmlAttributes = new RouteValueDictionary();
 
     if (ViewBag.@class != null) {
@@ -15,10 +16,9 @@
         htmlAttributes.Add("class", "form-control");
     }
 
-    if (ViewBag.type == null) {
-        ViewBag.type = "text";
+    if (ViewBag.type != null) {
+        htmlAttributes.Add("type", ViewBag.type);
     }
-    htmlAttributes.Add("type", ViewBag.type);
 
     if (ViewBag.placeholder != null) {
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
@@ -46,10 +46,11 @@
     if (ViewBag.url != null) {
         htmlAttributes.Add("data-url", ViewBag.url);
     }
+
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 <div class="form-group form-row @styleProperty" data-prop="@styleProperty">
-    <div class="controls dev-plugin plugin-container @ViewBag.type-type">
+    <div class="controls dev-plugin plugin-container text-type">
         <label class="@ViewBag.textColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName
             <span class="red">@isRequiredStar</span>

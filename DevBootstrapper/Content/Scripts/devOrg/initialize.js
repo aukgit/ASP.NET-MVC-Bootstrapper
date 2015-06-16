@@ -81,7 +81,7 @@ $.devOrg.initialize = function () {
 
     // make tag component live
     function makeTagLive() {
-        var $createdTags = $("div.tag-input-div input[data-provide=tags]").tag();
+        var $createdTags = $("div.tag-input-container input[data-provide=tags]").tag();
         if ($createdTags.length > 0) {
             var placeHolder = $createdTags.attr('placeholder');
             $createdTags.siblings("input").attr('placeholder', placeHolder);
