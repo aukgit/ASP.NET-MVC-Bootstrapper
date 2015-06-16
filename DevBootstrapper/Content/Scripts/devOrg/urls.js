@@ -67,6 +67,7 @@ $.devOrg.urls = {
     },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     getAbsValidatorUrl: function (url) {
         /// <summary>
@@ -99,6 +100,8 @@ $.devOrg.urls = {
     }
 >>>>>>> origin/Development
 =======
+=======
+>>>>>>> origin/Development
 
     getAbsValidatorUrl: function (url) {
         /// <summary>
@@ -111,5 +114,8 @@ $.devOrg.urls = {
         var urlCombined = self.validator + url;
         return self.getAbsUrl(urlCombined);
     }
+<<<<<<< HEAD
+>>>>>>> origin/Development
+=======
 >>>>>>> origin/Development
 };
