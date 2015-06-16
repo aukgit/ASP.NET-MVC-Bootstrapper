@@ -34,7 +34,7 @@
     htmlAttributes.Add("data-size", "xs");
 }
 
-<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container rating-5 dev-plugin plugin-container rating">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
             @ViewData.ModelMetadata.DisplayName

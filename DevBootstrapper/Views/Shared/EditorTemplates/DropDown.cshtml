@@ -42,7 +42,7 @@
     }
     var selectListData = (IEnumerable<SelectListItem>)ViewBag.selectData;
 }
-<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls">
         <label class="@ViewBag.labelColumn control-label" for="@ViewData.ModelMetadata.PropertyName">
             @ViewBag.label

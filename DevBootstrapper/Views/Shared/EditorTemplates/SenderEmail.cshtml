@@ -42,7 +42,7 @@
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
-<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls controls-vertical">
         <label class="@ViewBag.labelColumn form-label-@ViewData.ModelMetadata.PropertyName control-label" for="@ViewData.ModelMetadata.PropertyName">
             @ViewBag.label<span class="red">@isRequiredStar</span>

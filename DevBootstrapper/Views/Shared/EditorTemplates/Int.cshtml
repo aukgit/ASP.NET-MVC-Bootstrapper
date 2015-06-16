@@ -51,7 +51,7 @@
 
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container int">
         <label class="@ViewBag.labelColumn control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
             @ViewBag.label <span class="red">@isRequiredStar</span>

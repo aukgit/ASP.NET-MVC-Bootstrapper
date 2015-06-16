@@ -43,7 +43,7 @@
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
-<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container string">
         <div class="@ViewBag.textColumn form-input-@ViewData.ModelMetadata.PropertyName">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
