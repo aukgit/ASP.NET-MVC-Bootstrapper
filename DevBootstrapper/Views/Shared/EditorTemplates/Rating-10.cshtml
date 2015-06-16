@@ -48,7 +48,16 @@
     if (ViewBag.step == null) {
         ViewBag.step = .5;
     }
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
+    }
 
+    if (ViewBag.labelColumn == null) {
+        ViewBag.labelColumn = "col-md-2";
+    }
+    if (ViewBag.textColumn == null) {
+        ViewBag.textColumn = "col-md-10";
+    }
     
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
     htmlAttributes.Add("min", ViewBag.min);

@@ -32,7 +32,16 @@
             htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
+    }
 
+    if (ViewBag.labelColumn == null) {
+        ViewBag.labelColumn = "col-md-2";
+    }
+    if (ViewBag.textColumn == null) {
+        ViewBag.textColumn = "col-md-10";
+    }
     htmlAttributes.Add("title", @htmlAttributes["placeholder"]);
     htmlAttributes.Add("min", 0);
     htmlAttributes.Add("max", 5);

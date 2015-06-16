@@ -17,16 +17,13 @@
     if (ViewBag.type != null) {
         htmlAttributes.Add("type", ViewBag.type);
     }
-    if (ViewBag.Value != null) {
-        htmlAttributes.Add("Value", ViewBag.Value);
-    }
 
     if (ViewBag.label != null) {
         displayName = ViewBag.label;
     }
 
     if (ViewBag.labelColumn == null) {
-        ViewBag.labelColumn = "col-md-2";
+        ViewBag.labelColumn = "col-md-offset-2";
     }
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "col-md-10";

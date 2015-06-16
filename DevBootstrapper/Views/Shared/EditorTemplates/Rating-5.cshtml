@@ -32,7 +32,16 @@
             htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
+    }
 
+    if (ViewBag.labelColumn == null) {
+        ViewBag.labelColumn = "col-md-2";
+    }
+    if (ViewBag.textColumn == null) {
+        ViewBag.textColumn = "col-md-10";
+    }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
     htmlAttributes.Add("min", 0);
     htmlAttributes.Add("max", 5);
@@ -41,7 +50,7 @@
 
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container rating-5 dev-plugin plugin-container rating">
-        <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
+        <label class="@ViewBag.labelColumn control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
@@ -49,7 +58,7 @@
             }
             <span class="red">@isRequiredStar</span>
         </label>
-        <div class="col-md-10">
+        <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
 
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @styleProperty no-hover">

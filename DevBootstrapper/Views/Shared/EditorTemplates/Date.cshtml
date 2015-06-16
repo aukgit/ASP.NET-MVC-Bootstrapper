@@ -48,7 +48,7 @@
             @displayName
             <span class="red">@isRequiredStar</span>
         </label>
-        <div class="@ViewBag.textColumn">
+        <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             <div class='input-group datepicker-start inline form-input @styleProperty' data-prop="@styleProperty">
                 @if (Model != null) {
                     var dt = Model ?? DateTime.Now;
