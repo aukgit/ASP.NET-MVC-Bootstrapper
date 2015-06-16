@@ -57,8 +57,8 @@
         ViewBag.hasEditBtn = "false";
     }
 
-    if (ViewBag.label == null) {
-        ViewBag.label = displayName;
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
     }
     
     if (ViewBag.labelColumn == null) {
@@ -71,7 +71,7 @@
 }
 <div data-id="@ViewBag.data_id_val" data-uploader-div-row="true" class="form-group form-row @styleProperty form-row-uploader" data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container uploader-multiple">
-        <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+        <label class="displayNameColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span>
@@ -86,20 +86,20 @@
                 <div data-id="@ViewBag.data_id_val" class="edit-items-list-@ViewBag.data_id_val">
                 </div>
                 <a data-id="@ViewBag.data_id_val" data-edit-btn-spinner="true" data-spinner="spinner" data-toggle="tooltip" title="Show images to remove" class="spinner tooltip-show edit-btn-spinner @styleProperty no-hover">
-                    <span data-id="@ViewBag.data_id_val" data-display="@ViewBag.label" class="glyphicon glyphicon-refresh glyphicon-spin" title="Validating"></span>
+                    <span data-id="@ViewBag.data_id_val" data-display="@displayName" class="glyphicon glyphicon-refresh glyphicon-spin" title="Validating"></span>
                 </a>
                 <a data-id="@ViewBag.data_id_val" data-btn="edit" data-default-show="@ViewBag.defaultShow" class="edit-@ViewBag.data_id_val btn btn-info edit-btn" href="@ViewBag.editUrl">
                     Edit
                 </a>
                 <span class="btn btn-success fileinput-button">
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span title="@ViewBag.label Upload">@ViewBag.label</span>
+                    <span title="@displayName Upload">@displayName</span>
                     <!-- The file input field used as target for the file upload widget -->
-                    <input @ViewBag.data_guid class="dev-fileupload" data-has-edit-btn="@ViewBag.hasEditBtn" @ViewBag.data_id type="file" @ViewBag.data_url name="@styleProperty" title="@ViewBag.label Upload files , @ViewData.ModelMetadata.Description" @ViewBag.autoupload @ViewBag.data_single>
+                    <input @ViewBag.data_guid class="dev-fileupload" data-has-edit-btn="@ViewBag.hasEditBtn" @ViewBag.data_id type="file" @ViewBag.data_url name="@styleProperty" title="@displayName Upload files , @ViewData.ModelMetadata.Description" @ViewBag.autoupload @ViewBag.data_single>
                 </span>
                 <div data-id="@ViewBag.data_id_val" data-progressor-div="true" class="uploader-progress-info">
-                    <a data-id="@ViewBag.data_id_val" data-progressor-spinner="true" data-spinner="spinner" data-toggle="tooltip" title="@ViewBag.label Uploading..." class="spinner tooltip-show upload-spinner-@styleProperty no-hover">
-                        <span data-id="@ViewBag.data_id_val" data-display="@ViewBag.label" class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+                    <a data-id="@ViewBag.data_id_val" data-progressor-spinner="true" data-spinner="spinner" data-toggle="tooltip" title="@displayName Uploading..." class="spinner tooltip-show upload-spinner-@styleProperty no-hover">
+                        <span data-id="@ViewBag.data_id_val" data-display="@displayName" class="glyphicon glyphicon-refresh glyphicon-spin"></span>
                     </a>
                     <a data-id="@ViewBag.data_id_val" data-progressor-value="true" data-toggle="tooltip" title="" class="tooltip-show upload-progressor-@styleProperty no-hover">
                         <span data-id="@ViewBag.data_id_val" data-uploader-percent-value="" class="bold green"></span>

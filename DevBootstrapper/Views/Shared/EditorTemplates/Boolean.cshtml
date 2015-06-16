@@ -21,8 +21,8 @@
         htmlAttributes.Add("Value", ViewBag.Value);
     }
 
-    if (ViewBag.label == null) {
-        ViewBag.label = displayName;
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
     }
 
     if (ViewBag.labelColumn == null) {
@@ -46,11 +46,11 @@
 }
 <div class="form-row @styleProperty" data-prop="@styleProperty">
     <div class="dev-plugin plugin-container checkbox-type">
-        <div class="@ViewBag.labelColumn @ViewBag.textColumn">
+        <div class="displayNameColumn @ViewBag.textColumn">
             <div class="checkbox">
                 <label class="form-input" for="@styleProperty">
                     @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
-                    ViewBag.label
+                    @displayName
                 </label>
                 @if (description != null) {
                     <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">

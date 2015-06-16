@@ -4,7 +4,7 @@
     var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "";
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewBag.label == null) {
+    if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
@@ -21,16 +21,16 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", @ViewBag.label + isRequiredStar);
+            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + @ViewBag.label + "]");
+            htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
-    if (ViewBag.label == null) {
-        ViewBag.label = ViewData.ModelMetadata.DisplayName;
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
     }
 
     if (ViewBag.labelColumn == null) {
@@ -49,8 +49,8 @@
 
 <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName  string-multiline-div">
     <div class="controls dev-plugin plugin-container string-multiline">
-        <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
-            @ViewBag.label
+        <label class="displayNameColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+            @displayName
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span></a>

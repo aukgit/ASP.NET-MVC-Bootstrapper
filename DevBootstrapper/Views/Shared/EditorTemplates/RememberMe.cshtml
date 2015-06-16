@@ -4,7 +4,7 @@
     var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "";
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewBag.label == null) {
+    if (@displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
@@ -18,10 +18,10 @@
     if (ViewBag.placeholder != null) {
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
-        htmlAttributes.Add("placeholder", @ViewBag.label + isRequiredStar);
+        htmlAttributes.Add("placeholder", @displayName + isRequiredStar);
     }
-    if (ViewBag.label == null) {
-        ViewBag.label = ViewData.ModelMetadata.DisplayName;
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
     }
 
     if (ViewBag.labelColumn == null) {
@@ -38,14 +38,14 @@
         <div class="@ViewBag.labelColumn @ViewBag.textColumn remember-me-box">
             <label class="control-label form-label-@ViewData.ModelMetadata.PropertyName form-input-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
                 @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
-                @ViewBag.label
+                @displayName
             </label>
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@ViewBag.label" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
+                <span data-display="@ViewData.ModelMetadata.DisplayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
             </a>
             @Html.ValidationMessageFor(m => m, null, new {@class = "rounded-3 label label-danger fixed-width-294 validation-box"})
             <div class="pull-right">

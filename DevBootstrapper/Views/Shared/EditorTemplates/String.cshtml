@@ -3,7 +3,7 @@
     var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "";
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewBag.label == null) {
+    if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
@@ -29,8 +29,8 @@
         htmlAttributes.Add("Value", ViewBag.Value);
     }
 
-    if (ViewBag.label == null) {
-        ViewBag.label = ViewData.ModelMetadata.DisplayName;
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
     }
 
     if (ViewBag.labelColumn == null) {
@@ -44,13 +44,13 @@
 }
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container string">
-        <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
-            @ViewBag.label <span class="red">@isRequiredStar</span>
+        <label class="displayNameColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+            @displayName <span class="red">@isRequiredStar</span>
         </label>
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@ViewBag.label" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
+                <span data-display="@displayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
             </a>
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">

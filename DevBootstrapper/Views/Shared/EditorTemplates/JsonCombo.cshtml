@@ -4,7 +4,7 @@
     var isRequired = ViewData.ModelMetadata.IsRequired;
     var isRequiredStar = isRequired ? "*" : "";
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewBag.label == null) {
+    if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
@@ -16,9 +16,9 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", @ViewBag.label + isRequiredStar);
+            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + @ViewBag.label + "]");
+            htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
     if (ViewBag.Value != null) {
@@ -49,8 +49,8 @@
         ViewBag.isDependable = "false";
     }
 
-    if (ViewBag.label == null) {
-        ViewBag.label = ViewData.ModelMetadata.DisplayName;
+    if (ViewBag.label != null) {
+        displayName = ViewBag.label;
     }
 
     if (ViewBag.labelColumn == null) {
@@ -67,13 +67,13 @@
     @*<div class="controls">*@
     <label data-progress-bar="true" data-prop="@ViewData.ModelMetadata.PropertyName">
         <a data-toggle="tooltip" title="Loading request..." data-original-title="Loading request..." class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-            <span data-display="@ViewBag.label" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin" title="Loading request..."></span>
+            <span data-display="@displayName" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin" title="Loading request..."></span>
         </a>
         Loading request...
     </label>
     <div data-hidable="true" data-prop="@ViewData.ModelMetadata.PropertyName">
-        <label data-prop="@ViewData.ModelMetadata.PropertyName" class="@ViewBag.labelColumn control-label" for="@ViewData.ModelMetadata.PropertyName">
-            @ViewBag.label
+        <label data-prop="@ViewData.ModelMetadata.PropertyName" class="displayNameColumn control-label" for="@ViewData.ModelMetadata.PropertyName">
+            @displayName
             <span class="red">@isRequiredStar</span>
         </label>
         <div class="@ViewBag.textColumn select-holding-div select-dynamic-holding-div">
@@ -94,7 +94,7 @@
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@ViewBag.label" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-spin hide" title="Validating"></span>
+                <span data-display="@displayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-refresh-spin hide" title="Validating"></span>
             </a>
         </div>
     </div>

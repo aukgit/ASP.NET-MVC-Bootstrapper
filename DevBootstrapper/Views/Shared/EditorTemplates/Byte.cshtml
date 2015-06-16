@@ -28,9 +28,9 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", @ViewBag.label + isRequiredStar);
+            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + @ViewBag.label + "]");
+            htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
     if (ViewBag.textColumn == null) {
@@ -47,7 +47,7 @@
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
     <div class="controls dev-plugin plugin-container byte">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
-            @ViewBag.label<span class="red">@isRequiredStar</span></label>
+            @displayName<span class="red">@isRequiredStar</span></label>
         <div class="col-md-10">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
             @if (description != null) {
@@ -55,7 +55,7 @@
                     <span class="description-icon"></span></a>
             }
             <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show CustomValidation @ViewData.ModelMetadata.PropertyName no-hover">
-                <span data-display="@ViewBag.label" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
+                <span data-display="@displayName" class="CustomValidation @ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
             </a>
             @Html.ValidationMessageFor(m => m, null, new {@class = "rounded-3 label label-danger fixed-width-294 validation-box"})
         </div>
