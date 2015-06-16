@@ -1,38 +1,57 @@
 @model DateTime?
 @{
-    var isRequired = ViewData.ModelMetadata.IsRequired;
-    string isRequiredStar = isRequired ? "*" : "";
+    bool isRequired = ViewData.ModelMetadata.IsRequired;
+    string isRequiredStar = isRequired ? "*" : "",
+        prop = ViewData.ModelMetadata.PropertyName.ToString(),
+        propLower = prop.ToLower(),
+        styleProperty = propLower,
+        displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
+        description = ViewData.ModelMetadata.Description;
+
+
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewData.ModelMetadata.DisplayName == null) {
-        ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
-    }
+    
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control datetime-input " + ViewBag.@class);
     } else {
         htmlAttributes.Add("class", "form-control datetime-input");
     }
-    if (ViewBag.@type != null) {
-        htmlAttributes.Add("type", ViewBag.@type);
+    if (ViewBag.type != null) {
+        htmlAttributes.Add("type", ViewBag.type);
     }
 
     if (ViewBag.placeholder != null) {
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
-        htmlAttributes.Add("placeholder", @ViewData.ModelMetadata.DisplayName + isRequiredStar);
+        if (isRequired) {
+            htmlAttributes.Add("placeholder", @ViewData.ModelMetadata.DisplayName + isRequiredStar);
+        } else {
+            htmlAttributes.Add("placeholder", "[" + @ViewData.ModelMetadata.DisplayName + "]");
+        }
     }
 
+    if (ViewBag.label == null) {
+        ViewBag.label = displayName;
+    }
+
+    if (ViewBag.labelColumn == null) {
+        ViewBag.labelColumn = "col-md-offset-2";
+    }
+    if (ViewBag.textColumn == null) {
+        ViewBag.textColumn = "col-md-10";
+    }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
     htmlAttributes.Add("data-date-format", "DD/MMM/YYYY hh:mm a");
 }
 <div class="form-group form-row @styleProperty" data-prop="@styleProperty">
     <div class="controls">
-        <label class="col-md-2 control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
-            @ViewData.ModelMetadata.DisplayName<span class="red">@isRequiredStar</span>
+        <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+            @ViewBag.label<span class="red">@isRequiredStar</span>
         </label>
         <div class="col-md-10">
             <div class='input-group datetimepicker-start inline form-input-@ViewData.ModelMetadata.PropertyName'>
                 @if (Model != null) {
-                    var dt = Model == null ? DateTime.Now : (DateTime)Model;
+                    var dt = Model ?? DateTime.Now;
                     @Html.TextBox("", dt.ToString(@"dd/MMM/yyyy h:mm:ss tt"), htmlAttributes)
                 } else {
                     @Html.TextBox("", "", htmlAttributes)
@@ -41,8 +60,8 @@
                     <span class="fa-calendar fa"></span>
                 </span>
             </div>
-            @if (description != null) {
-                <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show inline">
+            @if (description != null) {                
+		<a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show inline">
                     <span class="description-icon"></span>
                 </a>
             }
