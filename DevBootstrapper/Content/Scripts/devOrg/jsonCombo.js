@@ -39,7 +39,7 @@ $.devOrg.jsonCombo = {
     dataValueAttribute: "data-value",
     isDynamicSelectElementAttribute: "data-dev-dynamic-select",
     additionalCssAttribute: "data-additional-css",
-    liveSearchAttribute: "data-live-search",
+    LiveSearchAttribute: "data-live-search",
     idAttribute: "data-id",
     isHtmlAttribute: "dev-isHtml",
     isStyledAttribute: "data-is-selectpicker",
@@ -181,7 +181,7 @@ $.devOrg.jsonCombo = {
         }
 
         var value = $div.attr(self.dataValueAttribute);
-        var liveSearch = $div.attr(self.liveSearchAttribute);
+        var LiveSearch = $div.attr(self.LiveSearchAttribute);
         var additionCss = $div.attr(self.additionalCssAttribute);
         var propName = $div.attr(self.propertyNameAttribute);
         //container and spinners 
@@ -205,7 +205,7 @@ $.devOrg.jsonCombo = {
         var isSelectPickerRequired = $div.attr(self.isStyledAttribute);
         var selectPickerClass = isSelectPickerRequired === 'true' ? 'selectpicker' : '';
         var addAttr = "data-style='" + additionCss + "'" +
-                      "data-live-search='" + liveSearch + "'" +
+                      "data-live-search='" + LiveSearch + "'" +
                       elementIdInAttributeFormat;
         var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='" + selectPickerClass + " form-control' >";
         var selectBoxEnd = "</select>";

@@ -25,12 +25,12 @@
         htmlAttributes.Add("Value", ViewBag.Value);
     }
 
-    if (ViewBag.LiveSearch == null) {
-        ViewBag.LiveSearch = "true";
+    if (ViewBag.liveSearch == null) {
+        ViewBag.liveSearch = "true";
     }
 
-    if (ViewBag.Style == null) {
-        ViewBag.Style = "btn-success";
+    if (ViewBag.style == null) {
+        ViewBag.style = "btn-success";
     }
 
 
@@ -38,15 +38,15 @@
         ViewBag.isPicker = "true"; // true , false to make it selectpicker or not
     }
 
-    if (ViewBag.Id == null) {      
+    if (ViewBag.id == null) {      
         ViewBag.id = ViewData.ModelMetadata.PropertyName;
     }
 
-    if (ViewBag.DynamicLoad == null) {
-        ViewBag.DynamicLoad = "true";
+    if (ViewBag.dynamicLoad == null) {
+        ViewBag.dynamicLoad = "true";
     }
-    if (ViewBag.IsDependable == null) {
-        ViewBag.IsDependable = "false";
+    if (ViewBag.isDependable == null) {
+        ViewBag.isDependable = "false";
     }
 
     if (ViewBag.label == null) {
@@ -59,8 +59,8 @@
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "col-md-10";
     }
-    if (ViewBag.IsHtmlRequest == null) {
-        ViewBag.IsHtmlRequest = "false";
+    if (ViewBag.isHtmlRequest == null) {
+        ViewBag.isHtmlRequest = "false";
     }
 }
 <div data-json-combo-plugin="true" class="form-group form-row-@ViewData.ModelMetadata.PropertyName dynamic-select-container" data-dynamic-select-container="true">
@@ -79,14 +79,14 @@
         <div class="@ViewBag.textColumn select-holding-div select-dynamic-holding-div">
             <div class="d-select-ip-@ViewData.ModelMetadata.PropertyName dynamic-select-load"
                  data-prop="@ViewData.ModelMetadata.PropertyName"
-                 data-dev-dynamic-select="@ViewBag.DynamicLoad"
-                 data-url="@ViewBag.Url"
+                 data-dev-dynamic-select="@ViewBag.dynamicLoad"
+                 data-url="@ViewBag.url"
                  data-value="@Model"
-                 data-additional-css="@ViewBag.Style"
-                 data-live-search="@ViewBag.LiveSearch"
-                 data-dependable="@ViewBag.IsDependable"
-                 data-dependable-prop-name="@ViewBag.DependablePropertyName"
-                 data-id="@ViewBag.Id"
+                 data-additional-css="@ViewBag.style"
+                 data-live-search="@ViewBag.liveSearch"
+                 data-dependable="@ViewBag.isDependable"
+                 data-dependable-prop-name="@ViewBag.dependablePropertyName"
+                 data-id="@ViewBag.id"
                  data-is-selectpicker="@ViewBag.isPicker">
 
             </div>

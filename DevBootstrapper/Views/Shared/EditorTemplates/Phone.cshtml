@@ -1,7 +1,13 @@
-@model object
+@model object?
 @{
-    var isRequired = ViewData.ModelMetadata.IsRequired;
-    string isRequiredStar = isRequired ? "*" : "";
+    bool isRequired = ViewData.ModelMetadata.IsRequired;
+    string isRequiredStar = isRequired ? "*" : "",
+           prop = ViewData.ModelMetadata.PropertyName.ToString(),
+           propLower = prop.ToLower(),
+           styleProperty = propLower,
+           description = ViewData.ModelMetadata.Description;
+
+
     var htmlAttributes = new RouteValueDictionary();
     if (@ViewData.ModelMetadata.DisplayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -42,7 +48,7 @@
     if (ViewBag.icon == null) {
         ViewBag.icon = "fa fa-mobile";
     }
-    htmlAttributes.Add("title", @htmlAttributes["placeholder"]);
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
     <div class="controls">

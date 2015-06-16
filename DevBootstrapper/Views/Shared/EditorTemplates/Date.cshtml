@@ -23,7 +23,7 @@
         htmlAttributes.Add("placeholder", @ViewData.ModelMetadata.DisplayName + isRequiredStar);
     }
 
-    htmlAttributes.Add("title", @htmlAttributes["placeholder"]);
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
     htmlAttributes.Add("data-date-format", "DD/MMM/YYYY");
 }
 

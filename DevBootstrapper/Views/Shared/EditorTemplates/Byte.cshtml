@@ -1,20 +1,25 @@
 @model byte?
 
 @{
-    var isRequired = ViewData.ModelMetadata.IsRequired;
-    string isRequiredStar = isRequired ? "*" : "";
+    bool isRequired = ViewData.ModelMetadata.IsRequired;
+    string isRequiredStar = isRequired ? "*" : "",
+        prop = ViewData.ModelMetadata.PropertyName.ToString(),
+        propLower = prop.ToLower(),
+        styleProperty = propLower,
+        displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
+        description = ViewData.ModelMetadata.Description;
+
+
     var htmlAttributes = new RouteValueDictionary();
-    if (@ViewData.ModelMetadata.DisplayName == null) {
-        ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
-    }
+    
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control " + ViewBag.@class);
     } else {
         htmlAttributes.Add("class", "form-control");
     }
 
-    if (ViewBag.@type != null) {
-        htmlAttributes.Add("type", ViewBag.@type);
+    if (ViewBag.type != null) {
+        htmlAttributes.Add("type", ViewBag.type);
     } else {
         htmlAttributes.Add("type", "number");
     }
@@ -28,18 +33,19 @@
             htmlAttributes.Add("placeholder", "[" + @ViewData.ModelMetadata.DisplayName + "]");
         }
     }
-
+    if (ViewBag.textColumn == null) {
+        ViewBag.textColumn = "col-md-10";
+    }
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
-
-    htmlAttributes.Add("title", @htmlAttributes["placeholder"]);
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
     htmlAttributes.Add("min", 0);
     htmlAttributes.Add("max", 255);
 }
 
 <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
-    <div class="controls custom-byte">
+    <div class="controls dev-plugin plugin-container byte">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
             @ViewData.ModelMetadata.DisplayName<span class="red">@isRequiredStar</span></label>
         <div class="col-md-10">

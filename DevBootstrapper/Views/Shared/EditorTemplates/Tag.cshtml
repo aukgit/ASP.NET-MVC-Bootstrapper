@@ -29,7 +29,7 @@
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
-    htmlAttributes.Add("title", @htmlAttributes["placeholder"]);
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 
     htmlAttributes.Add("data-provide", "tags");
 
@@ -57,7 +57,7 @@
 }
 
 <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
-    <div class="controls custom-tag">
+    <div class="controls dev-plugin plugin-container tag">
         <label class="@ViewBag.labelColumn control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
             @ViewData.ModelMetadata.DisplayName
             @if (@ViewData.ModelMetadata.Description != null) {

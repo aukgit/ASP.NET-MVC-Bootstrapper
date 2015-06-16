@@ -26,11 +26,11 @@
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
-    htmlAttributes.Add("title", @htmlAttributes["placeholder"]);
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
 <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
-    <div class="controls custom-string">
+    <div class="controls dev-plugin plugin-container string">
         <label class="col-md-2 control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
             @ViewData.ModelMetadata.DisplayName<span class="red">@isRequiredStar</span></label>
         <div class="col-md-10 form-input-@ViewData.ModelMetadata.PropertyName">
