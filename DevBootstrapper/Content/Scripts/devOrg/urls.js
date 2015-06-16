@@ -25,8 +25,8 @@ $.devOrg.urls = {
     hostUrl: null,
 
     validator: "Validator/",
-    usernameValidation: "Validator/Username",
-    emailValidation: "Validator/Email",
+    usernameValidation: "Username",
+    emailValidation: "Email",
     timeZoneJson: "Services/GetTimeZone", // look like this /Partials/GetTimeZone/CountryID
     languageJson: "Services/GetLanguage", // look like this /Partials/GetTimeZone/CountryID
     getHostUrl: function () {
@@ -64,7 +64,17 @@ $.devOrg.urls = {
         }
         hostUrl = self.getHostUrl();
         return hostUrl + givenUrl;
+    },
+
+    getAbsValidatorUrl: function (url) {
+        /// <summary>
+        /// Returns absolute url of a validation
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns type="string">returns absolute url.</returns>
+        var self = $.devOrg.urls;
+
+        var urlCombined = self.validator + url;
+        return self.getAbsUrl(urlCombined);
     }
-
-
 };
