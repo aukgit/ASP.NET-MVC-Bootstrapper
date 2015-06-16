@@ -49,7 +49,7 @@
 
 <div class="form-group form-row-@ViewData.ModelMetadata.PropertyName  string-multiline-div">
     <div class="controls dev-plugin plugin-container string-multiline">
-        <label class="@ViewBag.labelColumn control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
+        <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @ViewBag.label
             @if (@ViewData.ModelMetadata.Description != null) {
                 <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show">
