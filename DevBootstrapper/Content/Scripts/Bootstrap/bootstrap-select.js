@@ -292,10 +292,10 @@
     showContent: true,
     dropupAuto: true,
     header: false,
-    liveSearch: false,
-    liveSearchPlaceholder: null,
-    liveSearchNormalize: false,
-    liveSearchStyle: 'contains',
+    LiveSearch: false,
+    LiveSearchPlaceholder: null,
+    LiveSearchNormalize: false,
+    LiveSearchStyle: 'contains',
     actionsBox: false,
     iconBase: 'glyphicon',
     tickIcon: 'glyphicon-ok',
@@ -339,7 +339,7 @@
 
       this.checkDisabled();
       this.clickListener();
-      if (this.options.liveSearch) this.liveSearchListener();
+      if (this.options.LiveSearch) this.LiveSearchListener();
       this.render();
       this.setStyle();
       this.setWidth();
@@ -377,10 +377,10 @@
           autofocus = this.autofocus ? ' autofocus' : '';
       // Elements
       var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
-      var searchbox = this.options.liveSearch ?
+      var searchbox = this.options.LiveSearch ?
       '<div class="bs-searchbox">' +
       '<input type="text" class="form-control" autocomplete="off"' +
-      (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
+      (null === this.options.LiveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.LiveSearchPlaceholder) + '"') + '>' +
       '</div>'
           : '';
       var actionsbox = this.multiple && this.options.actionsBox ?
@@ -477,7 +477,7 @@
         return '<a tabindex="0"' +
             (typeof classes !== 'undefined' ? ' class="' + classes + '"' : '') +
             (typeof inline !== 'undefined' ? ' style="' + inline + '"' : '') +
-            (that.options.liveSearchNormalize ? ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' : '') +
+            (that.options.LiveSearchNormalize ? ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' : '') +
             (typeof tokens !== 'undefined' || tokens !== null ? ' data-tokens="' + tokens + '"' : '') +
             '>' + text +
             '<span class="' + that.options.iconBase + ' ' + that.options.tickIcon + ' check-mark"></span>' +
@@ -688,7 +688,7 @@
           a = document.createElement('a'),
           text = document.createElement('span'),
           header = this.options.header ? this.$menu.find('.popover-title')[0].cloneNode(true) : null,
-          search = this.options.liveSearch ? document.createElement('div') : null,
+          search = this.options.LiveSearch ? document.createElement('div') : null,
           actions = this.options.actionsBox && this.multiple ? this.$menu.find('.bs-actionsbox')[0].cloneNode(true) : null,
           doneButton = this.options.doneButton && this.multiple ? this.$menu.find('.bs-donebutton')[0].cloneNode(true) : null;
 
@@ -1007,7 +1007,7 @@
       this.$newElement.on('click', function () {
         that.setSize();
         that.$element.on('shown.bs.select', function () {
-          if (!that.options.liveSearch && !that.multiple) {
+          if (!that.options.LiveSearch && !that.multiple) {
             that.$menu.find('.selected a').focus();
           } else if (!that.multiple) {
             var selectedIndex = that.liObj[that.$element[0].selectedIndex];
@@ -1111,7 +1111,7 @@
 
           if (!that.multiple) {
             that.$button.focus();
-          } else if (that.options.liveSearch) {
+          } else if (that.options.LiveSearch) {
             that.$searchbox.focus();
           }
 
@@ -1128,7 +1128,7 @@
         if (e.currentTarget == this) {
           e.preventDefault();
           e.stopPropagation();
-          if (that.options.liveSearch && !$(e.target).hasClass('close')) {
+          if (that.options.LiveSearch && !$(e.target).hasClass('close')) {
             that.$searchbox.focus();
           } else {
             that.$button.focus();
@@ -1139,7 +1139,7 @@
       this.$menu.on('click', 'li.divider, li.dropdown-header', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        if (that.options.liveSearch) {
+        if (that.options.LiveSearch) {
           that.$searchbox.focus();
         } else {
           that.$button.focus();
@@ -1155,7 +1155,7 @@
       });
 
       this.$menu.on('click', '.actions-btn', function (e) {
-        if (that.options.liveSearch) {
+        if (that.options.LiveSearch) {
           that.$searchbox.focus();
         } else {
           that.$button.focus();
@@ -1177,7 +1177,7 @@
       });
     },
 
-    liveSearchListener: function () {
+    LiveSearchListener: function () {
       var that = this,
           $no_results = $('<li class="no-results"></li>');
 
@@ -1201,7 +1201,7 @@
       this.$searchbox.on('input propertychange', function () {
         if (that.$searchbox.val()) {
           var $searchBase = that.$lis.not('.is-hidden').removeClass('hidden').children('a');
-          if (that.options.liveSearchNormalize) {
+          if (that.options.LiveSearchNormalize) {
             $searchBase = $searchBase.not(':a' + that._searchStyle() + '(' + normalizeToBase(that.$searchbox.val()) + ')');
           } else {
             $searchBase = $searchBase.not(':' + that._searchStyle() + '(' + that.$searchbox.val() + ')');
@@ -1257,7 +1257,7 @@
 
     _searchStyle: function () {
       var style = 'icontains';
-      switch (this.options.liveSearchStyle) {
+      switch (this.options.LiveSearchStyle) {
         case 'begins':
         case 'startsWith':
           style = 'ibegins';
@@ -1360,7 +1360,7 @@
             105: '9'
           };
 
-      if (that.options.liveSearch) $parent = $this.parent().parent();
+      if (that.options.LiveSearch) $parent = $this.parent().parent();
 
       if (that.options.container) $parent = that.$menu;
 
@@ -1379,19 +1379,19 @@
         that.$searchbox.focus();
       }
 
-      if (that.options.liveSearch) {
+      if (that.options.LiveSearch) {
         if (/(^9$|27)/.test(e.keyCode.toString(10)) && isActive && that.$menu.find('.active').length === 0) {
           e.preventDefault();
           that.$menu.parent().removeClass('open');
           if (that.options.container) that.$newElement.removeClass('open');
           that.$button.focus();
         }
-        // $items contains li elements when liveSearch is enabled
+        // $items contains li elements when LiveSearch is enabled
         $items = $('[role=menu] li:not(.disabled, .hidden, .dropdown-header, .divider)', $parent);
         if (!$this.val() && !/(38|40)/.test(e.keyCode.toString(10))) {
           if ($items.filter('.active').length === 0) {
             $items = that.$newElement.find('li');
-            if (that.options.liveSearchNormalize) {
+            if (that.options.LiveSearchNormalize) {
               $items = $items.filter(':a' + that._searchStyle() + '(' + normalizeToBase(keyCodeMap[e.keyCode]) + ')');
             } else {
               $items = $items.filter(':' + that._searchStyle() + '(' + keyCodeMap[e.keyCode] + ')');
@@ -1410,7 +1410,7 @@
         prev = $items.eq(index).parent().prevAll(selector).eq(0).data('originalIndex');
         nextPrev = $items.eq(next).parent().prevAll(selector).eq(0).data('originalIndex');
 
-        if (that.options.liveSearch) {
+        if (that.options.LiveSearch) {
           $items.each(function (i) {
             if (!$(this).hasClass('disabled')) {
               $(this).data('index', i);
@@ -1427,12 +1427,12 @@
         prevIndex = $this.data('prevIndex');
 
         if (e.keyCode == 38) {
-          if (that.options.liveSearch) index -= 1;
+          if (that.options.LiveSearch) index -= 1;
           if (index != nextPrev && index > prev) index = prev;
           if (index < first) index = first;
           if (index == prevIndex) index = last;
         } else if (e.keyCode == 40) {
-          if (that.options.liveSearch) index += 1;
+          if (that.options.LiveSearch) index += 1;
           if (index == -1) index = 0;
           if (index != nextPrev && index < next) index = next;
           if (index > last) index = last;
@@ -1441,7 +1441,7 @@
 
         $this.data('prevIndex', index);
 
-        if (!that.options.liveSearch) {
+        if (!that.options.LiveSearch) {
           $items.eq(index).focus();
         } else {
           e.preventDefault();
@@ -1484,7 +1484,7 @@
       // Select focused option if "Enter", "Spacebar" or "Tab" (when selectOnTab is true) are pressed inside the menu.
       if ((/(13|32)/.test(e.keyCode.toString(10)) || (/(^9$)/.test(e.keyCode.toString(10)) && that.options.selectOnTab)) && isActive) {
         if (!/(32)/.test(e.keyCode.toString(10))) e.preventDefault();
-        if (!that.options.liveSearch) {
+        if (!that.options.LiveSearch) {
           var elem = $(':focus');
           elem.click();
           // Bring back focus for multiselects
@@ -1500,7 +1500,7 @@
         $(document).data('keycount', 0);
       }
 
-      if ((/(^9$|27)/.test(e.keyCode.toString(10)) && isActive && (that.multiple || that.options.liveSearch)) || (/(27)/.test(e.keyCode.toString(10)) && !isActive)) {
+      if ((/(^9$|27)/.test(e.keyCode.toString(10)) && isActive && (that.multiple || that.options.LiveSearch)) || (/(27)/.test(e.keyCode.toString(10)) && !isActive)) {
         that.$menu.parent().removeClass('open');
         if (that.options.container) that.$newElement.removeClass('open');
         that.$button.focus();

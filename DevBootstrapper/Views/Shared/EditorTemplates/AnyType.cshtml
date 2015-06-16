@@ -1,5 +1,4 @@
 @model object
-
 @{
     var isRequired = ViewData.ModelMetadata.IsRequired;
     string isRequiredStar = isRequired ? "*" : "",
@@ -8,8 +7,9 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description;
+
     var htmlAttributes = new RouteValueDictionary();
-    
+
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control " + ViewBag.@class);
     } else {
@@ -24,25 +24,15 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
+            htmlAttributes.Add("placeholder", ViewData.ModelMetadata.DisplayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + displayName + "]");
+            htmlAttributes.Add("placeholder", "[" + ViewData.ModelMetadata.DisplayName + "]");
         }
     }
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
-    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 
-    htmlAttributes.Add("data-provide", "tags");
-
-    if (ViewBag.CaseInsensitive == null) {
-        ViewBag.CaseInsensitive = "true"; // non case sensitive
-    }
-
-    if (ViewBag.AllowDuplicates == null) {
-        ViewBag.AllowDuplicates = "false";
-    }
     if (ViewBag.label != null) {
         displayName = ViewBag.label;
     }
@@ -53,27 +43,34 @@
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "col-md-10";
     }
-
-    htmlAttributes.Add("data-caseInsensitive", ViewBag.CaseInsensitive);
-    htmlAttributes.Add("data-allowDuplicates", ViewBag.AllowDuplicates);
     if (ViewBag.url != null) {
         htmlAttributes.Add("data-url", ViewBag.url);
     }
-}
 
-<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
-    <div class="controls dev-plugin plugin-container tag">
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
+}
+<div class="form-group form-row @styleProperty" data-prop="@styleProperty">
+    <div class="controls dev-plugin plugin-container text-type">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName
+            <span class="red">@isRequiredStar</span>
+        </label>
+        <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
+            <div class="input-validator-container">
+                @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
+                <div class="validator-container">
+                    <div class="validator">
+                        <a>
+                            <i class=""></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
                     <span class="description-icon"></span>
                 </a>
             }
-            <span class="red">@isRequiredStar</span>
-        </label>
-        <div class="@ViewBag.textColumn form-input tag-input-container">
-            @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
             @Html.ValidationMessageFor(m => m, null, new { @class = "rounded-3 label label-danger fixed-width-294 validation-box" })
         </div>
     </div>

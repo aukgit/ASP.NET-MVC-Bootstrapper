@@ -624,24 +624,23 @@
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Float.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\HttpPostedFileBase.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Long.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Markdown.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Multiline.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Phone.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Rating-10.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Rating-5-b.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\EditorTemplates\Rating-5.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SenderEmail.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Single.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Text.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Username.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -691,8 +690,6 @@
     <Content Include="Views\Shared\EditorTemplates\Rating-10-b.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String-NoLabel.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\UploaderAuto.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\UploaderPlain.cshtml" />
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDown.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDownDynamic.cshtml" />
@@ -730,6 +727,8 @@
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.4.min.map" />
     <Content Include="Views\Shared\_AdditionalFields.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AnyType.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AnyTypeIcon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />

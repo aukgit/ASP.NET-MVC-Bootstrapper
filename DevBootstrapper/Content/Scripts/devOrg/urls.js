@@ -65,6 +65,7 @@ $.devOrg.urls = {
         hostUrl = self.getHostUrl();
         return hostUrl + givenUrl;
     },
+<<<<<<< HEAD
 
     getAbsValidatorUrl: function (url) {
         /// <summary>
@@ -78,7 +79,22 @@ $.devOrg.urls = {
         return self.getAbsUrl(urlCombined);
 
     }
+=======
+>>>>>>> origin/Development
 
+    getAbsValidatorUrl: function (url) {
+        /// <summary>
+        /// Returns absolute url of a validation
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns type="string">returns absolute url.</returns>
+        var self = $.devOrg.urls;
 
+<<<<<<< HEAD
 
+=======
+        var urlCombined = self.validator + url;
+        return self.getAbsUrl(urlCombined);
+    }
+>>>>>>> origin/Development
 };
