@@ -1,0 +1,64 @@
+@model Boolean?
+@{
+    bool isRequired = ViewData.ModelMetadata.IsRequired;
+    string isRequiredStar = isRequired ? "*" : "",
+        prop = ViewData.ModelMetadata.PropertyName.ToString(),
+        propLower = prop.ToLower(),
+        styleProperty = propLower,
+        displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
+        description = ViewData.ModelMetadata.Description;
+
+
+    var htmlAttributes = new RouteValueDictionary();
+    
+    if (ViewBag.@class != null) {
+        htmlAttributes.Add("class", ViewBag.@class);
+    }
+    if (ViewBag.type != null) {
+        htmlAttributes.Add("type", ViewBag.type);
+    }
+    if (ViewBag.Value != null) {
+        htmlAttributes.Add("Value", ViewBag.Value);
+    }
+
+    if (ViewBag.label == null) {
+        ViewBag.label = displayName;
+    }
+
+    if (ViewBag.labelColumn == null) {
+        ViewBag.labelColumn = "col-md-2";
+    }
+    if (ViewBag.textColumn == null) {
+        ViewBag.textColumn = "col-md-10";
+    }
+    
+    if (ViewBag.placeholder != null) {
+        htmlAttributes.Add("placeholder", ViewBag.placeholder);
+    } else {
+        if (isRequired) {
+            htmlAttributes.Add("placeholder", ViewBag.label + isRequiredStar);
+        } else {
+            htmlAttributes.Add("placeholder", "[" + ViewBag.label + "]");
+        }
+    }
+    
+    htmlAttributes.Add("title", htmlAttributes["placeholder"]);
+}
+<div class="form-row @styleProperty" data-prop="@styleProperty">
+    <div class="dev-plugin plugin-container checkbox-type">
+        <div class="@ViewBag.labelColumn @ViewBag.textColumn">
+            <div class="checkbox">
+                <label class="form-input" for="@styleProperty">
+                    @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
+                    ViewBag.label
+                </label>
+                @if (description != null) {
+                    <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
+                        <span class="description-icon"></span>
+                    </a>
+                }
+                @Html.ValidationMessageFor(m => m, null, new { @class = "rounded-3 label label-danger fixed-width-294 validation-box" })
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+form-group form-row 
+
+<div class="form-group form-row-@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
+
+<label class="@ViewBag.labelColumn control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
+<label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+
+
+<label class="col-md-2 control-label form-label-@ViewData.ModelMetadata.PropertyName" for="@ViewData.ModelMetadata.PropertyName">
+<label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
+
+<div class="@ViewBag.textColumn form-input-@ViewData.ModelMetadata.PropertyName">
+<div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
+
+
+@if (@ViewData.ModelMetadata.Description != null) {
+    <a data-toggle="tooltip" data-original-title="@ViewData.ModelMetadata.Description" title="@ViewData.ModelMetadata.Description" class="tooltip-show">
+        <span class="description-icon"></span>
+    </a>
+}
+
+@if (description != null) {
+    <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
+        <span class="description-icon"></span>
+    </a>
+}
