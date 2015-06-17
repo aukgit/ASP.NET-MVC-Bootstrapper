@@ -265,10 +265,10 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
                     return RedirectToAction("Index");
                 }
                 ViewCommon.SetErrorStatus(ViewBag, EditedError);
-                return View(user);
+                return View(model);
             }
             ViewCommon.SetErrorStatus(ViewBag, EditedError);
-            return View(user);
+            return View(model);
         }
 
         public ActionResult EnableUserBlock(long id) {

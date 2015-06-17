@@ -7,7 +7,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        isValidate = ViewBag.isValidate ?? "false";
     var htmlAttributes = new RouteValueDictionary();
    
     if (ViewBag.@class != null) {
