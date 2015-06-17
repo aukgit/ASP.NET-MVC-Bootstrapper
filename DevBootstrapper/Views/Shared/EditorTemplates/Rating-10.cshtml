@@ -68,12 +68,13 @@
 }
 
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
-    <div class="controls dev-plugin plugin-container rating-10 dev-plugin plugin-container rating">
+    <div class="controls dev-plugin dev-plugin plugin-container rating-10-type">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
-                    <span class="description-icon"></span></a>
+                    <span class="description-icon"></span>
+                </a>
             }
             <span class="red">@isRequiredStar</span>
         </label>

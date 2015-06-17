@@ -44,10 +44,14 @@
     }
     if (ViewBag.url != null) {
         htmlAttributes.Add("data-url", ViewBag.url);
+
+    }
+    if (ViewBag.isValidate == null) {
+        ViewBag.isValidate = "false";
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-group form-row @styleProperty" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty" data-prop="@styleProperty" data-is-validate="@ViewBag.isValidate">
     <div class="controls dev-plugin plugin-container string-type">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName
@@ -57,11 +61,7 @@
             <div class="input-validator-container">
                 @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
                 <div class="validator-container">
-                    <div class="validator">
-                        <a>
-                            <i class=""></i>
-                        </a>
-                    </div>
+                    <div class="validator"></div>
                 </div>
             </div>
             @if (description != null) {

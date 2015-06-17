@@ -6,7 +6,9 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        spinnerIcon = ViewBag.spinnerIcon ?? styleProperty  + "glyphicon glyphicon-refresh glyphicon-spin",
+        loadingText = ViewBag.loadingText ?? "Requesting data...";
 
     if (ViewBag.@class == null) {
     	ViewBag.@class = "btn-success";
@@ -39,17 +41,19 @@
     if (ViewBag.isHtmlRequest == null) {
         ViewBag.isHtmlRequest = "false";
     }
+    //ViewBag.loadingText 
+    
 }
 <div data-json-combo-plugin="true" class="form-group form-row @styleProperty dynamic-select-container" data-dynamic-select-container="true" data-prop="@styleProperty">
-    <div class="controls dev-plugin plugin-container dynamic-dropdown-type">
-        <label data-progress-bar="true" data-prop="@ViewData.ModelMetadata.PropertyName">
-            <a data-toggle="tooltip" title="Loading request..." data-original-title="Loading request..." class="tooltip-show @styleProperty no-hover">
-                <span data-display="@displayName" class="@styleProperty glyphicon glyphicon-refresh glyphicon-spin" title="Loading request..."></span>
+    <div class="controls dev-plugin plugin-container dropdown-dynamic-type">
+        <label data-progress-bar="true" data-prop="@styleProperty">
+            <a data-toggle="tooltip" title="@loadingText" class="tooltip-show @styleProperty no-hover">
+                <span data-display="@displayName" class="@spinnerIcon"></span>
             </a>
-            Loading request...
+            @ViewBag.loadingText
         </label>
         <div data-hidable="true" data-prop="@styleProperty">
-            <label data-prop="@styleProperty" class="@ViewBag.textColumn control-label" for="@ViewData.ModelMetadata.PropertyName">
+            <label data-prop="@styleProperty" class="@ViewBag.textColumn control-label" for="@styleProperty">
                 @displayName
                 <span class="red">@isRequiredStar</span>
             </label>
@@ -59,13 +63,12 @@
                      data-dev-dynamic-select="@ViewBag.dynamicLoad"
                      data-url="@ViewBag.url"
                      data-value="@Model"
-                     data-additional-css="ViewBag.@class"
+                     data-additional-css="@(ViewBag.@class)"
                      data-live-search="@ViewBag.liveSearch"
                      data-dependable="@ViewBag.isDependable"
                      data-dependable-prop-name="@styleProperty"
                      data-id="@ViewBag.id"
                      data-is-selectpicker="@ViewBag.isPicker">
-
                 </div>
                 @if (description != null) {
                     <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>

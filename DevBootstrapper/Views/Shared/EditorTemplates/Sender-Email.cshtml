@@ -47,11 +47,15 @@
     if (ViewBag.icon == null) {
         ViewBag.icon = "fa fa-envelope-o";
     }
+    if (ViewBag.sendingMailText == null) {
+        ViewBag.sendingMailText = "Send Email";
+    }
+    // set url for the action to send
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
 <div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
-    <div class="controls controls-vertical">
+    <div class="controls dev-plugin dev-plugin plugin-container sender-email-type controls-vertical">
         <label class="@ViewBag.labelColumn form-label-@ViewData.ModelMetadata.PropertyName control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName<span class="red">@isRequiredStar</span>
         </label>
@@ -62,11 +66,7 @@
                     @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
                 </span>
                 <div class="validator-container">
-                    <div class="validator">
-                        <a>
-                            <i class=""></i>
-                        </a>
-                    </div>
+                    <div class="validator"></div>
                 </div>
             </div>
             @if (description != null) {
@@ -74,7 +74,7 @@
                     <span class="description-icon"></span>
                 </a>
             }
-            <a href="@Url.Action("SendEmail")" class="btn btn-info inline">Test Email</a>
+            <a href="@ViewBag.url" class="btn btn-info inline">@ViewBag.sendingMailText</a>
             @Html.ValidationMessageFor(m => m, null, new { @class = "rounded-3 label label-danger fixed-width-294 validation-box" })
         </div>
     </div>

@@ -637,7 +637,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Shared\EditorTemplates\Rating-5.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\SenderEmail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Sender-Email.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Single.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Text.cshtml" />
@@ -686,10 +686,10 @@
     <Content Include="Content\Scripts\jQuery\version.json" />
     <Content Include="Content\Scripts\Angular\angular.min.js.map" />
     <Content Include="Views\Shared\_BrowserUpdate.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\FileMulti.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UploaderMultiple.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Rating-10-b.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\String-NoLabel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String-Label-Off.cshtml" />
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDown.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDownDynamic.cshtml" />
@@ -729,6 +729,7 @@
     <Content Include="Views\Shared\_AdditionalFields.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AnyType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AnyTypeIcon.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean-Button.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />
