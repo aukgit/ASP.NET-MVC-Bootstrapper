@@ -40,7 +40,7 @@
 }
 
 <div class="form-group form-row @styleProperty" data-prop="@styleProperty">
-    <div class="controls dev-plugin plugin-container rememberme-type">
+    <div class="controls dev-plugin rememberme-type">
         <div class="@ViewBag.labelColumn @ViewBag.textColumn remember-me-box">
             <label class="control-label form-label @styleProperty" for="@ViewData.ModelMetadata.PropertyName">
                 @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
