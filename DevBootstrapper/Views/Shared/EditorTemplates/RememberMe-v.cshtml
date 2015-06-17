@@ -46,7 +46,7 @@
                 @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
                 @displayName
             </label>
-            @Html.ValidationMessageFor(m => m, null, new { @class = "rounded-3 label label-danger fixed-width-294 validation-box" })
+            @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input" })
             <div class="pull-right">
                 <button title="Sign in" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
             </div>

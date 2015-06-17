@@ -108,6 +108,7 @@ namespace DevBootstrapper {
                                         "~/Content/css/color-fonts.css",
                                         "~/Content/css/star-rating.css",
                                         "~/Content/css/override-mvc.css",
+                                        "~/Content/css/editor-templates.css",
 
 
                                         "~/Content/css/seo-optimize.css",

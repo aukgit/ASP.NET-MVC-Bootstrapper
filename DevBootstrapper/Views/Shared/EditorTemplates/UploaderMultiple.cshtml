@@ -121,7 +121,7 @@
                     <label data-id="@ViewBag.data_id_val" data-has-edit-btn="@ViewBag.hasEditBtn" data-label-file-uploaded="true" class="label label-success file-uploaded-notify-label-@ViewBag.data_id_val" data-max-upload-count="@ViewBag.maxUpload" data-uploaded-count="@ViewBag.uploadedFiles" data-upload-pre-exist-count="@ViewBag.uploadPreexist"></label>
                 }
             </div>
-            @Html.ValidationMessageFor(m => m, null, new {@class = "rounded-3 label label-danger fixed-width-294 validation-box"})
+            @Html.ValidationMessageFor(m => m, null, new {@class = "invalid-input"})
         </div>
     </div>
 </div>

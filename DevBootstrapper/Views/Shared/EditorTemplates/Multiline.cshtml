@@ -63,7 +63,7 @@
         </label>
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             @Html.TextArea("", htmlAttributes)
-            @Html.ValidationMessageFor(m => m, null, new { @class = "table rounded-3 label label-danger fixed-width-294 validation-box" })
+            @Html.ValidationMessageFor(m => m, null, new { @class = "table invalid-input" })
         </div>
     </div>
 </div>

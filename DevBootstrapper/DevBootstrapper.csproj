@@ -394,6 +394,7 @@
     <Content Include="Content\css\bootstrap.theme.unitied.css" />
     <Content Include="Content\css\color-fonts.css" />
     <Content Include="Content\css\core-developer.css" />
+    <Content Include="Content\css\editor-templates.css" />
     <Content Include="Content\css\flags32-combo.css" />
     <Content Include="Content\css\flags32.css" />
     <Content Include="Content\css\flags32.png" />
@@ -411,6 +412,7 @@
     <Content Include="Content\css\star-rating.css" />
     <Content Include="Content\css\Upload\jquery.fileupload.css" />
     <Content Include="Content\css\utilities.css" />
+    <Content Include="Content\css\validator.css" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -492,6 +494,12 @@
     <Content Include="Areas\Admin\Views\Config\_Urls-tab.cshtml" />
     <Content Include="Areas\Admin\Views\Config\_Developers-tab.cshtml" />
     <Content Include="Areas\Admin\Views\Config\_Others-tab.cshtml" />
+    <Content Include="Content\css\validator.css.map">
+      <DependentUpon>validator.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\editor-templates.css.map">
+      <DependentUpon>editor-templates.css</DependentUpon>
+    </Content>
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />
     <Content Include="Content\Less\bootstrap-select.less" />
@@ -613,6 +621,9 @@
     <Content Include="Content\Less\override-mvc.variables.less" />
     <Content Include="Content\Scripts\Data\country-info-select-ready.json" />
     <Content Include="Content\Scripts\Data\country-info.json" />
+    <Content Include="Content\Less\editor-templates.less" />
+    <Content Include="Content\Less\validator.less" />
+    <Content Include="Content\Less\editor-templates.variables.less" />
     <None Include="Content\Scripts\jQuery\jquery.validate-vsdoc.js" />
     <Content Include="Content\Scripts\jQuery\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\Scripts\jQuery\jquery.unobtrusive-ajax.min.js" />
