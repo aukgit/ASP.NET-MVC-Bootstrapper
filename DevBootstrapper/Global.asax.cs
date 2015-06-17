@@ -4,7 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WereViewApp.Scheduler;
+using DevBootstrapper.Scheduler;
 using FluentScheduler;
 
 namespace DevBootstrapper {

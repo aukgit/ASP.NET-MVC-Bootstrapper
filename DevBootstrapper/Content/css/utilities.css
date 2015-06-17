@@ -1,11 +1,7 @@
 ﻿/*table related */
-h1,
-h2,
-h3,
-h4,
-h5 {
-  display: inline;
-}
+/*h1, h2, h3, h4, h5 {
+    display: inline;
+}*/
 .h1,
 .h2,
 .h3,
@@ -15,7 +11,9 @@ h5 {
   margin: 0;
   padding: 0;
   padding-bottom: 3px;
+  padding-bottom: 0.3rem;
   padding-top: 9px;
+  padding-top: 0.9rem;
 }
 table caption {
   background-color: #D0DEC2;
@@ -28,10 +26,10 @@ table td.dot {
 }
 /*table related */
 textarea {
-  background-color: #FDFDFD;
-  border: 2px solid #D4ECF3;
   height: 45px;
   resize: none;
+  border: 2px solid #D4ECF3;
+  background-color: #FDFDFD;
 }
 textarea:focus,
 input[type="text"]:focus,
@@ -76,16 +74,16 @@ div.error-list ul {
   display: list-item;
 }
 .plugin-a li a {
-  -khbtml-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white;
   display: block;
-  height: 22px;
   margin-top: 6px;
+  background-color: white;
+  height: 22px;
+  height: 2.2rem;
   padding-left: 8px;
   /*rounded border*/
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khbtml-border-radius: 3px;
 }
 .plugin-a li a:hover,
 .plugin-a-white li a:hover {
@@ -270,10 +268,12 @@ hr {
   margin-top: 8px;
 }
 .gap-from-top {
-  margin-top: 50px;
+  margin-top: 55px;
+  margin-top: 5.5rem;
 }
 .gap-from-top-small {
   margin-top: 25px;
+  margin-top: 2.5rem;
 }
 a.no-hover {
   text-decoration: none;
@@ -282,22 +282,10 @@ a.no-hover {
   cursor: pointer;
 }
 input.form-control.input-validation-error {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(233, 102, 102, 0.6);
   border-color: #E96666;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(233, 102, 102, 0.6);
   outline: 0;
-}
-textarea:focus,
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
-input[type="email"]:focus,
-textarea:hover,
-input[type="text"]:hover,
-input[type="number"]:hover,
-input[type="date"]:hover,
-input[type="email"]:hover {
-  border: 1px solid #ACDFEE;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(233, 102, 102, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(233, 102, 102, 0.6);
 }
 .small-bottom-gap {
   margin-bottom: 6px;
