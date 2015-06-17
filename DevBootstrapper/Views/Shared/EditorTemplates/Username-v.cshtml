@@ -7,7 +7,9 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        isValidate = ViewBag.isValidate ?? "false";
+        isValidate = ViewBag.isValidate ?? "false",
+        icon = ViewBag.icon ?? "fa fa-user"; 
+        
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -45,7 +47,7 @@
         ViewBag.textColumn = "";
     }
     if (ViewBag.icon == null) {
-        ViewBag.icon = "fa fa-user";
+        
     }
     if (ViewBag.url != null) {
         htmlAttributes.Add("data-url", ViewBag.url);
@@ -61,7 +63,7 @@
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             <div class="input-validator-container">
                 <span class="inner-addon left-addon">
-                    <i class="@ViewBag.icon"></i>
+                    <i class="@icon"></i>
                     @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
                 </span>
                 <div class="validator-container">

@@ -7,7 +7,7 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        spinnerIcon = ViewBag.spinnerIcon ?? styleProperty  + "glyphicon glyphicon-refresh glyphicon-spin",
+        spinnerIcon = ViewBag.spinnerIcon ?? styleProperty  + " glyphicon glyphicon-refresh glyphicon-spin",
         loadingText = ViewBag.loadingText ?? "Requesting data...";
 
     if (ViewBag.@class == null) {
@@ -50,7 +50,7 @@
             <a data-toggle="tooltip" title="@loadingText" class="tooltip-show @styleProperty no-hover">
                 <span data-display="@displayName" class="@spinnerIcon"></span>
             </a>
-            @ViewBag.loadingText
+            @loadingText
         </label>
         <div data-hidable="true" data-prop="@styleProperty">
             <label data-prop="@styleProperty" class="@ViewBag.textColumn control-label" for="@styleProperty">

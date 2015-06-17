@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        icon = ViewBag.icon ?? "glyphicon glyphicon-upload"; 
 
 
     var htmlAttributes = new RouteValueDictionary();
@@ -92,7 +93,7 @@
                     Edit
                 </a>
                 <span class="btn btn-success fileinput-button">
-                    <i class="glyphicon glyphicon-upload"></i>
+                    <i class="@icon"></i>
                     <span title="@displayName Upload">@displayName</span>
                     <!-- The file input field used as target for the file upload widget -->
                     <input @ViewBag.data_guid class="dev-fileupload" data-has-edit-btn="@ViewBag.hasEditBtn" @ViewBag.data_id type="file" @ViewBag.data_url name="@styleProperty" title="@displayName Upload files , @ViewData.ModelMetadata.Description" @ViewBag.autoupload @ViewBag.data_single>

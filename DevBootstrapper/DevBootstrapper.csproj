@@ -736,6 +736,7 @@
     <Content Include="Views\Shared\EditorTemplates\AnyType.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AnyTypeIcon.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean-Button.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Algorithms\" />

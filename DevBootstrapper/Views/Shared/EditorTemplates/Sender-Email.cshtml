@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        icon = ViewBag.icon ?? "fa fa-envelope-o";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -44,9 +45,7 @@
     if (ViewBag.textColumn == null) {
         ViewBag.textColumn = "";
     }
-    if (ViewBag.icon == null) {
-        ViewBag.icon = "fa fa-envelope-o";
-    }
+   
     if (ViewBag.sendingMailText == null) {
         ViewBag.sendingMailText = "Send Email";
     }
@@ -62,7 +61,7 @@
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             <div class="input-validator-container">
                 <span class="inner-addon left-addon">
-                    <i class="@ViewBag.icon"></i>
+                    <i class="@icon"></i>
                     @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
                 </span>
                 <div class="validator-container">
