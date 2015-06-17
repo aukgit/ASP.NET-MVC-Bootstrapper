@@ -57,8 +57,8 @@
 
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-group form-row @styleProperty" data-prop="@styleProperty" data-is-validate="@isValidate">
-    <div class="controls dev-plugin long-type">
+<div class="form-group form-row @styleProperty long-type" data-prop="@styleProperty" data-is-validate="@isValidate">
+    <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName <span class="red">@isRequiredStar</span>
         </label>
@@ -75,9 +75,10 @@
             </div>
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
-                    <span class="description-icon"></span></a>
+                    <span class="description-icon"></span>
+                </a>
             }
-            @Html.ValidationMessageFor(m => m, null, new {@class = "invalid-input"})
+            @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input" })
         </div>
     </div>
 </div>

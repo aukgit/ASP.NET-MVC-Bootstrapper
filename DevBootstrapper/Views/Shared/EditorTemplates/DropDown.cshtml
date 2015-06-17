@@ -43,22 +43,23 @@
     }
     var selectListData = (IEnumerable<SelectListItem>)ViewBag.selectData;
 }
-<div class="form-group form-row @styleProperty"  data-prop="@styleProperty">
-    <div class="controls dev-plugin dropdown-type">
+<div class="form-group form-row @styleProperty dropdown-type" data-prop="@styleProperty">
+    <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName
             <span class="red">@isRequiredStar</span>
         </label>
         <div class="@ViewBag.textColumn select-holding-div non-dynamic-select">
             @Html.DropDownList("", selectListData, htmlAttributes: new {
-                @class = @ViewBag.@class,
-                data_style = @ViewBag.style,
-                data_live_search = @ViewBag.liveSearch,
-                id = ViewBag.id
-            })
+           @class = @ViewBag.@class,
+           data_style = @ViewBag.style,
+           data_live_search = @ViewBag.liveSearch,
+           id = ViewBag.id
+       })
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>
             }
         </div>
     </div>
 </div>
+

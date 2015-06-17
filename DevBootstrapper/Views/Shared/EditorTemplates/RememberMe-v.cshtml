@@ -39,8 +39,8 @@
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
-<div class="form-group form-row @styleProperty">
-    <div class="controls dev-plugin rememberme-type controls-vertical">
+<div class="form-group form-row @styleProperty rememberme-v-type">
+    <div class="controls dev-plugin controls-vertical">
         <div class="@ViewBag.labelColumn @ViewBag.textColumn remember-me-box">
             <label class="control-label form-label @styleProperty" for="@ViewData.ModelMetadata.PropertyName">
                 @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
