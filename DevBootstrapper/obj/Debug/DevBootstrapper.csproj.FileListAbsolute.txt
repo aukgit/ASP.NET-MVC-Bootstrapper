@@ -305,7 +305,6 @@ D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPag
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Razor.xml
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.pdb
-D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.csprojResolveAssemblyReference.cache
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.csprojResolveAssemblyReference.cache
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb

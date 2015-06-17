@@ -16,12 +16,12 @@
 
     &.field-validation-error {
         background-color: @input-error-bg-color;
-    }
 
-    &.break-line {
-        display: table-cell;
-        position: relative;
-        .top(3px);
+        &.break-line {
+            display: block;
+            margin-top: 4px;
+            .width(@inputs-max-width);
+        }
     }
 }
 

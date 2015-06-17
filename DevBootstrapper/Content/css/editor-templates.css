@@ -17,11 +17,11 @@
 .invalid-input.field-validation-error {
   background-color: #df382c;
 }
-.invalid-input.break-line {
-  display: table-cell;
-  position: relative;
-  top: 3px;
-  top: 0.3rem;
+.invalid-input.field-validation-error.break-line {
+  display: block;
+  margin-top: 4px;
+  width: 294px;
+  width: 29.4rem;
 }
 .input-validator-container {
   display: inline-block;
@@ -29,7 +29,11 @@
   max-width: 294px;
   max-width: 29.4rem;
 }
-.controls {
-  overflow: hidden;
+/*.controls {
+    overflow: hidden;
+}*/
+a.tooltip-show:focus,
+a.tooltip-show:hover {
+  text-decoration: none;
 }
 /*# sourceMappingURL=editor-templates.css.map */

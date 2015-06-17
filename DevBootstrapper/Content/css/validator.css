@@ -17,11 +17,11 @@
 .invalid-input.field-validation-error {
   background-color: #df382c;
 }
-.invalid-input.break-line {
-  display: table-cell;
-  position: relative;
-  top: 3px;
-  top: 0.3rem;
+.invalid-input.field-validation-error.break-line {
+  display: block;
+  margin-top: 4px;
+  width: 294px;
+  width: 29.4rem;
 }
 .input-validator-container {
   display: inline-block;

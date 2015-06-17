@@ -740,7 +740,6 @@
     <Content Include="Views\Shared\EditorTemplates\Username-v.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email-v.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\JsonCombo.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Content\Scripts\jQuery\jquery-2.1.4.min.map" />
     <Content Include="Views\Shared\_AdditionalFields.cshtml" />
