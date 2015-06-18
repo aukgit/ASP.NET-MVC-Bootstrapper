@@ -7,7 +7,8 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        isValidate = ViewBag.isValidate ?? "false";
+        isValidate = ViewBag.isValidate ?? "false",
+        templateName = "";
     long i;
     if (!Model.HasValue) {
         i = 0;

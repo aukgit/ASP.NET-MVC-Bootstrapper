@@ -6,6 +6,7 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
+        templateName = "",
         description = ViewData.ModelMetadata.Description;
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
@@ -66,7 +67,7 @@
     htmlAttributes.Add("data-step", ViewBag.step);
 }
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
-    <div class="controls dev-plugin dev-plugin">
+    <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label" for="@styleProperty">
             @displayName
             @if (description != null) {

@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -49,7 +50,7 @@
     htmlAttributes.Add("data-size", "xs");
 }
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
-    <div class="controls dev-plugin dev-plugin">
+    <div class="controls dev-plugin">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName
             @if (description != null) {

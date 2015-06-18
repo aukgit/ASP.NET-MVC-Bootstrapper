@@ -7,7 +7,8 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        icon = ViewBag.icon ?? "fa fa-envelope-o";
+        icon = ViewBag.icon ?? "fa fa-envelope-o",
+        templateName = "";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -54,7 +55,7 @@
 }
 
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
-    <div class="controls dev-plugin dev-plugin controls-vertical">
+    <div class="controls dev-plugin controls-vertical">
         <label class="@ViewBag.labelColumn form-label-@ViewData.ModelMetadata.PropertyName control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName<span class="red">@isRequiredStar</span>
         </label>
