@@ -67,7 +67,7 @@
     htmlAttributes.Add("data-step", ViewBag.step);
 }
 
-<div class="form-group form-row @styleProperty rating-10-type" data-type="@templateName" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin dev-plugin">
         <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName

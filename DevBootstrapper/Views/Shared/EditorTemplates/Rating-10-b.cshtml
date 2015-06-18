@@ -65,7 +65,7 @@
     htmlAttributes.Add("data-stars", ViewBag.stars);
     htmlAttributes.Add("data-step", ViewBag.step);
 }
-<div class="form-group form-row @styleProperty rating-10-b-type" data-type="@templateName" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin dev-plugin">
         <label class="@ViewBag.labelColumn control-label" for="@styleProperty">
             @displayName

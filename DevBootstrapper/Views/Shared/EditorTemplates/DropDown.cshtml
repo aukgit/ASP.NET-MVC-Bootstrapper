@@ -43,7 +43,7 @@
     }
     var selectListData = (IEnumerable<SelectListItem>)ViewBag.selectData;
 }
-<div class="form-group form-row @styleProperty dropdown-type" data-type="@templateName" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName
