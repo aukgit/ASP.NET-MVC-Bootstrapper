@@ -7,7 +7,7 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        templateName = "";
+        templateName = ViewBag.type ?? "any";
 
     var htmlAttributes = new RouteValueDictionary();
 
