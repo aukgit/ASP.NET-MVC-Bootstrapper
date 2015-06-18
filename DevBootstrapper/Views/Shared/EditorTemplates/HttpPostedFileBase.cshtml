@@ -53,7 +53,7 @@
         ViewBag.uploadPreexist = "0";
     }
 }
-<div class="form-row-uploader form-group form-row-@styleProperty httppostedfilebase-type">
+<div class="form-row-uploader form-group form-row @styleProperty httppostedfilebase-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <label class="col-md-2 upload-label control-label form-label-@styleProperty" for="@styleProperty">
             @if (description != null) {

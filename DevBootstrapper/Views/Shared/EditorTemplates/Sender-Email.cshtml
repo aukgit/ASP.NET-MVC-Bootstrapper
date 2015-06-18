@@ -53,7 +53,7 @@
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
-<div class="form-group form-row @styleProperty sender-email-type" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty sender-email-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin dev-plugin controls-vertical">
         <label class="@ViewBag.labelColumn form-label-@ViewData.ModelMetadata.PropertyName control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName<span class="red">@isRequiredStar</span>
