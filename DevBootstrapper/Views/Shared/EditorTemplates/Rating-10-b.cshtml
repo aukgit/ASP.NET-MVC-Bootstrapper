@@ -77,10 +77,6 @@
         </label>
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
-
-            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @styleProperty no-hover">
-                <span data-display="@displayName" class="@styleProperty glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>
-            </a>
             @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input" })
         </div>
     </div>
