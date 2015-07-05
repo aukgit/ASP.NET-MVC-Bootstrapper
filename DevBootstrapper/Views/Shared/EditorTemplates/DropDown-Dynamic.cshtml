@@ -74,6 +74,7 @@
                 @if (description != null) {
                     <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>
                 }
+                @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input break-line" })
             </div>
         </div>
     </div>
