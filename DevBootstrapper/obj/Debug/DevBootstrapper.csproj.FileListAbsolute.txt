@@ -310,3 +310,4 @@ D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb
+D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.csprojResolveAssemblyReference.cache
