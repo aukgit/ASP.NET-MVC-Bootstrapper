@@ -7,6 +7,7 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
+        templateName = "dropdown-dynamic",
         spinnerIcon = ViewBag.spinnerIcon ?? styleProperty  + " glyphicon glyphicon-refresh glyphicon-spin",
         loadingText = ViewBag.loadingText ?? "Requesting data...";
 
@@ -44,7 +45,7 @@
     //ViewBag.loadingText 
     
 }
-<div data-json-combo-plugin="true" class="form-group form-row @styleProperty dropdowndynamic-type dynamic-select-container" data-dynamic-select-container="true" data-prop="@styleProperty">
+<div data-json-combo-plugin="true" class="form-group form-row @styleProperty @templateName-type dynamic-select-container" data-type="@templateName" data-dynamic-select-container="true" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <label data-progress-bar="true" data-prop="@styleProperty">
             <a data-toggle="tooltip" title="@loadingText" class="tooltip-show @styleProperty no-hover">
@@ -73,6 +74,7 @@
                 @if (description != null) {
                     <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show"><span class="description-icon"></span></a>
                 }
+                @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input break-line" })
             </div>
         </div>
     </div>

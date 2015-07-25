@@ -7,7 +7,8 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        isValidate = ViewBag.isValidate ?? "false";
+        isValidate = ViewBag.isValidate ?? "false",
+        templateName = "string-label-off";
     var htmlAttributes = new RouteValueDictionary();
 
     if (ViewBag.@class != null) {
@@ -48,7 +49,7 @@
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-group form-row @styleProperty string-label-off-type" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             <div class="input-validator-container">

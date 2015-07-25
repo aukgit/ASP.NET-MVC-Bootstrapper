@@ -7,7 +7,8 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        icon = ViewBag.icon ?? "glyphicon glyphicon-upload"; 
+        icon = ViewBag.icon ?? "glyphicon glyphicon-upload",
+        templateName = "upload-multiple"; 
 
 
     var htmlAttributes = new RouteValueDictionary();
@@ -70,7 +71,7 @@
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div data-id="@ViewBag.data_id_val" data-uploader-div-row="true" class="form-group form-row @styleProperty uploader-multiple-type form-row-uploader" data-prop="@styleProperty">
+<div data-id="@ViewBag.data_id_val" data-uploader-div-row="true" class="form-group form-row @styleProperty @templateName-type form-row-uploader" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @if (description != null) {

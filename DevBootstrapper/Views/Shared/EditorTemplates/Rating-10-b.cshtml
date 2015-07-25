@@ -6,6 +6,7 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
+        templateName = "rating-10-b",
         description = ViewData.ModelMetadata.Description;
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
@@ -65,8 +66,8 @@
     htmlAttributes.Add("data-stars", ViewBag.stars);
     htmlAttributes.Add("data-step", ViewBag.step);
 }
-<div class="form-group form-row @styleProperty rating-10-b-type" data-prop="@styleProperty">
-    <div class="controls dev-plugin dev-plugin">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
+    <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label" for="@styleProperty">
             @displayName
             @if (description != null) {
@@ -76,10 +77,6 @@
         </label>
         <div class="@ViewBag.textColumn form-input @styleProperty" data-prop="@styleProperty">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
-
-            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @styleProperty no-hover">
-                <span data-display="@displayName" class="@styleProperty glyphicon glyphicon-refresh glyphicon-refresh-animate hide" title="Validating"></span>
-            </a>
             @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input" })
         </div>
     </div>

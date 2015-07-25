@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "rememberme-v";
     var htmlAttributes = new RouteValueDictionary();
 
     if (ViewBag.@class != null) {
@@ -39,10 +40,10 @@
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
-<div class="form-group form-row @styleProperty rememberme-v-type">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin controls-vertical">
         <div class="@ViewBag.labelColumn @ViewBag.textColumn remember-me-box">
-            <label class="control-label form-label @styleProperty" for="@ViewData.ModelMetadata.PropertyName">
+            <label class="control-label form-label @styleProperty" for="@styleProperty">
                 @Html.CheckBox("", Model.HasValue && Model.Value, htmlAttributes)
                 @displayName
             </label>

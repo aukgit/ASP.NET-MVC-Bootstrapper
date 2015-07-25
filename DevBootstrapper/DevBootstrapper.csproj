@@ -703,13 +703,13 @@
     <Content Include="Content\Scripts\jQuery\version.json" />
     <Content Include="Content\Scripts\Angular\angular.min.js.map" />
     <Content Include="Views\Shared\_BrowserUpdate.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\UploaderMultiple.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Upload-Multiple.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Rating-10-b.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String-Label-Off.cshtml" />
     <Content Include="Views\Shared\_LoginUrlPage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDown.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DropDownDynamic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DropDown-Dynamic.cshtml" />
     <Content Include="Views\ProductOrders\Create.cshtml" />
     <Content Include="Views\ProductOrders\Delete.cshtml" />
     <Content Include="Views\ProductOrders\Details.cshtml" />

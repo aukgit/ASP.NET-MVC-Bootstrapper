@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "boolean-button";
 
 
     var htmlAttributes = new RouteValueDictionary();
@@ -41,7 +42,7 @@
     
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-row @styleProperty effect-as-button boolean-type" data-prop="@styleProperty">
+<div class="form-row @styleProperty @templateName-type" data-prop="@styleProperty">
     <div class="dev-plugin">
         <div class="@ViewBag.textColumn @ViewBag.labelColumn">
             <div class="checkbox">

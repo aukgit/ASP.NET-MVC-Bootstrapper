@@ -181,7 +181,7 @@ $.devOrg.jsonCombo = {
         }
 
         var value = $div.attr(self.dataValueAttribute);
-        var LiveSearch = $div.attr(self.LiveSearchAttribute);
+        var liveSearch = $div.attr(self.LiveSearchAttribute);
         var additionCss = $div.attr(self.additionalCssAttribute);
         var propName = $div.attr(self.propertyNameAttribute);
         //container and spinners 
@@ -205,7 +205,7 @@ $.devOrg.jsonCombo = {
         var isSelectPickerRequired = $div.attr(self.isStyledAttribute);
         var selectPickerClass = isSelectPickerRequired === 'true' ? 'selectpicker' : '';
         var addAttr = "data-style='" + additionCss + "'" +
-                      "data-live-search='" + LiveSearch + "'" +
+                      "data-live-search='" + liveSearch + "'" +
                       elementIdInAttributeFormat;
         var selectBoxStart = "<select name='" + propName + "' " + addAttr + " class='" + selectPickerClass + " form-control' >";
         var selectBoxEnd = "</select>";

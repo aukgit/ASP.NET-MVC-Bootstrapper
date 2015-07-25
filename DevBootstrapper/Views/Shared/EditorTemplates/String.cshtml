@@ -7,7 +7,8 @@
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
         description = ViewData.ModelMetadata.Description,
-        isValidate = ViewBag.isValidate ?? "false";
+        isValidate = ViewBag.isValidate ?? "false",
+        templateName = "string";
     var htmlAttributes = new RouteValueDictionary();
 
     if (ViewBag.@class != null) {
@@ -49,7 +50,7 @@
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-group form-row @styleProperty string-type" data-prop="@styleProperty" data-is-validate="@isValidate">
+<div class="form-group form-row @styleProperty @templateName-type" data-prop="@styleProperty" data-is-validate="@isValidate">
     <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName

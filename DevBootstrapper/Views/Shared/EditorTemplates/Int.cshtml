@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "int";
         
     int i;
     if (!Model.HasValue) {
@@ -58,7 +59,7 @@
 
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
-<div class="form-group form-row @styleProperty int-type" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <label class="@ViewBag.labelColumn control-label form-label @styleProperty" for="@styleProperty" data-prop="@styleProperty">
             @displayName

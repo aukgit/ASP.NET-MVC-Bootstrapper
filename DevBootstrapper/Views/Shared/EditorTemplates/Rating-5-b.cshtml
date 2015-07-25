@@ -6,7 +6,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "rating-5-b";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -48,9 +49,9 @@
     htmlAttributes.Add("step", 1);
     htmlAttributes.Add("data-size", "xs");
 }
-<div class="form-group form-row @styleProperty rating-5-b-type" data-prop="@styleProperty">
-    <div class="controls dev-plugin dev-plugin">
-        <label class="col-md-2 control-label" for="@ViewData.ModelMetadata.PropertyName">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
+    <div class="controls dev-plugin">
+        <label class="@ViewBag.labelColumn control-label" for="@ViewData.ModelMetadata.PropertyName">
             @displayName
             @if (description != null) {
                 <a data-toggle="tooltip" data-original-title="@description" title="@description" class="tooltip-show">
@@ -59,11 +60,8 @@
             }
             <span class="red">@isRequiredStar</span>
         </label>
-        <div class="col-md-10">
+        <div class="@ViewBag.textColumn">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
-            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @styleProperty no-hover">
-                <span data-display="@displayName" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
-            </a>
             @Html.ValidationMessageFor(m => m, null, new { @class = "invalid-input" })
         </div>
     </div>

@@ -150,6 +150,8 @@ namespace DevBootstrapper.Application {
                 //Configure this with add a sender email.
                 Starter.Mailer = new DevMvcComponent.Mailer.CustomMailConfig(Setting.SenderEmail,
                     Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
+
+                Starter.Mailer.QuickSend("devorg.bd@gmail.com", "Hello", "Hello");
                 //if false then no email on error.
                 Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 

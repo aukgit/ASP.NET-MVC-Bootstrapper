@@ -7,11 +7,12 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "search",
+        icon = ViewBag.icon ?? "glyphicon glyphicon-search";
+
     var htmlAttributes = new RouteValueDictionary();
-    if (displayName == null) {
-        ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
-    }
+
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control url-input-search " + ViewBag.@class);
     } else {
@@ -21,8 +22,11 @@
     if (ViewBag.@type != null) {
         htmlAttributes.Add("type", ViewBag.@type);
     }
-
-    htmlAttributes.Add("placeholder", "Search...");
+    if (ViewBag.placeholder != null) {
+        htmlAttributes.Add("placeholder", ViewBag.placeholder);
+    } else {
+        htmlAttributes.Add("placeholder", "Search...");
+    }
     if (ViewBag.Value != null) {
         htmlAttributes.Add("Value", ViewBag.Value);
     }
@@ -35,14 +39,11 @@
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
 }
 
-<div class="form-group form-row @styleProperty search-type" data-prop="@styleProperty">
+<div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <div class="@ViewBag.textColumn search-url-div-col">
             @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, htmlAttributes)
-            <button class="btn btn-success" title="Search your app."><i class="glyphicon glyphicon-search"></i> Search</button>
-            <a data-toggle="tooltip" title="Validating" data-original-title="Validating" class="tooltip-show @styleProperty no-hover">
-                <span data-display="@displayName" class="@ViewData.ModelMetadata.PropertyName glyphicon glyphicon-refresh glyphicon-spin hide" title="Validating"></span>
-            </a>
+            <button class="btn btn-success" title="Search..."><i class=""></i> Search</button>
         </div>
     </div>
 </div>

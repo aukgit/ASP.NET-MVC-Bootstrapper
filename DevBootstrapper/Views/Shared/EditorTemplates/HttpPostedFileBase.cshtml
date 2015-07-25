@@ -7,7 +7,8 @@
         propLower = prop.ToLower(),
         styleProperty = propLower,
         displayName = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName,
-        description = ViewData.ModelMetadata.Description;
+        description = ViewData.ModelMetadata.Description,
+        templateName = "httppostedfilebase";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
         ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
@@ -53,7 +54,7 @@
         ViewBag.uploadPreexist = "0";
     }
 }
-<div class="form-row-uploader form-group form-row-@styleProperty httppostedfilebase-type">
+<div class="form-row-uploader form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
         <label class="col-md-2 upload-label control-label form-label-@styleProperty" for="@styleProperty">
             @if (description != null) {
