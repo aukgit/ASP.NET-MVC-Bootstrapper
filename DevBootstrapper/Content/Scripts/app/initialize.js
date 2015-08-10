@@ -17,14 +17,14 @@
  * mailto:info@developers-organism.com
 */
 
-; $.devOrg = $.devOrg || {};
+; $.app = $.app || {};
 
-$.devOrg.initialize = function () {
+$.app.initialize = function () {
     /// <summary>
     /// Initialize everything.
     /// </summary>
     var //self = this,
-        dev = $.devOrg,
+        dev = $.app,
         uploader = dev.upload,
         constants = dev.constants,
         selectors = dev.selectors,
@@ -62,7 +62,7 @@ $.devOrg.initialize = function () {
             4);
 
         dev.enterToNextInput($registerForm, false);
-        //$.devOrg.uxFriendlySlide("form.register-form", true);
+        //$.app.uxFriendlySlide("form.register-form", true);
 
         //dev.bootstrapComboSelectbyFindingValue("select.country-combo", "1");
 
@@ -92,12 +92,12 @@ $.devOrg.initialize = function () {
 
     // make all selects to bootstrap select 
     $("select.select-picker").selectpicker();
-    $.devOrg.bootstrapComboSelectIndex("select.select-picker", 0);
+    $.app.bootstrapComboSelectIndex("select.select-picker", 0);
 
 
     ///Implement .rating-5,.rating-10
-    $.devOrg.ratingMordernize();
-    $.devOrg.bootstrapTabsMordernize(".make-it-tab");
+    $.app.ratingMordernize();
+    $.app.bootstrapTabsMordernize(".make-it-tab");
 
 
     function workWithMenuPage() {
@@ -152,5 +152,5 @@ $.devOrg.initialize = function () {
 }
 
 $(function () {
-    $.devOrg.initialize();
+    $.app.initialize();
 });

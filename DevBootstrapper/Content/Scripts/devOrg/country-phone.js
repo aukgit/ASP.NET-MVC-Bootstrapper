@@ -2,13 +2,12 @@
 /// <reference path="developers-organism.dynamicSelect.js" />
 /// <reference path="developers-organism.upload.js" />
 /// <reference path="faster-jQuery.js" />
-/// <reference path="WeReviewApps.js" />
 /// <reference path="../star-rating.js" />
 /// <reference path="../validation.js" />
 /// <reference path="../underscore.js" />
 
-; $.devOrg = $.devOrg || {};
-$.devOrg.ctyTimePhone = {
+; $.app = $.app || {};
+$.app.ctyTimePhone = {
     countryUrl: "",
     timezoneUrl: "",
     languageUrl: "",
@@ -73,7 +72,7 @@ $.devOrg.ctyTimePhone = {
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
         
-        var dev = $.devOrg;
+        var dev = $.app;
         var self = dev.ctyTimePhone,
             regularExpressions = dev.regularExp;
         if ($.isEmpty(eachOptionItemClasses)) {
@@ -98,7 +97,7 @@ $.devOrg.ctyTimePhone = {
         /// <param name="timeZoneUrl"></param>
         /// <param name="languageUrl"></param>
         /// <param name="retriveAsHtml">boolean : should retrieve only html or process the json. True means no processing.</param>
-        var self = $.devOrg.ctyTimePhone;
+        var self = $.app.ctyTimePhone;
 
         self.countryUrl = countryUrl;
         self.timezoneUrl = timeZoneUrl;
@@ -144,8 +143,8 @@ $.devOrg.ctyTimePhone = {
         }
     },
     setupRefreshingCountryFlag: function () {
-        var self = $.devOrg.ctyTimePhone;
-        var dev = $.devOrg;
+        var self = $.app.ctyTimePhone;
+        var dev = $.app;
 
         dev.countryFlagRefresh(self.countryComboSelector,
                                 self.countryDropDownItemsSelector,
@@ -158,8 +157,8 @@ $.devOrg.ctyTimePhone = {
         /// Phone, Timezone and language
         /// </summary>
         // fix phone code and make country select to slectpicker()
-        var dev = $.devOrg;
-        var self = $.devOrg.ctyTimePhone;
+        var dev = $.app;
+        var self = $.app.ctyTimePhone;
 
 
         dev.countryRelatedToPhone(self.countryComboSelector,

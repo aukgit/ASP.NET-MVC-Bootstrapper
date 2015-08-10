@@ -1,6 +1,6 @@
-﻿;$.devOrg = $.devOrg || {};
+﻿;$.app = $.app || {};
 
-$.devOrg.selectors = {
+$.app.selectors = {
     registerFormId: "register-form",
     UploadingContainerId: "dev-uploader-container",
     UploadingFormId: "dev-uploader-form",

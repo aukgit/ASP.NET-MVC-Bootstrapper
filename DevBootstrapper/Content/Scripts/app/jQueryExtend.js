@@ -101,7 +101,7 @@ $.getFriendlyUrlSlug = function (str) {
     /// </summary>
     /// <param name="str">Give an string "Hello & World"</param>
 
-    var regularExpressions = $.devOrg.regularExp;
+    var regularExpressions = $.app.regularExp;
     if ($.isEmpty(str) === false) {
         //"[^A-Za-z0-9_\.~]+"
         var regexString = regularExpressions.friendlyUrl;
