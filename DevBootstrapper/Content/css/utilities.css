@@ -1,4 +1,7 @@
-﻿/*table related */
+﻿/*
+  please don't modify styles from css file. Please modify in the respective.less file in the less folder.
+  FYI: This file (.less file) contains utilities styles, lets say general padding, margin, bold, hide, show etc..
+*/
 /*h1, h2, h3, h4, h5 {
     display: inline;
 }*/
@@ -81,9 +84,9 @@ div.error-list ul {
   height: 2.2rem;
   padding-left: 8px;
   /*rounded border*/
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  -khbtml-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 .plugin-a li a:hover,
 .plugin-a-white li a:hover {
@@ -93,9 +96,8 @@ div.error-list ul {
   text-decoration: none;
 }
 .plugin-a-white li a {
-  -khbtml-border-radius: 3px;
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   border-radius: 3px;
   display: block;
   padding-left: 8px;
@@ -710,6 +712,21 @@ div.contactus {
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+.controls-full-width input,
+.controls-full-width select,
+.controls-full-width textarea,
+.controls-full-width a.form-control,
+.controls-full-width div.input-group.date.datetimepicker {
+  max-width: none;
+}
+.no-margin-controls .form-group {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.controls-readonly .form-control:not(a) {
+  background-color: white;
+  cursor: text;
 }
 .regular-show-more-btn {
   clear: both;

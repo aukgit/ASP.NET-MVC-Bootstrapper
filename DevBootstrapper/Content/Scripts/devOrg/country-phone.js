@@ -6,8 +6,8 @@
 /// <reference path="../validation.js" />
 /// <reference path="../underscore.js" />
 
-; $.app = $.app || {};
-$.app.ctyTimePhone = {
+; $.devOrg = $.devOrg || {};
+$.devOrg.ctyTimePhone = {
     countryUrl: "",
     timezoneUrl: "",
     languageUrl: "",

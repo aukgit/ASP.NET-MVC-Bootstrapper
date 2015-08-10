@@ -1,4 +1,8 @@
-﻿body {
+﻿/*
+  Warning(.css file): Please don't modify styles from css file. Please modify the styles in the respective.less file in the less folder. CSS files will be replaced with new .less file styles.
+  FYI: This file (.less file) contains styles for general heading or header elements.
+*/
+body {
   font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-top: 50px;
   padding-top: 5rem;

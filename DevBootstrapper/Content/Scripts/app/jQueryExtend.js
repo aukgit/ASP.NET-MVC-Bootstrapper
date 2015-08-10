@@ -211,7 +211,143 @@ $.checkValidInputs = function ($inputsCollection, starRatingLabel, invalidStarRa
     return true;
 }
 
+$.isJson = function (obj) {
+    if (!$.isEmpty(obj) && !$.isArray(obj) && typeof obj !== 'string' && typeof obj !== 'function') {
+        return Object.keys(obj).length > 0;
+    }
+    return false;
+};
+$.getHiddenField = function (name) {
+    /// <summary>
+    /// Get hidden field object from cache if possible.
+    /// </summary>
+    /// <param name="name">Name of the field</param>
+    /// <returns type=""></returns>
+    return $.app.getHiddenField(name);
+}
 
+$.getHiddenValue = function (name) {
+    /// <summary>
+    /// Get string value of the hidden field.
+    /// </summary>
+    /// <param name="name">Name of the field</param>
+    /// <returns type="">Get string value of the hidden field. If not found then empty string "".</returns>
+    var $field = $.app.getHiddenField(name);
+    if (!$.isEmpty($field)) {
+        return $field.val();
+    }
+    return "";
+}
+
+$.setHiddenValue = function (name, val) {
+    /// <summary>
+    /// Get string value of the hidden field.
+    /// </summary>
+    /// <param name="name">Name of the field</param>
+    /// <param name="val">value of the field</param>
+    /// <returns type="">Get string value of the hidden field. If not found then empty string "".</returns>
+    return $.app.setHiddenValue(name, val);
+}
+
+
+$.isFunc = function (func) {
+    /// <summary>
+    /// Is it it a function.
+    /// </summary>
+    /// <param name="func">Anything</param>
+    /// <returns type="">Returns true/false</returns>
+    return typeof func === "function";
+}
+$.executeFunction = function (func) {
+    /// <summary>
+    /// Execute only if it is a function
+    /// </summary>
+    /// <param name="func">Anything</param>
+    /// <returns type="">Returns true/false</returns>
+    if (typeof func === "function") {
+        func.apply();
+    }
+}
+
+$.getJsonToQueryString = function (url, json, isQuestionMarkRequired) {
+    /// <summary>
+    /// Returns a concatenated url with those json array value pair
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="json">
+    ///    any json  {name: 'value', name2: 'value' },
+    /// </param>
+    /// <param name="isQuestionMarkRequired">add ? after given url or else add &</param>
+    /// <returns type="">returns a url string.</returns>
+    if (url !== null && url !== undefined) {
+        if (isQuestionMarkRequired) {
+            url += "?";
+        } else {
+            url += "&";
+        }
+        var keys = Object.keys(json),
+            len = keys.length,
+            arr = new Array(len);
+        for (var i = 0; i < len; i++) {
+            var key = keys[i],
+                value = json[key];
+            arr[i] = key + "=" + value + "";
+        }
+        url += arr.join("&");
+        return url;
+    }
+
+    return "";
+};
+
+$.applyAutoResizeMultiline = function ($container) {
+    /// <summary>
+    /// Apply auto size on the elements which has elastic or autosize-enabled class.
+    /// </summary>
+    /// <param name="$container">can be null, if given the filter will be done only inside that container.</param>
+    /// <returns type=""></returns>
+
+    var $autoSizableElements;
+    var selectors = ".elastic,.autosize,.multiline-text";
+    if (!$.isEmpty($container)) {
+        $autoSizableElements = $container.find(selectors);
+    } else {
+        $autoSizableElements = $(selectors);
+    }
+    if (!$.isEmpty($autoSizableElements)) {
+        $autoSizableElements.elastic();
+    }
+}
+$.hideEmptyFields = function ($container) {
+    /// <summary>
+    /// Hide elements which has empty input fields.
+    /// </summary>
+    /// <param name="$container">can be null, if given the filter will be done only inside that container.</param>
+    /// <returns type=""></returns>
+
+    var $inputs;
+    var selectors = "input[value='']";
+    var $formGroups;
+    if (!$.isEmpty($container)) {
+        $inputs = $container.find(selectors);
+        $formGroups = $container.find(".form-group");
+    } else {
+        $inputs = $(selectors);
+        $formGroups = $(".form-group");
+    }
+    if (!$.isEmpty($inputs)) {
+        for (var i = 0; i < $inputs.length; i++) {
+            var $input = $($inputs[i]),
+                name = $input.attr("data-prop"),
+                selector = "[data-prop='" + name + "']",
+                $formGroup = $formGroups.filter(selector);
+            $formGroup.hide();
+            //console.log($formGroup);
+            //console.log(selector);
+            //console.log(name);
+        }
+    }
+}
 $.fn.extend({
     getClassesList: function () {
         /// <summary>
