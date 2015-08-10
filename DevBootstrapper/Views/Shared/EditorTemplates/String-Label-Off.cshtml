@@ -25,9 +25,9 @@
         htmlAttributes.Add("placeholder", ViewBag.placeholder);
     } else {
         if (isRequired) {
-            htmlAttributes.Add("placeholder", ViewData.ModelMetadata.DisplayName + isRequiredStar);
+            htmlAttributes.Add("placeholder", displayName + isRequiredStar);
         } else {
-            htmlAttributes.Add("placeholder", "[" + ViewData.ModelMetadata.DisplayName + "]");
+            htmlAttributes.Add("placeholder", "[" + displayName + "]");
         }
     }
     if (ViewBag.Value != null) {

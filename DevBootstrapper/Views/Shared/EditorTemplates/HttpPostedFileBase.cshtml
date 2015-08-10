@@ -11,7 +11,7 @@
         templateName = "httppostedfilebase";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
-        ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
+        displayName = ViewData.ModelMetadata.PropertyName;
     }
 
 
@@ -72,7 +72,7 @@
 
                 </div>
                 <a data-id="@ViewBag.data_id_val" data-edit-btn-spinner="true" data-spinner="spinner" data-toggle="tooltip" title="Show images to remove" class="spinner tooltip-show edit-btn-spinner @styleProperty no-hover">
-                    <span data-id="@ViewBag.data_id_val" data-display="@ViewData.ModelMetadata.DisplayName" class="glyphicon glyphicon-refresh glyphicon-spin" title="Validating"></span>
+                    <span data-id="@ViewBag.data_id_val" data-display="@displayName" class="glyphicon glyphicon-refresh glyphicon-spin" title="Validating"></span>
                 </a>
                 <a data-id="@ViewBag.data_id_val" data-btn="edit" data-default-show="@ViewBag.defaultShow" class="edit-@ViewBag.data_id_val btn btn-info edit-btn" href="@ViewBag.editUrl">
                     Edit
@@ -84,8 +84,8 @@
                     <input @ViewBag.data_guid class="dev-fileupload" @ViewBag.data_id type="file" @ViewBag.data_url name="@styleProperty" title="@displayName Upload files , @ViewData.ModelMetadata.Description" @ViewBag.autoupload @ViewBag.data_single>
                 </span>
                 <div data-id="@ViewBag.data_id_val" data-progressor-div="true" class="uploader-progress-info">
-                    <a data-id="@ViewBag.data_id_val" data-progressor-spinner="true" data-spinner="spinner" data-toggle="tooltip" title="@ViewData.ModelMetadata.DisplayName Uploading..." class="spinner tooltip-show upload-spinner-@styleProperty no-hover">
-                        <span data-id="@ViewBag.data_id_val" data-display="@ViewData.ModelMetadata.DisplayName" class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+                    <a data-id="@ViewBag.data_id_val" data-progressor-spinner="true" data-spinner="spinner" data-toggle="tooltip" title="@displayName Uploading..." class="spinner tooltip-show upload-spinner-@styleProperty no-hover">
+                        <span data-id="@ViewBag.data_id_val" data-display="@displayName" class="glyphicon glyphicon-refresh glyphicon-spin"></span>
                     </a>
                     <a data-id="@ViewBag.data_id_val" data-progressor-value="true" data-toggle="tooltip" title="" class="tooltip-show upload-progressor-@styleProperty no-hover">
                         <span data-id="@ViewBag.data_id_val" data-uploader-percent-value="" class="bold green"></span>
