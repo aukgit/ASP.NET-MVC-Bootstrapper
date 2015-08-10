@@ -50,6 +50,7 @@
         htmlAttributes.Add("data-url", ViewBag.url);
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
+    htmlAttributes.Add("data-prop", styleProperty);
 }
 
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty" data-is-validate="@isValidate">

@@ -53,6 +53,8 @@
     if (@ViewBag.uploadPreexist == null) {
         ViewBag.uploadPreexist = "0";
     }
+    htmlAttributes.Add("data-prop", styleProperty);
+    htmlAttributes.Add("data-template", templateName);
 }
 <div class="form-row-uploader form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">

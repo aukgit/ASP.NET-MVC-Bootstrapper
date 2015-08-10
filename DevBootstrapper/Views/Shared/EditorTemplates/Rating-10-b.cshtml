@@ -65,6 +65,9 @@
     htmlAttributes.Add("data-size", "xs");
     htmlAttributes.Add("data-stars", ViewBag.stars);
     htmlAttributes.Add("data-step", ViewBag.step);
+
+    htmlAttributes.Add("data-prop", styleProperty);
+    htmlAttributes.Add("data-template", templateName);
 }
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">

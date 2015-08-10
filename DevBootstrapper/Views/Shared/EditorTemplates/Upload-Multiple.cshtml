@@ -70,6 +70,8 @@
         ViewBag.textColumn = "col-md-10";
     }
     htmlAttributes.Add("title", htmlAttributes["placeholder"]);
+    htmlAttributes.Add("data-prop", styleProperty);
+    htmlAttributes.Add("data-template", templateName);
 }
 <div data-id="@ViewBag.data_id_val" data-uploader-div-row="true" class="form-group form-row @styleProperty @templateName-type form-row-uploader" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">
