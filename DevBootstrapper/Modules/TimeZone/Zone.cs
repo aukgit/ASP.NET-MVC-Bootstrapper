@@ -15,6 +15,64 @@ using DevBootstrapper.Modules.DevUser;
 
 namespace DevBootstrapper.Modules.TimeZone {
     public class Zone {
+        
+        #region Fields
+
+        private static string _defaultTimeFormat = "hh:mm:ss tt";
+        private static string _defaultDateFormat = "dd-MMM-yy";
+        private static string _defaultDateTimeFormat = "dd-MMM-yy hh:mm:ss tt";
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        ///     hh:mm:ss tt
+        /// </summary>
+        public static string TimeFormat {
+            get { return _defaultTimeFormat; }
+            set { _defaultTimeFormat = value; }
+        }
+
+        /// <summary>
+        ///     dd-MMM-yy
+        /// </summary>
+        public static string DateFormat {
+            get { return _defaultDateFormat; }
+            set { _defaultDateFormat = value; }
+        }
+
+        /// <summary>
+        ///     dd-MMM-yy
+        /// </summary>
+        public static string DateTimeFormat {
+            get { return _defaultDateTimeFormat; }
+            set { _defaultDateTimeFormat = value; }
+        }
+
+
+        private static readonly ReadOnlyCollection<TimeZoneInfo> SystemTimeZones = TimeZoneInfo.GetSystemTimeZones();
+        private static List<UserTimeZone> _dbTimeZones;
+
+        #endregion
+
+        #region Constructor
+
+        public Zone() {
+        }
+
+        public Zone(string timeFormat, string dateFormat = null, string dateTimeFormat = null) {
+            _defaultTimeFormat = timeFormat;
+            if (dateFormat != null) {
+                _defaultDateFormat = dateFormat;
+            }
+            if (dateTimeFormat != null) {
+                _defaultDateTimeFormat = dateTimeFormat;
+            }
+        }
+
+        #endregion
+
         #region Application Startup function for database
 
         public static void LoadTimeZonesIntoMemory() {
@@ -46,65 +104,6 @@ namespace DevBootstrapper.Modules.TimeZone {
 
         #endregion
 
-        #region Fields
-
-        private static string _defaultTimeFormat = "hh:mm:ss tt";
-        private static string _defaultDateFormat = "dd-MMM-yy";
-        private static string _defaultDateTimeFormat = "dd-MMM-yy hh:mm:ss tt";
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        ///     hh:mm:ss tt
-        /// </summary>
-        public static string TimeFormat
-        {
-            get { return _defaultTimeFormat; }
-            set { _defaultTimeFormat = value; }
-        }
-
-        /// <summary>
-        ///     dd-MMM-yy
-        /// </summary>
-        public static string DateFormat
-        {
-            get { return _defaultDateFormat; }
-            set { _defaultDateFormat = value; }
-        }
-
-        /// <summary>
-        ///     dd-MMM-yy
-        /// </summary>
-        public static string DateTimeFormat
-        {
-            get { return _defaultDateTimeFormat; }
-            set { _defaultDateTimeFormat = value; }
-        }
-
-
-        private static readonly ReadOnlyCollection<TimeZoneInfo> SystemTimeZones = TimeZoneInfo.GetSystemTimeZones();
-        private static List<UserTimeZone> _dbTimeZones;
-
-        #endregion
-
-        #region Constructor
-
-        public Zone() {
-        }
-
-        public Zone(string timeFormat, string dateFormat = null, string dateTimeFormat = null) {
-            _defaultTimeFormat = timeFormat;
-            if (dateFormat != null) {
-                _defaultDateFormat = dateFormat;
-            }
-            if (dateTimeFormat != null) {
-                _defaultDateTimeFormat = dateTimeFormat;
-            }
-        }
-
-        #endregion
 
         #region Get Zone from Cache
 
@@ -171,7 +170,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         private static TimeZoneInfo GetSavedTimeZone(string log) {
             //save to cookie 
             if (!String.IsNullOrWhiteSpace(log)) {
-                var cZone = (TimeZoneInfo) AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
+                var cZone = (TimeZoneInfo)AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
                 if (cZone == null) {
                     // try cookie.
                     var id = AppConfig.Cookies.Get(CookiesNames.ZoneInfo);
@@ -223,21 +222,11 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetTime(DateTime? dt, string format = null) {
-            if (dt == null) {
-                return "";
-            }
-            var dt2 = (DateTime) dt;
-            var timeZone = Get();
-            if (timeZone == null) {
-                return "";
-            }
-            //time zone found.
-            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
+        public static string GetTime(DateTime? dt, string format = null ) {
             if (format == null) {
                 format = TimeFormat;
             }
-            return newDate.ToString(format);
+            return GetDateTimeDefault(dt, format);
         }
 
         /// <summary>
@@ -247,15 +236,10 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
         public static string GetDate(DateTime? dt, string format = null) {
-            if (dt == null) {
-                return "";
-            }
-            var dt2 = (DateTime) dt;
-            //time zone found.
             if (format == null) {
                 format = DateFormat;
             }
-            return dt2.ToString(format);
+            return GetDateTimeDefault(dt, format);
         }
 
         /// <summary>
@@ -267,20 +251,10 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone. If no logged user then empty string.</returns>
         public static string GetDateTime(DateTime? dt, string format = null) {
-            if (dt == null) {
-                return "";
-            }
-            var dt2 = (DateTime) dt;
-            var timeZone = Get();
-            if (timeZone == null) {
-                return "";
-            }
-            //time zone found.
-            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
                 format = DateTimeFormat;
             }
-            return newDate.ToString(format);
+            return GetDateTimeDefault(dt, format);
         }
 
         /// <summary>
@@ -292,20 +266,11 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone. If no logged user then default datetime.</returns>
         public static string GetDateTimeDefault(DateTime? dt, string format = null) {
-            if (dt == null) {
-                return "";
-            }
-            var dt2 = (DateTime) dt;
-            var timeZone = Get();
-            if (timeZone == null) {
-                return dt2.ToString(format);
-            }
-            //time zone found.
-            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
                 format = DateTimeFormat;
             }
-            return newDate.ToString(format);
+            var timeZone = Get();
+            return GetDateTime(timeZone, dt, format);
         }
 
         #endregion
@@ -322,17 +287,10 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
         public static string GetTime(TimeZoneInfo timeZone, DateTime? dt, string format = null) {
-            if (dt == null) {
-                return "";
-            }
-            var dt2 = (DateTime) dt;
-
-            //time zone found.
-            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
                 format = TimeFormat;
             }
-            return newDate.ToString(format);
+            return GetDateTime(timeZone, dt, format);
         }
 
         /// <summary>
@@ -343,16 +301,10 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
         public static string GetDate(TimeZoneInfo timeZone, DateTime? dt, string format = null) {
-            if (dt == null) {
-                return "";
-            }
-            var dt2 = (DateTime) dt;
-            //time zone found.
-            //var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
                 format = DateFormat;
             }
-            return dt2.ToString(format);
+            return GetDateTime(timeZone, dt, format);
         }
 
 
@@ -391,14 +343,19 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (dt == null) {
                 return "";
             }
-            var dt2 = (DateTime) dt;
+            var dt2 = (DateTime)dt;
 
-            //time zone found.
-            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
             if (format == null) {
                 format = DateTimeFormat;
             }
+            if (timeZone == null) {
+                return dt2.ToString(format);
+            }
+            //time zone found.
+            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
+      
             return newDate.ToString(format);
+
         }
 
         #endregion
