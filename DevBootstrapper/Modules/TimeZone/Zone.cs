@@ -14,6 +14,9 @@ using DevBootstrapper.Modules.DevUser;
 #endregion
 
 namespace DevBootstrapper.Modules.TimeZone {
+    /// <summary>
+    /// Timezone and date related codes.
+    /// </summary>
     public class Zone {
         
         #region Fields
@@ -108,6 +111,55 @@ namespace DevBootstrapper.Modules.TimeZone {
         #region Get Zone from Cache
 
         /// <summary>
+        /// Get UserTimeZone from database using caching if possible.
+        /// </summary>
+        /// <param name="zone">Pass TimeZoneInfo to get the usertimezone from database.</param>
+        /// <returns>Returns timezone from cache if possible if not found anywhere returns null.</returns>
+        public static TimeZoneInfo Get(TimeZoneInfo zone) {
+
+            if (zone != null) {
+                Get
+                var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.InfoID == zone.Id);
+                if (timezoneDb != null) {
+                    timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
+                }
+                if (timeZoneInfo != null) {
+                    // Save the time zone to the cache.
+                    SaveTimeZone(timeZoneInfo, idString);
+                    return timeZoneInfo;
+                }
+            }
+            return null;
+        }
+        /// <summary>
+        /// Get timezone by userid.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>Returns timezone from cache if possible if not found anywhere returns null.</returns>
+        public static TimeZoneInfo Get(long userId) {
+            TimeZoneInfo timeZoneInfo = null;
+            var idString = "-id:" + userId;
+            timeZoneInfo = GetSavedTimeZone(idString);
+            if (timeZoneInfo != null) {
+                //got time zone from cache.
+                return timeZoneInfo;
+            }
+            //if cache time zone not exist.
+            var user = UserManager.GetUser(userId);
+            if (user != null) {
+                var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.UserTimeZoneID == user.UserTimeZoneID);
+                if (timezoneDb != null) {
+                    timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
+                }
+                if (timeZoneInfo != null) {
+                    // Save the time zone to the cache.
+                    SaveTimeZone(timeZoneInfo, idString);
+                    return timeZoneInfo;
+                }
+            }
+            return null;
+        }
+        /// <summary>
         ///     Optimized fist check on cache then database.
         ///     Get current logged time zone from database or from cache.
         /// </summary>
@@ -152,7 +204,6 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <summary>
         ///     Get time zone from save cache or cookie of Current user.
         /// </summary>
-        /// <param name="log"></param>
         /// <returns></returns>
         private static TimeZoneInfo GetSavedTimeZone() {
             if (!HttpContext.Current.User.Identity.IsAuthenticated) {
@@ -163,7 +214,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         }
 
         /// <summary>
-        ///     Get time zone from save cache or cookie.
+        ///     Get time zone from save cache.
         /// </summary>
         /// <param name="log"></param>
         /// <returns></returns>
@@ -171,15 +222,6 @@ namespace DevBootstrapper.Modules.TimeZone {
             //save to cookie 
             if (!String.IsNullOrWhiteSpace(log)) {
                 var cZone = (TimeZoneInfo)AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
-                if (cZone == null) {
-                    // try cookie.
-                    var id = AppConfig.Cookies.Get(CookiesNames.ZoneInfo);
-                    if (id != null) {
-                        cZone = SystemTimeZones.FirstOrDefault(n => n.Id == id);
-                        return cZone;
-                    }
-                    return null;
-                }
                 return cZone; //fast
             }
             return null;
@@ -205,15 +247,37 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (log == null || timeZoneInfo == null) {
                 return;
             }
-            //save to cookie 
-            AppConfig.Cookies.Set(timeZoneInfo.Id, CookiesNames.ZoneInfo);
+            //save to cache 
             AppConfig.Caches.Set(CookiesNames.ZoneInfo + log, timeZoneInfo);
         }
 
         #endregion
 
         #region Get times format based on zone
+        public static string GetDateTime(long userId, DateTime? dt, string format = null) {
+            if (format == null) {
+                format = DateTimeFormat;
+            }
+            var zone = Get(userId);
+            return GetDateTime(zone, dt, format);
+        }
 
+        /// <summary>
+        ///     Get date to print as string.
+        ///     Time zone by user logged in.
+        ///     It will get the logged user and then get the time-zone and then print.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="dt"></param>
+        /// <param name="format">if format null then default format.</param>
+        /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
+        public static string GetTime(long userId, DateTime? dt, string format = null) {
+            if (format == null) {
+                format = TimeFormat;
+            }
+            var zone = Get(userId);
+            return GetDateTime(zone, dt, format);
+        }
         /// <summary>
         ///     Get date to print as string.
         ///     Time zone by user logged in.
@@ -226,7 +290,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (format == null) {
                 format = TimeFormat;
             }
-            return GetDateTimeDefault(dt, format);
+            return GetDateTime(dt, format);
         }
 
         /// <summary>
@@ -239,22 +303,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (format == null) {
                 format = DateFormat;
             }
-            return GetDateTimeDefault(dt, format);
-        }
-
-        /// <summary>
-        ///     Get date to print as string.
-        ///     Time zone by user logged in.
-        ///     It will get the logged user and then get the time-zone and then print.
-        /// </summary>
-        /// <param name="dt">Returns "" if null</param>
-        /// <param name="format">if format null then default format.</param>
-        /// <returns>Returns nice string format based on logged user's selected time zone. If no logged user then empty string.</returns>
-        public static string GetDateTime(DateTime? dt, string format = null) {
-            if (format == null) {
-                format = DateTimeFormat;
-            }
-            return GetDateTimeDefault(dt, format);
+            return GetDateTime(dt, format);
         }
 
         /// <summary>
@@ -265,7 +314,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="dt">Returns "" if null</param>
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone. If no logged user then default datetime.</returns>
-        public static string GetDateTimeDefault(DateTime? dt, string format = null) {
+        public static string GetDateTime(DateTime? dt, string format = null) {
             if (format == null) {
                 format = DateTimeFormat;
             }
@@ -325,8 +374,9 @@ namespace DevBootstrapper.Modules.TimeZone {
         ///     It will get the logged user and then get the time-zone and then print.
         /// </summary>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimezoneString"></param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetCurrentDate(string format = null) {
+        public static string GetCurrentDate(string format = null, bool addTimezoneString  = true) {
             return GetDate(DateTime.Now, format);
         }
 
@@ -339,7 +389,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetDateTime(TimeZoneInfo timeZone, DateTime? dt, string format = null) {
+        public static string GetDateTime(TimeZoneInfo timeZone, DateTime? dt, string format = null, bool addTimezoneString = true) {
             if (dt == null) {
                 return "";
             }
@@ -353,7 +403,10 @@ namespace DevBootstrapper.Modules.TimeZone {
             }
             //time zone found.
             var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
-      
+            string additionalString = "";
+            if (addTimezoneString) {
+                additionalString = "(" + timeZone.na
+            }
             return newDate.ToString(format);
 
         }
