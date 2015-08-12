@@ -43,3 +43,5 @@ Temporary Items
 .apdisk
 DevBootstrapper/DevBootstrapper.v12.suo
 DevBootstrapper/obj/Debug/DevBootstrapper.csprojResolveAssemblyReference.cache
+*.cache
+*.suo
