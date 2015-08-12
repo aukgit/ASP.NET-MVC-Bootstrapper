@@ -21,7 +21,6 @@ namespace DevBootstrapper.Application {
     /// </summary>
     public static class AppConfig {
         private static CoreSetting _setting;
-        private static bool _initalized;
         private static int _truncateLength = 30;
 
         public static int ValidationMaxNumber {
@@ -136,7 +135,9 @@ namespace DevBootstrapper.Application {
                 if (_setting == null) {
                     throw new Exception("Couldn't create or get the core settings. Please check the creation.");
                 }
+                // load timezones into memory.
                 Zone.LoadTimeZonesIntoMemory();
+
                 AppVar.IsInTestEnvironment = Setting.IsInTestingEnvironment;
 
                 AppVar.Name = Setting.ApplicationName;

@@ -359,6 +359,8 @@
     <Compile Include="Models\DesignPattern\Interfaces\IUploadableFile.cs" />
     <Compile Include="Modules\Uploads\UploadProcessor.cs" />
     <Compile Include="Constants\MessageConstants.cs" />
+    <Compile Include="Modules\Validations\DevUserValidator.cs" />
+    <Compile Include="Modules\Validations\Validator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\SchedulerRunner.cs" />
     <Compile Include="Scheduler\SiteVisitingScheduler.cs" />
