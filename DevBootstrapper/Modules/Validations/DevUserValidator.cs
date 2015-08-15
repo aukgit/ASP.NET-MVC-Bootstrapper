@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using DevBootstrapper.Application;
 using DevBootstrapper.Constants;
 using DevBootstrapper.Models.Context;
@@ -74,7 +72,7 @@ namespace DevBootstrapper.Modules.Validations {
                 //it should be selected inside the register panel.
                 ErrorCollector.AddMedium("You forgot you set your time zone.");
                 return false;
-            } else if (timezones.Count == 1) {
+            } else if (timezones != null && timezones.Count == 1) {
                 _viewMdoel.UserTimeZoneID = timezones[0].UserTimeZoneID;
             } else {
                 ErrorCollector.AddMedium(
