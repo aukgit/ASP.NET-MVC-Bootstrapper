@@ -9,32 +9,32 @@ using DevBootstrapper.Application;
 
 #endregion
 
-namespace DevBootstrapper.Modules.Extensions.Context {
-    public abstract class DevDbContext : DbContext {
-        protected DevDbContext() {
+namespace DevBootstrapper.Models.BaseContext {
+    public abstract class BaseDbContext : DbContext {
+        protected BaseDbContext() {
         }
 
-        protected DevDbContext(string connectionStringName)
+        protected BaseDbContext(string connectionStringName)
             : base(connectionStringName) {
         }
 
-        protected DevDbContext(DbCompiledModel compiledModel)
+        protected BaseDbContext(DbCompiledModel compiledModel)
             : base(compiledModel) {
         }
 
-        protected DevDbContext(string connectionStringName, DbCompiledModel compiledModel)
+        protected BaseDbContext(string connectionStringName, DbCompiledModel compiledModel)
             : base(connectionStringName, compiledModel) {
         }
 
-        protected DevDbContext(DbConnection existingConnection, bool contextOwnsConnection)
+        protected BaseDbContext(DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection) {
         }
 
-        protected DevDbContext(ObjectContext objectContext, bool contextOwnsConnection)
+        protected BaseDbContext(ObjectContext objectContext, bool contextOwnsConnection)
             : base(objectContext, contextOwnsConnection) {
         }
 
-        protected DevDbContext(DbConnection existingConnection, DbCompiledModel compiledModel,
+        protected BaseDbContext(DbConnection existingConnection, DbCompiledModel compiledModel,
             bool contextOwnsConnection)
             : base(existingConnection, compiledModel, contextOwnsConnection) {
         }
