@@ -9,8 +9,8 @@ using DevMvcComponent.Error;
 
 namespace DevBootstrapper.Modules.Validations {
     public class DevUserValidator : Validator {
-        private RegisterViewModel _viewMdoel;
-        private ApplicationDbContext db;
+        private readonly RegisterViewModel _viewMdoel;
+        private readonly ApplicationDbContext db;
 
         public DevUserValidator(RegisterViewModel viewMdoel, ErrorCollector errorCollector, ApplicationDbContext dbContext)
             : base(errorCollector: errorCollector) {

@@ -52,7 +52,19 @@ namespace DevBootstrapper.Models.BaseContext {
                 return -1;
             }
         }
-
+        /// <summary>
+        ///     Save changes and sends an email to the developer if any error occurred.
+        /// </summary>
+        /// <returns>>=0 :executed correctly. -1: error occurred.</returns>
+        public int SaveChanges(string method, string subject = null, object entity = null) {
+            try {
+                return base.SaveChanges();
+            } catch (Exception ex) {
+                //async email
+                AppVar.Mailer.HandleError(ex, "SaveChanges", "Error SaveChanges()");
+                return -1;
+            }
+        }
         /// <summary>
         ///     Save changes and sends an email to the developer if any error occurred.
         /// </summary>
