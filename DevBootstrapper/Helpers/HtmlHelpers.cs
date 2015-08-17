@@ -463,32 +463,41 @@ namespace DevBootstrapper.Helpers {
 
         #region Date and Time Display
 
-        public static HtmlString DisplayTimeFormat(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null,
-            DateTimeFormatType type = DateTimeFormatType.Date, string format = "") {
+
+        private static string GetDefaultTimeZoneFormat(DateTimeFormatType type = DateTimeFormatType.Date) {
+            string format;
+            switch (type) {
+                case DateTimeFormatType.Date:
+                    format = "dd-MMM-yyyy";
+                    break;
+                case DateTimeFormatType.DateTimeSimple:
+                    format = "dd-MMM-yyyy hh:mm:ss tt";
+                    break;
+                case DateTimeFormatType.DateTimeFull:
+                    format = "MMMM dd, yyyy hh:mm:ss tt";
+                    break;
+                case DateTimeFormatType.DateTimeShort:
+                    format = "d-MMM-yy hh:mm:ss tt";
+                    break;
+                case DateTimeFormatType.Time:
+                    format = "hh:mm:ss tt";
+                    break;
+                default:
+                    format = "dd-MMM-yyyy";
+                    break;
+            }
+
+            return format;
+        }
+
+        public static HtmlString DisplayTime(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null,
+            DateTimeFormatType type = DateTimeFormatType.Time, string format = "") {
             //dt = DateTime.SpecifyKind(dt, DateTimeKind.Utc);
             if (dt == null || timeZone == null) {
                 return new HtmlString("");
             }
             if (format == "") {
-                switch (type) {
-                    case DateTimeFormatType.Date:
-                        format = "dd-MMM-yyyy";
-                        break;
-                    case DateTimeFormatType.DateTimeSimple:
-                        format = "dd-MMM-yyyy hh:mm:ss tt";
-                        break;
-                    case DateTimeFormatType.DateTimeFull:
-                        format = "MMMM dd, yyyy hh:mm:ss tt";
-                        break;
-                    case DateTimeFormatType.DateTimeShort:
-                        format = "d-MMM-yy hh:mm:ss tt";
-                        break;
-                    case DateTimeFormatType.Time:
-                        format = "hh:mm:ss tt";
-                        break;
-                    default:
-                        break;
-                }
+                format = GetDefaultTimeZoneFormat(type);
             }
             return new HtmlString(Zone.GetTime(timeZone, dt, format));
         }
@@ -507,7 +516,7 @@ namespace DevBootstrapper.Helpers {
             if (timeZoneRequried) {
                 return new HtmlString(Zone.GetDateTime(dt));
             }
-            return new HtmlString(Zone.GetDateTimeDefault(dt));
+            return new HtmlString(Zone.DateTimeFormat(dt));
         }
 
         public static HtmlString DisplayDate(this HtmlHelper helper, DateTime? dt = null) {

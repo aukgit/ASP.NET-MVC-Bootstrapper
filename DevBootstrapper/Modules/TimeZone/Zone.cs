@@ -129,7 +129,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="userId"></param>
         /// <returns>Returns timezone from cache if possible if not found anywhere returns null.</returns>
         public static TimeZoneSet Get(long userId) {
-            TimeZoneInfo timeZoneInfo = null;
+            TimeZoneSet timeZoneInfo = null;
             var idString = "-id:" + userId;
             timeZoneInfo = GetSavedTimeZone(idString);
             if (timeZoneInfo != null) {
@@ -141,9 +141,11 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (user != null) {
                 var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.UserTimeZoneID == user.UserTimeZoneID);
                 if (timezoneDb != null) {
-                    timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
+                    timeZoneInfo = new TimeZoneSet();
+                    timeZoneInfo.UserTimezone = timezoneDb;
+                    timeZoneInfo.TimeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
                 }
-                if (timeZoneInfo != null) {
+                if (timeZoneInfo != null && timeZoneInfo.TimeZoneInfo != null) {
                     // Save the time zone to the cache.
                     SaveTimeZone(timeZoneInfo, idString);
                     return timeZoneInfo;

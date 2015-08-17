@@ -353,7 +353,7 @@
     <Compile Include="Constants\SessionNames.cs" />
     <Compile Include="Modules\SqlGenerate.cs" />
     <Compile Include="Modules\TestThingsStartup.cs" />
-    <Compile Include="Modules\TimeZone\TimezoneSet.cs" />
+    <Compile Include="Modules\TimeZone\TimeZoneSet.cs" />
     <Compile Include="Modules\TimeZone\Zone.cs" />
     <Compile Include="Modules\Uploads\FileLocation.cs" />
     <Compile Include="Models\DesignPattern\Interfaces\IUploadableImageCategory.cs" />
