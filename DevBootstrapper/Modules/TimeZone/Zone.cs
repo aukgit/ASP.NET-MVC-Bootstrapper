@@ -116,22 +116,19 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <returns>Returns timezone from cache if possible if not found anywhere returns null.</returns>
         public static UserTimeZone Get(TimeZoneInfo zone) {
             var id = "timezone-id:" + zone.Id;
-            if (zone != null) {
-                var userTimeZone = (UserTimeZone)AppConfig.Caches.Get(id);
-                if (userTimeZone == null) {
-                    userTimeZone = _dbTimeZones.FirstOrDefault(n => n.InfoID == zone.Id);
-                    AppConfig.Caches.Set(id, userTimeZone);
-                }
-                return userTimeZone;
+            var userTimeZone = (UserTimeZone)AppConfig.Caches.Get(id);
+            if (userTimeZone == null) {
+                userTimeZone = _dbTimeZones.FirstOrDefault(n => n.InfoID == zone.Id);
+                AppConfig.Caches.Set(id, userTimeZone);
             }
-            return null;
+            return userTimeZone;
         }
         /// <summary>
         /// Get timezone by userid.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Returns timezone from cache if possible if not found anywhere returns null.</returns>
-        public static TimeZoneInfo Get(long userId) {
+        public static TimeZoneSet Get(long userId) {
             TimeZoneInfo timeZoneInfo = null;
             var idString = "-id:" + userId;
             timeZoneInfo = GetSavedTimeZone(idString);
@@ -159,7 +156,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         ///     Get current logged time zone from database or from cache.
         /// </summary>
         /// <returns>Returns time zone of the user.</returns>
-        public static TimeZoneInfo Get(out UserTimeZone zone) {
+        public static TimeZoneSet Get() {
             if (!HttpContext.Current.User.Identity.IsAuthenticated) {
                 return null;
             }
@@ -169,12 +166,12 @@ namespace DevBootstrapper.Modules.TimeZone {
 
         /// <summary>
         ///     Optimized fist check on cache then database.
-        ///     Get time zone from database base on username.
+        ///     Get time zone from database base on user name.
         /// </summary>
         /// <param name="username"></param>
         /// <returns>Returns time zone of the user.</returns>
-        public static TimeZoneInfo Get(string username, out UserTimeZone zone) {
-            TimeZoneInfo timeZoneInfo = null;
+        public static TimeZoneSet Get(string username) {
+            TimeZoneSet timeZoneInfo = null;
             timeZoneInfo = GetSavedTimeZone(username);
             if (timeZoneInfo != null) {
                 //got time zone from cache.
@@ -185,9 +182,11 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (user != null) {
                 var timezoneDb = _dbTimeZones.FirstOrDefault(n => n.UserTimeZoneID == user.UserTimeZoneID);
                 if (timezoneDb != null) {
-                    timeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
+                    timeZoneInfo = new TimeZoneSet();
+                    timeZoneInfo.UserTimezone = timezoneDb;
+                    timeZoneInfo.TimeZoneInfo = SystemTimeZones.FirstOrDefault(n => n.Id == timezoneDb.InfoID);
                 }
-                if (timeZoneInfo != null) {
+                if (timeZoneInfo != null && timeZoneInfo.TimeZoneInfo != null) {
                     // Save the time zone to the cache.
                     SaveTimeZone(timeZoneInfo, username);
                     return timeZoneInfo;
@@ -196,27 +195,16 @@ namespace DevBootstrapper.Modules.TimeZone {
             return null;
         }
 
-        /// <summary>
-        ///     Get time zone from save cache or cookie of Current user.
-        /// </summary>
-        /// <returns></returns>
-        private static TimeZoneInfo GetSavedTimeZone() {
-            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
-                return null;
-            }
-            var log = HttpContext.Current.User.Identity.Name;
-            return GetSavedTimeZone(log);
-        }
 
         /// <summary>
         ///     Get time zone from save cache.
         /// </summary>
         /// <param name="log"></param>
         /// <returns></returns>
-        private static TimeZoneInfo GetSavedTimeZone(string log) {
+        private static TimeZoneSet GetSavedTimeZone(string log) {
             //save to cookie 
             if (!String.IsNullOrWhiteSpace(log)) {
-                var cZone = (TimeZoneInfo)AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
+                var cZone = (TimeZoneSet)AppConfig.Caches.Get(CookiesNames.ZoneInfo + log);
                 return cZone; //fast
             }
             return null;
@@ -230,7 +218,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         ///     Saved for current logged user.
         /// </summary>
         /// <param name="timeZoneInfo"></param>
-        private static void SaveTimeZone(TimeZoneInfo timeZoneInfo) {
+        private static void SaveTimeZone(TimeZoneSet timeZoneInfo) {
             if (!HttpContext.Current.User.Identity.IsAuthenticated) {
                 return;
             }
@@ -238,7 +226,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             SaveTimeZone(timeZoneInfo, log);
         }
 
-        private static void SaveTimeZone(TimeZoneInfo timeZoneInfo, string log) {
+        private static void SaveTimeZone(TimeZoneSet timeZoneInfo, string log) {
             if (log == null || timeZoneInfo == null) {
                 return;
             }
@@ -330,7 +318,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetTime(TimeZoneInfo timeZone, DateTime? dt, string format = null) {
+        public static string GetTime(TimeZoneSet timeZone, DateTime? dt, string format = null) {
             if (format == null) {
                 format = TimeFormat;
             }
@@ -344,7 +332,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetDate(TimeZoneInfo timeZone, DateTime? dt, string format = null) {
+        public static string GetDate(TimeZoneSet timeZone, DateTime? dt, string format = null) {
             if (format == null) {
                 format = DateFormat;
             }
@@ -384,7 +372,7 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetDateTime(TimeZoneInfo timeZone, DateTime? dt, string format = null, bool addTimezoneString = true) {
+        public static string GetDateTime(TimeZoneSet timeZone, DateTime? dt, string format = null, bool addTimezoneString = true) {
             if (dt == null) {
                 return "";
             }
@@ -393,17 +381,18 @@ namespace DevBootstrapper.Modules.TimeZone {
             if (format == null) {
                 format = DateTimeFormat;
             }
-            if (timeZone == null) {
+            if (timeZone == null || !timeZone.IsTimeZoneInfoExist()) {
                 return dt2.ToString(format);
             }
+            var currentZone = timeZone.TimeZoneInfo;
             //time zone found.
-            var newDate = TimeZoneInfo.ConvertTime(dt2, timeZone);
+            var newDate = TimeZoneInfo.ConvertTime(dt2, currentZone);
             string additionalString = "";
             if (addTimezoneString) {
-                additionalString = "(" + timeZone.na
+                var userZone = timeZone.UserTimezone;
+                additionalString = "(" + userZone.TimePartOnly + ")";
             }
-            return newDate.ToString(format);
-
+            return newDate.ToString(format) + additionalString;
         }
 
         #endregion

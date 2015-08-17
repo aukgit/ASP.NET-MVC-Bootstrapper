@@ -9,7 +9,7 @@ using DevBootstrapper.Application;
 
 #endregion
 
-namespace DevBootstrapper.Models.BaseContext {
+namespace DevBootstrapper.Models.Context {
     public abstract class BaseDbContext : DbContext {
         protected BaseDbContext() {
         }

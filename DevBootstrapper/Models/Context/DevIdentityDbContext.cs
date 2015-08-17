@@ -1,10 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using DevBootstrapper.Models.POCO.IdentityCustomization;
-using DevBootstrapper.Modules.Extensions.Context;
 
 namespace DevBootstrapper.Models.Context {
-    public class DevIdentityDbContext : DevDbContext {
+    public class DevIdentityDbContext : BaseDbContext {
         public DevIdentityDbContext()
             : base("name=DefaultConnection") {
             Configuration.LazyLoadingEnabled = false;
