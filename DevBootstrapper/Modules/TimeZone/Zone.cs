@@ -96,7 +96,10 @@ namespace DevBootstrapper.Modules.TimeZone {
         }
 
         #region Dynamic Timing
-
+        /// <summary>
+        /// Returns a dynamic string value using time and other logics.
+        /// </summary>
+        /// <returns>Always get a unique string using date.</returns>
         public static string GetTimeDynamic() {
             var dynamic = DateTime.Now.Millisecond + DateTime.Now.Second + DateTime.Now.Minute +
                           DateTime.Now.Millisecond;

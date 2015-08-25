@@ -540,11 +540,12 @@ namespace DevBootstrapper.Helpers {
             return new HtmlString(Zone.GetTime(timeZone, dt));
         }
 
-        public static HtmlString DisplayDateTime(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null) {
+        public static HtmlString DisplayDateTime(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null, DateTimeFormatType format = DateTimeFormatType.DateTimeSimple) {
             if (dt == null || timeZone == null) {
+                var date = Zone.GetDateTime()
                 return new HtmlString("");
             }
-            return new HtmlString(Zone.GetTime(timeZone, dt));
+            return new HtmlString();
         }
 
         #endregion
