@@ -74,11 +74,12 @@ namespace DevBootstrapper.Modules.Validations {
                 return false;
             } else if (timezones != null && timezones.Count == 1) {
                 _viewMdoel.UserTimeZoneID = timezones[0].UserTimeZoneID;
+                return true;
             } else {
                 ErrorCollector.AddMedium(
                     "You time zone not found. Please contact with admin and notify him/her about the issue to notify developer.");
-                return false;
             }
+            return false;
         }
         #region Overrides of Validator
 

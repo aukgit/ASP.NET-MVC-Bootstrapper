@@ -464,8 +464,11 @@ namespace DevBootstrapper.Helpers {
         #region Date and Time Display
 
 
-        private static string GetDefaultTimeZoneFormat(DateTimeFormatType type = DateTimeFormatType.Date) {
+        private static string GetDefaultTimeZoneFormat(DateTimeFormatType type = DateTimeFormatType.Date, string customFormat = null) {
             string format;
+            if (!string.IsNullOrEmpty(customFormat)) {
+                return customFormat;
+            }
             switch (type) {
                 case DateTimeFormatType.Date:
                     format = "dd-MMM-yyyy";
@@ -540,12 +543,22 @@ namespace DevBootstrapper.Helpers {
             return new HtmlString(Zone.GetTime(timeZone, dt));
         }
 
+<<<<<<< HEAD
         public static HtmlString DisplayDateTime(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null, DateTimeFormatType format = DateTimeFormatType.DateTimeSimple) {
             if (dt == null || timeZone == null) {
                 var date = Zone.GetDateTime()
                 return new HtmlString("");
             }
             return new HtmlString();
+=======
+        public static HtmlString DisplayDateTime(this HtmlHelper helper, TimeZoneInfo timeZone, DateTime? dt = null, DateTimeFormatType formatType = DateTimeFormatType.DateTimeCustom, string customFormat = null) {
+                            var formatString = 
+            if (timeZone == null && dt.HasValue) {
+
+                return new HtmlString("");
+            }
+            return new HtmlString(Zone.GetDateTime(timeZone, dt, for));
+>>>>>>> origin/master
         }
 
         #endregion
