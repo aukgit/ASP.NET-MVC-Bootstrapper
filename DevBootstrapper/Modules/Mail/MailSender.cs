@@ -25,7 +25,7 @@ namespace DevBootstrapper.Modules.Mail {
             if (generateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(AppVar.Setting.AdminEmail, subject, htmlMessage);
+            Mvc.Mailer.QuickSend(AppVar.Setting.AdminEmail, subject, htmlMessage);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace DevBootstrapper.Modules.Mail {
             if (generateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(to, subject, htmlMessage);
+            Mvc.Mailer.QuickSend(to, subject, htmlMessage);
         }
 
         public void NotifyDeveloper(string subject, string htmlMessage, string type = "",
@@ -50,7 +50,7 @@ namespace DevBootstrapper.Modules.Mail {
                 if (generateDecentSubject) {
                     subject = GetSubject(subject, type);
                 }
-                Starter.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, subject, htmlMessage);
+                Mvc.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, subject, htmlMessage);
             }
         }
 
@@ -59,7 +59,7 @@ namespace DevBootstrapper.Modules.Mail {
             if (generateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(toEmail, userEamil, subject, htmlMessage);
+            Mvc.Mailer.QuickSend(toEmail, userEamil, subject, htmlMessage);
         }
 
         public void HandleError(Exception exception, string method, string subject = "", object entity = null,
@@ -70,7 +70,7 @@ namespace DevBootstrapper.Modules.Mail {
                     }
                     subject += " on method [" + method + "()]";
 
-                    Starter.Error.HandleBy(exception, method, subject, entity);
+                    Mvc.Error.HandleBy(exception, method, subject, entity);
                 }
         }
     }

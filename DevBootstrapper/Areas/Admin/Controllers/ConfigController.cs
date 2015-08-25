@@ -26,7 +26,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
 
         public ActionResult SendEmail(string tab) {
             ViewBag.tab = "#email-setup";
-            Starter.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, "Test Email", "Test Email at " + DateTime.Now);
+            Mvc.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, "Test Email", "Test Email at " + DateTime.Now);
             try {
                 throw new Exception("Testing error mail.");
             } catch (Exception ex) {

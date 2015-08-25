@@ -10,7 +10,7 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.TimeZone;
 using DevMvcComponent;
 using DevMvcComponent.Error;
-using DevMvcComponent.Mailer;
+using DevMvcComponent.Mail;
 using DevMvcComponent.Processor;
 
 #endregion
@@ -57,12 +57,12 @@ namespace DevBootstrapper.Application {
         private static void SetupDevMvcComponent() {
             // initialize DevMvcComponent
             // Configure this with add a sender email.
-            var mailer = new CustomMailConfig(Setting.SenderEmail,
+            var mailer = new CustomMailServer(Setting.SenderEmail,
                 Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
-            Starter.Setup(AppVar.Name, Setting.DeveloperEmail, Assembly.GetExecutingAssembly(), mailer);
-            //Starter.Mailer.QuickSend("devorg.bd@gmail.com", "Hello", "Hello");
-            Cookies = Starter.Cookies;
-            Caches = Starter.Caches;
+            Mvc.Setup(AppVar.Name, Setting.DeveloperEmail, Assembly.GetExecutingAssembly(), mailer);
+            //Mvc.Mailer.QuickSend("devorg.bd@gmail.com", "Hello", "Hello");
+            Cookies = Mvc.Cookies;
+            Caches = Mvc.Caches;
         }
 
         /// <summary>
