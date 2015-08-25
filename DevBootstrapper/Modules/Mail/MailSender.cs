@@ -54,24 +54,16 @@ namespace DevBootstrapper.Modules.Mail {
             }
         }
 
-        public void NotifyUserMulti(string subject, string toEmail, string[] userEamil, string htmlMessage,
-            string type = "", bool generateDecentSubject = true) {
-            if (generateDecentSubject) {
-                subject = GetSubject(subject, type);
-            }
-            Mvc.Mailer.QuickSend(toEmail, userEamil, subject, htmlMessage);
-        }
-
         public void HandleError(Exception exception, string method, string subject = "", object entity = null,
             string type = "", bool generateDecentSubject = true) {
-                {
-                    if (generateDecentSubject) {
-                        subject = GetSubject(subject, type);
-                    }
-                    subject += " on method [" + method + "()]";
-
-                    Mvc.Error.HandleBy(exception, method, subject, entity);
+            {
+                if (generateDecentSubject) {
+                    subject = GetSubject(subject, type);
                 }
+                subject += " on method [" + method + "()]";
+
+                Mvc.Error.HandleBy(exception, method, subject, entity);
+            }
         }
     }
 }

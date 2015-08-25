@@ -242,12 +242,24 @@ namespace DevBootstrapper.Modules.TimeZone {
         #endregion
 
         #region Get times format based on zone
-        public static string GetDateTime(long userId, DateTime? dt, string format = null) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="dt"></param>
+        /// <param name="format"></param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
+        /// <returns></returns>
+        public static string GetDateTime(
+            long userId, 
+            DateTime? dt,
+            string format = null,
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = DateTimeFormat;
             }
             var zone = Get(userId);
-            return GetDateTime(zone, dt, format);
+            return GetDateTime(zone, dt, format, addTimeZoneString);
         }
 
         /// <summary>
@@ -258,8 +270,13 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="userId"></param>
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetTime(long userId, DateTime? dt, string format = null) {
+        public static string GetTime(
+            long userId, 
+            DateTime? dt,
+            string format = null,
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = TimeFormat;
             }
@@ -273,12 +290,16 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetTime(DateTime? dt, string format = null) {
+        public static string GetTime(
+            DateTime? dt,
+            string format = null,
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = TimeFormat;
             }
-            return GetDateTime(dt, format);
+            return GetDateTime(dt, format, addTimeZoneString);
         }
 
         /// <summary>
@@ -286,12 +307,16 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetDate(DateTime? dt, string format = null) {
+        public static string GetDate(
+            DateTime? dt,
+            string format = null,
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = DateFormat;
             }
-            return GetDateTime(dt, format);
+            return GetDateTime(dt, format, addTimeZoneString);
         }
 
         /// <summary>
@@ -301,13 +326,17 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// </summary>
         /// <param name="dt">Returns "" if null</param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone. If no logged user then default datetime.</returns>
-        public static string GetDateTime(DateTime? dt, string format = null) {
+        public static string GetDateTime(
+            DateTime? dt,
+            string format = null,
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = DateTimeFormat;
             }
             var timeZone = Get();
-            return GetDateTime(timeZone, dt, format);
+            return GetDateTime(timeZone, dt, format, addTimeZoneString);
         }
 
         #endregion
@@ -322,12 +351,17 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="timeZone"></param>
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetTime(TimeZoneSet timeZone, DateTime? dt, string format = null) {
+        public static string GetTime(
+            TimeZoneSet timeZone, 
+            DateTime? dt,
+            string format = null,
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = TimeFormat;
             }
-            return GetDateTime(timeZone, dt, format);
+            return GetDateTime(timeZone, dt, format, addTimeZoneString);
         }
 
         /// <summary>
@@ -336,12 +370,17 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="timeZone"></param>
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetDate(TimeZoneSet timeZone, DateTime? dt, string format = null) {
+        public static string GetDate(
+            TimeZoneSet timeZone, 
+            DateTime? dt, 
+            string format = null, 
+            bool addTimeZoneString = true) {
             if (format == null) {
                 format = DateFormat;
             }
-            return GetDateTime(timeZone, dt, format);
+            return GetDateTime(timeZone, dt, format, addTimeZoneString);
         }
 
 
@@ -351,9 +390,10 @@ namespace DevBootstrapper.Modules.TimeZone {
         ///     It will get the logged user and then get the time-zone and then print.
         /// </summary>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetCurrentDateTime(string format = null) {
-            return GetDateTime(DateTime.Now, format);
+        public static string GetCurrentDateTime(string format = null,bool addTimeZoneString = true) {
+            return GetDateTime(DateTime.Now, format, addTimeZoneString);
         }
 
         /// <summary>
@@ -362,10 +402,12 @@ namespace DevBootstrapper.Modules.TimeZone {
         ///     It will get the logged user and then get the time-zone and then print.
         /// </summary>
         /// <param name="format">if format null then default format.</param>
-        /// <param name="addTimezoneString"></param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetCurrentDate(string format = null, bool addTimezoneString = true) {
-            return GetDate(DateTime.Now, format);
+        public static string GetCurrentDate(
+            string format = null, 
+            bool addTimeZoneString = true) {
+                return GetDate(DateTime.Now, format, addTimeZoneString);
         }
 
         /// <summary>
@@ -376,8 +418,13 @@ namespace DevBootstrapper.Modules.TimeZone {
         /// <param name="timeZone"></param>
         /// <param name="dt"></param>
         /// <param name="format">if format null then default format.</param>
+        /// <param name="addTimeZoneString">Add timezone string with Date. Eg. 26-Aug-2015 (GMT -07:00)</param>
         /// <returns>Returns nice string format based on logged user's selected time zone.</returns>
-        public static string GetDateTime(TimeZoneSet timeZone, DateTime? dt, string format = null, bool addTimezoneString = true) {
+        public static string GetDateTime(
+            TimeZoneSet timeZone, 
+            DateTime? dt, 
+            string format = null, 
+            bool addTimeZoneString = true) {
             if (dt == null) {
                 return "";
             }
@@ -393,7 +440,7 @@ namespace DevBootstrapper.Modules.TimeZone {
             //time zone found.
             var newDate = TimeZoneInfo.ConvertTime(dt2, currentZone);
             string additionalString = "";
-            if (addTimezoneString) {
+            if (addTimeZoneString) {
                 var userZone = timeZone.UserTimezone;
                 additionalString = "(" + userZone.TimePartOnly + ")";
             }
