@@ -18,9 +18,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(200)]
-        [Display(Name = "Element ID",
-            Description =
-                "Html ID related to this list-item. Prefer not to use because classes are the mordern practice.")]
+        [Display(Name = "Element ID", Description = "Html ID related to this list-item. Prefer not to use because classes are the mordern practice.")]
         public string ElementID { get; set; }
 
         [Required]

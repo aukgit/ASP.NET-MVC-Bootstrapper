@@ -24,17 +24,20 @@ namespace DevBootstrapper.Constants {
             }
 
             var nameOfSession = Validator + methodName;
-            var value = HttpContext.Current.Session[nameOfSession];
-            if (isSessionExist && value != null) {
-                var count = (int) value;
-                if (count <= maxTry) {
-                    HttpContext.Current.Session[nameOfSession] = ++count;
+            if (HttpContext.Current.Session != null)
+            {
+                var value = HttpContext.Current.Session[nameOfSession];
+                if (isSessionExist && value != null) {
+                    var count = (int) value;
+                    if (count <= maxTry) {
+                        HttpContext.Current.Session[nameOfSession] = ++count;
+                        return false;
+                    }
+                } else if (isSessionExist && value == null) {
+                    //when null
+                    HttpContext.Current.Session[nameOfSession] = 1;
                     return false;
                 }
-            } else if (isSessionExist && value == null) {
-                //when null
-                HttpContext.Current.Session[nameOfSession] = 1;
-                return false;
             }
             return true;
         }

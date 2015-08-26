@@ -1,2 +1,3 @@
 ﻿namespace DevBootstrapper.Enums {
+    
 }

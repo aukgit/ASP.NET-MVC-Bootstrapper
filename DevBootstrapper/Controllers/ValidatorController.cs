@@ -2,6 +2,7 @@
 
 using System;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web.Mvc;
 using DevBootstrapper.Application;
 using DevBootstrapper.Constants;
@@ -11,6 +12,9 @@ using DevBootstrapper.Modules.DevUser;
 
 namespace DevBootstrapper.Controllers {
     public class ValidatorController : Controller {
+        public ValidatorController() {
+            Thread.Sleep(5000);
+        }
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]

@@ -8,14 +8,14 @@
 	string controller           = (string)ViewBag.controller;
 	const string viewName       = "Create";
     bool dropDownDynamic        = (bool)ViewBag.dropDownDynamic;
-    string partialController    = ViewBag.dynamicLoadPartialController;
+    string partialController    = ViewBag.servicesUrl;
 
 }
 
 
 <h1 class="h2 gap-from-top-small">
 	<span class="glyphicon glyphicon-plus-sign"></span>  
-	@Html.SamePageLink(title, subtitle, false)
+	@Html.GetCurrentPageUrlAnchorTag(title, subtitle, false)
 </h1>
 <hr />
 @using (Html.BeginForm(viewName, controller, FormMethod.Post, new { @class = "form-horizontal Create-@ViewBag.Title", role = "form" })) 
@@ -54,7 +54,7 @@
         @Html.EditorFor(model => model.Notes, "Tag")
         <!-- DropDown -->
 		@if(dropDownDynamic){
-            @Html.EditorFor(model => model.ReportsTo, "DropDownDynamic", new {@Url = @partialController + "GetReportsTo" /* ,@IsDependable = "false", @DependablePropertyName = "YourPropertyName",@LiveSearch = "true",@Style = "class",@Id = "id", @DynamicLoad = "true"*/})
+            @Html.EditorFor(model => model.ReportsTo, "DropDownDynamic", new {@Url = @partialController + "GetReportsTo" /* ,@isDependable = "false", @dependablePropertyName = "YourPropertyName",@LiveSearch = "true",@Style = "class",@Id = "id", @dynamicLoad = "true"*/})
         } else {
             @Html.EditorFor(model => model.ReportsTo, "DropDown", new {@SelectData = ViewBag.ReportsTo})            
         }

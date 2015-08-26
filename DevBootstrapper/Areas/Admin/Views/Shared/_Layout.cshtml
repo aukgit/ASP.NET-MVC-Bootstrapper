@@ -1,45 +1,38 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="@AppConfig.Setting.GoogleMetaTag" />
+    <meta name="author" content="@AppVar.Setting.DeveloperName">
     <title>@ViewBag.Title - Administration</title>
     @Styles.Render("~/Content/css/styles")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+    @if (ViewBag.Meta != null) {
+        <meta name="description" content="@ViewBag.Meta" />
+    }
+    @if (ViewBag.Keywords != null) {
+        <meta name="keywords" content="@ViewBag.Keywords" />
+    }
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="@AppVar.Url/Admin" class="navbar-brand" title="@AppVar.Name - @AppVar.Subtitle"><span class="glyphicon glyphicon-wrench"></span>Admin</a>
-                </li>
-                @*<li>@Html.ActionLink("Roles", "Index", "Roles", new { area = "Admin" }, "")</li>
-                    <li><a href="@AppVar.Url/Admin/Elmah">Elmah</a></li>
-                    <li>@Html.ActionLink("Config", "Index", "Config", new { area = "Admin" }, "")</li>
-                    <li>@Html.ActionLink("Menu", "Index", new { Controller ="Menu"  })</li>*@
-                @Html.GetMenu("Admin")
-                <li>@Html.ActionLink("Feedback", "Index", new {Controller = "Feedback"})</li>
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div>
+</head>
+<body class="@ViewBag.pageClass">
+    @Html.Partial("_BrowserUpdate")
+    @Html.Partial("_AdditionalFields")
+    @Html.Partial("_NavBar")
+    @RenderSection("featured", false)
+    <div class="container body-content">
+        @RenderBody()
+        @RenderSection("featuredBody", false)
+        @Html.Partial("_Footer")
     </div>
-</div>
-<div class="body-content container">
-    @RenderBody()
-    @Html.Partial("_Footer")
-</div>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+    @RenderSection("featuredFooter", false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", false)
 </body>
 </html>

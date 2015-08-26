@@ -8,8 +8,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(30)]
-        [Display(Name = "Username",
-            Description = "(ASCII)Only members should give their user name to speed up the process.")]
+        [Display(Name = "Username", Description = "(ASCII)Only members should give their user name to speed up the process.")]
         public string Username { get; set; }
 
         [Column(TypeName = "VARCHAR")]
@@ -18,16 +17,13 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         public string Name { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [Display(
-            Description = "(ASCII) Your feedback's subject essential to boost your solution. Limited to 150 character.")
-        ]
+        [Display(Description = "(ASCII) Your feedback's subject essential to boost your solution. Limited to 150 character.")]
         [Required]
         [StringLength(150)]
         public string Subject { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [Display(
-            Description = "(ASCII) Your feedback or comments or question about something. Limited to 800 character.")]
+        [Display(Description = "(ASCII) Your feedback or comments or question about something. Limited to 800 character.")]
         [Required]
         [StringLength(800)]
         public string Message { get; set; }

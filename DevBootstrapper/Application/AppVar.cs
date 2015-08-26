@@ -16,7 +16,11 @@ namespace DevBootstrapper.Application {
     /// </summary>
     public struct AppVar {
 
-        #region Propertise
+        #region Properties
+        /// <summary>
+        /// Mailer has some extended functionalities :
+        /// For instance sending emails multiple users, send emails by coma separator and so on.
+        /// </summary>
         public static MailSender Mailer = new MailSender();
 
         private static readonly Dictionary<string, string> ConfigList = new Dictionary<string, string>(30);
@@ -43,10 +47,8 @@ namespace DevBootstrapper.Application {
         ///     Get the application URL based on the application environment.
         ///     Without slash.
         /// </summary>
-        public static string Url
-        {
-            get
-            {
+        public static string Url {
+            get {
                 if (IsInTestEnvironment) {
                     return AppConfig.Setting.TestingUrl;
                 }
@@ -54,6 +56,8 @@ namespace DevBootstrapper.Application {
             }
         }
 
+        public static string ServicesControllerUrl { get; set; }
+        public static string ApiControllerUrl { get; set; }
 
         #endregion
 
@@ -82,6 +86,6 @@ namespace DevBootstrapper.Application {
             return "";
 
         }
-  
+
     }
 }

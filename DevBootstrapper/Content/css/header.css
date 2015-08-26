@@ -1,174 +1,33 @@
-﻿.date-range-pages > .page-header {
-  position: relative;
-  overflow: hidden;
+﻿/*
+  Warning(.css file): Please don't modify styles from css file. Please modify the styles in the respective.less file in the less folder. CSS files will be replaced with new .less file styles.
+  FYI: This file (.less file) contains styles for general heading or header elements.
+*/
+body {
+  font-family: Ubuntu, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-top: 50px;
+  padding-top: 5rem;
+  padding-bottom: 20px;
+  padding-bottom: 2rem;
 }
-.date-range-pages > .page-header > .row {
-  position: inherit;
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-left: 1.5rem;
+  padding-right: 15px;
+  padding-right: 1.5rem;
 }
-.date-range-pages #date_range {
-  text-align: left;
+.home-page-image-icon {
+  border: 1px solid #000000;
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.72);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.72);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.72);
 }
-.date-range-pages .form-control {
-  max-width: 170px;
-  max-width: 17rem;
+.third-list-home-page {
+  margin-top: 39px;
 }
-.date-range-pages .btn {
-  height: 34px;
-  height: 3.4rem;
-}
-.date-range-pages .btn:hover {
-  background-color: #f4f9fb;
-  color: #23527c;
-}
-.date-range-pages .input-group {
-  width: 210px;
-}
-.date-range-pages .input-group .btn {
-  margin-left: -4px;
-}
-.date-range-pages .input-group .btn .fa {
-  padding-top: 3px;
-}
-.date-range-pages .header-left {
-  margin-left: 17px;
-}
-.date-range-pages .header-right {
-  margin-top: 11px;
-  margin-right: 16px;
-}
-@media (min-width: 1200px) {
-  .date-range-pages .page-header > .row {
-    display: inline-block;
-  }
-  .date-range-pages .page-header .header-left,
-  .date-range-pages .page-header .header-right {
-    display: inline-block;
-  }
-  .date-range-pages .page-header .pull-left {
-    width: 42.5%;
-  }
-  .date-range-pages .page-header .header-left {
-    width: 99%;
-  }
-  .date-range-pages .page-header .header-left a {
-    width: 100%;
-    display: block;
-    overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-@media (max-width: 1200px) {
-  .date-range-pages .header-content {
-    font-size: 1.36em;
-    margin-top: 25px;
-  }
-}
-@media (max-width: 992px) {
-  .date-range-pages .header-content {
-    font-size: 1.4em;
-  }
-  .date-range-pages .header-left,
-  .date-range-pages .pull-right,
-  .date-range-pages .header-right,
-  .date-range-pages .pull-left {
-    display: block;
-    width: 100%;
-  }
-  .date-range-pages .form-inline .form-group,
-  .date-range-pages label.control-label {
-    display: inline-block;
-  }
-  .date-range-pages .apply-btn {
-    position: absolute;
-    top: 11px;
-    top: 1.1rem;
-  }
-}
-@media (max-width: 768px) {
-  .date-range-pages {
-    /*> .page-header {
-            height: 141px;
-
-            > .row {
-            }
-        }
-
-        .header-right {
-            .pull-right {
-                //float: none !important;
-            }
-
-            top: 15px;
-        }
-
-        .header-left {
-            top: 75px;
-        }
-
-        .form-inline .form-group, label.control-label {
-        }*/
-  }
-  .date-range-pages .header-content {
-    font-size: 1.5em;
-  }
-  .date-range-pages .apply-btn {
-    top: 37px;
-    top: 3.7rem;
-  }
-}
-@media (max-width: 480px) {
-  .date-range-pages {
-    /*.header-content {
-            .font-size(.7em);
-        }*/
-    /*> .page-header {
-            height: 240px;
-
-            > .row {
-            }
-        }
-
-        .header-right {
-            //top: 15px;
-        }
-
-        .header-left {
-            top: 147px;
-        }
-
-        .form-inline .form-group, label.control-label {
-        }*/
-  }
-  .date-range-pages #date_range {
-    margin-right: 0;
-    margin-left: -15px;
-  }
-  .date-range-pages .apply-btn {
-    top: 115px;
-    margin-left: 3px;
-  }
-}
-#loading-bar {
-  min-height: 180px;
-  min-height: 18rem;
-  padding: 75px;
-  padding: 7.5rem;
-  border: 2px solid #B7D7E0;
-  text-align: center;
-  margin: 8px 0px 20px 0px;
-  margin: 0.8rem 0 2rem 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-#loading-bar a {
-  color: #90D5FF;
-}
-#loading-bar p {
-  font-size: 0.9em;
+body div.container.body-content h1.gap-from-top-small > .glyphicon {
+  top: 5px;
+  font-size: 1em;
 }
 .browser-update {
   font-size: 1.2em;

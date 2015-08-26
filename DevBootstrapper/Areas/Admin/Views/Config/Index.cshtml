@@ -3,98 +3,54 @@
 @{
     ViewBag.Title = "Editing CoreSetting";
     string tab = ViewBag.tab;
+    // these two are configured for the back btn
+    ViewBag.areaName = "Admin";
+    ViewBag.controllerName = "Config";
+
+    ViewBag.backBtn = @Html.Partial("_BackSave");
+    ViewBag.stateMessage = @Html.Partial("_SuccessMessage");
 }
-
-
-
-@using (Html.BeginForm("Index", ViewContext.RouteData.Values["Controller"].ToString(), FormMethod.Post, new {@class = "form-horizontal", role = "form"})) {
+@using (Html.BeginForm("Index", ViewContext.RouteData.Values["Controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()
-
-
     <div class="form-horizontal">
         <h1 class="h2">
             <span class="glyphicon glyphicon-pencil"></span> @ViewBag.Title</h1>
         <hr />
 
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <ul class="make-it-tab nav nav-pills nav-tabs" role="tablist">
             <li class="active">
-                <a href="#basic" role="tab" data-toggle="tab">Basics</a>
+                <a href="#basic-tab" role="tab" data-toggle="tab">Basics</a>
             </li>
             <li>
-                <a href="#office" role="tab" data-toggle="tab">Office</a>
+                <a href="#urls-tab" role="tab" data-toggle="tab">Urls</a>
             </li>
             <li>
-                <a href="#email-setup" role="tab" data-toggle="tab">Smtp Setup</a>
+                <a href="#office-tab" role="tab" data-toggle="tab">Office</a>
             </li>
             <li>
-                <a href="#external-logins" role="tab" data-toggle="tab">External Login</a>
+                <a href="#email-setup-tab" role="tab" data-toggle="tab">Smtp Setup</a>
+            </li>
+            <li>
+                <a href="#developers-tab" role="tab" data-toggle="tab">Developers</a>
+            </li>
+            <li>
+                <a href="#external-logins-tab" role="tab" data-toggle="tab">External Login</a>
+            </li>
+            <li>
+                <a href="#others-tab" role="tab" data-toggle="tab">External Login</a>
             </li>
         </ul>
 
         <div class="tab-content">
-            <div class="active fade in tab-pane" id="basic">
-                @Html.Partial("_Back_Save")
-                @Html.Partial("_SuccessMessage")
-                @Html.Hidden("tab", tab)
-                @Html.HiddenFor(model => model.CoreSettingID)
-                @Html.EditorFor(model => model.ApplicationName)
-                @Html.EditorFor(model => model.ApplicationSubtitle)
-                @Html.EditorFor(model => model.ApplicationDescription)
-                @Html.EditorFor(model => model.CompanyName)
-                @Html.EditorFor(model => model.Address)
-                @Html.EditorFor(model => model.Language)
-                @Html.EditorFor(model => model.AdminLocation)
-                @Html.EditorFor(model => model.LiveUrl)
-                @Html.EditorFor(model => model.TestingUrl)
-                @Html.EditorFor(model => model.DeveloperEmail, "EmailAddress")
-                @Html.EditorFor(model => model.GoogleMetaTag)
-                @Html.EditorFor(model => model.DoesRegisterCodeNeverExpires)
-                @Html.EditorFor(model => model.ShouldRegistrationCodeBeLinkedWithUser)
-                @Html.EditorFor(model => model.IsRegisterCodeRequiredToRegister)
-                @Html.EditorFor(model => model.IsInTestingEnvironment)
-                @Html.EditorFor(model => model.IsAuthenticationEnabled)
-                @Html.EditorFor(model => model.IsConfirmMailRequired)
-                @Html.Partial("_Back_Save")
-            </div>
-            <div class="fade tab-pane" id="office">
-                @Html.Partial("_Back_Save")
-                @Html.Partial("_SuccessMessage")
-                @Html.EditorFor(model => model.AdminName)
-                @Html.EditorFor(model => model.AdminEmail, "EmailAddress")
-                @Html.EditorFor(model => model.OfficeEmail, "EmailAddress")
-                @Html.EditorFor(model => model.OfficePhone, "Phone")
-                @Html.EditorFor(model => model.Fax, "Phone")
-                @Html.EditorFor(model => model.MarketingEmail, "EmailAddress")
-                @Html.EditorFor(model => model.MarketingPhone, "Phone")
-                @Html.EditorFor(model => model.SupportEmail, "EmailAddress")
-                @Html.EditorFor(model => model.SupportPhone, "Phone")
-                @Html.Partial("_Back_Save")
-            </div>
-            <div class="fade tab-pane" id="email-setup">
-                <div class="col-md-10 col-md-offset-2 small-bottom-gap">
-                    <h1 class="bold h5">Email &amp; Other Setup:</h1>
-                </div>
-                @Html.Partial("_Back_Save")
-                @Html.Partial("_SuccessMessage")
-                @Html.EditorFor(model => model.SenderDisplay)
-                @Html.EditorFor(model => model.SenderEmail, "SenderEmail")
-                @Html.EditorFor(model => model.SenderEmailPassword)
-                @Html.EditorFor(model => model.SmtpHost)
-                @Html.EditorFor(model => model.SmtpMailPort)
-                @Html.EditorFor(model => model.NotifyDeveloperOnError)
-                @Html.EditorFor(model => model.IsSMTPSSL)
-                @Html.Partial("_Back_Save")
-            </div>
-            <div class="fade tab-pane" id="external-logins">
-                @Html.Partial("_Back_Save")
-                @Html.Partial("_SuccessMessage")
-                @Html.EditorFor(model => model.FacebookClientID, "long")
-                @Html.EditorFor(model => model.FacebookSecret)
-                @Html.EditorFor(model => model.IsFacebookAuthentication)
-                @Html.Partial("_Back_Save")
-            </div>
+            @Html.Partial("_Basic-tab")
+            @Html.Partial("_urls-tab")
+            @Html.Partial("_Office-tab")
+            @Html.Partial("_Email-setup-tab")
+            @Html.Partial("_developers-tab")
+            @Html.Partial("_External-logins-tab")
+            @Html.Partial("_Others-tab")
         </div>
 
     </div>

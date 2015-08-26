@@ -1,6 +1,6 @@
 @helper ActiveItem(string actionName, string controllerName, string areaName)
 {
-    if (ViewContext.RouteData.Values["action"]== actionName &&
+    if (ViewContext.RouteData.Values["action"] == actionName &&
             ViewContext.RouteData.Values["controller"] == controllerName &&
             (ViewContext.RouteData.DataTokens["area"] == null || ViewContext.RouteData.DataTokens["area"] == areaName))
     {
@@ -16,11 +16,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="@AppVar.Url" class="navbar-brand" title="@AppVar.Name - @AppVar.Subtitle"><span class="glyphicon glyphicon-home"></span> @AppVar.Name</a></li>
+                <li>
+                    <a href="@AppVar.Url" class="navbar-brand" title="@AppVar.Name - @AppVar.Subtitle">
+                        <span class="glyphicon glyphicon-home"></span> @AppVar.Name
+                    </a>
+                </li>
                 @Html.GetMenu("Main")
             </ul>
             @Html.Partial("_LoginPartial")

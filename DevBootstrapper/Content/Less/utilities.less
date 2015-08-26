@@ -1,6 +1,13 @@
 ﻿@import "remixens/lesshat.less";
 @import "remixens/variables.less";
+/*
+  please don't modify styles from css file. Please modify in the respective.less file in the less folder.
+  FYI: This file (.less file) contains utilities styles, lets say general padding, margin, bold, hide, show etc..
+*/
 
+/*h1, h2, h3, h4, h5 {
+    display: inline;
+}*/
 
 .h1, .h2, .h3, .h4, .h5 {
     display: block;
@@ -21,14 +28,10 @@ table td.dot {
     width: 4px;
 }
 
-.table-cell {
-    display: table-cell;
-}
+
 /*table related */
 
-.table {
-    display: table;
-}
+
 
 textarea {
     height: 45px;
@@ -46,6 +49,7 @@ textarea:hover,
 input[type="text"]:hover,
 input[type="number"]:hover,
 input[type="date"]:hover,
+input[type="password"]:hover,
 input[type="email"]:hover {
     border: 1px solid #ACDFEE;
 }
@@ -55,24 +59,26 @@ input[type="email"]:hover {
 }
 
 /*Error List Style in Forms  */
-div.Error-List {
+
+div.error-list {
     background-color: #AD8A63;
     padding-left: 18px; /*font-size: 2em;*/
 }
 
-div.Error-List h1 {
+div.error-list h1 {
     font-size: 1.2em;
     padding-top: 5px;
 }
 
-div.Error-List ul {
+div.error-list ul {
     background-color: #a52a2a;
 }
 
-.Error-List ul li {
+.error-list ul li {
     color: White;
     list-style-type: decimal;
 }
+
 /*Error List Style in Forms  */
 
 
@@ -91,11 +97,9 @@ div.Error-List ul {
     display: block;
     margin-top: 6px;
     background-color: white;
-    height: 22px;
+    .height(22px);
     padding-left: 8px; /*rounded border*/
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khbtml-border-radius: 3px;
+    .border-rounded(3px);
 }
 
 .plugin-a li a:hover, .plugin-a-white li a:hover {
@@ -106,21 +110,52 @@ div.Error-List ul {
 }
 
 .plugin-a-white li a {
+    .border-rounded(3px);
     display: block;
     padding-left: 8px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khbtml-border-radius: 3px;
 }
 
-/*LI*/
+.Opacity-10 {
+    .opacity(.1); /* for all other browsers*/
+}
+
+.Opacity-20 {
+    .opacity(.2); /* for all other browsers*/
+}
+
+.Opacity-30 {
+    .opacity(.3); /* for all other browsers*/
+}
+
+.Opacity-40 {
+    .opacity(.4); /* for all other browsers*/
+}
+
+.Opacity-50 {
+    .opacity(.5); /* for all other browsers*/
+}
+
+.Opacity-60 {
+    .opacity(.6); /* for all other browsers*/
+}
+
+.Opacity-70 {
+    .opacity(.7); /* for all other browsers*/
+}
 
 .Opacity-80 {
-    opacity: .8; /* for all other browsers*/
-    filter: alpha(opacity=80); /*for Ie-7*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /*for IE8*/
+    .opacity(.8); /* for all other browsers*/
 }
 
+.Opacity-90 {
+    .opacity(.9); /* for all other browsers*/
+}
+
+.Opacity-100 {
+    .opacity(1); /* for all other browsers*/
+}
+
+// display properties
 .inline {
     display: inline;
 }
@@ -133,21 +168,61 @@ div.Error-List ul {
     display: block;
 }
 
+.display-table {
+    display: table;
+}
+
+.display-table-cell {
+    display: table-cell;
+}
+
+
+.table-cell {
+    display: table-cell;
+}
+
 .fixed-width-294 {
-    min-width: 294px;
+    .min-width(294px);
     width: auto;
 }
 
+
+// rounded properties
+.rounded-1 {
+    .border-rounded(1px);
+}
+
+.rounded-2 {
+    .border-rounded(1px);
+}
+
 .rounded-3 {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    -khbtml-border-radius: 3px;
+    .border-rounded(3px);
+}
+
+.rounded-4 {
+    .border-rounded(4px);
+}
+
+.rounded-5 {
+    .border-rounded(5px);
+}
+
+.rounded-6 {
+    .border-rounded(6px);
+}
+
+.rounded-7 {
+    .border-rounded(7px);
+}
+
+.rounded-8 {
+    .border-rounded(8px);
 }
 
 hr {
-    margin-top: 8px;
     margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .gap-from-top {
@@ -173,6 +248,7 @@ input.form-control.input-validation-error {
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(233, 102, 102, 0.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(233, 102, 102, 0.6);
 }
+
 
 .small-bottom-gap {
     margin-bottom: 6px;
@@ -697,4 +773,27 @@ div.contactus {
     justify-content: center;
 }
 
+.controls-full-width {
+    input,
+    select,
+    textarea,
+    a.form-control,
+    div.input-group.date.datetimepicker {
+        .max-width(none);
+    }
+}
+
+.no-margin-controls {
+    .form-group {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+}
+
+.controls-readonly {
+    .form-control:not(a) {
+        background-color: white;
+        cursor:text;
+    }
+}
 @import "see-more-btn.less";

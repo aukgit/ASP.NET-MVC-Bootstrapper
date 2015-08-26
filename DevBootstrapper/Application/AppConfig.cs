@@ -10,6 +10,7 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.TimeZone;
 using DevMvcComponent;
 using DevMvcComponent.Error;
+using DevMvcComponent.Mail;
 using DevMvcComponent.Processor;
 
 #endregion
@@ -20,16 +21,13 @@ namespace DevBootstrapper.Application {
     /// </summary>
     public static class AppConfig {
         private static CoreSetting _setting;
-        private static bool _initalized;
         private static int _truncateLength = 30;
 
-        public static int ValidationMaxNumber
-        {
+        public static int ValidationMaxNumber {
             get { return 10; }
         }
 
-        public static int TruncateLength
-        {
+        public static int TruncateLength {
             get { return _truncateLength; }
             set { _truncateLength = value; }
         }
@@ -37,10 +35,8 @@ namespace DevBootstrapper.Application {
         /// <summary>
         ///     Get few common classes from Developers Organism Component.
         /// </summary>
-        public static CoreSetting Setting
-        {
-            get
-            {
+        public static CoreSetting Setting {
+            get {
                 if (_setting == null) {
                     using (var db = new DevIdentityDbContext()) {
                         _setting = db.CoreSettings.FirstOrDefault();
@@ -54,14 +50,19 @@ namespace DevBootstrapper.Application {
             return new ErrorCollector();
         }
 
-        private static void InitalizeDevelopersOrganismComponent(bool force = false) {
-            if (!_initalized || force) {
-                Config.ApplicationName = AppVar.Name;
-                Config.DeveloperEmail = Setting.DeveloperEmail;
-                Config.Assembly = Assembly.GetExecutingAssembly();
-                Zone.LoadTimeZonesIntoMemory();
-                _initalized = true;
-            }
+
+        /// <summary>
+        /// Setup DevMvcComponent
+        /// </summary>
+        private static void SetupDevMvcComponent() {
+            // initialize DevMvcComponent
+            // Configure this with add a sender email.
+            var mailer = new CustomMailServer(Setting.SenderEmail,
+                Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
+            Mvc.Setup(AppVar.Name, Setting.DeveloperEmail, Assembly.GetExecutingAssembly(), mailer);
+            //Mvc.Mailer.QuickSend("devorg.bd@gmail.com", "Hello", "Hello");
+            Cookies = Mvc.Cookies;
+            Caches = Mvc.Caches;
         }
 
         /// <summary>
@@ -83,7 +84,9 @@ namespace DevBootstrapper.Application {
                         Language = "English",
                         LiveUrl = "http://www.developers-organism.com",
                         AdminLocation = "Admin",
-                        TestingUrl = "http://localhost:port/",
+                        TestingUrl = "http://localhost:port",
+                        ServicesControllerUrl = "/Services/",
+                        ApiControllerUrl = "/Api/",
                         AdminEmail = "devorg.bd@gmail.com",
                         DeveloperEmail = "devorg.bd@gmail.com",
                         OfficePhone = 018,
@@ -110,7 +113,7 @@ namespace DevBootstrapper.Application {
                         IsFacebookAuthentication = true,
                         NotifyDeveloperOnError = true,
                         IsConfirmMailRequired = true,
-                        IsSMTPSSL = true,
+                        IsSmptSsl = true,
                         IsFirstUserFound = false
                     };
                     db.CoreSettings.Add(_setting);
@@ -132,31 +135,36 @@ namespace DevBootstrapper.Application {
                 if (_setting == null) {
                     throw new Exception("Couldn't create or get the core settings. Please check the creation.");
                 }
-                InitalizeDevelopersOrganismComponent(true);
+                // load timezones into memory.
+                Zone.LoadTimeZonesIntoMemory();
+
                 AppVar.IsInTestEnvironment = Setting.IsInTestingEnvironment;
 
                 AppVar.Name = Setting.ApplicationName;
                 AppVar.Subtitle = Setting.ApplicationSubtitle;
                 AppVar.Setting = Setting;
+
+                AppVar.ApiControllerUrl = Setting.ApiControllerUrl;
+                AppVar.ServicesControllerUrl = Setting.ServicesControllerUrl;
+
                 ViewCommon.SetCommonMetaDescriptionToEmpty();
-                //Configure this with add a sender email.
-                Starter.Mailer = new DevMvcComponent.Mailer.CustomMailConfig(Setting.SenderEmail,
-                    Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSMTPSSL);
+
+
+                SetupDevMvcComponent();
+
                 //if false then no email on error.
                 Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 
-                Cookies = Starter.Cookies;
-                Caches = Starter.Caches;
             }
         }
 
         /// <summary>
-        ///     Get error and set it to null.
+        ///     Get error object from session variable and set it to null.
         /// </summary>
         /// <returns></returns>
         public static ErrorCollector GetGlobalError() {
             if (HttpContext.Current.Session[SessionNames.Error] != null) {
-                var error = (ErrorCollector) HttpContext.Current.Session[SessionNames.Error];
+                var error = (ErrorCollector)HttpContext.Current.Session[SessionNames.Error];
                 HttpContext.Current.Session[SessionNames.Error] = null;
                 return error;
             }
@@ -164,7 +172,7 @@ namespace DevBootstrapper.Application {
         }
 
         /// <summary>
-        ///     Set Global Error
+        ///     Set Global Error to session variable.
         /// </summary>
         /// <param name="error"></param>
         public static void SetGlobalError(ErrorCollector error) {

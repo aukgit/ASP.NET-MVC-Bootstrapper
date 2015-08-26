@@ -196,7 +196,7 @@ namespace DevBootstrapper.Modules.Cache {
                 return (List<CountryLanguage>) cache; //no updates cache exist.
             }
             var relations = GetCountries().FirstOrDefault(n => n.CountryID == countryId);
-            if (relations.CountryLanguageRelations.Count() > countCheckAbove) {
+            if (relations != null && relations.CountryLanguageRelations.Count() > countCheckAbove) {
                 //returns in query
                 using (var db = new ApplicationDbContext()) {
                     var listOfLanguages = relations.CountryLanguageRelations.Select(n => n.CountryLanguageID).ToArray();
@@ -267,14 +267,13 @@ namespace DevBootstrapper.Modules.Cache {
 
             var relations = GetCountries().FirstOrDefault(n => n.CountryID == countryId);
             //var relations = db.Countries.Include(n=> n.CountryTimezoneRelations).FirstOrDefault(n => n.CountryID == countryId);
-            if (relations.CountryTimezoneRelations.Count() > countCheckAbove) {
+            if (relations != null && relations.CountryTimezoneRelations.Count() > countCheckAbove) {
                 using (var db = new ApplicationDbContext()) {
                     var list = relations.CountryTimezoneRelations.Select(n => n.UserTimeZoneID).ToArray();
                     var stringList = string.Join(",", list);
                     //returns in query
                     var sqlInQuery = "SELECT * FROM " + tableName + " WHERE " + searchingColumn + " IN (" + stringList +
                                      ")";
-                    ;
                     var userTimeZones = db.UserTimeZones.SqlQuery(sqlInQuery).ToList();
                     SaveTableContentsInCache(cacheTableName, userTimeZones);
                     return userTimeZones;
@@ -285,7 +284,7 @@ namespace DevBootstrapper.Modules.Cache {
         }
 
         /// <summary>
-        ///     Get Languages based on countryname
+        ///     Get Languages based on country name
         /// </summary>
         /// <returns>Don't return if only one or not found country.</returns>
         public static List<CountryLanguage> GetLanguages(string countryName) {

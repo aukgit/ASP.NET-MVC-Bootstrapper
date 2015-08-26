@@ -100,7 +100,7 @@ namespace <#= Namespace #>
 		///Constant value for where the controller is actually visible.
 		const string ControllerVisibleUrl = "/<#= ControllerRootName #>/";
         const string CurrentControllerRemoveOutputCacheUrl = "/Partials/Get<#= ModelTypeName #>ID";
-        const string DynamicLoadPartialController = "/Partials/";
+        string ServicesControllerUrl = AppVar.ServicesControllerUrl;
         bool DropDownDynamic = true;
 		#endregion
 
@@ -127,7 +127,7 @@ namespace <#= Namespace #>
 			ViewBag.controller = ControllerName;
             ViewBag.visibleUrl = ControllerVisibleUrl;
             ViewBag.dropDownDynamic = DropDownDynamic;
-            ViewBag.dynamicLoadPartialController = DynamicLoadPartialController;
+            ViewBag.servicesUrl = ServicesControllerUrl;
 		} 
 
 		#endregion

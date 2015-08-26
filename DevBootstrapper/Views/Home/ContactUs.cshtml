@@ -6,7 +6,7 @@
 }
 <h1 class="h2" title="@title">
     <i class="fa fa-weixin"></i>
-    @Html.SamePageLink(@title, @title, false, "")
+    @Html.GetCurrentPageUrlAnchorTag(@title, @title, false, "")
 </h1>
 <hr/>
 <!--ViewContext.RouteData.Values["Controller"].ToString()-->
@@ -17,7 +17,7 @@
         @Html.Partial("_SuccessMessage")
         @if (!Request.IsAuthenticated) {
             @Html.EditorFor(model => model.Name)
-            @Html.EditorFor(model => model.Email, "EmailAddress")
+            @Html.EditorFor(model => model.Email, "Email")
         } else {
             var user = UserManager.GetCurrentUser();
             @Html.Hidden("Username", user.UserName)

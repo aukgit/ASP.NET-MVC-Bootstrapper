@@ -15,35 +15,34 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
         [Required]
         [StringLength(50)]
         public string InfoID { get; set; }
-
-        [Column(TypeName = "VARCHAR")]
-        [Required]
-        [StringLength(70)]
         /// <summary>
         /// (UTC-07:00) Chihuahua, La Paz, Mazatlan
         /// </summary>
-        public string Display { get; set; }
-
         [Column(TypeName = "VARCHAR")]
         [Required]
-        [StringLength(10)]
+        [StringLength(70)]
+
+        public string Display { get; set; }
 
         /// <summary>
         /// UTC-10:00
         /// </summary>
+        [Column(TypeName = "VARCHAR")]
+        [Required]
+        [StringLength(10)]
         public string UTCName { get; set; }
 
         /// <summary>
         ///     -9
         /// </summary>
         public float UTCValue { get; set; }
-
-        [Column(TypeName = "VARCHAR")]
-        [StringLength(10)]
-        [Required]
         /// <summary>
         /// -07:00
         /// </summary>
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(10)]
+        [Required]
+
         public string TimePartOnly { get; set; }
 
         [ForeignKey("UserTimeZoneID")]

@@ -1,11 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using DevBootstrapper.Models.EntityModel.POCO;
-using DevBootstrapper.Modules.Extensions.Context;
 
 namespace DevBootstrapper.Models.Context
 {
-    public partial class NorthwindEntities : DevDbContext
+    public partial class NorthwindEntities : BaseDbContext
     {
         public NorthwindEntities()
             : base("name=NorthwindEntities")

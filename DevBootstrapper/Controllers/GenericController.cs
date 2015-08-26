@@ -2,13 +2,13 @@
 
 using System;
 using System.Web.Mvc;
-using DevBootstrapper.Modules.Extensions.Context;
+using DevBootstrapper.Models.Context;
 using DevMvcComponent.Error;
 
 #endregion
 
 namespace DevBootstrapper.Controllers {
-    public abstract class GenericController<TContext> : Controller where TContext : DevDbContext, new() {
+    public abstract class GenericController<TContext> : Controller where TContext : BaseDbContext, new() {
         internal readonly TContext db;
         internal ErrorCollector ErrorCollector;
 

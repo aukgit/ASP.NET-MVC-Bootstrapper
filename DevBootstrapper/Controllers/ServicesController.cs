@@ -8,7 +8,6 @@ using DevBootstrapper.Helpers;
 using DevBootstrapper.Models.Context;
 using DevBootstrapper.Modules.Cache;
 
-//using DevBootstrapper.Models.EntityModel.POCO; // Northwind Sample
 
 #endregion
 
@@ -17,6 +16,8 @@ namespace DevBootstrapper.Controllers {
     [CacheFilter]
     //public class PartialsController : GenericController<Inherit it with your db context> {
     public class ServicesController : GenericController<NorthwindEntities> {
+
+
         #region Constructors
 
         public ServicesController()
