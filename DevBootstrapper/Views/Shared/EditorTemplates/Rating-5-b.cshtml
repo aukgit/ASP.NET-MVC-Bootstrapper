@@ -10,7 +10,7 @@
         templateName = "rating-5-b";
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
-        ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
+        displayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control " + ViewBag.@class);
@@ -48,6 +48,8 @@
     htmlAttributes.Add("max", 5);
     htmlAttributes.Add("step", 1);
     htmlAttributes.Add("data-size", "xs");
+    htmlAttributes.Add("data-prop", styleProperty);
+    htmlAttributes.Add("data-template", templateName);
 }
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">

@@ -25,7 +25,7 @@ namespace DevBootstrapper.Modules.Mail {
             if (generateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(AppVar.Setting.AdminEmail, subject, htmlMessage);
+            Mvc.Mailer.QuickSend(AppVar.Setting.AdminEmail, subject, htmlMessage);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace DevBootstrapper.Modules.Mail {
             if (generateDecentSubject) {
                 subject = GetSubject(subject, type);
             }
-            Starter.Mailer.QuickSend(to, subject, htmlMessage);
+            Mvc.Mailer.QuickSend(to, subject, htmlMessage);
         }
 
         public void NotifyDeveloper(string subject, string htmlMessage, string type = "",
@@ -50,28 +50,20 @@ namespace DevBootstrapper.Modules.Mail {
                 if (generateDecentSubject) {
                     subject = GetSubject(subject, type);
                 }
-                Starter.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, subject, htmlMessage);
+                Mvc.Mailer.QuickSend(AppVar.Setting.DeveloperEmail, subject, htmlMessage);
             }
-        }
-
-        public void NotifyUserMulti(string subject, string toEmail, string[] userEamil, string htmlMessage,
-            string type = "", bool generateDecentSubject = true) {
-            if (generateDecentSubject) {
-                subject = GetSubject(subject, type);
-            }
-            Starter.Mailer.QuickSend(toEmail, userEamil, subject, htmlMessage);
         }
 
         public void HandleError(Exception exception, string method, string subject = "", object entity = null,
             string type = "", bool generateDecentSubject = true) {
-                {
-                    if (generateDecentSubject) {
-                        subject = GetSubject(subject, type);
-                    }
-                    subject += " on method [" + method + "()]";
-
-                    Starter.Error.HandleBy(exception, method, subject, entity);
+            {
+                if (generateDecentSubject) {
+                    subject = GetSubject(subject, type);
                 }
+                subject += " on method [" + method + "()]";
+
+                Mvc.Error.HandleBy(exception, method, subject, entity);
+            }
         }
     }
 }

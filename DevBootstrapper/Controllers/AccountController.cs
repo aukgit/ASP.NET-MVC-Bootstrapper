@@ -12,6 +12,7 @@ using DevBootstrapper.Modules.DevUser;
 using DevBootstrapper.Modules.Extensions.IdentityExtension;
 using DevBootstrapper.Modules.Mail;
 using DevBootstrapper.Modules.Role;
+using DevBootstrapper.Modules.Validations;
 using DevMvcComponent.Error;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -320,7 +321,9 @@ namespace DevBootstrapper.Controllers {
         public async Task<ActionResult> Register(RegisterViewModel model) {
             var errors = new ErrorCollector();
             //External Validation.
-            var validOtherConditions = await UserManager.ExternalUserValidation(model, _db, errors);
+            var validator = new DevUserValidator(model, errors, dbContext: _db);
+
+            var validOtherConditions = validator.FinalizeValidation();
 
             if (ModelState.IsValid && validOtherConditions) {
                 var user = UserManager.GetUserFromViewModel(model); // get user from view model.

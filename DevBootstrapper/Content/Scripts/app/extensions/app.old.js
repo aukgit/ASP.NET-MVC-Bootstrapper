@@ -30,7 +30,7 @@
  * mailto:info{at}developers-organism.com
  */
 
-$.devOrg = {
+$.app = {
 
     countryFlagRefresh: function (countrySelector, dropDownItemsSelector, dropDownBtnSelector) {
         /// <summary>
@@ -80,13 +80,13 @@ $.devOrg = {
             // console.log("executed");
             var listItem = dropDownItems.find("li.selected");
             var spanText = listItem.find("a > span").text().toString();
-            var newCallingCode = $.devOrg.subString(spanText, "(", ")");
+            var newCallingCode = $.app.subString(spanText, "(", ")");
             var getWrittenPhoneNumber = phoneNumberBox.val();
             // console.log(listItem);
-            newCallingCode = $.devOrg.replaceStartsWith(newCallingCode, "+", "");
+            newCallingCode = $.app.replaceStartsWith(newCallingCode, "+", "");
             if ((!$.isEmpty(getWrittenPhoneNumber) && !$.isEmpty(previousCallingCode))
-                && $.devOrg.isStartsWith(getWrittenPhoneNumber, previousCallingCode)) {
-                getWrittenPhoneNumber = $.devOrg.replaceStartsWith(getWrittenPhoneNumber, previousCallingCode, newCallingCode);
+                && $.app.isStartsWith(getWrittenPhoneNumber, previousCallingCode)) {
+                getWrittenPhoneNumber = $.app.replaceStartsWith(getWrittenPhoneNumber, previousCallingCode, newCallingCode);
             } else {
                 getWrittenPhoneNumber = newCallingCode + getWrittenPhoneNumber;
             }
@@ -130,7 +130,7 @@ $.devOrg = {
         /// <param name="comboId">Just pass the id or give null, it will automatically formatted</param>
         /// <param name="stringOptionItems">Option items passed as an string</param>
         /// <param name="additionalAttributes">Add additional attributes with the select, however user have to format it. Eg. id='hello' </param>
-        var self = $.devOrg;
+        var self = $.app;
         var selectors = self.selectors;
         if (!$.isEmpty(comboId)) {
             comboId = " id='" + comboId + "' ";
@@ -209,7 +209,7 @@ $.devOrg = {
         /// <param name="jsonItems">must contain display and id value for every 'option' item.</param>
         /// <param name="extraHtmlWithEachElement">add the extra html content with option display value</param>
         /// <param name="itemClasses">add classes with each option.</param>
-        var self = $.devOrg;
+        var self = $.app;
         var optionsString = self.getComboOptionsStringFromJson(jsonItems, extraHtmlWithEachElement, eachOptionItemClasses);
         var comboString = self.getComboString(comboName, comboClass, comboId, optionsString, additionalAttributesWithCombo);
         return comboString;
@@ -239,7 +239,7 @@ $.devOrg = {
         /// <param name="placedComboAdditionalClassesWithEachItem">Add extra classes with every option, only write the class names with space.</param>
         /// <param name="placedComboAdditionalHtmlWithEachItem">Add extra html content with each option item</param>
         var $parentCombo = $(parentSelectsjQuerySelector);
-        var self = $.devOrg;
+        var self = $.app;
 
         if ($.isEmpty($parentCombo)) {
             console.error.log("error raised from developers organism component's smartDependableCombo that no parent is detected.");
@@ -329,7 +329,7 @@ $.devOrg = {
 
             var itemFound = $($combo[index]);
             var value = itemFound.val();
-            $.devOrg.bootstrapComboSelectbyFindingValue(comboSelector, value);
+            $.app.bootstrapComboSelectbyFindingValue(comboSelector, value);
         }
     },
 
@@ -841,7 +841,7 @@ $.devOrg = {
             order = 0,
             totalSliderLength = $slides.length;
              //previousSlideNumber = 0,
-             //self = $.devOrg;
+             //self = $.app;
 
         if (totalSliderLength > 0) {
             // exist slides.
@@ -893,7 +893,7 @@ $.devOrg = {
 
             // var notVisited = slideObjects.filter("[data-dev-visited='false']");
         }
-    },
+    }
 
     
 };

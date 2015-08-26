@@ -61,6 +61,8 @@
     if (ViewBag.url != null) {
         htmlAttributes.Add("data-url", ViewBag.url);
     }
+    htmlAttributes.Add("data-prop", styleProperty);
+    htmlAttributes.Add("data-template", templateName);
 }
 
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty" data-is-validate="@isValidate">

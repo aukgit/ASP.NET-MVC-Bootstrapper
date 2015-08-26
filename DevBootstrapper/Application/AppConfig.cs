@@ -10,6 +10,7 @@ using DevBootstrapper.Models.POCO.IdentityCustomization;
 using DevBootstrapper.Modules.TimeZone;
 using DevMvcComponent;
 using DevMvcComponent.Error;
+using DevMvcComponent.Mail;
 using DevMvcComponent.Processor;
 
 #endregion
@@ -20,7 +21,6 @@ namespace DevBootstrapper.Application {
     /// </summary>
     public static class AppConfig {
         private static CoreSetting _setting;
-        private static bool _initalized;
         private static int _truncateLength = 30;
 
         public static int ValidationMaxNumber {
@@ -49,21 +49,20 @@ namespace DevBootstrapper.Application {
         public static ErrorCollector GetNewErrorCollector() {
             return new ErrorCollector();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="force">Forcefully initialize.</param>
-        private static void InitalizeDevelopersOrganismComponent(bool force = false) {
-            if (!_initalized || force) {
-                Config.ApplicationName = AppVar.Name;
-                Config.DeveloperEmail = Setting.DeveloperEmail;
-                Config.Assembly = Assembly.GetExecutingAssembly();
-                Zone.LoadTimeZonesIntoMemory();
-                _initalized = true;
 
-                Cookies = Starter.Cookies;
-                Caches = Starter.Caches;
-            }
+
+        /// <summary>
+        /// Setup DevMvcComponent
+        /// </summary>
+        private static void SetupDevMvcComponent() {
+            // initialize DevMvcComponent
+            // Configure this with add a sender email.
+            var mailer = new CustomMailServer(Setting.SenderEmail,
+                Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
+            Mvc.Setup(AppVar.Name, Setting.DeveloperEmail, Assembly.GetExecutingAssembly(), mailer);
+            //Mvc.Mailer.QuickSend("devorg.bd@gmail.com", "Hello", "Hello");
+            Cookies = Mvc.Cookies;
+            Caches = Mvc.Caches;
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace DevBootstrapper.Application {
                         LiveUrl = "http://www.developers-organism.com",
                         AdminLocation = "Admin",
                         TestingUrl = "http://localhost:port",
-                        ServicesControllerUrl  = "/Services/",
+                        ServicesControllerUrl = "/Services/",
                         ApiControllerUrl = "/Api/",
                         AdminEmail = "devorg.bd@gmail.com",
                         DeveloperEmail = "devorg.bd@gmail.com",
@@ -136,7 +135,9 @@ namespace DevBootstrapper.Application {
                 if (_setting == null) {
                     throw new Exception("Couldn't create or get the core settings. Please check the creation.");
                 }
-                InitalizeDevelopersOrganismComponent(true);
+                // load timezones into memory.
+                Zone.LoadTimeZonesIntoMemory();
+
                 AppVar.IsInTestEnvironment = Setting.IsInTestingEnvironment;
 
                 AppVar.Name = Setting.ApplicationName;
@@ -147,11 +148,10 @@ namespace DevBootstrapper.Application {
                 AppVar.ServicesControllerUrl = Setting.ServicesControllerUrl;
 
                 ViewCommon.SetCommonMetaDescriptionToEmpty();
-                //Configure this with add a sender email.
-                Starter.Mailer = new DevMvcComponent.Mailer.CustomMailConfig(Setting.SenderEmail,
-                    Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
 
-                Starter.Mailer.QuickSend("devorg.bd@gmail.com", "Hello", "Hello");
+
+                SetupDevMvcComponent();
+
                 //if false then no email on error.
                 Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
 

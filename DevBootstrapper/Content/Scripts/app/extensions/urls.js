@@ -15,9 +15,9 @@
 
 ;
 
-$.devOrg = $.devOrg || {};
+$.app = $.app || {};
 
-$.devOrg.urls = {
+$.app.urls = {
     /*
      * hostUrl will be retrieved from hidden field "#host-url"
      * Contains a slash at the end.
@@ -35,11 +35,11 @@ $.devOrg.urls = {
         /// Return host url with a slash at the bottom.
         /// </summary>
         /// <returns type="">Returns the host url.</returns>
-        var self = $.devOrg.urls;
+        var self = $.app.urls;
         var hostUrl = self.hostUrl;
 
         if ($.isEmpty(hostUrl)) {
-            var dev = $.devOrg,
+            var dev = $.app,
                 selectors = dev.selectors;
             var id = selectors.hostFieldId;
             var $hostUrlHidden = $.byId(id);
@@ -57,7 +57,7 @@ $.devOrg.urls = {
         /// </summary>
         /// <param name="givenUrl">url shouldn't have any slash at the begining.</param>
         /// <returns type="">Return absolute url containing host name and url.</returns>
-        var self = $.devOrg.urls;
+        var self = $.app.urls;
         var hostUrl = self.hostUrl;
         if (!$.isEmpty(hostUrl)) {
             return hostUrl + givenUrl;
@@ -73,7 +73,7 @@ $.devOrg.urls = {
         /// </summary>
         /// <param name="url"></param>
         /// <returns type="string">returns absolute url.</returns>
-        var self = $.devOrg.urls;
+        var self = $.app.urls;
 
         var urlCombined = self.validator + url;
         return self.getAbsUrl(urlCombined);

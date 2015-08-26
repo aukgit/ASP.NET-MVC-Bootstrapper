@@ -10,7 +10,7 @@
         description = ViewData.ModelMetadata.Description;
     var htmlAttributes = new RouteValueDictionary();
     if (displayName == null) {
-        ViewData.ModelMetadata.DisplayName = ViewData.ModelMetadata.PropertyName;
+        displayName = ViewData.ModelMetadata.PropertyName;
     }
     if (ViewBag.@class != null) {
         htmlAttributes.Add("class", "form-control " + ViewBag.@class);
@@ -65,6 +65,9 @@
     htmlAttributes.Add("data-size", "xs");
     htmlAttributes.Add("data-stars", ViewBag.stars);
     htmlAttributes.Add("data-step", ViewBag.step);
+
+    htmlAttributes.Add("data-prop", styleProperty);
+    htmlAttributes.Add("data-template", templateName);
 }
 <div class="form-group form-row @styleProperty @templateName-type" data-type="@templateName" data-prop="@styleProperty">
     <div class="controls dev-plugin">

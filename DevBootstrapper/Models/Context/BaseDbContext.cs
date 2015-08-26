@@ -9,32 +9,32 @@ using DevBootstrapper.Application;
 
 #endregion
 
-namespace DevBootstrapper.Modules.Extensions.Context {
-    public abstract class DevDbContext : DbContext {
-        protected DevDbContext() {
+namespace DevBootstrapper.Models.Context {
+    public abstract class BaseDbContext : DbContext {
+        protected BaseDbContext() {
         }
 
-        protected DevDbContext(string connectionStringName)
+        protected BaseDbContext(string connectionStringName)
             : base(connectionStringName) {
         }
 
-        protected DevDbContext(DbCompiledModel compiledModel)
+        protected BaseDbContext(DbCompiledModel compiledModel)
             : base(compiledModel) {
         }
 
-        protected DevDbContext(string connectionStringName, DbCompiledModel compiledModel)
+        protected BaseDbContext(string connectionStringName, DbCompiledModel compiledModel)
             : base(connectionStringName, compiledModel) {
         }
 
-        protected DevDbContext(DbConnection existingConnection, bool contextOwnsConnection)
+        protected BaseDbContext(DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection) {
         }
 
-        protected DevDbContext(ObjectContext objectContext, bool contextOwnsConnection)
+        protected BaseDbContext(ObjectContext objectContext, bool contextOwnsConnection)
             : base(objectContext, contextOwnsConnection) {
         }
 
-        protected DevDbContext(DbConnection existingConnection, DbCompiledModel compiledModel,
+        protected BaseDbContext(DbConnection existingConnection, DbCompiledModel compiledModel,
             bool contextOwnsConnection)
             : base(existingConnection, compiledModel, contextOwnsConnection) {
         }
@@ -52,7 +52,19 @@ namespace DevBootstrapper.Modules.Extensions.Context {
                 return -1;
             }
         }
-
+        /// <summary>
+        ///     Save changes and sends an email to the developer if any error occurred.
+        /// </summary>
+        /// <returns>>=0 :executed correctly. -1: error occurred.</returns>
+        public int SaveChanges(string method, string subject = null, object entity = null) {
+            try {
+                return base.SaveChanges();
+            } catch (Exception ex) {
+                //async email
+                AppVar.Mailer.HandleError(ex, "SaveChanges", "Error SaveChanges()");
+                return -1;
+            }
+        }
         /// <summary>
         ///     Save changes and sends an email to the developer if any error occurred.
         /// </summary>

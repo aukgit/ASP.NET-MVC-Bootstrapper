@@ -29,8 +29,8 @@
  * https://www.facebook.com/DevelopersOrganism
  * mailto:info{at}developers-organism.com
  */
-; $.devOrg = $.devOrg || {};
-$.devOrg.jsonCombo = {
+; $.app = $.app || {};
+$.app.jsonCombo = {
     isDependableAttribute: "data-dependable",
     dependablePropertyNameAttribute: "data-dependable-prop-name",
     propertyNameAttribute: "data-prop",
@@ -59,10 +59,10 @@ $.devOrg.jsonCombo = {
         /// returns data-id='attribute value'
         /// </summary>
         /// <param name="$div"></param>
-        return $div.attr($.devOrg.jsonCombo.idAttribute);
+        return $div.attr($.app.jsonCombo.idAttribute);
     },
     getSpinner: function (propName) {
-        return $.devOrg.jsonCombo.$spinners.filter("[" + $.devOrg.jsonCombo.propertyNameAttribute + "='" + propName + "']");
+        return $.app.jsonCombo.$spinners.filter("[" + $.app.jsonCombo.propertyNameAttribute + "='" + propName + "']");
     },
     getIdAsAttribute: function ($div) {
         /// <summary>
@@ -72,7 +72,7 @@ $.devOrg.jsonCombo = {
         /// else returns ''
         /// </summary>
         /// <param name="$div"></param>
-        var id = $.devOrg.jsonCombo.getDataId($div);
+        var id = $.app.jsonCombo.getDataId($div);
         if ($.isEmpty(id) === false) {
             id = " id='" + id + "' ";
         } else {
@@ -94,18 +94,18 @@ $.devOrg.jsonCombo = {
         ///      data-load-auto="true/false"
         /// </summary>
         "use strict";
-        var self = $.devOrg.jsonCombo;
+        var self = $.app.jsonCombo;
 
         if (additionalSelector === undefined) {
             additionalSelector = "";
         }
         var selector = "div." + self.dynamicSelectClass + "[" + self.isDynamicSelectElementAttribute + "=true]" + additionalSelector;
         var $dynamicDiv = $(selector);
-        // don't use $.devOrg.jsonCombo type of caching because it is not updated when items are appended ** alim ul karim
+        // don't use $.app.jsonCombo type of caching because it is not updated when items are appended ** alim ul karim
         self.$allDynamicImmidiaeSelectDivs = $dynamicDiv;
         self.$spinners = $(self.spineerSelectors);
         self.$hideableContents = $(self.hidableContentSelector);
-        //console.log($.devOrg.jsonCombo.$spinners);
+        //console.log($.app.jsonCombo.$spinners);
         //spinner hides first
         if (self.$spinners.length) {
             self.$spinners.hide();
@@ -126,7 +126,7 @@ $.devOrg.jsonCombo = {
         }
     },
     isHtmlRequest: function ($div) {
-        return $div.attr($.devOrg.jsonCombo.isHtmlAttribute);
+        return $div.attr($.app.jsonCombo.isHtmlAttribute);
     },
     fixUrlWithSlash: function (url) {
         /// <summary>
@@ -145,16 +145,16 @@ $.devOrg.jsonCombo = {
         return url;
     },
     filterDependableDivByPropName: function (depenablePropName) {
-        var findChildSelector = "[" + $.devOrg.jsonCombo.dependablePropertyNameAttribute + "=" + depenablePropName + "]";
-        return $.devOrg.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
+        var findChildSelector = "[" + $.app.jsonCombo.dependablePropertyNameAttribute + "=" + depenablePropName + "]";
+        return $.app.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
     },
     filterDivByPropName: function (propName) {
-        var findChildSelector = "[" + $.devOrg.jsonCombo.propertyNameAttribute + "=" + propName + "]";
-        return $.devOrg.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
+        var findChildSelector = "[" + $.app.jsonCombo.propertyNameAttribute + "=" + propName + "]";
+        return $.app.jsonCombo.$allDynamicImmidiaeSelectDivs.filter(findChildSelector);
     },
     getUrlFromDynamicSelectDiv: function ($div) {
-        var url = $div.attr($.devOrg.jsonCombo.urlAttribute);
-        url = $.devOrg.jsonCombo.fixUrlWithSlash(url);
+        var url = $div.attr($.app.jsonCombo.urlAttribute);
+        url = $.app.jsonCombo.fixUrlWithSlash(url);
         return url;
     },
     selectFirstItemInSelectAndGetValue: function ($currentSelect) {
@@ -172,7 +172,7 @@ $.devOrg.jsonCombo = {
         /// <param name="$div"></param>
         /// <param name="url">given url to get the json</param>
         "use strict";
-        var self = $.devOrg.jsonCombo;
+        var self = $.app.jsonCombo;
 
         var isHtml = self.isHtmlRequest($div);
         var requestType = "JSON";

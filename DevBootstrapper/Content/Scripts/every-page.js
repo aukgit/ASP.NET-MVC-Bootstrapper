@@ -26,6 +26,5 @@ $.genericPage = function() {
 
 
 $(function () {
-
     $.genericPage();
 });
