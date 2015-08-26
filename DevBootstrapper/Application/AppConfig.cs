@@ -157,6 +157,9 @@ namespace DevBootstrapper.Application {
                 //Configure this with add a sender email.
                 Starter.Mailer = new DevMvcComponent.Mailer.CustomMailConfig(Setting.SenderEmail,
                     Setting.SenderEmailPassword, Setting.SmtpHost, Setting.SmtpMailPort, Setting.IsSmptSsl);
+<<<<<<< HEAD
+>>>>>>> parent of f1c94ac... changes
+=======
 >>>>>>> parent of f1c94ac... changes
                 //if false then no email on error.
                 Config.IsNotifyDeveloper = Setting.NotifyDeveloperOnError;
