@@ -2138,8 +2138,8 @@ input[type="button"].btn-block {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url(../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.eot);
-  src: url(../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.woff) format('woff'), url(../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular) format('svg');
+  src: url('../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.eot');
+  src: url('../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../packages/Twitter.Bootstrap.Less.3.0.0/content/Content/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;

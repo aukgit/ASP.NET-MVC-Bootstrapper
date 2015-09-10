@@ -131,7 +131,7 @@ namespace DevBootstrapper.Models.POCO.IdentityCustomization {
 
         [Column(TypeName = "VARCHAR")]
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         [DataType(DataType.Password)]
         [Display(Name = "Password", Description = "Email password.")]
         public string SenderEmailPassword { get; set; }

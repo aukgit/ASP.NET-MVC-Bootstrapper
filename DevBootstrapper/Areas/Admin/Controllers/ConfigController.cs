@@ -15,7 +15,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         private readonly DevIdentityDbContext _db = new DevIdentityDbContext();
 
         public ActionResult Index() {
-            byte id = 1;
+            byte id = (byte)1;
 
             var coreSetting = _db.CoreSettings.Find(id);
             if (coreSetting == null) {
@@ -39,14 +39,15 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Index(CoreSetting coreSetting, string tab) {
             ViewBag.tab = tab;
-
             if (ModelState.IsValid) {
                 _db.Entry(coreSetting).State = EntityState.Modified;
-                _db.SaveChanges();
-                AppConfig.RefreshSetting();
-                ViewBag.Success = "Saved Successfully.";
+                if (_db.SaveChanges() > -1) {
+                    AppConfig.RefreshSetting();
+                    ViewCommon.SetSavedStatus(ViewBag);
+                    return View(coreSetting);
+                }
             }
-
+            ViewCommon.SetErrorStatus(ViewBag);
             return View(coreSetting);
         }
 
@@ -54,7 +55,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (disposing) {
                 _db.Dispose();
             }
-            base.Dispose(disposing);
+            this.Dispose(disposing);
         }
     }
 }

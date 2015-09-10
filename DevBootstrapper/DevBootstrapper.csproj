@@ -385,6 +385,7 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="Content\css\accounts-page.css" />
     <Content Include="Content\css\animate-refresh.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.css" />
@@ -398,6 +399,7 @@
     <Content Include="Content\css\color-fonts.css" />
     <Content Include="Content\css\core-developer.css" />
     <Content Include="Content\css\editor-templates.css" />
+    <Content Include="Content\css\elements.css" />
     <Content Include="Content\css\flags32-combo.css" />
     <Content Include="Content\css\flags32.css" />
     <Content Include="Content\css\flags32.png" />
@@ -502,6 +504,16 @@
     </Content>
     <Content Include="Content\css\editor-templates.css.map">
       <DependentUpon>editor-templates.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\front-developer.css.map">
+      <DependentUpon>front-developer.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Less\accounts-page.less" />
+    <Content Include="Content\css\accounts-page.css.map">
+      <DependentUpon>accounts-page.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\elements.css.map">
+      <DependentUpon>elements.css</DependentUpon>
     </Content>
     <None Include="Content\Less\bootstrap-datetimepicker.less" />
     <Content Include="Content\css\less-imports.css" />

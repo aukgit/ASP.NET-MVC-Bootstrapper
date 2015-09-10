@@ -228,6 +228,8 @@ D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.xml
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Deployment.xml
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Razor.xml
 D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.pdb
+D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
+D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevBootstrapper.dll.config
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevBootstrapper.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevBootstrapper.pdb
@@ -238,6 +240,7 @@ D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\Elmah.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\Elmah.Mvc.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\EntityFramework.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\EntityFramework.SqlServer.dll
+D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\HtmlAgilityPack.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\ImageResizer.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\MarkdownDeep.dll
@@ -275,6 +278,7 @@ D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevTrends.MvcDonu
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\DevTrends.MvcDonutCaching.xml
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\EntityFramework.xml
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\EntityFramework.SqlServer.xml
+D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\HtmlAgilityPack.pdb
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\HtmlAgilityPack.xml
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\ImageResizer.xml
@@ -304,7 +308,3 @@ D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPag
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\System.Web.WebPages.Razor.xml
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.dll
 D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\obj\Debug\DevBootstrapper.pdb
-D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
-D:\Work\Git\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb
-D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.dll
-D:\Working\GitHub\ASP.NET-MVC-Bootstrapper\DevBootstrapper\bin\FluentScheduler.pdb

@@ -116,6 +116,7 @@ namespace DevBootstrapper {
                                         "~/Content/css/menu.css",
                                         "~/Content/css/menu-modify.css",
                                         "~/Content/css/header.css",
+                                        "~/Content/css/accounts-page.css",
                                         "~/Content/css/front-developer.css",
                                         "~/Content/css/footer.css",
 
