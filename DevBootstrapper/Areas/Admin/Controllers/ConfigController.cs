@@ -15,7 +15,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
         private readonly DevIdentityDbContext _db = new DevIdentityDbContext();
 
         public ActionResult Index() {
-            byte id = (byte)1;
+            byte id = 1;
 
             var coreSetting = _db.CoreSettings.Find(id);
             if (coreSetting == null) {
@@ -55,7 +55,7 @@ namespace DevBootstrapper.Areas.Admin.Controllers {
             if (disposing) {
                 _db.Dispose();
             }
-            this.Dispose(disposing);
+            base.Dispose(disposing);
         }
     }
 }

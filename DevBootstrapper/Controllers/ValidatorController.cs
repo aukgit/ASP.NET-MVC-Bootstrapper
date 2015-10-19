@@ -18,7 +18,7 @@ namespace DevBootstrapper.Controllers {
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]
-        public ActionResult GetUsername(string id, string requestVerificationToken) {
+        public ActionResult GetUsername(string id) {
             var returnParam = true;
             var max = 30;
             var min = 3;
@@ -46,7 +46,7 @@ namespace DevBootstrapper.Controllers {
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]
-        public ActionResult Username(string id, string requestVerificationToken) {
+        public ActionResult Username(string id) {
             var returnParam = true;
             var max = 30;
             var min = 3;
@@ -74,7 +74,7 @@ namespace DevBootstrapper.Controllers {
         [HttpPost]
         [OutputCache(CacheProfile = "Long", VaryByParam = "id", VaryByCustom = "byuser")]
         [ValidateAntiForgeryToken]
-        public ActionResult Email(string id, string requestVerificationToken) {
+        public ActionResult Email(string id) {
             if (SessionNames.IsValidationExceed("Email")) {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }

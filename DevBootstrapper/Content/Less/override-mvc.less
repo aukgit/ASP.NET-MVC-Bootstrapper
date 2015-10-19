@@ -14,48 +14,10 @@ div.input-group.date.datetimepicker {
     .max-width(@inputs-max-width);
 }
 
-/*@media (max-width:@screen-xs){
-    input,
-    select,
-    textarea,
-    div.input-group.date.datetimepicker {
-        .max-width(@inputs-max-width-at-mobile);
+.form-control {
+    input&, select&, textarea& {
+        display: inline;
     }
-
-    .control-label{
-        .min-width(@label-max-width-at-mobile);
-    }
-}
-@media (max-width:@less-than-mobile-screen){
-    input,
-    select,
-    textarea,
-    div.input-group.date.datetimepicker {
-        .max-width(@inputs-max-width-at-l-mobile);
-    }
-
-    .control-label{
-        .min-width(@label-max-width-at-l-mobile);
-    }
-}
-
-@media (max-width:370px){
-    input,
-    select,
-    textarea,
-    div.input-group.date.datetimepicker {
-        .max-width(160px);
-    }
-
-    .control-label{
-        .min-width(70px);
-    }
-}*/
-
-input.form-control,
-select.form-control,
-textarea.form-control {
-    display: inline;
 }
 
 .glyphicon-top-fix {
@@ -79,21 +41,22 @@ textarea.form-control {
 .form-group {
     margin-bottom: 9px;
     margin-top: 9px;
-}
 
-.form-group.check-boxes {
-    margin-bottom: 0;
-    margin-top: 0;
-}
+    &.check-boxes {
+        margin-bottom: 0;
+        margin-top: 0;
 
-.form-group.check-boxes label {
-    padding-top: 6px;
+        label {
+            padding-top: 6px;
+        }
+    }
 }
 
 // select control width
-
-.btn-group.bootstrap-select.form-control {
-    .width(294px);
+@media only screen and (min-width: 294px) {
+    .btn-group.bootstrap-select.form-control {
+        .width(294px);
+    }
 }
 
 
@@ -114,6 +77,7 @@ div.bs-searchbox input.input-block-level.form-control {
     -webkit-background-size: auto;
     background-attachment: scroll;
     -ms-background-clip: border-box;
+    -moz-background-clip: border-box;
     background-clip: border-box;
     background-color: rgba(0, 0, 0, 0);
     background-image: none;
@@ -124,7 +88,7 @@ div.bs-searchbox input.input-block-level.form-control {
     cursor: auto;
     display: block;
     float: left;
-    font-family: Ubuntu, Tahoma, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    .ubuntu-font();
     font-size: 18px;
     height: 50px;
     line-height: 20px;
@@ -204,23 +168,7 @@ table caption {
 }
 
 
-.description-icon {
-    top: 5px;
-    color: #bdbdbd;
-    font-size: 1.375em;
-    position: relative;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 
-    &:before {
-        content: "\e085";
-    }
-}
 
 .bs-callout {
     padding: 10px 20px 5px 20px;
@@ -364,11 +312,11 @@ label.control-label, input.form-control {
 }
 /* add padding  */
 .left-addon input {
-    padding-left: 30px;
+    .padding-left(30px);
 }
 
 .right-addon input {
-    padding-right: 30px;
+    .padding-right(30px);
 }
 
 
@@ -377,19 +325,9 @@ label.control-label, input.form-control {
 .description-icon {
     cursor: pointer;
     position: relative;
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -moz-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    .fa();
+    .transform(~'translate(0, 0)');
+    .box-sizing(~'border-box');
     color: @description-icon-color;
 
     &:hover {
@@ -403,6 +341,9 @@ label.control-label, input.form-control {
     .font-size(26px);
     .top(5px);
     .width(22px);
+    @media (max-width: @screen-md) and (min-width: @screen-sm) {
+        .top(2px);
+    }
 }
 
 /*# sourceMappingURL=override-mvc-css.css.map */
